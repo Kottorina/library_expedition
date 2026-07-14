@@ -3,6 +3,17 @@ extends Node2D
 
 @export var level_piece_ : level_piece
 
+@export_tool_button("Clear") var clear_action = clear
+
+func clear():
+	#level_piece_.min_max_coord = Vector4i.ZERO
+	#level_piece_.connectors_level.clear()
+	#level_piece_.wall_floor_level.clear()
+	var wall_floor: TileMapLayer = $wall_floor
+	var debug: TileMapLayer = $debug
+	wall_floor.clear()
+	debug.clear()
+	
 @export_tool_button("Read") var read_action = read
 
 func read():
@@ -33,12 +44,13 @@ func read():
 var direction_base = ["down","up","left","right"]
 
 func write():
+	
 	var min_x = INF
 	var min_y = INF
 	var max_x = -INF
 	var max_y = -INF
-	
 	var wall_floor_dict : Dictionary
+	var connector_ar : Array = []
 	level_piece_.connectors_level.clear()
 	level_piece_.wall_floor_level.clear()
 	
@@ -69,10 +81,13 @@ func write():
 							connector.coord_ = tile_coord
 							connector.size_ = atl_coord.x + 1
 							connector.direction = direction_base[atl_coord.y]
-							level_piece_.connectors_level.append(connector)
+							connector_ar.append(connector)
 	
+	var ar = []
 	for i in wall_floor_dict:
-
-		level_piece_.wall_floor_level.append(wall_floor_dict[i])
+		ar.append(wall_floor_dict[i])
+		level_piece_.wall_floor_level = ar
+		
+	level_piece_.connectors_level = connector_ar
 	
 	level_piece_.min_max_coord = Vector4i(min_x,min_y,max_x,max_y)

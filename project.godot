@@ -19,6 +19,15 @@ config/icon="uid://iantqf4cd3u"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[file_customization]
+
+folder_colors={
+"res://Custom Class/": "blue",
+"res://Ready Obj/": "yellow",
+"res://Scene/": "orange",
+"res://draw/": "green"
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

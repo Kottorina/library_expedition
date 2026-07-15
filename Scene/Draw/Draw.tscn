@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bptqa1visam3h"]
+
+[ext_resource type="Script" uid="uid://ngufg2df2lhi" path="res://Scene/Draw/draw.gd" id="1_7nf6l"]
+[ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://draw/world_top.tres" id="2_tc7ch"]
+
+[node name="Draw" type="Node2D" unique_id=56238984 node_paths=PackedStringArray("wall_floor_tile")]
+script = ExtResource("1_7nf6l")
+wall_floor_tile = NodePath("wall_floor")
+
+[node name="wall_floor" type="TileMapLayer" parent="." unique_id=1847663910]
+texture_filter = 1
+tile_set = ExtResource("2_tc7ch")

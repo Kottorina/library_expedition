@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="piece_set_corridors" format=3 uid="uid://bmhkq5qdk111i"]
+
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/level_piece_class.gd" id="1_x8gf6"]
+[ext_resource type="Resource" uid="uid://cypwtto7s1xea" path="res://Ready Obj/Piece/corridors/B_U_D_0.tres" id="2_mkp73"]
+[ext_resource type="Resource" uid="uid://cjlhtpwj3i7rw" path="res://Ready Obj/Piece/corridors/B_R_L.tres" id="3_ajvwb"]
+[ext_resource type="Resource" uid="uid://drvaj2jviegi4" path="res://Ready Obj/Piece/corridors/E_D_0.tres" id="4_g42bj"]
+[ext_resource type="Resource" uid="uid://cm0tnd6caidny" path="res://Ready Obj/Piece/corridors/E_L_0.tres" id="5_5rhqn"]
+[ext_resource type="Resource" uid="uid://dshfuln8fwosj" path="res://Ready Obj/Piece/corridors/E_R_0.tres" id="6_tfgsu"]
+[ext_resource type="Resource" uid="uid://dxdqanquix2o0" path="res://Ready Obj/Piece/corridors/E_U_0.tres" id="7_g6jp4"]
+[ext_resource type="Resource" uid="uid://cpswyaib3h2ak" path="res://Ready Obj/Piece/corridors/F_D_0.tres" id="8_np234"]
+[ext_resource type="Resource" uid="uid://dm8ovabi1spy6" path="res://Ready Obj/Piece/corridors/F_L_0.tres" id="9_j2g5u"]
+[ext_resource type="Resource" uid="uid://bllfdllps7ssg" path="res://Ready Obj/Piece/corridors/F_R_0.tres" id="10_po2b3"]
+[ext_resource type="Resource" uid="uid://jvhxj787ao62" path="res://Ready Obj/Piece/corridors/F_U_0.tres" id="11_70wy0"]
+[ext_resource type="Script" uid="uid://drk8r5mmpr5e8" path="res://Custom Class/Level/Sets Pieces/pieces_set_corridors.gd" id="12_bcs40"]
+
+[resource]
+script = ExtResource("12_bcs40")
+pieces_base = Array[ExtResource("1_x8gf6")]([ExtResource("2_mkp73"), ExtResource("3_ajvwb")])
+pieces_fork = Array[ExtResource("1_x8gf6")]([ExtResource("8_np234"), ExtResource("9_j2g5u"), ExtResource("10_po2b3"), ExtResource("11_70wy0")])
+pieces_end = Array[ExtResource("1_x8gf6")]([ExtResource("4_g42bj"), ExtResource("5_5rhqn"), ExtResource("6_tfgsu"), ExtResource("7_g6jp4")])
+metadata/_custom_type_script = "uid://drk8r5mmpr5e8"

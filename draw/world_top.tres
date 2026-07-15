@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ck7lenxxxh40d" path="res://draw/art_word_top.png" id="1_xtyvh"]
 [ext_resource type="Texture2D" uid="uid://bsec7ne7eunyb" path="res://draw/art_debug_top.png" id="2_sacbo"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sacbo"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sacbo"]
 resource_name = "world top"
 texture = ExtResource("1_xtyvh")
@@ -818,6 +821,8 @@ texture_region_size = Vector2i(8, 8)
 15:0/0 = 0
 16:0/0 = 0
 17:0/0 = 0
+13:2/0 = 0
+13:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_sacbo")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lq5pd"]
 resource_name = "debug top"
@@ -850,9 +855,22 @@ texture_region_size = Vector2i(8, 8)
 2:6/0 = 0
 2:5/0 = 0
 2:4/0 = 0
+0:8/0 = 0
+0:9/0 = 0
+0:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+1:10/0 = 0
+1:9/0 = 0
+1:8/0 = 0
+2:10/0 = 0
+2:11/0 = 0
+2:9/0 = 0
+2:8/0 = 0
 
 [resource]
 tile_size = Vector2i(8, 8)
+occlusion_layer_0/light_mask = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "narrow wall"
 terrain_set_0/terrain_0/color = Color(1, 0.36078432, 0, 1)

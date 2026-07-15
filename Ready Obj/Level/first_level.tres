@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="level" format=3 uid="uid://d2dbkv7wscg3g"]
+
+[ext_resource type="Resource" uid="uid://bmhkq5qdk111i" path="res://Ready Obj/Piece/sets corridors/base_C_S_0.tres" id="1_1xvky"]
+[ext_resource type="Script" uid="uid://m8ld5rx2ji0o" path="res://Custom Class/Level/levelclass.gd" id="1_nr5dr"]
+[ext_resource type="Resource" uid="uid://dtjypon3bx5k3" path="res://Ready Obj/Piece/start_room/s_r_0.tres" id="2_yelsg"]
+
+[resource]
+script = ExtResource("1_nr5dr")
+start_room = ExtResource("2_yelsg")
+corridors_piece_set = ExtResource("1_1xvky")
+corridor_min_max_long = Vector2i(1, 1)
+corridor_step_generate = 2
+metadata/_custom_type_script = "uid://m8ld5rx2ji0o"

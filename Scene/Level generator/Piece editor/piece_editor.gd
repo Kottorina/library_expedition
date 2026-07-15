@@ -17,14 +17,15 @@ func clear():
 @export_tool_button("Read") var read_action = read
 
 func read():
+	
+	clear()
+	
 	var wall_floor: TileMapLayer = $wall_floor
 	var debug: TileMapLayer = $debug
 	
-	wall_floor.clear()
 	for i in level_piece_.wall_floor_level:
 		wall_floor.set_cell(i.coord_,0,i.atl_coord_)
 	
-	debug.clear()
 	for i in level_piece_.connectors_level:
 		var atl_coord : Vector2i = Vector2i.ZERO
 		match i.direction:
@@ -36,6 +37,7 @@ func read():
 				atl_coord.y = 2
 			"right":
 				atl_coord.y = 3
+		atl_coord.y += i.type * 4
 		atl_coord.x = i.size_ -1
 		debug.set_cell(i.coord_,1,atl_coord)
 
@@ -80,7 +82,11 @@ func write():
 							var connector = piece_connector.new()
 							connector.coord_ = tile_coord
 							connector.size_ = atl_coord.x + 1
-							connector.direction = direction_base[atl_coord.y]
+							var dir = atl_coord.y
+							dir %= 4
+							connector.direction = direction_base[dir]
+							var type_ = ceil(float(atl_coord.y+1)/4.0)
+							connector.type = int(type_)-1
 							connector_ar.append(connector)
 	
 	var ar = []

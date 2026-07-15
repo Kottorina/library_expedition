@@ -1,0 +1,251 @@
+[gd_resource type="Resource" script_class="level_piece" format=3 uid="uid://cypwtto7s1xea"]
+
+[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://Custom Class/Level/Piece Level/connector_class.gd" id="1_big14"]
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/level_piece_class.gd" id="2_mmvay"]
+[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://Custom Class/Level/Piece Level/wall_floor_class.gd" id="3_q5uut"]
+
+[sub_resource type="Resource" id="Resource_big14"]
+script = ExtResource("1_big14")
+coord_ = Vector2i(-4, -3)
+size_ = 2
+direction = "up"
+type = 1
+
+[sub_resource type="Resource" id="Resource_mmvay"]
+script = ExtResource("1_big14")
+coord_ = Vector2i(-4, 5)
+size_ = 2
+direction = "down"
+type = 1
+
+[sub_resource type="Resource" id="Resource_q5uut"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, -3)
+atl_coord_ = Vector2i(8, 0)
+
+[sub_resource type="Resource" id="Resource_3f27e"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, -2)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_fufyb"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, -2)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_mkq8k"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, -1)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_iggny"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, 0)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_me0mv"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, 1)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_1l0so"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, 1)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_iy0e2"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, 0)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_e1bs3"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, -1)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_40b7a"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, -3)
+atl_coord_ = Vector2i(10, 0)
+
+[sub_resource type="Resource" id="Resource_eicl2"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, -3)
+atl_coord_ = Vector2i(11, 0)
+
+[sub_resource type="Resource" id="Resource_7laqe"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, -2)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_vd8ig"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, -1)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_gc673"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, 0)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_y18f6"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, 1)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_it44o"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, 2)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_qc6g5"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, 5)
+atl_coord_ = Vector2i(11, 3)
+
+[sub_resource type="Resource" id="Resource_vrinu"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, 4)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_vtxcs"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, 3)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_s4evt"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-3, 2)
+atl_coord_ = Vector2i(11, 2)
+
+[sub_resource type="Resource" id="Resource_b8wh8"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, 5)
+atl_coord_ = Vector2i(9, 3)
+
+[sub_resource type="Resource" id="Resource_wyfn6"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, 4)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_l03qp"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-4, 3)
+atl_coord_ = Vector2i(9, 2)
+
+[sub_resource type="Resource" id="Resource_6n0gp"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, 5)
+atl_coord_ = Vector2i(8, 3)
+
+[sub_resource type="Resource" id="Resource_1s7uc"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, 4)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_akgqg"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, 3)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_7se41"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-5, 2)
+atl_coord_ = Vector2i(8, 1)
+
+[sub_resource type="Resource" id="Resource_bspt4"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, -3)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_wsrmw"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, -2)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_drfvt"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, -1)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_tgtwu"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, 0)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_hqkiu"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, 2)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_663i6"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, 3)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_ck7sf"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, 4)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_beriw"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, 5)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_hpk1w"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, 5)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_oc4bm"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, 4)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_krdil"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, 3)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_p54pt"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, 2)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_24hch"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, 0)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_h2mfp"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, -1)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_xel48"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, -2)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_y2umu"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, -3)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_fla23"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-2, 1)
+atl_coord_ = Vector2i(13, 2)
+
+[sub_resource type="Resource" id="Resource_kedcy"]
+script = ExtResource("3_q5uut")
+coord_ = Vector2i(-6, 1)
+atl_coord_ = Vector2i(13, 2)
+
+[resource]
+script = ExtResource("2_mmvay")
+wall_floor_level = Array[ExtResource("3_q5uut")]([SubResource("Resource_q5uut"), SubResource("Resource_3f27e"), SubResource("Resource_fufyb"), SubResource("Resource_mkq8k"), SubResource("Resource_iggny"), SubResource("Resource_me0mv"), SubResource("Resource_1l0so"), SubResource("Resource_iy0e2"), SubResource("Resource_e1bs3"), SubResource("Resource_40b7a"), SubResource("Resource_eicl2"), SubResource("Resource_7laqe"), SubResource("Resource_vd8ig"), SubResource("Resource_gc673"), SubResource("Resource_y18f6"), SubResource("Resource_it44o"), SubResource("Resource_qc6g5"), SubResource("Resource_vrinu"), SubResource("Resource_vtxcs"), SubResource("Resource_s4evt"), SubResource("Resource_b8wh8"), SubResource("Resource_wyfn6"), SubResource("Resource_l03qp"), SubResource("Resource_6n0gp"), SubResource("Resource_1s7uc"), SubResource("Resource_akgqg"), SubResource("Resource_7se41"), SubResource("Resource_bspt4"), SubResource("Resource_wsrmw"), SubResource("Resource_drfvt"), SubResource("Resource_tgtwu"), SubResource("Resource_hqkiu"), SubResource("Resource_663i6"), SubResource("Resource_ck7sf"), SubResource("Resource_beriw"), SubResource("Resource_hpk1w"), SubResource("Resource_oc4bm"), SubResource("Resource_krdil"), SubResource("Resource_p54pt"), SubResource("Resource_24hch"), SubResource("Resource_h2mfp"), SubResource("Resource_xel48"), SubResource("Resource_y2umu"), SubResource("Resource_fla23"), SubResource("Resource_kedcy")])
+connectors_level = Array[ExtResource("1_big14")]([SubResource("Resource_big14"), SubResource("Resource_mmvay")])
+min_max_coord = Vector4i(-6, -3, -2, 5)
+metadata/_custom_type_script = "uid://bp2yg2emt4tov"

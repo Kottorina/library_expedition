@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://f16xvv8yas3f"]
 
 [ext_resource type="Script" uid="uid://cre17omp1v3w0" path="res://Scene/Level generator/level_generator.gd" id="1_4e6mf"]
+[ext_resource type="Resource" uid="uid://d2dbkv7wscg3g" path="res://Ready Obj/Level/first_level.tres" id="2_0khu6"]
+[ext_resource type="PackedScene" uid="uid://bjprt4xobheiv" path="res://Scene/Level generator/Room Generator/room_generator.tscn" id="2_8cf85"]
+[ext_resource type="Script" uid="uid://dijmp2qndr4qi" path="res://Scene/Level generator/Room Generator/room_generator.gd" id="3_kajkw"]
 
-[node name="Level_generator" type="Node" unique_id=520062488]
+[node name="LevelGenerator" type="Node" unique_id=520062488]
 script = ExtResource("1_4e6mf")
+curent_level = ExtResource("2_0khu6")
+
+[node name="RoomGenerator" parent="." unique_id=1350134376 instance=ExtResource("2_8cf85")]
+script = ExtResource("3_kajkw")

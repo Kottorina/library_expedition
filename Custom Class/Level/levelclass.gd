@@ -1,11 +1,13 @@
-extends Node
+extends Resource
+class_name level
 
+@export var name_ : String
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export_group("Structure level")
+@export var start_room : level_piece
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export_subgroup("Corridors")
+@export var corridors_piece_set : piece_set_corridors
+@export var corridor_min_max_long : Vector2i
+@export_range(0,10,1) var corridor_step_generate : int ##Сколько будет коридоров после конца генерации первого
+#Нужно больше тонких настроек, плюс настройка для выходного main коридора

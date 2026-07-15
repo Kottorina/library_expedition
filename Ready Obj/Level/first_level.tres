@@ -8,6 +8,6 @@
 script = ExtResource("1_nr5dr")
 start_room = ExtResource("2_yelsg")
 corridors_piece_set = ExtResource("1_1xvky")
-corridor_min_max_long = Vector2i(1, 1)
-corridor_step_generate = 2
+corridor_min_max_long = Vector2i(1, 16)
+corridor_step_generate = 4
 metadata/_custom_type_script = "uid://m8ld5rx2ji0o"

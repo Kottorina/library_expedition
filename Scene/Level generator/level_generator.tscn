@@ -4,10 +4,21 @@
 [ext_resource type="Resource" uid="uid://d2dbkv7wscg3g" path="res://Ready Obj/Level/first_level.tres" id="2_0khu6"]
 [ext_resource type="PackedScene" uid="uid://bjprt4xobheiv" path="res://Scene/Level generator/Room Generator/room_generator.tscn" id="2_8cf85"]
 [ext_resource type="Script" uid="uid://dijmp2qndr4qi" path="res://Scene/Level generator/Room Generator/room_generator.gd" id="3_kajkw"]
+[ext_resource type="Script" uid="uid://beet82bvure7t" path="res://Scene/Level generator/corridor_generator.gd" id="5_lhysh"]
+[ext_resource type="Script" uid="uid://d4eqdtid4hm46" path="res://Scene/Level generator/collision_manager.gd" id="6_60358"]
 
-[node name="LevelGenerator" type="Node" unique_id=520062488]
+[node name="LevelGenerator" type="Node" unique_id=520062488 node_paths=PackedStringArray("corridor_generator", "collision_manager")]
 script = ExtResource("1_4e6mf")
 curent_level = ExtResource("2_0khu6")
+corridor_generator = NodePath("CorridorGenerator")
+collision_manager = NodePath("CollisionManager")
+
+[node name="CorridorGenerator" type="Node" parent="." unique_id=1718606270 node_paths=PackedStringArray("collision_manager")]
+script = ExtResource("5_lhysh")
+collision_manager = NodePath("../CollisionManager")
 
 [node name="RoomGenerator" parent="." unique_id=1350134376 instance=ExtResource("2_8cf85")]
 script = ExtResource("3_kajkw")
+
+[node name="CollisionManager" type="Node" parent="." unique_id=1600204777]
+script = ExtResource("6_60358")

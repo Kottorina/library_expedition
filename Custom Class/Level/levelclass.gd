@@ -9,5 +9,5 @@ class_name level
 @export_subgroup("Corridors")
 @export var corridors_piece_set : piece_set_corridors
 @export var corridor_min_max_long : Vector2i
-@export_range(0,10,1) var corridor_step_generate : int ##Сколько будет коридоров после конца генерации первого
+@export_range(0,15,1) var corridor_step_generate : int ##Сколько будет коридоров после конца генерации первого
 #Нужно больше тонких настроек, плюс настройка для выходного main коридора

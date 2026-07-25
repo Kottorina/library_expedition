@@ -30,6 +30,14 @@ func get_corridors(
 					collision_manager.make_collision(offset,piece_connectors[0])
 					paice_dict[offset] = piece_connectors[0]
 				else:
+					var e_piece_connectors = get_piece_connectors_from_set("end",direction,corridor_set)
+				
+					var e_coord_new_connector = DIRECTION_VECTOR[direction] + coord_connector
+					var e_offset = e_coord_new_connector - e_piece_connectors[1].coord_
+					
+					collision_manager.make_collision(e_offset,e_piece_connectors[0])
+					paice_dict[e_offset] = e_piece_connectors[0]
+					
 					break
 				
 				coord_connector = ((piece_connectors[2][0].coord_-piece_connectors[1].coord_) + coord_new_connector)

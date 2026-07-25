@@ -40,8 +40,8 @@ func generate_level(curent_level_ : level):
 		if connector.type == 1:
 			base_corridors_connector_dict[connector.coord_] = connector
 	var corridor_paice_dict = corridor_generator.get_corridors(
-		base_corridors_connector_dict,rnd,curent_level_.corridors_piece_set ,curent_level_.corridor_step_generate,curent_level_.corridor_min_max_long
-		)
+		base_corridors_connector_dict,rnd,curent_level_.corridors_parameters)
+		
 	for c_key in corridor_paice_dict:
 		place_piece(c_key,corridor_paice_dict[c_key])
 	

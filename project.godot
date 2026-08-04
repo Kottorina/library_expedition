@@ -26,7 +26,8 @@ folder_colors={
 "res://Custom Class/": "blue",
 "res://Ready Obj/": "yellow",
 "res://Scene/": "orange",
-"res://draw/": "green"
+"res://draw/": "green",
+"res://old/": "gray"
 }
 
 [physics]

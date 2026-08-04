@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="level_piece" format=3 uid="uid://cm0tnd6caidny"]
 
-[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://Custom Class/Level/Piece Level/connector_class.gd" id="1_jtwu4"]
-[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/level_piece_class.gd" id="2_6ysqa"]
-[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://Custom Class/Level/Piece Level/wall_floor_class.gd" id="3_f4kik"]
+[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://Custom Class/Level/Piece Level/RoomConnectorClass.gd" id="1_jtwu4"]
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/RoomClass.gd" id="2_6ysqa"]
+[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://Custom Class/Level/Piece Level/BaseTileClass.gd" id="3_f4kik"]
 
 [sub_resource type="Resource" id="Resource_jtwu4"]
 script = ExtResource("1_jtwu4")

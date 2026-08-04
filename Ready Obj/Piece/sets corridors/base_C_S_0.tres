@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="piece_set_corridors" format=3 uid="uid://bmhkq5qdk111i"]
 
-[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/level_piece_class.gd" id="1_x8gf6"]
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/RoomClass.gd" id="1_x8gf6"]
 [ext_resource type="Resource" uid="uid://cypwtto7s1xea" path="res://Ready Obj/Piece/corridors/B_U_D_0.tres" id="2_mkp73"]
 [ext_resource type="Resource" uid="uid://cjlhtpwj3i7rw" path="res://Ready Obj/Piece/corridors/B_R_L.tres" id="3_ajvwb"]
 [ext_resource type="Resource" uid="uid://drvaj2jviegi4" path="res://Ready Obj/Piece/corridors/E_D_0.tres" id="4_g42bj"]

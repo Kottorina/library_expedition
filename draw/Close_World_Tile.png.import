@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsec7ne7eunyb"
-path="res://.godot/imported/art_debug_top.png-f34a7916b30eecbc9c17ad078d7d03af.ctex"
+uid="uid://6cm7r1at0x2s"
+path="res://.godot/imported/Close_World_Tile.png-b3901e925d54abd8b1d95c80c643aa03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://draw/art_debug_top.png"
-dest_files=["res://.godot/imported/art_debug_top.png-f34a7916b30eecbc9c17ad078d7d03af.ctex"]
+source_file="res://draw/Close_World_Tile.png"
+dest_files=["res://.godot/imported/Close_World_Tile.png-b3901e925d54abd8b1d95c80c643aa03.ctex"]
 
 [params]
 

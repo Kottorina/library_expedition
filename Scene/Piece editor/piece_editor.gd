@@ -1,9 +1,10 @@
 @tool
 extends Node2D
 
-@export_group("tool")
-@export var cell_to_rooms : Vector2i 
-@export var room_size : Vector2i 
+@export var current_room_set : RoomsSet
+
+@export var deco_node : TileMapLayer
+
 @export var tool_draw_node : TileMapLayer
 @export_tool_button("tool_draw") var tool_draw_action = tool_draw_f
 
@@ -11,25 +12,26 @@ const ToolWallAtlas = Vector2i(12,0)
 const ToolWallId = 0
 
 func tool_draw_f():
+	var r_s = current_room_set
 	tool_draw_node.clear()
 	
-	for c_x in cell_to_rooms.x:
-		for c_y in cell_to_rooms.y:
-				for s_x in room_size.x:
-						var coord_x = (room_size.x * c_x) + s_x
-						var coord_y = (room_size.y * c_y) 
+	for c_x in r_s.cell_to_rooms.x:
+		for c_y in r_s.cell_to_rooms.y:
+				for s_x in r_s.room_size.x:
+						var coord_x = (r_s.room_size.x * c_x) + s_x
+						var coord_y = (r_s.room_size.y * c_y) 
 						
 						var final_act_coord = Vector2i(coord_x,coord_y)
 						tool_draw_node.set_cell(final_act_coord,ToolWallId,ToolWallAtlas)
-				for s_y in room_size.y:
-						var coord_x = (room_size.x * c_x) 
-						var coord_y = (room_size.y * c_y) + s_y
+				for s_y in r_s.room_size.y:
+						var coord_x = (r_s.room_size.x * c_x) 
+						var coord_y = (r_s.room_size.y * c_y) + s_y
 						
 						var final_act_coord = Vector2i(coord_x,coord_y)
 						tool_draw_node.set_cell(final_act_coord,ToolWallId,ToolWallAtlas)
 	
-	var x_out = cell_to_rooms.x * room_size.x 
-	var y_out = cell_to_rooms.y * room_size.y 
+	var x_out = r_s.cell_to_rooms.x * r_s.room_size.x 
+	var y_out = r_s.cell_to_rooms.y * r_s.room_size.y 
 	
 	for x in x_out:
 		var final_act_coord = Vector2i(x,y_out)
@@ -38,6 +40,51 @@ func tool_draw_f():
 	for y in y_out :
 		var final_act_coord = Vector2i(x_out,y)
 		tool_draw_node.set_cell(final_act_coord,ToolWallId,ToolWallAtlas)
+
+@export_tool_button("Read Set") var read_action = read
+func read():
+	
+	tool_draw_f()
+	
+	for room_id in current_room_set.rooms_ar.size():
+		if current_room_set.rooms_ar[room_id] == null:
+			continue
+		var coord_chunk = Vector2i(room_id % current_room_set.cell_to_rooms.y,room_id / current_room_set.cell_to_rooms.y)
+		
+		if current_room_set.rooms_ar[room_id].base_tile != null:
+			for base_tile : BaseTile in current_room_set.rooms_ar[room_id].base_tile:
+				var coord_tile = base_tile.coord_ + Vector2i(coord_chunk.x*current_room_set.room_size.x,coord_chunk.y*current_room_set.room_size.y)
+				deco_node.set_cell(coord_tile,base_tile.id_,base_tile.atl_coord_)
+
+@export_tool_button("Write Set") var clear_action = write
+func write():
+	
+	var new_room_set = RoomsSet.new() 
+	new_room_set = current_room_set.duplicate()
+	new_room_set.rooms_ar.resize(new_room_set.cell_to_rooms.x*new_room_set.cell_to_rooms.y)
+	
+	##Запись декораций
+	for coord in deco_node.get_used_cells():
+		var coord_chunk := Vector2(coord.x/new_room_set.room_size.x,coord.y/new_room_set.room_size.y)
+		var id_ar = int(coord_chunk.y * new_room_set.cell_to_rooms.y + coord_chunk.x)
+		var new_base_tile = BaseTile.new()
+		new_base_tile.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
+		new_base_tile.atl_coord_ = deco_node.get_cell_atlas_coords(coord)
+		new_base_tile.id_ = deco_node.get_cell_source_id(coord)
+		if new_room_set.rooms_ar[id_ar] != null:
+			new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
+		else:
+			new_room_set.rooms_ar[id_ar] = Room.new()
+			new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
+			
+		
+	
+	current_room_set = new_room_set.duplicate()
+
+@export_tool_button("Clear") var clear_f_action = clear_f
+func clear_f():
+	deco_node.clear()
+	tool_draw_node.clear()
 	
 	#var x_out = cell_to_rooms.x * room_size.x 
 	#for y_out in cell_to_rooms.x * room_size.x :

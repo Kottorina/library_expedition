@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="level" format=3 uid="uid://d2dbkv7wscg3g"]
 
-[ext_resource type="Resource" uid="uid://dqf8r35smpyf5" path="res://Ready Obj/Level/Parametrs/base_0.tres" id="1_1xvky"]
+[ext_resource type="Resource" uid="uid://dqf8r35smpyf5" path="res://old/Ready Obj/Level/Parametrs/base_0.tres" id="1_1xvky"]
 [ext_resource type="Script" uid="uid://m8ld5rx2ji0o" path="res://old/levelclass.gd" id="1_nr5dr"]
-[ext_resource type="Resource" uid="uid://dtjypon3bx5k3" path="res://Ready Obj/Piece/start_room/s_r_0.tres" id="2_yelsg"]
+[ext_resource type="Resource" uid="uid://dtjypon3bx5k3" path="res://old/Ready Obj/Piece/start_room/s_r_0.tres" id="2_yelsg"]
 
 [resource]
 script = ExtResource("1_nr5dr")

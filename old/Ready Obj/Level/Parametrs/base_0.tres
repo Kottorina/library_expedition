@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="parameters_corridor" format=3 uid="uid://dqf8r35smpyf5"]
 
 [ext_resource type="Script" uid="uid://ct0cpp6vy2hhh" path="res://old/level_corridore_set_class.gd" id="1_insg5"]
-[ext_resource type="Resource" uid="uid://bmhkq5qdk111i" path="res://Ready Obj/Piece/sets corridors/base_C_S_0.tres" id="1_yocgu"]
+[ext_resource type="Resource" uid="uid://bmhkq5qdk111i" path="res://old/Ready Obj/Piece/sets corridors/base_C_S_0.tres" id="1_yocgu"]
 
 [resource]
 script = ExtResource("1_insg5")

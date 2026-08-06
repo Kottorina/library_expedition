@@ -3,7 +3,8 @@ extends Node2D
 
 @export var current_room_set : RoomsSet
 
-@export var deco_node : TileMapLayer
+@export var deco_nodes_ar : Array[TileMapLayer]
+@export var gener_node : TileMapLayer
 
 @export var tool_draw_node : TileMapLayer
 @export_tool_button("tool_draw") var tool_draw_action = tool_draw_f
@@ -44,6 +45,8 @@ func tool_draw_f():
 @export_tool_button("Read Set") var read_action = read
 func read():
 	
+	clear_f() #Очиста перед отрисовкой
+	
 	tool_draw_f()
 	
 	for room_id in current_room_set.rooms_ar.size():
@@ -54,36 +57,76 @@ func read():
 		if current_room_set.rooms_ar[room_id].base_tile != null:
 			for base_tile : BaseTile in current_room_set.rooms_ar[room_id].base_tile:
 				var coord_tile = base_tile.coord_ + Vector2i(coord_chunk.x*current_room_set.room_size.x,coord_chunk.y*current_room_set.room_size.y)
-				deco_node.set_cell(coord_tile,base_tile.id_,base_tile.atl_coord_)
+				deco_nodes_ar[base_tile.deco_level].set_cell(coord_tile,base_tile.id_,base_tile.atl_coord_)
+
+## "up","down","left","right" ПРОРИСОВАТЬ В TILESET ДЛЯ ПОМЕТКИ КОННЕКТОРОВ, СУКА (gener_type) ## Connector,
+const CONNECTORBLACKSTART := Vector2i(13,0)
+const CONNECTORWHITESTART := Vector2i(13,4)
 
 @export_tool_button("Write Set") var clear_action = write
 func write():
 	
 	var new_room_set = RoomsSet.new() 
 	new_room_set = current_room_set.duplicate()
+	new_room_set.rooms_ar.clear()
 	new_room_set.rooms_ar.resize(new_room_set.cell_to_rooms.x*new_room_set.cell_to_rooms.y)
 	
 	##Запись декораций
-	for coord in deco_node.get_used_cells():
+	var heigt = 0
+	for deco_tilemap in deco_nodes_ar:
+		
+		for coord in deco_tilemap.get_used_cells():
+			var coord_chunk := Vector2(coord.x/new_room_set.room_size.x,coord.y/new_room_set.room_size.y)
+			var id_ar = int(coord_chunk.y * new_room_set.cell_to_rooms.y + coord_chunk.x)
+			
+			var new_base_tile = BaseTile.new()
+			new_base_tile.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
+			new_base_tile.atl_coord_ = deco_tilemap.get_cell_atlas_coords(coord)
+			new_base_tile.id_ = deco_tilemap.get_cell_source_id(coord)
+			new_base_tile.deco_level = heigt
+			
+			if new_room_set.rooms_ar[id_ar] != null:
+				new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
+			else:
+				new_room_set.rooms_ar[id_ar] = Room.new()
+				new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
+			
+		heigt += 1
+	
+	##Запись правил для генерации
+	for coord in gener_node.get_used_cells():
 		var coord_chunk := Vector2(coord.x/new_room_set.room_size.x,coord.y/new_room_set.room_size.y)
 		var id_ar = int(coord_chunk.y * new_room_set.cell_to_rooms.y + coord_chunk.x)
-		var new_base_tile = BaseTile.new()
-		new_base_tile.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
-		new_base_tile.atl_coord_ = deco_node.get_cell_atlas_coords(coord)
-		new_base_tile.id_ = deco_node.get_cell_source_id(coord)
-		if new_room_set.rooms_ar[id_ar] != null:
-			new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
-		else:
-			new_room_set.rooms_ar[id_ar] = Room.new()
-			new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
-			
 		
-	
+		if new_room_set.rooms_ar[id_ar] == null:
+			new_room_set.rooms_ar[id_ar] = Room.new()
+		
+		var type_gener = gener_node.get_cell_tile_data(coord)
+		match type_gener.get_custom_data("gener_type"):
+			"ConnectorBlack":
+				var new_roomconnector := RoomConnector.new()
+				new_roomconnector.direction = (gener_node.get_cell_atlas_coords(coord) - CONNECTORBLACKSTART).y
+				new_roomconnector.size_ = (gener_node.get_cell_atlas_coords(coord) - CONNECTORBLACKSTART).x
+				new_roomconnector.type = 0
+				new_roomconnector.coord_ = coord
+				
+				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
+				
+			"ConnectorWhite":
+				var new_roomconnector := RoomConnector.new()
+				new_roomconnector.direction = (gener_node.get_cell_atlas_coords(coord) - CONNECTORBLACKSTART).y
+				new_roomconnector.size_ = (gener_node.get_cell_atlas_coords(coord) - CONNECTORBLACKSTART).x
+				new_roomconnector.type = 1
+				new_roomconnector.coord_ = coord
+				
+				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
+		
 	current_room_set = new_room_set.duplicate()
 
 @export_tool_button("Clear") var clear_f_action = clear_f
 func clear_f():
-	deco_node.clear()
+	for deco_tilemap in deco_nodes_ar:
+		deco_tilemap.clear()
 	tool_draw_node.clear()
 	
 	#var x_out = cell_to_rooms.x * room_size.x 

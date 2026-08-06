@@ -1,10 +1,83 @@
 [gd_resource type="Resource" script_class="RoomsSet" format=3 uid="uid://cv674gs8j6ibn"]
 
 [ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/RoomClass.gd" id="1_xribu"]
+[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://Custom Class/Level/Piece Level/BaseTileClass.gd" id="2_6ic48"]
 [ext_resource type="Script" uid="uid://h3ubtombidhi" path="res://Custom Class/Level/Sets Pieces/RoomsSet.gd" id="2_xvcnp"]
+[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://Custom Class/Level/Piece Level/RoomConnectorClass.gd" id="3_i1y2t"]
+
+[sub_resource type="Resource" id="Resource_csk5q"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(15, 8)
+atl_coord_ = Vector2i(11, 7)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_r5x50"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(15, 7)
+atl_coord_ = Vector2i(11, 6)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_ev6g0"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(15, 6)
+atl_coord_ = Vector2i(11, 4)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_57g8v"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(14, 8)
+atl_coord_ = Vector2i(9, 7)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_ytxdy"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(14, 7)
+atl_coord_ = Vector2i(9, 6)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_rk05t"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(14, 6)
+atl_coord_ = Vector2i(10, 4)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_li527"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(13, 8)
+atl_coord_ = Vector2i(9, 7)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_tdq7q"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(13, 7)
+atl_coord_ = Vector2i(9, 6)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_6tm8r"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(13, 6)
+atl_coord_ = Vector2i(10, 4)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_keddu"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(12, 8)
+atl_coord_ = Vector2i(9, 7)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_2671c"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(12, 7)
+atl_coord_ = Vector2i(9, 6)
+id_ = 1
+
+[sub_resource type="Resource" id="Resource_a4mbi"]
+script = ExtResource("1_xribu")
+base_tile = Array[ExtResource("2_6ic48")]([SubResource("Resource_csk5q"), SubResource("Resource_r5x50"), SubResource("Resource_ev6g0"), SubResource("Resource_57g8v"), SubResource("Resource_ytxdy"), SubResource("Resource_rk05t"), SubResource("Resource_li527"), SubResource("Resource_tdq7q"), SubResource("Resource_6tm8r"), SubResource("Resource_keddu"), SubResource("Resource_2671c")])
 
 [resource]
 script = ExtResource("2_xvcnp")
+rooms_ar = Array[ExtResource("1_xribu")]([SubResource("Resource_a4mbi"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 cell_to_rooms = Vector2i(20, 10)
 room_size = Vector2i(20, 20)
 metadata/_custom_type_script = "uid://h3ubtombidhi"

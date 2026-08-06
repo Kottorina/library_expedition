@@ -1,7 +1,7 @@
 extends Resource
 class_name Room
 
-@export var name_ : String ##Имя при заходе в комнату и тд?
+@export var name_ : String = "" ##Имя при заходе в комнату и тд?
 @export var id_ : int ##Id при сохранении, просто надо
 
 @export var base_tile : Array[BaseTile]

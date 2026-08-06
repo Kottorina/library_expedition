@@ -1008,6 +1008,7 @@ texture = ExtResource("2_5ivsj")
 9:12/0/terrains_peering_bit/bottom_side = 2
 9:12/0/terrains_peering_bit/bottom_left_corner = 2
 9:12/0/terrains_peering_bit/left_side = 2
+9:12/0/terrains_peering_bit/top_side = 2
 10:12/0 = 0
 10:12/0/terrain_set = 0
 10:12/0/terrain = 2

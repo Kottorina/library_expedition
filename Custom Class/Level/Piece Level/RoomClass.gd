@@ -6,5 +6,6 @@ class_name Room
 
 @export var base_tile : Array[BaseTile]
 @export var room_connectors_ar : Array[RoomConnector]
+@export var room_enter_ar : Array[RoomEnter]
 
 @export var min_max_coord : Vector4i ##Min (X,Y), Max (X,Y) Для выравнивания, так как фактичесски они все в общем пространстве (я сама хуй его знает как но оно работает)

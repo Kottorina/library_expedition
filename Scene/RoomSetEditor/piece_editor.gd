@@ -72,12 +72,16 @@ func read():
 						var atl_coord = Vector2i(CONNECTORBLACKSTART.x + room_connectors.size_,CONNECTORBLACKSTART.y + room_connectors.direction)
 						gener_node.set_cell(coord_tile,TOOLSOURCEID,atl_coord)
 					1:
+						var atl_coord = Vector2i(CONNECTORGRAYSTART.x + room_connectors.size_,CONNECTORGRAYSTART.y + room_connectors.direction)
+						gener_node.set_cell(coord_tile,TOOLSOURCEID,atl_coord)
+					2:
 						var atl_coord = Vector2i(CONNECTORWHITESTART.x + room_connectors.size_,CONNECTORWHITESTART.y + room_connectors.direction)
 						gener_node.set_cell(coord_tile,TOOLSOURCEID,atl_coord)
 
 ## "up","down","left","right" ПРОРИСОВАТЬ В TILESET ДЛЯ ПОМЕТКИ КОННЕКТОРОВ, СУКА (gener_type) ## Connector,
 const CONNECTORBLACKSTART := Vector2i(13,0)
-const CONNECTORWHITESTART := Vector2i(13,4)
+const CONNECTORGRAYSTART := Vector2i(13,4)
+const CONNECTORWHITESTART := Vector2i(13,8)
 
 @export_tool_button("Write Set") var clear_action = write
 func write():
@@ -118,26 +122,33 @@ func write():
 			new_room_set.rooms_ar[id_ar] = Room.new()
 		
 		var type_gener = gener_node.get_cell_tile_data(coord)
-		match type_gener.get_custom_data("gener_type"):
-			"ConnectorBlack":
-				var new_roomconnector := RoomConnector.new()
-				new_roomconnector.direction = (gener_node.get_cell_atlas_coords(coord) - CONNECTORBLACKSTART).y
-				new_roomconnector.size_ = (gener_node.get_cell_atlas_coords(coord) - CONNECTORBLACKSTART).x
-				new_roomconnector.type = 0
+		var gener_type = type_gener.get_custom_data("gener_type")
+		match gener_type:
+			"ConnectorBlack", "ConnectorGray", "ConnectorWhite":
+				var new_roomconnector = give_connector_from_coord(coord,gener_coord_dict[gener_type],gener_type_dict[gener_type])
 				new_roomconnector.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
-				
 				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
-				
-			"ConnectorWhite":
-				var new_roomconnector := RoomConnector.new()
-				new_roomconnector.direction = (gener_node.get_cell_atlas_coords(coord) - CONNECTORWHITESTART).y
-				new_roomconnector.size_ = (gener_node.get_cell_atlas_coords(coord) - CONNECTORWHITESTART).x
-				new_roomconnector.type = 1
-				new_roomconnector.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
-				
-				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
-		
+			"EnterBlack", "EnterGray", "EnterWhite":
+				var room_enter = RoomEnter.new()
+				room_enter.type = gener_type_dict[gener_type]
+				room_enter.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
+				new_room_set.rooms_ar[id_ar].room_enter_ar.append(room_enter)
+	
 	ResourceSaver.save(new_room_set, current_room_set_path) 
+
+var gener_type_dict = {
+"ConnectorBlack": 0, "EnterBlack": 0, "ConnectorGray": 1, "EnterGray": 1, "ConnectorWhite": 2, "EnterWhite": 2
+}
+var gener_coord_dict = {
+"ConnectorBlack": CONNECTORBLACKSTART,"ConnectorGray": CONNECTORGRAYSTART, "ConnectorWhite": CONNECTORWHITESTART,
+}
+
+func give_connector_from_coord(coord : Vector2i,atl_coord : Vector2i,type : int) -> RoomConnector:
+	var new_roomconnector := RoomConnector.new()
+	new_roomconnector.direction = (gener_node.get_cell_atlas_coords(coord) - atl_coord).y
+	new_roomconnector.size_ = (gener_node.get_cell_atlas_coords(coord) - atl_coord).x
+	new_roomconnector.type = type
+	return new_roomconnector
 
 @export_tool_button("Clear") var clear_f_action = clear_f
 func clear_f():

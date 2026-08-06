@@ -59,36 +59,40 @@ func _on_add_node_pressed() -> void:
 
 
 var toolconnectordirection_ar : Array[Array] = [[true,false],[false,true],[true,false],[false,true]]
-var toolconnectortype_ar : Array[int] = [5,6,7]
-var toolconnectorcolor_ar : Array[Color] = [Color.LIGHT_BLUE,Color.BLUE,Color.DARK_BLUE]
-var toolaltconnectortype_ar : Array[int] = [8,9,10]
-var toolaltconnectorcolor_ar : Array[Color] = [Color.LIGHT_GOLDENROD,Color.YELLOW,Color.DARK_KHAKI]
+var toolBconnectortype_ar : Array[int] = [5,6,7,8]
+var toolBconnectorcolor_ar : Array[Color] = [Color.LIGHT_BLUE,Color.BLUE,Color.DARK_BLUE]
+var toolGconnectortype_ar : Array[int] = [9,10,11,12]
+var toolGconnectorcolor_ar : Array[Color] = [Color.LIGHT_GOLDENROD,Color.YELLOW,Color.DARK_KHAKI]
+var toolWconnectortype_ar : Array[int] = [13,14,15,16]
+var toolWconnectorcolor_ar : Array[Color] = [Color.LIGHT_GOLDENROD,Color.YELLOW,Color.DARK_KHAKI]
 
 const DIRECTION : Array[String] = ["up","down","left","right"] 
 const TYPECONNECTOR : Array[String] = ["black","white"]
+const SIZE : Array[String] = ["tiny","small","medium","large"]
+
+var connector_type_dict : Dictionary = {
+0 : toolBconnectortype_ar,1 : toolGconnectortype_ar,2 : toolWconnectortype_ar
+}
+var connector_color_dict : Dictionary = {
+0 : toolBconnectorcolor_ar,1 : toolGconnectorcolor_ar,2 : toolWconnectorcolor_ar
+}
+
+
 
 func room_to_instrgraphnode(room : Room) -> Array[GraphNodeMakeInsts]:
 	var insrt_ar : Array[GraphNodeMakeInsts] = []
 	
 	for connector : RoomConnector in room.room_connectors_ar:
-		
-		print(room.room_connectors_ar.size())
-		
 		var instr = GraphNodeMakeInsts.new()
 		instr.is_left = toolconnectordirection_ar[connector.direction][0]
 		instr.is_right = toolconnectordirection_ar[connector.direction][1]
-		instr.title_instr = DIRECTION[connector.direction] + " " + TYPECONNECTOR[connector.type]
+		instr.title_instr = DIRECTION[connector.direction] + " " + TYPECONNECTOR[connector.type] + " " + SIZE[connector.size_]
 		
-		if connector.type == 0:
-			instr.left_type = toolconnectortype_ar[connector.size_]
-			instr.right_type = toolconnectortype_ar[connector.size_]
-			instr.left_color = toolconnectorcolor_ar[connector.size_]
-			instr.right_color = toolconnectorcolor_ar[connector.size_]
-		else:
-			instr.left_type = toolaltconnectortype_ar[connector.size_]
-			instr.right_type = toolaltconnectortype_ar[connector.size_]
-			instr.left_color = toolaltconnectorcolor_ar[connector.size_]
-			instr.right_color = toolaltconnectorcolor_ar[connector.size_]
+		instr.left_type = connector_type_dict[connector.type][connector.size_]
+		instr.right_type = connector_type_dict[connector.type][connector.size_]
+		
+		instr.left_color = connector_color_dict[connector.type][connector.size_]
+		instr.right_color = connector_color_dict[connector.type][connector.size_]
 		
 		insrt_ar.append(instr)
 	

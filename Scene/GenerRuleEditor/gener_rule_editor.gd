@@ -216,57 +216,55 @@ func _on_save_test_pressed() -> void:
 	
 	## СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
-	
-	
-	
-
-
-	
-	## ///...
-
-	var right_ports : Array ## Все правые порты обьекта и их соеденения
-	var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
-	for data in right_data_meta:
-		right_ports.append({data : null})
-	
-	var left_ports : Array ## Все левые порты обьекта и их соеденения 
-	var left_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(LEFT_PORTS_DATA_NAME)
-	for data in left_data_meta:
-		left_ports.append({data : null})
-	
-	var connections = graph_edit.get_connection_list_from_node(current_node.name)
-	for connect_line in connections:
-		
-		if current_node.name != connect_line["to_node"] and is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
-			
-			var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
-			var final_meta = to_left_metadata[connect_line["to_port"]]
-			
-			var key_right = right_ports[connect_line["from_port"]].keys()[0]
-			right_ports[connect_line["from_port"]][key_right] = { [final_meta] : connect_line["to_node"] }
-			
-			free_nodes[ NodePath(connect_line["to_node"]) ] = true
-			block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
-			
-		
-		if current_node.name != connect_line["from_node"] and  is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
-		#if ! occupied_nodes.has(connect_line["from_node"]) :
-			
-			var to_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
-			var final_meta = to_right_metadata[connect_line["from_port"]]
-			
-			var key_left = left_ports[connect_line["to_port"]].keys()[0]
-			left_ports[connect_line["to_port"]][key_left] = { [final_meta] : connect_line["from_node"] }
-			
-			free_nodes[ NodePath(connect_line["from_node"]) ] = true
-			block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
-	
-	free_nodes.erase(current_node)
-	
 	## ///...
 	
-	graph[current_node.name] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
+	while !free_nodes.is_empty():
+		
+		current_node = free_nodes.keys()[0]
+		
+		var right_ports : Array ## Все правые порты обьекта и их соеденения
+		var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
+		for data in right_data_meta:
+			right_ports.append({data : null})
+		
+		var left_ports : Array ## Все левые порты обьекта и их соеденения 
+		var left_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(LEFT_PORTS_DATA_NAME)
+		for data in left_data_meta:
+			left_ports.append({data : null})
+		
+		var connections = graph_edit.get_connection_list_from_node(current_node.name)
+		for connect_line in connections:
+			
+			if current_node.name != connect_line["to_node"] and is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
+				
+				var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
+				var final_meta = to_left_metadata[connect_line["to_port"]]
+				
+				var key_right = right_ports[connect_line["from_port"]].keys()[0]
+				right_ports[connect_line["from_port"]][key_right] = { [final_meta] : connect_line["to_node"] }
+				
+				free_nodes[ graph_edit.get_node(NodePath(connect_line["to_node"])) ] = true
+				block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
+				
+			
+			if current_node.name != connect_line["from_node"] and  is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
+			#if ! occupied_nodes.has(connect_line["from_node"]) :
+				
+				var to_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
+				var final_meta = to_right_metadata[connect_line["from_port"]]
+				
+				var key_left = left_ports[connect_line["to_port"]].keys()[0]
+				left_ports[connect_line["to_port"]][key_left] = { [final_meta] : connect_line["from_node"] }
+				
+				free_nodes[ graph_edit.get_node(NodePath(connect_line["from_node"])) ] = true
+				block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
+		
+		free_nodes.erase(current_node)
+		
+		graph[current_node.name] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
+	
+	## ///...
 	print("\n".join([ graph, occupied_ports, free_nodes])) ##graph
 
 func block_port(node_name : StringName, port : int, direction : String) -> void:

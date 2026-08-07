@@ -201,19 +201,28 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	graph_edit.add_child(new_node)
 	return new_node
 
+var occupied_ports : Dictionary ## { node : { const l/r : { 1 : true, 3 : true... } } }
+
 func _on_save_test_pressed() -> void:
-	#print(connections)
+	
+	occupied_ports.clear()
+	
+	var current_node = start_gener_node
+	
+	var free_nodes : Dictionary ## { node (StringName) : true }
+	free_nodes[current_node] = true
+	
+	var graph : Dictionary = {}
 	
 	## СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
-	var occupied_nodes : Array
-	var free_nodes : Dictionary
-	var current_node = start_gener_node
 	
-		
-	var graph : Dictionary = {}
 	
-	##///
+	
+
+
+	
+	## ///...
 
 	var right_ports : Array ## Все правые порты обьекта и их соеденения
 	var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
@@ -228,8 +237,7 @@ func _on_save_test_pressed() -> void:
 	var connections = graph_edit.get_connection_list_from_node(current_node.name)
 	for connect_line in connections:
 		
-		if current_node.name != connect_line["to_node"]:
-		#if ! occupied_nodes.has(connect_line["to_node"]) :
+		if current_node.name != connect_line["to_node"] and is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
 			
 			var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
 			var final_meta = to_left_metadata[connect_line["to_port"]]
@@ -237,8 +245,11 @@ func _on_save_test_pressed() -> void:
 			var key_right = right_ports[connect_line["from_port"]].keys()[0]
 			right_ports[connect_line["from_port"]][key_right] = { [final_meta] : connect_line["to_node"] }
 			
+			free_nodes[ NodePath(connect_line["to_node"]) ] = true
+			block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
+			
 		
-		if current_node.name != connect_line["from_node"]:
+		if current_node.name != connect_line["from_node"] and  is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
 		#if ! occupied_nodes.has(connect_line["from_node"]) :
 			
 			var to_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
@@ -246,21 +257,40 @@ func _on_save_test_pressed() -> void:
 			
 			var key_left = left_ports[connect_line["to_port"]].keys()[0]
 			left_ports[connect_line["to_port"]][key_left] = { [final_meta] : connect_line["from_node"] }
-		
-			##if right_data_meta.has connect_line["from_port"]
+			
+			free_nodes[ NodePath(connect_line["from_node"]) ] = true
+			block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
+	
+	free_nodes.erase(current_node)
+	
+	## ///...
 	
 	graph[current_node.name] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
+	print("\n".join([ graph, occupied_ports, free_nodes])) ##graph
+
+func block_port(node_name : StringName, port : int, direction : String) -> void:
+	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
+		occupied_ports[node_name][direction].append(port)
+	else:
+		occupied_ports[node_name] = { direction : [port]}
+
+func is_port_block(node_name : StringName, port : int, direction : String) -> bool:
+	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
+		if occupied_ports[node_name][direction].has(port):
+			return true
+	return false
+
 		#var left_data_meta = current_node.get_meta(LEFT_PORTS_DATA_NAME)
 		#for ports in left_data_meta
 			#pass
 			#free_nodes[connect_line["from_node"]] = 0
 		#elif current_node.name != connect_line["to_node"]:
 			#free_nodes[connect_line["to_node"]] = 0
-	
+				##if right_data_meta.has connect_line["from_port"]
 	# [{ "from_node": &"@GraphNode@53", "from_port": 1, "to_node": &"@GraphNode@67", "to_port": 0, "keep_alive": false }]
 	
-	print(" ".join([ graph])) ##graph
+	
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	if graph_edit.is_node_connected(from_node, from_port, to_node, to_port):

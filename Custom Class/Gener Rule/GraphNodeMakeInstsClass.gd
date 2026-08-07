@@ -10,3 +10,5 @@ class_name GraphNodeMakeInsts
 @export var is_right : bool = false
 @export var right_type : int = 0
 @export var right_color : Color = Color.BLACK
+
+@export_enum("label","spin_box") var body_node : int = 0 ##"label","spin_box"

@@ -45,6 +45,36 @@ layout_mode = 2
 layout_mode = 2
 text = "add node"
 
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=410445455]
+layout_mode = 2
+
+[node name="del_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1647430922]
+layout_mode = 2
+text = "del_select_node"
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1552105417]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1321082277]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "save"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1138620453]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "load"
+
+[node name="Button3" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=634529945]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "clear"
+
+[node name="Button4" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=415954148]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "new_location"
+
 [node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
 layout_mode = 2
 size_flags_vertical = 3
@@ -54,4 +84,7 @@ show_minimap_button = false
 show_arrange_button = false
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/del_node" to="." method="_on_del_node_pressed"]
 [connection signal="connection_request" from="PanelContainer/VBoxContainer/GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="node_deselected" from="PanelContainer/VBoxContainer/GraphEdit" to="." method="_on_graph_edit_node_deselected"]
+[connection signal="node_selected" from="PanelContainer/VBoxContainer/GraphEdit" to="." method="_on_graph_edit_node_selected"]

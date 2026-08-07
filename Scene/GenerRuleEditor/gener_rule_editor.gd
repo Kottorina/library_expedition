@@ -12,18 +12,26 @@ const TOOLCOLOR :=  Color.WHITE
 var start_gener_node : Node
 
 func _ready() -> void:
-	
 	bake_ui()
 	make_start_gener_node()
 
+@onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
+
+const ENTER_LOCATION_TITLE : String = "Id Enter:"
+const ROOMNODENAME = "Room Node: "
+const ENTER_LOCATION_NAME : String = "Enter Location Node"
+const START_GENER_LOCATION_TITLE : String = "Start Gener Node"
+
 func make_start_gener_node() -> void: ##Стартовая хуйня, без нее генерация по пизде идет
-	var insrt_ar : Array[GraphNodeMakeInsts]
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = START_GENER_LOCATION_TITLE
+	
 	var tool_instr = GraphNodeMakeInsts.new()
 	tool_instr.title_instr = TOOLTITLE
 	tool_instr.is_right = true
 	tool_instr.right_type = TOOLTYPE
 	tool_instr.right_color = TOOLCOLOR
-	insrt_ar.append(tool_instr)
+	big_instr.instr_ar.append(tool_instr)
 	
 	var enter_instr = GraphNodeMakeInsts.new()
 	enter_instr.is_right = true 
@@ -31,62 +39,53 @@ func make_start_gener_node() -> void: ##Стартовая хуйня, без н
 	enter_instr.title_instr = ENTER_LOCATION_TITLE
 	enter_instr.right_type = TOOLENTERTYPE
 	enter_instr.right_color = TOOLENTERCOLOR
-	insrt_ar.append(enter_instr)
+	big_instr.instr_ar.append(enter_instr)
 
-	var node = make_node("Start Gener Node",insrt_ar)
+	var node = make_node_from_biginstr(big_instr)
 	start_gener_node = node
 
-@onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
-
-const ROOMNODENAME = "Room Node: "
-const ROOMNODEINSTRNAME = "make_room"
-
-const ENTER_LOCATION_NAME : String = "Enter Location Node"
-const ENTER_LOCATION_TITLE : String = "Id Enter:"
-const ENTER_LOCATION_INSTR : String = "enter_location"
-
 func bake_ui() -> void:
-	
-	
-	## ШТУКА С НАСТРОЙКАМИ
-	## ШТУКА С ЧЕМ ТО ТАМ ЕЩЕ
-	
-	##Нод для входа на локацию
-	var ind = get_free_ind()
-	node_list.add_item(ENTER_LOCATION_NAME, ind)
-	node_list.set_item_metadata(ind,[ENTER_LOCATION_INSTR,null,ENTER_LOCATION_NAME])
-	
-	##Инициализация комнат из roomset
-	for room in room_set.rooms_ar.size():
-		if room_set.rooms_ar[room] != null:
-			ind = get_free_ind()
-			var name_item : String = ROOMNODENAME + room_set.rooms_ar[room].name_+" "+str(room)
-			node_list.add_item(name_item, ind)
-			node_list.set_item_metadata(ind,[ROOMNODEINSTRNAME, room_set.rooms_ar[room], name_item])
-
+	bake_ui_enter_node()
+	bake_ui_rooms_nodes()
 var free_ind : int = -1
 func get_free_ind() -> int:
 	free_ind += 1
 	return free_ind
 
-func _on_add_node_pressed() -> void:
-	var sel_meta = node_list.get_selected_metadata()
-	if sel_meta == null:
-		print("FUCK bake_ui IS BROKEN(((")
+func bake_ui_enter_node() -> void: ##Универсальный нод для обозначения входа на локу
+	var ind = get_free_ind()
 	
-	match sel_meta[0]:
-		ROOMNODEINSTRNAME:
-			var instr = room_to_instrgraphnode(sel_meta[1])
-			make_node(sel_meta[2],instr) ## А ЧЕ ПО МЕТЕ, СУЧКА?
-		ENTER_LOCATION_INSTR:
-			var instr = GraphNodeMakeInsts.new()
-			instr.is_right = true 
-			instr.body_node = 1
-			instr.title_instr = ENTER_LOCATION_TITLE
-			instr.right_type = TOOLENTERTYPE
-			instr.right_color = TOOLENTERCOLOR
-			make_node(sel_meta[2],[instr])
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ENTER_LOCATION_NAME
+	
+	var instr = GraphNodeMakeInsts.new()
+	instr.is_right = true 
+	instr.body_node = 1
+	instr.title_instr = ENTER_LOCATION_TITLE
+	instr.right_type = TOOLENTERTYPE
+	instr.right_color = TOOLENTERCOLOR
+	
+	big_instr.instr_ar.append(instr)
+	
+	node_list.add_item(ENTER_LOCATION_NAME, ind)
+	node_list.set_item_metadata(ind,big_instr)
 
+func bake_ui_rooms_nodes() -> void:
+	for room_ind in room_set.rooms_ar.size():
+		
+		var current_room = room_set.rooms_ar[room_ind]
+		
+		if room_set.rooms_ar[room_ind] != null:
+			var ind = get_free_ind()
+			var name_item : String = ROOMNODENAME + current_room.name_+" "+str(room_ind)
+			
+			var big_instr = room_to_biginstrgraphnode(current_room)
+			big_instr.title_node = name_item
+			big_instr.room_ = current_room
+			
+			node_list.add_item(name_item, ind)
+			node_list.set_item_metadata(ind,big_instr)
+	#make_node(sel_meta[2],[instr])
 
 var toolconnectordirection_ar : Array[Array] = [[true,false],[false,true],[true,false],[false,true]]
 const DIRECTION : Array[String] = ["up","down","left","right"] 
@@ -108,12 +107,13 @@ const TOOLENTERTITLE : String = "Enter:"
 const TOOLENTERTYPE : int = 17
 const TOOLENTERCOLOR : Color = Color.PURPLE
 
-func room_to_instrgraphnode(room : Room) -> Array[GraphNodeMakeInsts]:
-	var insrt_ar : Array[GraphNodeMakeInsts] = []
+func room_to_biginstrgraphnode(room : Room) -> BigGraphNodeMakeInsts:
+	var big_instr = BigGraphNodeMakeInsts.new()
 	
 	for connector : RoomConnector in room.room_connectors_ar:
 		var instr = GraphNodeMakeInsts.new()
 		instr.body_node = 0
+		instr.source_res = connector
 		instr.title_instr = " ".join([TOOLCONNECTORTITLE, DIRECTION[connector.direction], BASECOLORTYPE[connector.type], SIZE[connector.size_]])
 		
 		instr.is_left = toolconnectordirection_ar[connector.direction][0]
@@ -122,76 +122,124 @@ func room_to_instrgraphnode(room : Room) -> Array[GraphNodeMakeInsts]:
 		instr.right_type = CONNECTORTYPEDICT[connector.type][connector.size_]
 		instr.left_color = CONNECTORCOLORDICT[connector.type][connector.size_]
 		instr.right_color = CONNECTORCOLORDICT[connector.type][connector.size_]
-		insrt_ar.append(instr)
+		big_instr.instr_ar.append(instr)
 	
 	for enter : RoomEnter in room.room_enter_ar:
 		var instr = GraphNodeMakeInsts.new()
 		instr.body_node = 0
+		instr.source_res = enter
 		instr.title_instr = " ".join([TOOLENTERTITLE, BASECOLORTYPE[enter.type]]) 
 		
 		instr.is_left = true
 		instr.left_type = TOOLENTERTYPE
 		instr.left_color = TOOLENTERCOLOR
-		insrt_ar.append(instr)
+		big_instr.instr_ar.append(instr)
 	
-	return insrt_ar
+	return big_instr
 
-const CUSTOMDATANAME = "custom_data"
+func _on_add_node_pressed() -> void:
+	var sel_meta = node_list.get_selected_metadata()
+	if sel_meta == null:
+		print("node_list meta broken")
+	
+	make_node_from_biginstr(sel_meta)
 
-##inst_make - состоит из [[string,is_left,is_right,type_int,color]]
-func make_node(node_name : String,inst_make : Array[GraphNodeMakeInsts]) -> GraphNode:
+
+const TYPE_NODE_DATA_NAME : String = "TypeNodeData" ## String --- Хранит тип нода, для быстрой выпечки
+const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Array]
+const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Array]
+
+func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
 	var new_node = GraphNode.new()
-	#new_node.set_meta(CUSTOMDATANAME,data)
-	new_node.title = node_name
+	new_node.title = big_instr.title_node
+	
+	var left_ports_data_ar : Array[Array] = [] ## Сам RES + active_node
+	var right_ports_data_ar : Array[Array] = [] ## Сам RES + active_node
 	
 	var ind = 0
-	for inst in inst_make:
+	for inst in big_instr.instr_ar:
 		
+		var active_node : Node
 		match inst.body_node:
 			0:
-				var child_node : Node
-				child_node = Label.new()
-				child_node.text = inst.title_instr
-				new_node.add_child(child_node)
+				active_node = Label.new()
+				
+				active_node.text = inst.title_instr
+				new_node.add_child(active_node)
 			1:
+				active_node = SpinBox.new()
+				
 				var cont = HBoxContainer.new()
 				new_node.add_child(cont)
 				var label = Label.new()
 				label.text = inst.title_instr
-				var spin_box = SpinBox.new()
 				cont.add_child(label)
-				cont.add_child(spin_box)
-				
-		
+				cont.add_child(active_node)
 		
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		
+		if inst.is_left == true:
+			left_ports_data_ar.append([inst.source_res, active_node, inst.left_type])
+		if inst.is_right == true:
+			right_ports_data_ar.append([inst.source_res, active_node, inst.right_type])
+		
 		ind += 1
+	
+	new_node.set_meta(TYPE_NODE_DATA_NAME,big_instr.type_node)
+	new_node.set_meta(LEFT_PORTS_DATA_NAME,left_ports_data_ar)
+	new_node.set_meta(RIGHT_PORTS_DATA_NAME,right_ports_data_ar)
 	
 	graph_edit.add_child(new_node)
 	return new_node
 
+func _on_save_test_pressed() -> void:
+	#print(connections)
+	var occupied_nodes : Dictionary
+	var free_nodes : Dictionary
+	var current_node = start_gener_node
+	
+	##///
+	
+	var graph = {current_node : []}
+	
+	var right_ports : Array
+	
+	var right_data_meta : Array[Array] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
+	for data in right_data_meta:
+		right_ports.append({data : null})
+	
+	var connections = graph_edit.get_connection_list_from_node(current_node.name)
+	for connect_line in connections:
+		
+		var key = right_ports[connect_line["from_port"]].keys()[0]
+		right_ports[connect_line["from_port"]][key] = { [null] : connect_line["to_node"] }
+		
+		
+			##if right_data_meta.has connect_line["from_port"]
+		#
+		#var left_data_meta = current_node.get_meta(LEFT_PORTS_DATA_NAME)
+		#for ports in left_data_meta
+			#pass
+			#free_nodes[connect_line["from_node"]] = 0
+		#elif current_node.name != connect_line["to_node"]:
+			#free_nodes[connect_line["to_node"]] = 0
+	
+	# [{ "from_node": &"@GraphNode@53", "from_port": 1, "to_node": &"@GraphNode@67", "to_port": 0, "keep_alive": false }]
+	
+	print(" ".join([ right_ports])) ##graph
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	if graph_edit.is_node_connected(from_node, from_port, to_node, to_port):
 		graph_edit.disconnect_node(from_node, from_port, to_node, to_port)
 	else:
 		graph_edit.connect_node(from_node, from_port, to_node, to_port)
-
-
 var selected_node : Node
 func _on_graph_edit_node_selected(node: Node) -> void:
 	selected_node = node
-
 @warning_ignore("unused_parameter")
 func _on_graph_edit_node_deselected(node: Node) -> void:
 	selected_node = null
-
 func _on_del_node_pressed() -> void:
 	if selected_node != null:
 		selected_node.queue_free()
-
-
-func _on_save_test_pressed() -> void:
-	pass # Replace with function body.

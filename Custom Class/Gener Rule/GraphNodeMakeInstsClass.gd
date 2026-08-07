@@ -1,7 +1,7 @@
 extends Resource
 class_name GraphNodeMakeInsts
 
-@export var title_instr : String = "Null"
+@export var title_instr : String = ""
 
 @export var is_left : bool = false
 @export var left_type : int = 0
@@ -12,3 +12,5 @@ class_name GraphNodeMakeInsts
 @export var right_color : Color = Color.BLACK
 
 @export_enum("label","spin_box") var body_node : int = 0 ##"label","spin_box"
+
+@export var source_res : Resource ##Иточник при созданнии, connector, enter и тд

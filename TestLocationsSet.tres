@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ReadyLocationSet" format=3 uid="uid://bdx0kr627wggy"]
+
+[ext_resource type="Script" uid="uid://bhomfyw6phsq3" path="res://Custom Class/Gener Rule/ReadyLocationClass.gd" id="1_6ytct"]
+[ext_resource type="Script" uid="uid://cf0mm7bk3dkp0" path="res://Custom Class/Gener Rule/ReadyLocationSetClass.gd" id="2_ef0i8"]
+
+[sub_resource type="Resource" id="Resource_6ytct"]
+script = ExtResource("1_6ytct")
+name_ = "Cat"
+
+[sub_resource type="Resource" id="Resource_ef0i8"]
+script = ExtResource("1_6ytct")
+
+[resource]
+script = ExtResource("2_ef0i8")
+ready_location_ar = Array[ExtResource("1_6ytct")]([SubResource("Resource_6ytct"), SubResource("Resource_ef0i8")])
+metadata/_custom_type_script = "uid://cf0mm7bk3dkp0"

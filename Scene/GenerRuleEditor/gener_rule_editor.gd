@@ -3,16 +3,38 @@ extends Control
 @onready var graph_edit: GraphEdit = $PanelContainer/VBoxContainer/GraphEdit
 
 @export var room_set : RoomsSet
-@export var gener_rule_set : GenerRuleSet
+@export var ready_location_set_path : String
 
+const TOOLTITLE : String = "Tool:"
 const TOOLTYPE : int = 5 ##Для передачи технических значений
 const TOOLCOLOR :=  Color.WHITE
+
+var start_gener_node : Node
 
 func _ready() -> void:
 	
 	bake_ui()
+	make_start_gener_node()
+
+func make_start_gener_node() -> void: ##Стартовая хуйня, без нее генерация по пизде идет
+	var insrt_ar : Array[GraphNodeMakeInsts]
+	var tool_instr = GraphNodeMakeInsts.new()
+	tool_instr.title_instr = TOOLTITLE
+	tool_instr.is_right = true
+	tool_instr.right_type = TOOLTYPE
+	tool_instr.right_color = TOOLCOLOR
+	insrt_ar.append(tool_instr)
 	
-	return
+	var enter_instr = GraphNodeMakeInsts.new()
+	enter_instr.is_right = true 
+	enter_instr.body_node = 1
+	enter_instr.title_instr = ENTER_LOCATION_TITLE
+	enter_instr.right_type = TOOLENTERTYPE
+	enter_instr.right_color = TOOLENTERCOLOR
+	insrt_ar.append(enter_instr)
+
+	var node = make_node("Start Gener Node",insrt_ar)
+	start_gener_node = node
 
 @onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
 
@@ -101,6 +123,7 @@ func room_to_instrgraphnode(room : Room) -> Array[GraphNodeMakeInsts]:
 		instr.left_color = CONNECTORCOLORDICT[connector.type][connector.size_]
 		instr.right_color = CONNECTORCOLORDICT[connector.type][connector.size_]
 		insrt_ar.append(instr)
+	
 	for enter : RoomEnter in room.room_enter_ar:
 		var instr = GraphNodeMakeInsts.new()
 		instr.body_node = 0
@@ -116,7 +139,7 @@ func room_to_instrgraphnode(room : Room) -> Array[GraphNodeMakeInsts]:
 const CUSTOMDATANAME = "custom_data"
 
 ##inst_make - состоит из [[string,is_left,is_right,type_int,color]]
-func make_node(node_name : String,inst_make : Array[GraphNodeMakeInsts]) -> void:
+func make_node(node_name : String,inst_make : Array[GraphNodeMakeInsts]) -> GraphNode:
 	
 	var new_node = GraphNode.new()
 	#new_node.set_meta(CUSTOMDATANAME,data)
@@ -147,7 +170,7 @@ func make_node(node_name : String,inst_make : Array[GraphNodeMakeInsts]) -> void
 		ind += 1
 	
 	graph_edit.add_child(new_node)
-
+	return new_node
 
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
@@ -168,3 +191,7 @@ func _on_graph_edit_node_deselected(node: Node) -> void:
 func _on_del_node_pressed() -> void:
 	if selected_node != null:
 		selected_node.queue_free()
+
+
+func _on_save_test_pressed() -> void:
+	pass # Replace with function body.

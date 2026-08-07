@@ -17,8 +17,7 @@ config/icon="uid://iantqf4cd3u"
 
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 
 [file_customization]
 

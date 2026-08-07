@@ -146,16 +146,16 @@ func _on_add_node_pressed() -> void:
 
 
 const TYPE_NODE_DATA_NAME : String = "TypeNodeData" ## String --- Хранит тип нода, для быстрой выпечки
-const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Array]
-const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Array]
+const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
+const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 
 func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
 	var new_node = GraphNode.new()
 	new_node.title = big_instr.title_node
 	
-	var left_ports_data_ar : Array[Array] = [] ## Сам RES + active_node
-	var right_ports_data_ar : Array[Array] = [] ## Сам RES + active_node
+	var left_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
+	var right_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	
 	var ind = 0
 	for inst in big_instr.instr_ar:
@@ -180,9 +180,17 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		
 		if inst.is_left == true:
-			left_ports_data_ar.append([inst.source_res, active_node, inst.left_type])
+			var metadata = GraphNodeMetadata.new()
+			metadata.source_res = inst.source_res
+			metadata.active_node = active_node
+			metadata.port_type = inst.left_type
+			left_ports_data_ar.append(metadata)
 		if inst.is_right == true:
-			right_ports_data_ar.append([inst.source_res, active_node, inst.right_type])
+			var metadata = GraphNodeMetadata.new()
+			metadata.source_res = inst.source_res
+			metadata.active_node = active_node
+			metadata.port_type = inst.right_type
+			right_ports_data_ar.append(metadata)
 		
 		ind += 1
 	
@@ -195,29 +203,54 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 
 func _on_save_test_pressed() -> void:
 	#print(connections)
-	var occupied_nodes : Dictionary
+	
+	## СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
+	
+	var occupied_nodes : Array
 	var free_nodes : Dictionary
 	var current_node = start_gener_node
 	
+		
+	var graph : Dictionary = {}
+	
 	##///
-	
-	var graph = {current_node : []}
-	
-	var right_ports : Array
-	
-	var right_data_meta : Array[Array] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
+
+	var right_ports : Array ## Все правые порты обьекта и их соеденения
+	var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
 	for data in right_data_meta:
 		right_ports.append({data : null})
+	
+	var left_ports : Array ## Все левые порты обьекта и их соеденения 
+	var left_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(LEFT_PORTS_DATA_NAME)
+	for data in left_data_meta:
+		left_ports.append({data : null})
 	
 	var connections = graph_edit.get_connection_list_from_node(current_node.name)
 	for connect_line in connections:
 		
-		var key = right_ports[connect_line["from_port"]].keys()[0]
-		right_ports[connect_line["from_port"]][key] = { [null] : connect_line["to_node"] }
+		if current_node.name != connect_line["to_node"]:
+		#if ! occupied_nodes.has(connect_line["to_node"]) :
+			
+			var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
+			var final_meta = to_left_metadata[connect_line["to_port"]]
+			
+			var key_right = right_ports[connect_line["from_port"]].keys()[0]
+			right_ports[connect_line["from_port"]][key_right] = { [final_meta] : connect_line["to_node"] }
+			
 		
+		if current_node.name != connect_line["from_node"]:
+		#if ! occupied_nodes.has(connect_line["from_node"]) :
+			
+			var to_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
+			var final_meta = to_right_metadata[connect_line["from_port"]]
+			
+			var key_left = left_ports[connect_line["to_port"]].keys()[0]
+			left_ports[connect_line["to_port"]][key_left] = { [final_meta] : connect_line["from_node"] }
 		
 			##if right_data_meta.has connect_line["from_port"]
-		#
+	
+	graph[current_node.name] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
+	
 		#var left_data_meta = current_node.get_meta(LEFT_PORTS_DATA_NAME)
 		#for ports in left_data_meta
 			#pass
@@ -227,7 +260,7 @@ func _on_save_test_pressed() -> void:
 	
 	# [{ "from_node": &"@GraphNode@53", "from_port": 1, "to_node": &"@GraphNode@67", "to_port": 0, "keep_alive": false }]
 	
-	print(" ".join([ right_ports])) ##graph
+	print(" ".join([ graph])) ##graph
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	if graph_edit.is_node_connected(from_node, from_port, to_node, to_port):

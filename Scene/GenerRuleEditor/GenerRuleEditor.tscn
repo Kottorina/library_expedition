@@ -123,7 +123,6 @@ text = "ReName"
 [node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_offset = Vector2(0, -15)
 minimap_enabled = false
 show_zoom_buttons = false
 show_minimap_button = false

@@ -145,14 +145,16 @@ func _on_add_node_pressed() -> void:
 	make_node_from_biginstr(sel_meta)
 
 
-const TYPE_NODE_DATA_NAME : String = "TypeNodeData" ## String --- Хранит тип нода, для быстрой выпечки
+const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
 const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
+const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
 func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
 	var new_node = GraphNode.new()
 	new_node.title = big_instr.title_node
+	new_node.position_offset = big_instr.coord_ ## Для удобства менять при спавне от кнопки, СУКА
 	
 	var left_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	var right_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
@@ -160,22 +162,24 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	var ind = 0
 	for inst in big_instr.instr_ar:
 		
-		var active_node : Node
+		var active_node : Node = null ## НОД ДЛЯ ВООВДА ИНФЫ
+		var child_node : Node = null ## ДОЧЕРНИЙ НОД С МЕТАДАННЫМИ
+		
 		match inst.body_node:
 			0:
-				active_node = Label.new()
+				child_node = Label.new()
 				
-				active_node.text = inst.title_instr
-				new_node.add_child(active_node)
+				child_node.text = inst.title_instr
+				new_node.add_child(child_node)
 			1:
 				active_node = SpinBox.new()
+				child_node = HBoxContainer.new()
 				
-				var cont = HBoxContainer.new()
-				new_node.add_child(cont)
+				new_node.add_child(child_node)
 				var label = Label.new()
 				label.text = inst.title_instr
-				cont.add_child(label)
-				cont.add_child(active_node)
+				child_node.add_child(label)
+				child_node.add_child(active_node)
 		
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		
@@ -192,9 +196,11 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 			metadata.port_type = inst.right_type
 			right_ports_data_ar.append(metadata)
 		
+		child_node.set_meta(ACTIVE_NODE_DATA_NAME,active_node)
+		
 		ind += 1
 	
-	new_node.set_meta(TYPE_NODE_DATA_NAME,big_instr.type_node)
+	new_node.set_meta(BIG_INSTR_NODE_DATA_NAME,big_instr)
 	new_node.set_meta(LEFT_PORTS_DATA_NAME,left_ports_data_ar)
 	new_node.set_meta(RIGHT_PORTS_DATA_NAME,right_ports_data_ar)
 	
@@ -204,6 +210,11 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 var occupied_ports : Dictionary ## { node : { const l/r : { 1 : true, 3 : true... } } }
 
 func _on_save_test_pressed() -> void:
+	save_location()
+
+func save_location() -> ReadyLocation:
+	
+	var ready_location = ReadyLocation.new()
 	
 	occupied_ports.clear()
 	
@@ -214,7 +225,7 @@ func _on_save_test_pressed() -> void:
 	
 	var graph : Dictionary = {}
 	
-	## СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
+	bake_graph_node_biginstr() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
 	## ///...
 	
@@ -263,9 +274,32 @@ func _on_save_test_pressed() -> void:
 		
 		graph[current_node.name] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
+	## ЗАПОЛНИТЬ ДАННЫМИ И ВЕРНУТЬ НАЗАД, СУКА
+	
+	return ready_location
 	
 	## ///...
-	print("\n".join([ graph, occupied_ports, free_nodes])) ##graph
+	#print("\n".join([ graph, occupied_ports, free_nodes])) ##graph
+
+func bake_graph_node_biginstr() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУКЦИИ К ТЕКУЩЕМУ СОСТОЯНИЯ НОДА ВЫЗВАТЬ ПЕРЕД СОХРАНЕНИЕМ
+	var graph_nodes_ar : Array[GraphNode]
+	for child in graph_edit.get_children():
+		if child is GraphNode:
+			graph_nodes_ar.append(child)
+	
+	for graph_node in graph_nodes_ar:
+		var big_instr : BigGraphNodeMakeInsts = graph_node.get_meta(BIG_INSTR_NODE_DATA_NAME).duplicate()
+		big_instr.coord_ = graph_node.position_offset
+		
+		var ind = 0
+		for child_node in graph_node.get_children():
+			if child_node.has_meta(ACTIVE_NODE_DATA_NAME):
+				var meta_data = child_node.get_meta(ACTIVE_NODE_DATA_NAME)
+				if meta_data != null:
+					big_instr.instr_ar[ind].body_value = meta_data.value
+			ind += 1
+		
+		graph_node.set_meta(BIG_INSTR_NODE_DATA_NAME,big_instr)
 
 func block_port(node_name : StringName, port : int, direction : String) -> void:
 	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
@@ -278,17 +312,6 @@ func is_port_block(node_name : StringName, port : int, direction : String) -> bo
 		if occupied_ports[node_name][direction].has(port):
 			return true
 	return false
-
-		#var left_data_meta = current_node.get_meta(LEFT_PORTS_DATA_NAME)
-		#for ports in left_data_meta
-			#pass
-			#free_nodes[connect_line["from_node"]] = 0
-		#elif current_node.name != connect_line["to_node"]:
-			#free_nodes[connect_line["to_node"]] = 0
-				##if right_data_meta.has connect_line["from_port"]
-	# [{ "from_node": &"@GraphNode@53", "from_port": 1, "to_node": &"@GraphNode@67", "to_port": 0, "keep_alive": false }]
-	
-	
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	if graph_edit.is_node_connected(from_node, from_port, to_node, to_port):

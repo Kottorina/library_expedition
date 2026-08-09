@@ -13,7 +13,6 @@ var start_gener_node : Node
 
 func _ready() -> void:
 	bake_ui()
-	make_start_gener_node()
 
 @onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
 
@@ -22,9 +21,12 @@ const ROOMNODENAME = "Room Node: "
 const ENTER_LOCATION_NAME : String = "Enter Location Node"
 const START_GENER_LOCATION_TITLE : String = "Start Gener Node"
 
-func make_start_gener_node() -> void: ##Стартовая хуйня, без нее генерация по пизде идет
+func bake_ui_start_gener_node() -> void: ##Стартовая хуйня, без нее генерация по пизде идет
+	var ind = get_free_ind()
+	
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = START_GENER_LOCATION_TITLE
+	big_instr.type_node = 2
 	
 	var tool_instr = GraphNodeMakeInsts.new()
 	tool_instr.title_instr = TOOLTITLE
@@ -40,11 +42,13 @@ func make_start_gener_node() -> void: ##Стартовая хуйня, без н
 	enter_instr.right_type = TOOLENTERTYPE
 	enter_instr.right_color = TOOLENTERCOLOR
 	big_instr.instr_ar.append(enter_instr)
-
-	var node = make_node_from_biginstr(big_instr)
-	start_gener_node = node
+	
+	node_list.add_item(START_GENER_LOCATION_TITLE, ind)
+	node_list.set_item_metadata(ind,big_instr)
 
 func bake_ui() -> void:
+	## BAKE ВРЕМЕННАЯ КОНСТРУКЦИЯ, НЕТ ВРЕМЕНИ НА НОРМАЛЬНУЮ РЕАЛИЗАЦИЮ
+	bake_ui_start_gener_node()
 	bake_ui_enter_node()
 	bake_ui_rooms_nodes()
 var free_ind : int = -1
@@ -183,18 +187,26 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		
+		var left_port_mum = 0
+		var right_port_mum = 0
+		
 		if inst.is_left == true:
 			var metadata = GraphNodeMetadata.new()
 			metadata.source_res = inst.source_res
 			metadata.active_node = active_node
-			metadata.port_type = inst.left_type
+			metadata.port_num = left_port_mum
 			left_ports_data_ar.append(metadata)
+			
+			left_port_mum += 1
+			
 		if inst.is_right == true:
 			var metadata = GraphNodeMetadata.new()
 			metadata.source_res = inst.source_res
 			metadata.active_node = active_node
-			metadata.port_type = inst.right_type
+			metadata.port_num = right_port_mum
 			right_ports_data_ar.append(metadata)
+			
+			right_port_mum += 1
 		
 		child_node.set_meta(ACTIVE_NODE_DATA_NAME,active_node)
 		
@@ -209,21 +221,17 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 
 var occupied_ports : Dictionary ## { node : { const l/r : { 1 : true, 3 : true... } } }
 
-func _on_save_test_pressed() -> void:
-	save_location()
+const PORT_VALUE_FREE : String = "PortFree"
+const PORT_VALUE_OCCUPIED : String = "PortOccupied"
 
-func save_location() -> ReadyLocation:
+func get_current_graph() -> Dictionary:
 	
-	var ready_location = ReadyLocation.new()
-	
+	var graph : Dictionary = {} ##Граф нужен для выдачи
 	occupied_ports.clear()
 	
-	var current_node = start_gener_node
-	
-	var free_nodes : Dictionary ## { node (StringName) : true }
+	var current_node : Node = start_gener_node
+	var free_nodes : Dictionary ## { node (StringName) : true } --- Ноды которые нужно обработать
 	free_nodes[current_node] = true
-	
-	var graph : Dictionary = {}
 	
 	bake_graph_node_biginstr() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
@@ -232,54 +240,129 @@ func save_location() -> ReadyLocation:
 	while !free_nodes.is_empty():
 		
 		current_node = free_nodes.keys()[0]
+		var curent_node_big_instr = current_node.get_meta(BIG_INSTR_NODE_DATA_NAME) ##Испольховать в графе, так как нужно только оно
 		
 		var right_ports : Array ## Все правые порты обьекта и их соеденения
 		var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
 		for data in right_data_meta:
-			right_ports.append({data : null})
+			right_ports.append({data : PORT_VALUE_FREE})
 		
 		var left_ports : Array ## Все левые порты обьекта и их соеденения 
 		var left_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(LEFT_PORTS_DATA_NAME)
 		for data in left_data_meta:
-			left_ports.append({data : null})
+			left_ports.append({data : PORT_VALUE_FREE})
 		
 		var connections = graph_edit.get_connection_list_from_node(current_node.name)
 		for connect_line in connections:
 			
-			if current_node.name != connect_line["to_node"] and is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
+			if current_node.name != connect_line["to_node"]:
+				if  is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
+					
+					var to_left_big_instr_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
+					
+					var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
+					var final_meta = to_left_metadata[connect_line["to_port"]]
+					
+					var key_right = right_ports[connect_line["from_port"]].keys()[0]
+					right_ports[connect_line["from_port"]][key_right] = { [final_meta] : to_left_big_instr_metadata }
+					
+					free_nodes[ graph_edit.get_node(NodePath(connect_line["to_node"])) ] = true
+					block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
 				
-				var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
-				var final_meta = to_left_metadata[connect_line["to_port"]]
-				
-				var key_right = right_ports[connect_line["from_port"]].keys()[0]
-				right_ports[connect_line["from_port"]][key_right] = { [final_meta] : connect_line["to_node"] }
-				
-				free_nodes[ graph_edit.get_node(NodePath(connect_line["to_node"])) ] = true
-				block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
+				else:
+					var key_right = right_ports[connect_line["from_port"]].keys()[0]
+					right_ports[connect_line["from_port"]][key_right] = PORT_VALUE_OCCUPIED
 				
 			
-			if current_node.name != connect_line["from_node"] and  is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
-			#if ! occupied_nodes.has(connect_line["from_node"]) :
+			if current_node.name != connect_line["from_node"]:
+				if is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
+					
+					var from_right_big_instr_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
+					
+					var from_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
+					var final_meta = from_right_metadata[connect_line["from_port"]]
+					
+					var key_left = left_ports[connect_line["to_port"]].keys()[0]
+					left_ports[connect_line["to_port"]][key_left] = { [final_meta] : from_right_big_instr_metadata }
+					
+					free_nodes[ graph_edit.get_node(NodePath(connect_line["from_node"])) ] = true
+					block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
 				
-				var to_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
-				var final_meta = to_right_metadata[connect_line["from_port"]]
-				
-				var key_left = left_ports[connect_line["to_port"]].keys()[0]
-				left_ports[connect_line["to_port"]][key_left] = { [final_meta] : connect_line["from_node"] }
-				
-				free_nodes[ graph_edit.get_node(NodePath(connect_line["from_node"])) ] = true
-				block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
+				else:
+					var key_left = left_ports[connect_line["to_port"]].keys()[0]
+					left_ports[connect_line["to_port"]][key_left] = PORT_VALUE_OCCUPIED
 		
 		free_nodes.erase(current_node)
 		
-		graph[current_node.name] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
+		graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
 	## ЗАПОЛНИТЬ ДАННЫМИ И ВЕРНУТЬ НАЗАД, СУКА
 	
-	return ready_location
-	
-	## ///...
 	#print("\n".join([ graph, occupied_ports, free_nodes])) ##graph
+	print("get_graph")
+	
+	return graph
+
+func load_graph(graph : Dictionary) -> void:
+	
+	clear_graph_scene()
+	
+	## СОБСВТЕННО ЗАГРУЗКА, ЧЕКНИ ГРАФ НА ХУЙНЮ А НЕ ДАННЫЕ
+	
+	## \\\...
+	
+	if graph.is_empty():
+		return
+	
+	var ready_graph_nodes_from_instr : Dictionary ## BigInstr : Node
+	
+	for cur_ind in graph.keys().size():
+		
+		var curent_node : Node
+		var curent_node_instr = graph.keys()[cur_ind]
+		
+		if !ready_graph_nodes_from_instr.has(curent_node_instr):
+			curent_node = make_node_from_biginstr(curent_node_instr)
+			ready_graph_nodes_from_instr[ graph.keys()[cur_ind] ] = curent_node
+		else:
+			curent_node = ready_graph_nodes_from_instr[curent_node_instr]
+		
+		for left_port : Dictionary in graph[curent_node_instr][LEFT_PORTS_DATA_NAME]:
+			
+			var start_port_meta : GraphNodeMetadata = left_port.keys()[0]
+			if left_port[start_port_meta] is String:
+				continue
+			var end_port_meta : GraphNodeMetadata = left_port[start_port_meta].keys()[0][0]
+			
+			var final_node_instr : BigGraphNodeMakeInsts = left_port[start_port_meta][[end_port_meta]]
+			
+			if ! ready_graph_nodes_from_instr.has(final_node_instr):
+				ready_graph_nodes_from_instr[final_node_instr] = make_node_from_biginstr(final_node_instr)
+			graph_edit.connect_node(ready_graph_nodes_from_instr[final_node_instr].name, end_port_meta.port_num,curent_node.name, start_port_meta.port_num)
+
+			
+		for right_port : Dictionary in graph[curent_node_instr][RIGHT_PORTS_DATA_NAME]:
+
+			var start_port_meta : GraphNodeMetadata = right_port.keys()[0]
+			if right_port[start_port_meta] is String:
+				continue
+			var end_port_meta : GraphNodeMetadata = right_port[start_port_meta].keys()[0][0]
+			
+			var final_node_instr : BigGraphNodeMakeInsts = right_port[start_port_meta][[end_port_meta]]
+			if ! ready_graph_nodes_from_instr.has(final_node_instr):
+				ready_graph_nodes_from_instr[final_node_instr] = make_node_from_biginstr(final_node_instr)
+			graph_edit.connect_node(curent_node.name, start_port_meta.port_num, ready_graph_nodes_from_instr[final_node_instr].name, end_port_meta.port_num)
+
+
+func clear_graph_scene() -> void:
+	
+	## ОЧИСТИТЬ НАСТРОЙКИ ЕСЛИ ДОБАВЛЮ, ебала я вас всех
+	
+	graph_edit.clear_connections()
+	for child in graph_edit.get_children():
+		if child is GraphNode:
+			child.queue_free()
+
 
 func bake_graph_node_biginstr() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУКЦИИ К ТЕКУЩЕМУ СОСТОЯНИЯ НОДА ВЫЗВАТЬ ПЕРЕД СОХРАНЕНИЕМ
 	var graph_nodes_ar : Array[GraphNode]

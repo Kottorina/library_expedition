@@ -56,15 +56,11 @@ layout_mode = 2
 layout_mode = 2
 text = "del_select_node"
 
-[node name="save_test" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1336446714]
-layout_mode = 2
-text = "save test
-"
-
-[node name="location_ui" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("location_list", "location_name")]
+[node name="location_ui" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("auto_save", "location_list", "location_name")]
 layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("3_5aa21")
+auto_save = NodePath("HBoxContainer/auto_save")
 location_list = NodePath("HBoxContainer/LocationList")
 location_name = NodePath("HBoxContainer2/location_name")
 
@@ -82,6 +78,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 text = "save"
+
+[node name="auto_save" type="CheckBox" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=145861214]
+layout_mode = 2
+button_pressed = true
+text = "AutoSave"
 
 [node name="load" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=2091644709]
 layout_mode = 2
@@ -130,7 +131,6 @@ show_arrange_button = false
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/del_node" to="." method="_on_del_node_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/save_test" to="." method="_on_save_test_pressed"]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/LocationList" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_location_list_item_selected"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/save" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_save_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/load" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_load_pressed"]

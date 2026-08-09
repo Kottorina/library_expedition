@@ -2,12 +2,16 @@ extends Control
 
 @onready var gener_rule_editor: Control = $"../../../.."
 
+@export var auto_save: CheckBox 
+
 @export var location_list: OptionButton
 @export var location_name: TextEdit 
 
 var current_ready_locations_set : ReadyLocationSet
 
 func _ready() -> void:
+	
+	await get_tree().process_frame
 	
 	load_f()
 
@@ -42,6 +46,10 @@ func bake_ui() -> void:
 
 func _on_save_pressed() -> void:
 	var locations_path = gener_rule_editor.ready_location_set_path
+	
+	var id_selected = location_list.selected
+	save_current_graph(id_selected)
+	
 	ResourceSaver.save(current_ready_locations_set, locations_path) 
 
 func _on_new_location_pressed() -> void:
@@ -58,7 +66,8 @@ func _on_rename_pressed() -> void:
 	bake_ui()
 
 func _on_del_pressed() -> void:
-	var curent_ready_room = location_list.get_selected_metadata()
+	var curent_ready_room = location_list.get_selected_metadata() 
+	
 	current_ready_locations_set.ready_location_ar.erase(curent_ready_room)
 	
 	bake_ui()
@@ -69,6 +78,10 @@ func _on_location_list_item_selected(index: int) -> void:
 	load_ready_location_edit(location_list.get_item_metadata(index))
 	
 func load_ready_location_edit(ready_location : ReadyLocation) -> void:
-	location_name.text = ready_location.name_
 	
-	## ЗАГРУЗКА ЭТОЙ READY ROOM НЕ ЗАБУДЬ БЛЯДЬ
+	location_name.text = ready_location.name_
+	gener_rule_editor.load_graph(ready_location.graph)
+
+
+func save_current_graph( id_selected : int) -> void: ## ДОСТАЕТ И СОХРАНЯЕТ ГРАФ ТЕКУЩЕЙ СЦЕНЫ
+	current_ready_locations_set.ready_location_ar[id_selected].graph = gener_rule_editor.get_current_graph()

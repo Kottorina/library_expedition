@@ -2,6 +2,8 @@ extends Control
 
 @onready var gener_rule_editor: Control = $"../../../.."
 
+@export var save_graph_node : Node
+
 @export var auto_save: CheckBox 
 
 @export var location_list: OptionButton
@@ -27,7 +29,8 @@ func load_f() -> void:
 	if current_ready_locations_set.ready_location_ar.size() == 0:
 		_on_new_location_pressed()
 	else:
-		load_ready_location_edit(location_list.get_item_metadata(0))
+		var id_selected = location_list.selected
+		load_ready_location_edit(location_list.get_item_metadata(id_selected))
 	
 
 func bake_ui() -> void:
@@ -83,8 +86,10 @@ func _on_location_list_item_selected(index: int) -> void:
 func load_ready_location_edit(ready_location : ReadyLocation) -> void:
 	
 	location_name.text = ready_location.name_
-	gener_rule_editor.load_graph(ready_location.graph)
+	gener_rule_editor.load_graph(ready_location.save_graph)
 
-
-func save_current_graph( id_selected : int) -> void: ## ДОСТАЕТ И СОХРАНЯЕТ ГРАФ ТЕКУЩЕЙ СЦЕНЫ
-	current_ready_locations_set.ready_location_ar[id_selected].graph = gener_rule_editor.get_current_graph()
+func save_current_graph( id_selected : int) -> void: ## Запекает Локацию, Позволяет Использовать / Загружать
+	current_ready_locations_set.ready_location_ar[id_selected] = save_graph_node.bake_ready_location_f(current_ready_locations_set.ready_location_ar[id_selected])
+	
+	var locations_path = gener_rule_editor.ready_location_set_path
+	ResourceSaver.save(current_ready_locations_set, locations_path) 

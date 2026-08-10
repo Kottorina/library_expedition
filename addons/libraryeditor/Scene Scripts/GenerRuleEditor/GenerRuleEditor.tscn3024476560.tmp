@@ -84,7 +84,6 @@ size_flags_horizontal = 8
 text = "save"
 
 [node name="auto_save" type="CheckBox" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=145861214]
-visible = false
 layout_mode = 2
 button_pressed = true
 text = "AutoSave"

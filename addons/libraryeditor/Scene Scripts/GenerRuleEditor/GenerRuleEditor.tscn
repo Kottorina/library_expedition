@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c6cm1kqxhbotr"]
 
 [ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_2lqr8"]
-[ext_resource type="Resource" uid="uid://cv674gs8j6ibn" path="res://addons/libraryeditor/Test Resource/TestRoomSet.tres" id="2_7tdfr"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="2_7tdfr"]
+[ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://addons/libraryeditor/Base Obj/tool_crossroad.tres" id="3_7l203"]
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/location_ui.gd" id="3_klkmx"]
+[ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="5_klkmx"]
 
 [node name="GenerRuleEditor" type="Control" unique_id=529019256]
 layout_mode = 3
@@ -12,8 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2lqr8")
-room_set = ExtResource("2_7tdfr")
-ready_location_set_path = "res://TestLocationsSet.tres"
+room_set_path = "res://Test Resource/TestRoomSet.tres"
+ready_location_set_path = "res://Test Resource/TestLocationsSet.tres"
+custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203")])
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1787863444]
 layout_mode = 1
@@ -128,6 +131,9 @@ minimap_enabled = false
 show_zoom_buttons = false
 show_minimap_button = false
 show_arrange_button = false
+
+[node name="Save Graph Node" type="Node" parent="." unique_id=135609733]
+script = ExtResource("5_klkmx")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/del_node" to="." method="_on_del_node_pressed"]

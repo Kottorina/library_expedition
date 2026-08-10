@@ -2,14 +2,21 @@ extends Control
 
 @onready var graph_edit: GraphEdit = $PanelContainer/VBoxContainer/GraphEdit
 
-@export var room_set : RoomsSet
+var room_set : RoomsSet
+
+@export var room_set_path : String
 @export var ready_location_set_path : String
+
+@export var custom_big_instr_ar : Array[BigGraphNodeMakeInsts]
 
 const TOOLTITLE : String = "Tool:"
 const TOOLTYPE : int = 5 ##Для передачи технических значений
 const TOOLCOLOR :=  Color.WHITE
 
 func _ready() -> void:
+	
+	room_set = ResourceLoader.load(room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+	
 	bake_ui()
 
 @onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
@@ -44,10 +51,51 @@ func bake_ui_start_gener_node() -> void: ##Стартовая хуйня, без
 	node_list.add_item(START_GENER_LOCATION_TITLE, ind)
 	node_list.set_item_metadata(ind,big_instr)
 
+const CONNECTOR_TYPE_COUNT = 3
+const CONNECTOR_DIRECTION_COUNT = 4
+const CONNECTOR_SIZE_COUNT = 3
+
+const CONNECTORS_PLUGS_TITLE : String = "Connectors Plugs Node"
+
+func bake_ui_connectors_plugs() -> void:
+	var ind = get_free_ind()
+	
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = CONNECTORS_PLUGS_TITLE
+	big_instr.type_node = 4
+	
+	var tool_instr = GraphNodeMakeInsts.new()
+	tool_instr.title_instr = TOOLTITLE
+	tool_instr.is_right = true
+	tool_instr.right_type = TOOLTYPE
+	tool_instr.right_color = TOOLCOLOR
+	tool_instr.is_left = true
+	tool_instr.left_type = TOOLTYPE
+	tool_instr.left_color = TOOLCOLOR
+	big_instr.instr_ar.append(tool_instr)
+	
+	var connector := RoomConnector.new()
+	for size_ in CONNECTOR_SIZE_COUNT:
+		for type_ in CONNECTOR_TYPE_COUNT:
+			for direction_ in CONNECTOR_DIRECTION_COUNT:
+				connector.type = type_
+				connector.direction = direction_
+				connector.size_ = size_
+				big_instr.instr_ar.append(make_inst_from_connector(connector))
+
+	node_list.add_item(CONNECTORS_PLUGS_TITLE, ind)
+	node_list.set_item_metadata(ind,big_instr)
+
 func bake_ui() -> void:
 	## BAKE ВРЕМЕННАЯ КОНСТРУКЦИЯ, НЕТ ВРЕМЕНИ НА НОРМАЛЬНУЮ РЕАЛИЗАЦИЮ
 	bake_ui_start_gener_node()
 	bake_ui_enter_node()
+	bake_ui_connectors_plugs()
+	for big_instr in custom_big_instr_ar:
+		var ind = get_free_ind()
+		node_list.add_item(big_instr.title_node, ind)
+		node_list.set_item_metadata(ind,big_instr)
+	
 	bake_ui_rooms_nodes()
 var free_ind : int = -1
 func get_free_ind() -> int:
@@ -113,18 +161,8 @@ func room_to_biginstrgraphnode(room : Room) -> BigGraphNodeMakeInsts:
 	var big_instr = BigGraphNodeMakeInsts.new()
 	
 	for connector : RoomConnector in room.room_connectors_ar:
-		var instr = GraphNodeMakeInsts.new()
-		instr.body_node = 0
-		instr.source_res = connector
-		instr.title_instr = " ".join([TOOLCONNECTORTITLE, DIRECTION[connector.direction], BASECOLORTYPE[connector.type], SIZE[connector.size_]])
-		
-		instr.is_left = toolconnectordirection_ar[connector.direction][0]
-		instr.is_right = toolconnectordirection_ar[connector.direction][1]
-		instr.left_type = CONNECTORTYPEDICT[connector.type][connector.size_]
-		instr.right_type = CONNECTORTYPEDICT[connector.type][connector.size_]
-		instr.left_color = CONNECTORCOLORDICT[connector.type][connector.size_]
-		instr.right_color = CONNECTORCOLORDICT[connector.type][connector.size_]
-		big_instr.instr_ar.append(instr)
+
+		big_instr.instr_ar.append(make_inst_from_connector(connector))
 	
 	for enter : RoomEnter in room.room_enter_ar:
 		var instr = GraphNodeMakeInsts.new()
@@ -138,6 +176,22 @@ func room_to_biginstrgraphnode(room : Room) -> BigGraphNodeMakeInsts:
 		big_instr.instr_ar.append(instr)
 	
 	return big_instr
+
+func make_inst_from_connector(connector : RoomConnector ) -> GraphNodeMakeInsts:
+	var instr := GraphNodeMakeInsts.new()
+
+	instr.body_node = 0
+	instr.source_res = connector
+	instr.title_instr = " ".join([TOOLCONNECTORTITLE, DIRECTION[connector.direction], BASECOLORTYPE[connector.type], SIZE[connector.size_]])
+	
+	instr.is_left = toolconnectordirection_ar[connector.direction][0]
+	instr.is_right = toolconnectordirection_ar[connector.direction][1]
+	instr.left_type = CONNECTORTYPEDICT[connector.type][connector.size_]
+	instr.right_type = CONNECTORTYPEDICT[connector.type][connector.size_]
+	instr.left_color = CONNECTORCOLORDICT[connector.type][connector.size_]
+	instr.right_color = CONNECTORCOLORDICT[connector.type][connector.size_]
+	
+	return instr
 
 func _on_add_node_pressed() -> void:
 	var sel_meta = node_list.get_selected_metadata()

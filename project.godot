@@ -17,7 +17,6 @@ config/icon="uid://iantqf4cd3u"
 
 [display]
 
-window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]
@@ -27,10 +26,11 @@ enabled=PackedStringArray("res://addons/libraryeditor/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://Test Resource/": "purple",
+"res://addons/libraryeditor/Base Obj/": "purple",
 "res://addons/libraryeditor/Custom Class/": "blue",
 "res://addons/libraryeditor/Draw/": "green",
-"res://addons/libraryeditor/Scene Scripts/": "orange",
-"res://addons/libraryeditor/Test Resource/": "purple"
+"res://addons/libraryeditor/Scene Scripts/": "orange"
 }
 
 [physics]

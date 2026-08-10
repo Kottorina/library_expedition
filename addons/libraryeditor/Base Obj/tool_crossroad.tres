@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BigGraphNodeMakeInsts" format=3 uid="uid://dltpcxec70lcp"]
+
+[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMakeInstsClass.gd" id="1_cpn3h"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="2_b6xbx"]
+
+[sub_resource type="Resource" id="Resource_0loe1"]
+script = ExtResource("1_cpn3h")
+title_instr = "Tool"
+is_left = true
+left_type = 5
+left_color = Color(1, 1, 1, 1)
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_i46w3"]
+script = ExtResource("1_cpn3h")
+title_instr = "Tool"
+is_left = true
+left_type = 5
+left_color = Color(1, 1, 1, 1)
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[resource]
+script = ExtResource("2_b6xbx")
+title_node = "Tool Crossroad"
+type_node = 3
+instr_ar = Array[ExtResource("1_cpn3h")]([SubResource("Resource_0loe1"), SubResource("Resource_i46w3")])
+metadata/_custom_type_script = "uid://wfp6jmgoghtc"

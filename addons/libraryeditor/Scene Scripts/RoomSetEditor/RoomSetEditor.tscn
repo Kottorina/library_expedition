@@ -5,7 +5,7 @@
 
 [node name="RoomSetEditor" type="Node2D" unique_id=1066855304 node_paths=PackedStringArray("deco_nodes_ar", "gener_node", "tool_draw_node")]
 script = ExtResource("1_3x1b6")
-current_room_set_path = "res://TestRoomSet.tres"
+current_room_set_path = "res://Test Resource/TestRoomSet.tres"
 deco_nodes_ar = [NodePath("Deco"), NodePath("Deco2")]
 gener_node = NodePath("Gener")
 tool_draw_node = NodePath("Tool Draw")

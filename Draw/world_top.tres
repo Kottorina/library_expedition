@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://dmnm62bk1ft6m"]
 
-[ext_resource type="Texture2D" uid="uid://caefj1d2qbo0e" path="res://draw/DebugTileset.png" id="1_shdli"]
-[ext_resource type="Texture2D" uid="uid://6cm7r1at0x2s" path="res://draw/Close_World_Tile.png" id="2_5ivsj"]
+[ext_resource type="Texture2D" uid="uid://caefj1d2qbo0e" path="res://Draw/DebugTileset.png" id="1_shdli"]
+[ext_resource type="Texture2D" uid="uid://6cm7r1at0x2s" path="res://Draw/Close_World_Tile.png" id="2_5ivsj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sacbo"]
 texture = ExtResource("1_shdli")

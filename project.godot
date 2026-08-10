@@ -24,10 +24,9 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://Custom Class/": "blue",
-"res://Scene/": "orange",
-"res://draw/": "green",
-"res://old/": "gray",
-"res://old/Ready Obj/": "yellow"
+"res://Draw/": "green",
+"res://Scene Scripts/": "orange",
+"res://Test Resource/": "purple"
 }
 
 [physics]

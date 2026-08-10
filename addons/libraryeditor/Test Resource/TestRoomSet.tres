@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="RoomsSet" format=3 uid="uid://cv674gs8j6ibn"]
 
-[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://Custom Class/Level/Piece Level/RoomClass.gd" id="1_xribu"]
-[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://Custom Class/Level/Piece Level/BaseTileClass.gd" id="2_6ic48"]
-[ext_resource type="Script" uid="uid://h3ubtombidhi" path="res://Custom Class/Level/Sets Pieces/RoomsSet.gd" id="2_xvcnp"]
-[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://Custom Class/Level/Piece Level/RoomConnectorClass.gd" id="3_i1y2t"]
-[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://Custom Class/Level/Piece Level/RoomEnterClass.gd" id="4_i1y2t"]
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://addons/libraryeditor/Custom Class/Level/Piece Level/RoomClass.gd" id="1_xribu"]
+[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://addons/libraryeditor/Custom Class/Level/Piece Level/BaseTileClass.gd" id="2_6ic48"]
+[ext_resource type="Script" uid="uid://h3ubtombidhi" path="res://addons/libraryeditor/Custom Class/Level/Sets Pieces/RoomsSet.gd" id="2_xvcnp"]
+[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://addons/libraryeditor/Custom Class/Level/Piece Level/RoomConnectorClass.gd" id="3_i1y2t"]
+[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://addons/libraryeditor/Custom Class/Level/Piece Level/RoomEnterClass.gd" id="4_i1y2t"]
 
 [sub_resource type="Resource" id="Resource_i1y2t"]
 script = ExtResource("2_6ic48")

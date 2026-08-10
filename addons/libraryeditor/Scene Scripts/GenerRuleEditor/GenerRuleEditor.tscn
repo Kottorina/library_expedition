@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c6cm1kqxhbotr"]
 
-[ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_qvsyd"]
-[ext_resource type="Resource" uid="uid://cv674gs8j6ibn" path="res://Test Resource/TestRoomSet.tres" id="2_qvsyd"]
-[ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/GenerRuleEditor/location_ui.gd" id="3_pr7i1"]
+[ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_2lqr8"]
+[ext_resource type="Resource" uid="uid://cv674gs8j6ibn" path="res://addons/libraryeditor/Test Resource/TestRoomSet.tres" id="2_7tdfr"]
+[ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/location_ui.gd" id="3_klkmx"]
 
 [node name="GenerRuleEditor" type="Control" unique_id=529019256]
 layout_mode = 3
@@ -11,8 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qvsyd")
-room_set = ExtResource("2_qvsyd")
+script = ExtResource("1_2lqr8")
+room_set = ExtResource("2_7tdfr")
 ready_location_set_path = "res://TestLocationsSet.tres"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1787863444]
@@ -59,7 +59,7 @@ text = "del_select_node"
 [node name="location_ui" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("auto_save", "location_list", "location_name")]
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_pr7i1")
+script = ExtResource("3_klkmx")
 auto_save = NodePath("HBoxContainer/auto_save")
 location_list = NodePath("HBoxContainer/LocationList")
 location_name = NodePath("HBoxContainer2/location_name")

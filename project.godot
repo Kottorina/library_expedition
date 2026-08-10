@@ -20,13 +20,17 @@ config/icon="uid://iantqf4cd3u"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/libraryeditor/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
-"res://Custom Class/": "blue",
-"res://Draw/": "green",
-"res://Scene Scripts/": "orange",
-"res://Test Resource/": "purple"
+"res://addons/libraryeditor/Custom Class/": "blue",
+"res://addons/libraryeditor/Draw/": "green",
+"res://addons/libraryeditor/Scene Scripts/": "orange",
+"res://addons/libraryeditor/Test Resource/": "purple"
 }
 
 [physics]

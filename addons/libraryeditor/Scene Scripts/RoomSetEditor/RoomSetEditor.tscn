@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://b11l7abjumrqk"]
 
-[ext_resource type="Script" uid="uid://l7bf6w3g4c1j" path="res://Scene Scripts/RoomSetEditor/piece_editor.gd" id="1_3x1b6"]
-[ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://Draw/world_top.tres" id="2_3x1b6"]
+[ext_resource type="Script" uid="uid://l7bf6w3g4c1j" path="res://addons/libraryeditor/Scene Scripts/RoomSetEditor/piece_editor.gd" id="1_3x1b6"]
+[ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://addons/libraryeditor/Draw/world_top.tres" id="2_3x1b6"]
 
 [node name="RoomSetEditor" type="Node2D" unique_id=1066855304 node_paths=PackedStringArray("deco_nodes_ar", "gener_node", "tool_draw_node")]
 script = ExtResource("1_3x1b6")

@@ -18,6 +18,7 @@ config/icon="uid://iantqf4cd3u"
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [file_customization]
 

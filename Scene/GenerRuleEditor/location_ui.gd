@@ -67,8 +67,11 @@ func _on_rename_pressed() -> void:
 
 func _on_del_pressed() -> void:
 	var curent_ready_room = location_list.get_selected_metadata() 
-	
 	current_ready_locations_set.ready_location_ar.erase(curent_ready_room)
+	
+	if current_ready_locations_set.ready_location_ar.is_empty():
+		_on_new_location_pressed()
+		return
 	
 	bake_ui()
 	location_list.select(0)

@@ -9,8 +9,6 @@ const TOOLTITLE : String = "Tool:"
 const TOOLTYPE : int = 5 ##Для передачи технических значений
 const TOOLCOLOR :=  Color.WHITE
 
-var start_gener_node : Node
-
 func _ready() -> void:
 	bake_ui()
 
@@ -163,6 +161,9 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	var left_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	var right_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	
+	var left_port_mum = 0
+	var right_port_mum = 0
+	
 	var ind = 0
 	for inst in big_instr.instr_ar:
 		
@@ -184,11 +185,10 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 				label.text = inst.title_instr
 				child_node.add_child(label)
 				child_node.add_child(active_node)
+				
+				active_node.value = inst.body_value
 		
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
-		
-		var left_port_mum = 0
-		var right_port_mum = 0
 		
 		if inst.is_left == true:
 			var metadata = GraphNodeMetadata.new()
@@ -228,6 +228,10 @@ func get_current_graph() -> Dictionary:
 	
 	var graph : Dictionary = {} ##Граф нужен для выдачи
 	occupied_ports.clear()
+	
+	var start_gener_node = find_start_gener_node()
+	if start_gener_node == null:
+		return graph
 	
 	var current_node : Node = start_gener_node
 	var free_nodes : Dictionary ## { node (StringName) : true } --- Ноды которые нужно обработать
@@ -296,12 +300,24 @@ func get_current_graph() -> Dictionary:
 		
 		graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
-	## ЗАПОЛНИТЬ ДАННЫМИ И ВЕРНУТЬ НАЗАД, СУКА
-	
 	#print("\n".join([ graph, occupied_ports, free_nodes])) ##graph
 	print("get_graph")
 	
 	return graph
+
+func find_start_gener_node() -> Node:
+	
+	var start_ar : Array[Node]
+	
+	for child in graph_edit.get_children():
+		if child is GraphNode:
+			var meta_node : BigGraphNodeMakeInsts = child.get_meta(BIG_INSTR_NODE_DATA_NAME)
+			if meta_node.type_node == 2:
+				start_ar.append(child) 
+	
+	if start_ar.size() == 1:
+		return start_ar[0] 
+	return null
 
 func load_graph(graph : Dictionary) -> void:
 	

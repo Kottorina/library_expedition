@@ -32,10 +32,12 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	bake_graph_node_biginstr() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
-	while !free_nodes.is_empty():
+	var connection_plugs_instr : BigGraphNodeMakeInsts = null
+	
+	while !free_nodes.is_empty(): ## Первичная обработка
 		
 		current_node = free_nodes.keys()[0]
-		var curent_node_big_instr = current_node.get_meta(BIG_INSTR_NODE_DATA_NAME) ##Испольховать в графе, так как нужно только оно
+		var curent_node_big_instr : BigGraphNodeMakeInsts = current_node.get_meta(BIG_INSTR_NODE_DATA_NAME) ##Испольховать в графе, так как нужно только оно
 		
 		var right_ports : Array ## Все правые порты обьекта и их соеденения
 		var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
@@ -59,7 +61,11 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 					var final_meta = to_left_metadata[connect_line["to_port"]]
 					
 					var key_right = right_ports[connect_line["from_port"]].keys()[0]
-					right_ports[connect_line["from_port"]][key_right] = { [final_meta] : to_left_big_instr_metadata }
+					right_ports[connect_line["from_port"]][key_right] = [ final_meta, to_left_big_instr_metadata ]
+					
+					match to_left_big_instr_metadata.type_node:
+						4:
+							connection_plugs_instr = to_left_big_instr_metadata
 					
 					free_nodes[ graph_edit.get_node(NodePath(connect_line["to_node"])) ] = true
 					block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
@@ -72,13 +78,17 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 			if current_node.name != connect_line["from_node"]:
 				if is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
 					
-					var from_right_big_instr_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
+					var to_right_big_instr_metadata : BigGraphNodeMakeInsts = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
 					
 					var from_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
 					var final_meta = from_right_metadata[connect_line["from_port"]]
 					
+					match to_right_big_instr_metadata.type_node:
+						4:
+							connection_plugs_instr = to_right_big_instr_metadata
+					
 					var key_left = left_ports[connect_line["to_port"]].keys()[0]
-					left_ports[connect_line["to_port"]][key_left] = { [final_meta] : from_right_big_instr_metadata }
+					left_ports[connect_line["to_port"]][key_left] = [ final_meta , to_right_big_instr_metadata ]
 					
 					free_nodes[ graph_edit.get_node(NodePath(connect_line["from_node"])) ] = true
 					block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
@@ -91,13 +101,65 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 		
 		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
+	## Обработка Открытых Портов И Переходов Между Локациями
+	
+	for nodes : BigGraphNodeMakeInsts in save_graph: 
+		for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
+			match nodes.type_node:
+				0:
+					if left_port[left_port.keys()[0]] is Array:
+						continue
+					if left_port.keys()[0].source_res is RoomConnector and left_port[left_port.keys()[0]] == PORT_VALUE_FREE:
+						
+						## В таком случае ищем заглушку в connector plugs node
+						for right_ports in save_graph[connection_plugs_instr][LEFT_PORTS_DATA_NAME]:
+							
+							var meta = right_ports.keys()[0]
+							if meta.source_res is RoomConnector:
+								
+								if is_connectors_identical(left_port.keys()[0].source_res,meta.source_res) == true:
+									
+									var plug_big_instr = save_graph[connection_plugs_instr][LEFT_PORTS_DATA_NAME][meta.port_num]
+									var key = save_graph[connection_plugs_instr][LEFT_PORTS_DATA_NAME][meta.port_num].keys()[0]
+									
+									if plug_big_instr[key] is String:
+										continue
+									
+									var new_co_to_con := ConnectorToConnector.new()
+									new_co_to_con.from_connector = left_port.keys()[0].source_res
+									new_co_to_con.to_connector = plug_big_instr[key][0].source_res
+									new_co_to_con.to_room = plug_big_instr[key][1].room_
+									
+									if room_graph.has(nodes.room_):
+										room_graph[nodes.room_].append(new_co_to_con)
+									else:
+										room_graph[nodes.room_] = [new_co_to_con]
+
+							#if instr.source_res is RoomConnector:
+								#if is_connectors_identical(instr.source_res,port[0]) == true:
+									#instr. (ACTIVE_NODE_DATA_NAME)
+									
+
 	#print("\n".join([ save_graph, occupied_ports, free_nodes])) ##graph
 	
 	bake_ready_location.save_graph = save_graph
+	bake_ready_location.rooms_graph = room_graph
 	
 	return bake_ready_location
 
+const directio_oppisite = {0 : 1 , 1 : 0 , 2 : 3 , 3 : 2 }
 
+func is_connectors_opposite(connector_one : RoomConnector, connector_two : RoomConnector) -> bool: ## РАСШИРЬ ЕСЛИ ЧЕТО СДЕЛАЕЬ С КОННЕКТОРОМ БЛЯДЬ
+	if directio_oppisite[connector_one.direction] == connector_two.direction:
+		
+		if connector_one.size_ == connector_two.size_ and connector_one.type == connector_two.type:
+			return true
+	return false
+
+func is_connectors_identical(connector_one : RoomConnector, connector_two : RoomConnector) -> bool: ## РАСШИРЬ ЕСЛИ ЧЕТО СДЕЛАЕЬ С КОННЕКТОРОМ БЛЯДЬ
+	if connector_one.direction == connector_two.direction and connector_one.size_ == connector_two.size_ and connector_one.type == connector_two.type:
+		return true
+	return false
 
 func find_start_gener_node() -> Node:
 	var start_ar : Array[Node]

@@ -74,10 +74,10 @@ func bake_ui_connectors_plugs() -> void:
 	tool_instr.left_color = TOOLCOLOR
 	big_instr.instr_ar.append(tool_instr)
 	
-	var connector := RoomConnector.new()
 	for size_ in CONNECTOR_SIZE_COUNT:
 		for type_ in CONNECTOR_TYPE_COUNT:
 			for direction_ in CONNECTOR_DIRECTION_COUNT:
+				var connector := RoomConnector.new()
 				connector.type = type_
 				connector.direction = direction_
 				connector.size_ = size_
@@ -159,6 +159,7 @@ const TOOLENTERCOLOR : Color = Color.PURPLE
 
 func room_to_biginstrgraphnode(room : Room) -> BigGraphNodeMakeInsts:
 	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.room_ = room
 	
 	for connector : RoomConnector in room.room_connectors_ar:
 
@@ -305,9 +306,8 @@ func load_graph(graph : Dictionary) -> void:
 			var start_port_meta : GraphNodeMetadata = left_port.keys()[0]
 			if left_port[start_port_meta] is String:
 				continue
-			var end_port_meta : GraphNodeMetadata = left_port[start_port_meta].keys()[0][0]
-			
-			var final_node_instr : BigGraphNodeMakeInsts = left_port[start_port_meta][[end_port_meta]]
+			var end_port_meta : GraphNodeMetadata = left_port[start_port_meta][0]
+			var final_node_instr : BigGraphNodeMakeInsts = left_port[start_port_meta][1]
 			
 			if ! ready_graph_nodes_from_instr.has(final_node_instr):
 				ready_graph_nodes_from_instr[final_node_instr] = make_node_from_biginstr(final_node_instr)
@@ -315,13 +315,12 @@ func load_graph(graph : Dictionary) -> void:
 
 			
 		for right_port : Dictionary in graph[curent_node_instr][RIGHT_PORTS_DATA_NAME]:
-
 			var start_port_meta : GraphNodeMetadata = right_port.keys()[0]
 			if right_port[start_port_meta] is String:
 				continue
-			var end_port_meta : GraphNodeMetadata = right_port[start_port_meta].keys()[0][0]
+			var end_port_meta : GraphNodeMetadata = right_port[start_port_meta][0]
+			var final_node_instr : BigGraphNodeMakeInsts = right_port[start_port_meta][1]
 			
-			var final_node_instr : BigGraphNodeMakeInsts = right_port[start_port_meta][[end_port_meta]]
 			if ! ready_graph_nodes_from_instr.has(final_node_instr):
 				ready_graph_nodes_from_instr[final_node_instr] = make_node_from_biginstr(final_node_instr)
 			graph_edit.connect_node(curent_node.name, start_port_meta.port_num, ready_graph_nodes_from_instr[final_node_instr].name, end_port_meta.port_num)

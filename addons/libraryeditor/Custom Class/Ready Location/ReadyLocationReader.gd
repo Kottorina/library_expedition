@@ -3,7 +3,6 @@ extends Node
 class_name ReadyLocationLoader ## Для постепенной загрузки локации
 
 signal load_new_parts( parts_ar : Array[BaseTile] )
-signal load_parts_complete
 
 signal ready_locatin_load_complete( enter_dict : Dictionary )
 

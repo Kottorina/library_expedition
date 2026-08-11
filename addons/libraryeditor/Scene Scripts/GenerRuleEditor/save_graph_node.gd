@@ -101,65 +101,14 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 		
 		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 	
-	## Обработка Открытых Портов И Переходов Между Локациями
-	
-	for nodes : BigGraphNodeMakeInsts in save_graph: 
-		for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
-			match nodes.type_node:
-				0:
-					if left_port[left_port.keys()[0]] is Array:
-						continue
-					if left_port.keys()[0].source_res is RoomConnector and left_port[left_port.keys()[0]] == PORT_VALUE_FREE:
-						
-						## В таком случае ищем заглушку в connector plugs node
-						for right_ports in save_graph[connection_plugs_instr][LEFT_PORTS_DATA_NAME]:
-							
-							var meta = right_ports.keys()[0]
-							if meta.source_res is RoomConnector:
-								
-								if is_connectors_identical(left_port.keys()[0].source_res,meta.source_res) == true:
-									
-									var plug_big_instr = save_graph[connection_plugs_instr][LEFT_PORTS_DATA_NAME][meta.port_num]
-									var key = save_graph[connection_plugs_instr][LEFT_PORTS_DATA_NAME][meta.port_num].keys()[0]
-									
-									if plug_big_instr[key] is String:
-										continue
-									
-									var new_co_to_con := ConnectorToConnector.new()
-									new_co_to_con.from_connector = left_port.keys()[0].source_res
-									new_co_to_con.to_connector = plug_big_instr[key][0].source_res
-									new_co_to_con.to_room = plug_big_instr[key][1].room_
-									
-									if room_graph.has(nodes.room_):
-										room_graph[nodes.room_].append(new_co_to_con)
-									else:
-										room_graph[nodes.room_] = [new_co_to_con]
-
-							#if instr.source_res is RoomConnector:
-								#if is_connectors_identical(instr.source_res,port[0]) == true:
-									#instr. (ACTIVE_NODE_DATA_NAME)
-									
-
-	#print("\n".join([ save_graph, occupied_ports, free_nodes])) ##graph
-	
+	bake_ready_location.connection_plugs_instr = connection_plugs_instr
 	bake_ready_location.save_graph = save_graph
-	bake_ready_location.rooms_graph = room_graph
 	
-	return bake_ready_location
-
-const directio_oppisite = {0 : 1 , 1 : 0 , 2 : 3 , 3 : 2 }
-
-func is_connectors_opposite(connector_one : RoomConnector, connector_two : RoomConnector) -> bool: ## РАСШИРЬ ЕСЛИ ЧЕТО СДЕЛАЕЬ С КОННЕКТОРОМ БЛЯДЬ
-	if directio_oppisite[connector_one.direction] == connector_two.direction:
-		
-		if connector_one.size_ == connector_two.size_ and connector_one.type == connector_two.type:
-			return true
-	return false
-
-func is_connectors_identical(connector_one : RoomConnector, connector_two : RoomConnector) -> bool: ## РАСШИРЬ ЕСЛИ ЧЕТО СДЕЛАЕЬ С КОННЕКТОРОМ БЛЯДЬ
-	if connector_one.direction == connector_two.direction and connector_one.size_ == connector_two.size_ and connector_one.type == connector_two.type:
-		return true
-	return false
+	## Тестовое Финальное Запекание
+	var baker = ReadyLocationBake.new()
+	var fin_bake_ready_location = baker.bake_ready_location(bake_ready_location)
+	
+	return fin_bake_ready_location
 
 func find_start_gener_node() -> Node:
 	var start_ar : Array[Node]

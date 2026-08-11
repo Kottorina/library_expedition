@@ -5,3 +5,5 @@ class_name BaseTile
 @export var atl_coord_ : Vector2i ##Координата в атласе
 @export var id_ : int ##Id in tileset
 @export var deco_level : int ##Для определеня высоты тайлв, показывает номер в deco ar
+
+var real_coord_ : Vector2i ## Временная координата для правильной отрисовки

@@ -107,13 +107,19 @@ func bake_ui_enter_node() -> void: ##Универсальный нод для о
 	
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ENTER_LOCATION_NAME
+	big_instr.type_node = 1
 	
 	var instr = GraphNodeMakeInsts.new()
-	instr.is_right = true 
 	instr.body_node = 1
 	instr.title_instr = ENTER_LOCATION_TITLE
+	
+	
+	instr.is_right = true 
 	instr.right_type = TOOLENTERTYPE
 	instr.right_color = TOOLENTERCOLOR
+	instr.is_left = true
+	instr.left_type = TOOLENTERTYPE
+	instr.left_color = TOOLENTERCOLOR
 	
 	big_instr.instr_ar.append(instr)
 	
@@ -174,6 +180,10 @@ func room_to_biginstrgraphnode(room : Room) -> BigGraphNodeMakeInsts:
 		instr.is_left = true
 		instr.left_type = TOOLENTERTYPE
 		instr.left_color = TOOLENTERCOLOR
+		instr.is_right = true
+		instr.right_type = TOOLENTERTYPE
+		instr.right_color = TOOLENTERCOLOR
+		
 		big_instr.instr_ar.append(instr)
 	
 	return big_instr

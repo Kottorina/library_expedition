@@ -88,8 +88,6 @@ func load_ready_location_edit(ready_location : ReadyLocation) -> void:
 	location_name.text = ready_location.name_
 	gener_rule_editor.load_graph(ready_location.save_graph)
 
-	print(ready_location.rooms_graph)
-
 func save_current_graph( id_selected : int) -> void: ## Запекает Локацию, Позволяет Использовать / Загружать
 	current_ready_locations_set.ready_location_ar[id_selected] = save_graph_node.bake_ready_location_f(current_ready_locations_set.ready_location_ar[id_selected])
 	

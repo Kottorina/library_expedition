@@ -1,6 +1,7 @@
 extends Control
 
-@onready var graph_edit: GraphEdit = $PanelContainer/VBoxContainer/GraphEdit
+@export var graph_edit: GraphEdit 
+@export var node_tool_room : Control
 
 var room_set : RoomsSet
 
@@ -19,7 +20,7 @@ func _ready() -> void:
 	
 	bake_ui()
 
-@onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
+@export var node_list: OptionButton
 
 const RND_FORK_TITLE : String = "Rnd Fork"
 

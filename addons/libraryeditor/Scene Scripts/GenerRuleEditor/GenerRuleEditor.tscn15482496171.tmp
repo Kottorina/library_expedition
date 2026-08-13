@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/node_tool_room.gd" id="4_7l203"]
 [ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="5_klkmx"]
 
-[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit", "node_tool_room", "node_list")]
+[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("node_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2lqr8")
-graph_edit = NodePath("PanelContainer/VBoxContainer/GraphEdit")
-node_tool_room = NodePath("PanelContainer/VBoxContainer/MarginContainer/node_tool_room")
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 ready_location_set_path = "res://Test Resource/TestLocationsSet.tres"
 custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203")])
@@ -40,12 +38,11 @@ theme_override_constants/margin_top = 13
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 14
 
-[node name="node_tool_room" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=36879208 node_paths=PackedStringArray("gener_rule_editor", "node_list")]
+[node name="node_tool_room" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=36879208 node_paths=PackedStringArray("node_list")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("4_7l203")
-gener_rule_editor = NodePath("../../../..")
 node_list = NodePath("Node Tool Room List/node_list")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1963053032]

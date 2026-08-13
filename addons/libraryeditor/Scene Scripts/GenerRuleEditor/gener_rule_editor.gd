@@ -21,6 +21,45 @@ func _ready() -> void:
 
 @onready var node_list: OptionButton = $PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/NodeList
 
+const RND_FORK_TITLE : String = "Rnd Fork"
+
+#const START_GENER_LOCATION_TITLE : String = "Rnd Fork"
+
+func bake_ui_all_rnd_fork() -> void: ## Случайные Перекрестки, Очень Круто
+	for size_ in CONNECTOR_SIZE_COUNT:
+		for type_ in CONNECTOR_TYPE_COUNT:
+			for direction_ in CONNECTOR_DIRECTION_COUNT:
+				var connector := RoomConnector.new()
+				connector.type = type_
+				connector.direction = direction_
+				connector.size_ = size_
+				bake_ui_rnd_fork_from_connector(connector)
+
+func bake_ui_rnd_fork_from_connector( enter_connector : RoomConnector ) -> void: ## Случайные Перекрестки, Очень Круто
+	var ind = get_free_ind()
+	
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.type_node = 5
+	
+	var enter_instr = make_inst_from_connector(enter_connector)
+	big_instr.instr_ar.append(enter_instr)
+	
+	var big_title = RND_FORK_TITLE + " " + enter_instr.title_instr
+	
+	big_instr.title_node = big_title
+	
+	var exit_connector = enter_connector.duplicate()
+	exit_connector.direction = DIRECTION_INVERT[exit_connector.direction]
+	var exit_instr_one = make_inst_from_connector(exit_connector)
+	exit_instr_one.body_node = 1
+	big_instr.instr_ar.append(exit_instr_one)
+	
+	var exit_instr_two = make_inst_from_connector(exit_connector)
+	big_instr.instr_ar.append(exit_instr_two)
+	
+	node_list.add_item(big_title, ind)
+	node_list.set_item_metadata(ind,big_instr)
+
 const ENTER_LOCATION_TITLE : String = "Id Enter:"
 const ROOMNODENAME = "Room Node: "
 const ENTER_LOCATION_NAME : String = "Enter Location Node"
@@ -91,6 +130,7 @@ func bake_ui() -> void:
 	bake_ui_start_gener_node()
 	bake_ui_enter_node()
 	bake_ui_connectors_plugs()
+	bake_ui_all_rnd_fork()
 	for big_instr in custom_big_instr_ar:
 		var ind = get_free_ind()
 		node_list.add_item(big_instr.title_node, ind)
@@ -145,6 +185,8 @@ func bake_ui_rooms_nodes() -> void:
 
 var toolconnectordirection_ar : Array[Array] = [[true,false],[false,true],[true,false],[false,true]]
 const DIRECTION : Array[String] = ["up","down","left","right"] 
+const DIRECTION_INVERT : Array[String] = ["down","up","right","left"] 
+
 const BASECOLORTYPE : Array[String] = ["black","gray","white"]
 const SIZE : Array[String] = ["tiny","small","medium","large"]
 

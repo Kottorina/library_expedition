@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://c6cm1kqxhbotr"]
+
+[ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_2lqr8"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="2_7tdfr"]
+[ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://addons/libraryeditor/Base Obj/tool_crossroad.tres" id="3_7l203"]
+[ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/location_ui.gd" id="3_klkmx"]
+[ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="5_klkmx"]
+
+[node name="GenerRuleEditor" type="Control" unique_id=529019256]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2lqr8")
+room_set_path = "res://Test Resource/TestRoomSet.tres"
+ready_location_set_path = "res://Test Resource/TestLocationsSet.tres"
+custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203")])
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1787863444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=701906925]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=333362201]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=119371851]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="node_text" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1489605509]
+layout_mode = 2
+text = "Node:"
+
+[node name="NodeList" type="OptionButton" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1118630017]
+layout_mode = 2
+
+[node name="AddNode" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=596623089]
+layout_mode = 2
+text = "add node"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=410445455]
+layout_mode = 2
+
+[node name="del_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1647430922]
+layout_mode = 2
+text = "del_select_node"
+
+[node name="location_ui" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("save_graph_node", "auto_save", "location_list", "location_name")]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_klkmx")
+save_graph_node = NodePath("../../../../Save Graph Node")
+auto_save = NodePath("HBoxContainer/auto_save")
+location_list = NodePath("HBoxContainer/LocationList")
+location_name = NodePath("HBoxContainer2/location_name")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui" unique_id=160965422]
+layout_mode = 2
+
+[node name="location text" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=1342994124]
+layout_mode = 2
+text = "Location:"
+
+[node name="LocationList" type="OptionButton" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=1120416436]
+layout_mode = 2
+
+[node name="save" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=264911771]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "save"
+
+[node name="auto_save" type="CheckBox" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=145861214]
+visible = false
+layout_mode = 2
+button_pressed = true
+text = "AutoSave"
+
+[node name="load" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=2091644709]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "load"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=1968801006]
+layout_mode = 2
+
+[node name="new_location" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=1917343682]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "add_new_location"
+
+[node name="del" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer" unique_id=729184280]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "del"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui" unique_id=1561290264]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer2" unique_id=1649022254]
+layout_mode = 2
+text = "Location:"
+
+[node name="location_name" type="TextEdit" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer2" unique_id=988098507]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Location name"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="rename" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer2" unique_id=1325660513]
+layout_mode = 2
+text = "ReName"
+
+[node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
+layout_mode = 2
+size_flags_vertical = 3
+minimap_enabled = false
+show_zoom_buttons = false
+show_minimap_button = false
+show_arrange_button = false
+
+[node name="Save Graph Node" type="Node" parent="." unique_id=135609733 node_paths=PackedStringArray("graph_edit")]
+script = ExtResource("5_klkmx")
+graph_edit = NodePath("../PanelContainer/VBoxContainer/GraphEdit")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/del_node" to="." method="_on_del_node_pressed"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/LocationList" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_location_list_item_selected"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/save" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_save_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/load" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_load_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/new_location" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_new_location_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/del" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_del_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer2/rename" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_rename_pressed"]
+[connection signal="connection_request" from="PanelContainer/VBoxContainer/GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="node_deselected" from="PanelContainer/VBoxContainer/GraphEdit" to="." method="_on_graph_edit_node_deselected"]
+[connection signal="node_selected" from="PanelContainer/VBoxContainer/GraphEdit" to="." method="_on_graph_edit_node_selected"]

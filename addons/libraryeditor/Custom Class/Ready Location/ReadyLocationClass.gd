@@ -3,6 +3,7 @@ class_name ReadyLocation
 
 @export var name_ : String
 
+@export var start_bake_node : BigGraphNodeMakeInsts 
 ## ДЛЯ ОБРАБОТКИ ГРАФА И ДЛЯ НОРМАЛЬНОГО СОХРАНЕНИЯ А ТАКЖЕ ДЛЯ УДОБНОЙ ЗАГРУЗКИ
 @export var save_graph : Dictionary ## {Big_instr : { right / left ports : [ port_metadata :  String free/occupied/new BigInstr ] } }
 ## ГРАФ СОДЕРЖАЩИЙ ВСЕ СОЕДИНЕНИЯ

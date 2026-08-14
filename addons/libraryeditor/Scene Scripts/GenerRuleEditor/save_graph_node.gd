@@ -105,6 +105,7 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 	bake_ready_location.connection_plugs_instr = connection_plugs_instr
 	bake_ready_location.save_graph = save_graph
 	bake_ready_location.full_graph = full_graph
+	bake_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
 	
 	## Тестовое Финальное Запекание
 	var baker = ReadyLocationBake.new()

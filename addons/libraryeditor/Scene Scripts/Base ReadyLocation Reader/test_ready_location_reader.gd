@@ -1,6 +1,9 @@
 @tool
 extends Node2D
 
+@export var cur_seed : int = 0
+@export var seed_auto_add : bool = true
+
 @export var path_current_ready_location_set : String
 @export var location_ind : int
 
@@ -21,8 +24,11 @@ func read():
 	
 	location_loader.load_new_parts.connect(draw_parts)
 	location_loader.ready_locatin_load_complete.connect(end_load_ready_location)
+	location_loader.parts_for_cycle = parts_for_cycle
 	
-	location_loader.start_load(ready_locations,parts_for_cycle)
+	location_loader.start_load(ready_locations,cur_seed)
+	if seed_auto_add == true:
+		cur_seed += 1
 
 func draw_parts( parts_ar : Array ) -> void: ## Array[BaseTile] ВЫДАЕТ ОШИБКУ, КАКОГО ТО ХУЯ
 	for base_tile : BaseTile in parts_ar:

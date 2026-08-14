@@ -9,9 +9,17 @@ signal ready_locatin_load_complete( enter_dict : Dictionary )
 ## "up","down","left","right"
 const Direction : Dictionary = { 0 : Vector2i(0 , -1), 1 : Vector2i(0 , 1), 2 : Vector2i(-1 , 0), 3 : Vector2i(1 , 0) }
 
-func start_load(ready_location : ReadyLocation, parts_for_cycle : int) -> void:
+var parts_for_cycle : int = 100
+
+var new_ready_location : ReadyLocation
+
+func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	
-	var new_ready_location = ready_location
+	if seed != 0:
+		var bake_node = ReadyLocationBake.new()
+		new_ready_location = bake_node.bake_ready_location(ready_location,seed)
+	else:
+		new_ready_location = ready_location
 	
 	var free_rooms : Dictionary = { }
 	var enter_dict : Dictionary = { } ## Id : Coord

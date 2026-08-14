@@ -13,105 +13,163 @@ var room_graph : Dictionary
 var enters_location : Dictionary
 var connection_plugs_instr : BigGraphNodeMakeInsts
 
+var free_nodes : Array[BigGraphNodeMakeInsts] ## ЕЩЕ НЕ ОБРАБОТАННЫЕ НОДЫ
+
+var save_graph : Dictionary
+var full_graph : Dictionary
+
+var rnd : RandomNumberGenerator
+
 func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> ReadyLocation:
 	var new_ready_location = ready_location.duplicate()
 	
-	var save_graph = new_ready_location.save_graph
-	var full_graph = new_ready_location.full_graph
+	save_graph = new_ready_location.save_graph.duplicate()
+	full_graph = new_ready_location.full_graph.duplicate()
 	
-	var rnd = RandomNumberGenerator.new()
+	rnd = RandomNumberGenerator.new()
 	rnd.seed = c_seed
 	
 	room_graph.clear()
 	enters_location.clear()
 	
+	## ПРЕД ОБРАБОТКА, НАДО
 	for node_instr : BigGraphNodeMakeInsts in save_graph: 
 		match node_instr.type_node:
 			4:
 				connection_plugs_instr = node_instr 
 	
-	for nodes : BigGraphNodeMakeInsts in save_graph: 
-		match nodes.type_node:
-			0: ## ОБРАБОТКА ПОРТОВ У MAKEROOM
-				for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
-					room_bake_not_free_port(save_graph,nodes,left_port,LEFT_PORTS_DATA_NAME)
-					room_bake_free_port(save_graph,nodes,left_port,LEFT_PORTS_DATA_NAME)
-				
-				## ДЛЯ ПРАВЫХ ПОРТОВ, НАХУЙ ФАШИСТОВ
-				for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
-					room_bake_not_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
-					room_bake_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
-
-			2:  ## ОБРАБОТКА СТРАТОВОГО НОДА ОТДЕЛЬНО и ТОЛЬКО СУКА ПРАВЫЕ
-				for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
-					## ОБРАБОТКА ГОТОВЫХ ПОРТОВ
-					if right_port[right_port.keys()[0]] is Array:
-						## Запекаем готовый порт
-						var to_port_meta : GraphNodeMetadata = right_port[right_port.keys()[0]][0]
-						var to_node_instr : BigGraphNodeMakeInsts = right_port[right_port.keys()[0]][1]
-						
-						if to_port_meta.source_res is RoomEnter:
-							
-							var from_port_meta = right_port.keys()[0]
-							
-							var value = from_port_meta.active_node.value
-							var enter : RoomEnter = to_port_meta.source_res
-							
-							enters_location[enter] = value
+	free_nodes.append(ready_location.start_bake_node)
 	
-			5:
+	while ! free_nodes.is_empty():
+		
+		var cur_node = free_nodes[0]
+		#print(cur_node.type_node)
+		bake_node(cur_node)
+		
+		free_nodes.remove_at(0)
+	
+	new_ready_location.rooms_graph = room_graph
+	new_ready_location.enters_location = enters_location
+	
+	#print(new_ready_location.save_graph.size())
+	
+	return new_ready_location
+
+func add_free_port(port : Dictionary) -> void:
+	if ! port[port.keys()[0]] is String:
+		free_nodes.append(port[port.keys()[0]][1])
+
+
+func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
+	match nodes.type_node:
+		0: ## ОБРАБОТКА ПОРТОВ У MAKEROOM
+			for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
+				room_bake_not_free_port(save_graph,nodes,left_port,LEFT_PORTS_DATA_NAME)
+				room_bake_free_port(save_graph,nodes,left_port,LEFT_PORTS_DATA_NAME)
+				add_free_port(left_port)
 				
-				var enter_ports : Array 
-				var exit_ports : Array 
-				var const_port_direction : String
-				var setting_biginstr : BigGraphNodeMakeInsts = null
-				
-				var left_ports  = full_graph[nodes][LEFT_PORTS_DATA_NAME]
-				for left_port : Dictionary in left_ports:
-					if ! left_port.keys()[0].source_res is RoomConnector:
-						left_ports.erase(left_port)
-						if ! left_port[left_port.keys()[0]] is String:
-							if left_port[left_port.keys()[0]][1].type_node == 6:
-								setting_biginstr = left_port[left_port.keys()[0]][1]
-				var right_ports = full_graph[nodes][RIGHT_PORTS_DATA_NAME]
-				for right_port : Dictionary in right_ports:
-					if ! right_port.keys()[0].source_res is RoomConnector:
-						right_ports.erase(right_port)
-						if ! right_port[right_port.keys()[0]] is String:
-							if right_port[right_port.keys()[0]][1].type_node == 6:
-								setting_biginstr = right_port[right_port.keys()[0]][1]
-				
-				if setting_biginstr == null:
-					
-					## ПОДКЛЮЧИ К BASE, СУЧКА
-					
-					continue
-				
-				if left_ports.size() > right_ports.size():
-					enter_ports = right_ports
-					exit_ports = left_ports
-					const_port_direction = RIGHT_PORTS_DATA_NAME
-				else:
-					enter_ports = left_ports
-					exit_ports = right_ports
-					const_port_direction =  LEFT_PORTS_DATA_NAME
-				
-				for port_id in exit_ports.size():
-					port_id += 1 ## ТАК НАДО, НЕ ТРОГАТЬ, ГАВ
-					if setting_biginstr.instr_ar.size() <= port_id:
-						continue
-					
-					if rnd.randf_range(0,1) < setting_biginstr.instr_ar[port_id].body_value:
-						print("Port use: ",str(port_id))
+			## ДЛЯ ПРАВЫХ ПОРТОВ, НАХУЙ ФАШИСТОВ
+			for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
+				room_bake_not_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
+				room_bake_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
+				add_free_port(right_port)
+
+		2:  ## ОБРАБОТКА СТРАТОВОГО НОДА ОТДЕЛЬНО и ТОЛЬКО СУКА ПРАВЫЕ
+			for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
+				add_free_port(right_port)
+				## ОБРАБОТКА ГОТОВЫХ ПОРТОВ
+				if right_port[right_port.keys()[0]] is Array:
+					## Запекаем готовый порт
+					var to_port_meta : GraphNodeMetadata = right_port[right_port.keys()[0]][0]
+					var to_node_instr : BigGraphNodeMakeInsts = right_port[right_port.keys()[0]][1]
 						
-						bake_con_to_con(
-							save_graph,
-							enter_ports[0][enter_ports[0].keys()[0]][0],
-							enter_ports[0][enter_ports[0].keys()[0]][1],
-							exit_ports[port_id][exit_ports[port_id].keys()[0]][0],
-							exit_ports[port_id][exit_ports[port_id].keys()[0]][1],
-							const_port_direction
-							)
+					if to_port_meta.source_res is RoomEnter:
+							
+						var from_port_meta = right_port.keys()[0]
+							
+						var value = from_port_meta.active_node.value
+						var enter : RoomEnter = to_port_meta.source_res
+							
+						enters_location[enter] = value
+	
+		5:
+				
+			var enter_ports : Array 
+			var exit_ports : Array 
+			var const_port_direction : String
+			var setting_biginstr : BigGraphNodeMakeInsts = null
+				
+			var left_ports  = full_graph[nodes][LEFT_PORTS_DATA_NAME]
+			print(left_ports)
+			for left_port : Dictionary in left_ports:
+				if ! left_port.keys()[0].source_res is RoomConnector:
+					left_ports.erase(left_port)
+					if ! left_port[left_port.keys()[0]] is String:
+						if left_port[left_port.keys()[0]][1].type_node == 6:
+							setting_biginstr = left_port[left_port.keys()[0]][1]
+			var right_ports = full_graph[nodes][RIGHT_PORTS_DATA_NAME]
+			for right_port : Dictionary in right_ports:
+				if ! right_port.keys()[0].source_res is RoomConnector:
+					right_ports.erase(right_port)
+					if ! right_port[right_port.keys()[0]] is String:
+						if right_port[right_port.keys()[0]][1].type_node == 6:
+							setting_biginstr = right_port[right_port.keys()[0]][1]
+			
+			#print(right_ports,"\n\n",left_ports)
+			if setting_biginstr == null:
+				print("FFFFFFFUCK")
+				## ПОДКЛЮЧИЛА К BASE, СУЧКА
+				add_free_port(exit_ports[0])
+				bake_con_to_con(
+					save_graph,
+					enter_ports[0][enter_ports[0].keys()[0]][0],
+					enter_ports[0][enter_ports[0].keys()[0]][1],
+					exit_ports[0][exit_ports[0].keys()[0]][0],
+					exit_ports[0][exit_ports[0].keys()[0]][1],
+					const_port_direction
+					)
+				return
+				
+			if left_ports.size() > right_ports.size():
+				enter_ports = right_ports
+				exit_ports = left_ports
+				const_port_direction = RIGHT_PORTS_DATA_NAME
+			else:
+				enter_ports = left_ports
+				exit_ports = right_ports
+				const_port_direction =  LEFT_PORTS_DATA_NAME
+				
+			for port_id in exit_ports.size():
+				port_id += 1 ## ТАК НАДО, НЕ ТРОГАТЬ, ГАВ
+				if setting_biginstr.instr_ar.size() <= port_id:
+					continue
+					
+				if rnd.randf_range(0,1) < setting_biginstr.instr_ar[port_id].body_value:
+					add_free_port(exit_ports[port_id])
+					bake_con_to_con(
+						save_graph,
+						enter_ports[0][enter_ports[0].keys()[0]][0],
+						enter_ports[0][enter_ports[0].keys()[0]][1],
+						exit_ports[port_id][exit_ports[port_id].keys()[0]][0],
+						exit_ports[port_id][exit_ports[port_id].keys()[0]][1],
+						const_port_direction
+						)
+					return
+				
+				add_free_port(exit_ports[0])
+				bake_con_to_con(
+					save_graph,
+					enter_ports[0][enter_ports[0].keys()[0]][0],
+					enter_ports[0][enter_ports[0].keys()[0]][1],
+					exit_ports[0][exit_ports[0].keys()[0]][0],
+					exit_ports[0][exit_ports[0].keys()[0]][1],
+					const_port_direction
+					)
+		_:
+			for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
+				add_free_port(left_port)
+			for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
+				add_free_port(right_port)
 				
 				#print(enter_ports,"\n\n",exit_ports)
 				
@@ -119,11 +177,6 @@ func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> Re
 				#for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
 					#fork_bake_not_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
 					#fork_bake_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
-				
-	new_ready_location.rooms_graph = room_graph
-	new_ready_location.enters_location = enters_location
-	
-	return new_ready_location
 
 ## КОМНАТЫ ОБРАБОТКА ГОТОВЫХ ПОРТОВ
 func room_bake_not_free_port(save_graph : Dictionary, from_node_instr : BigGraphNodeMakeInsts , port, const_name : String) -> void:

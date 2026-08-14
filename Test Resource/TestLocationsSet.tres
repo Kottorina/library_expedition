@@ -5730,7 +5730,7 @@ room_connectors_ar = Array[ExtResource("4_2pxmn")]([SubResource("Resource_w2emf"
 [sub_resource type="Resource" id="Resource_06hhq"]
 script = ExtResource("3_lri3u")
 title_node = "Room Node:  23"
-coord_ = Vector2(420, 1140)
+coord_ = Vector2(400, 1140)
 room_ = SubResource("Resource_4nifg")
 instr_ar = Array[ExtResource("2_38u2f")]([SubResource("Resource_q6l5r")])
 
@@ -19086,7 +19086,7 @@ metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 script = ExtResource("2_38u2f")
 title_instr = "Alt 1:"
 body_node = 1
-body_value = 0.4
+body_value = 0.1
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_jlf7c"]
@@ -23727,6 +23727,7 @@ instr_ar = Array[ExtResource("2_38u2f")]([SubResource("Resource_ms60c")])
 [sub_resource type="Resource" id="Resource_l1xdt"]
 script = ExtResource("1_6ytct")
 name_ = "Test1"
+start_bake_node = SubResource("Resource_38u2f")
 save_graph = {
 SubResource("Resource_dayl5"): {
 "LeftPortsData": [],
@@ -23755,25 +23756,6 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 : "PortFree"
 }]
 },
-SubResource("Resource_bqsy0"): {
-"LeftPortsData": [{
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_apy0i"),"active_node":null,"port_num":0)
-: "PortOccupied"
-}, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_e5mxf"),"active_node":null,"port_num":1)
-: "PortFree"
-}, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_1hrbp"),"active_node":null,"port_num":2)
-: "PortFree"
-}],
-"RightPortsData": [{
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_nvest"),"active_node":null,"port_num":0)
-: "PortFree"
-}, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_x4n1j"),"active_node":null,"port_num":1)
-: "PortFree"
-}]
-},
 SubResource("Resource_ys7jj"): {
 "LeftPortsData": [{
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_sfm8k"),"active_node":null,"port_num":0)
@@ -23791,6 +23773,25 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 , SubResource("Resource_1edt1")]
 }, {
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_af3t3"),"active_node":null,"port_num":1)
+: "PortFree"
+}]
+},
+SubResource("Resource_bqsy0"): {
+"LeftPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_apy0i"),"active_node":null,"port_num":0)
+: "PortOccupied"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_e5mxf"),"active_node":null,"port_num":1)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_1hrbp"),"active_node":null,"port_num":2)
+: "PortFree"
+}],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_nvest"),"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_x4n1j"),"active_node":null,"port_num":1)
 : "PortFree"
 }]
 },
@@ -24289,26 +24290,6 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 : "PortFree"
 }]
 },
-SubResource("Resource_bqsy0"): {
-"LeftPortsData": [{
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_apy0i"),"active_node":null,"port_num":0)
-: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_7lyhf"),"active_node":null,"port_num":1)
-, SubResource("Resource_pnwac")]
-}, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_e5mxf"),"active_node":null,"port_num":1)
-: "PortFree"
-}, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_1hrbp"),"active_node":null,"port_num":2)
-: "PortFree"
-}],
-"RightPortsData": [{
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_nvest"),"active_node":null,"port_num":0)
-: "PortFree"
-}, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_x4n1j"),"active_node":null,"port_num":1)
-: "PortFree"
-}]
-},
 SubResource("Resource_ys7jj"): {
 "LeftPortsData": [{
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_sfm8k"),"active_node":null,"port_num":0)
@@ -24328,6 +24309,26 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 , SubResource("Resource_1edt1")]
 }, {
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_af3t3"),"active_node":null,"port_num":1)
+: "PortFree"
+}]
+},
+SubResource("Resource_bqsy0"): {
+"LeftPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_apy0i"),"active_node":null,"port_num":0)
+: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_7lyhf"),"active_node":null,"port_num":1)
+, SubResource("Resource_pnwac")]
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_e5mxf"),"active_node":null,"port_num":1)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_1hrbp"),"active_node":null,"port_num":2)
+: "PortFree"
+}],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_nvest"),"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_x4n1j"),"active_node":null,"port_num":1)
 : "PortFree"
 }]
 },
@@ -24850,7 +24851,8 @@ SubResource("Resource_3ekqe"): [Object(Node,"unique_name_in_owner":false,"proces
 SubResource("Resource_0dbhl"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_gfljl"),"to_connector":SubResource("Resource_w2emf"),"to_room":SubResource("Resource_4nifg"))
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_jo5el"),"to_connector":SubResource("Resource_6kidb"),"to_room":SubResource("Resource_kiiw3"))
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_iep8l"),"to_connector":SubResource("Resource_hv86b"),"to_room":SubResource("Resource_ij7w7"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_sso8f"),"to_connector":SubResource("Resource_sfm8k"),"to_room":SubResource("Resource_ss655"))
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_sso8f"),"to_connector":SubResource("Resource_apy0i"),"to_room":SubResource("Resource_7wqsj"))
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_sso8f"),"to_connector":SubResource("Resource_apy0i"),"to_room":SubResource("Resource_7wqsj"))
 ],
 SubResource("Resource_udruv"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_wvrjg"),"to_connector":SubResource("Resource_l4nvl"),"to_room":SubResource("Resource_ce4bt"))
 ],
@@ -24859,20 +24861,14 @@ SubResource("Resource_ce4bt"): [Object(Node,"unique_name_in_owner":false,"proces
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_cy2nx"),"to_connector":SubResource("Resource_hv86b"),"to_room":SubResource("Resource_ij7w7"))
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_30p41"),"to_connector":SubResource("Resource_mtmg3"),"to_room":SubResource("Resource_y3kn3"))
 ],
-SubResource("Resource_ss655"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_hnntp"),"to_connector":SubResource("Resource_rwixr"),"to_room":SubResource("Resource_fkukk"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_w5w2x"),"to_connector":SubResource("Resource_6kidb"),"to_room":SubResource("Resource_kiiw3"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_oc487"),"to_connector":SubResource("Resource_y4k3r"),"to_room":SubResource("Resource_shc51"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_af3t3"),"to_connector":SubResource("Resource_mtmg3"),"to_room":SubResource("Resource_y3kn3"))
-],
 SubResource("Resource_7wqsj"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_e5mxf"),"to_connector":SubResource("Resource_rwixr"),"to_room":SubResource("Resource_fkukk"))
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_1hrbp"),"to_connector":SubResource("Resource_6kidb"),"to_room":SubResource("Resource_kiiw3"))
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_nvest"),"to_connector":SubResource("Resource_hv86b"),"to_room":SubResource("Resource_ij7w7"))
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_x4n1j"),"to_connector":SubResource("Resource_mtmg3"),"to_room":SubResource("Resource_y3kn3"))
-],
-SubResource("Resource_shc51"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_cdgdw"),"to_connector":SubResource("Resource_ju1g6"),"to_room":SubResource("Resource_8k3vd"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_r1ij6"),"to_connector":SubResource("Resource_6kidb"),"to_room":SubResource("Resource_kiiw3"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_iwu46"),"to_connector":SubResource("Resource_hv86b"),"to_room":SubResource("Resource_ij7w7"))
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_3eald"),"to_connector":SubResource("Resource_mtmg3"),"to_room":SubResource("Resource_y3kn3"))
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_e5mxf"),"to_connector":SubResource("Resource_rwixr"),"to_room":SubResource("Resource_fkukk"))
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_1hrbp"),"to_connector":SubResource("Resource_6kidb"),"to_room":SubResource("Resource_kiiw3"))
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_nvest"),"to_connector":SubResource("Resource_hv86b"),"to_room":SubResource("Resource_ij7w7"))
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_x4n1j"),"to_connector":SubResource("Resource_mtmg3"),"to_room":SubResource("Resource_y3kn3"))
 ]
 }
 enters_location = {

@@ -18,7 +18,6 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	
 	var save_graph : Dictionary = {} ##Граф нужен для сохранения сцены
-	var room_graph : Dictionary = {} ##Граф нужен для запекания комнат
 	occupied_ports.clear()
 	
 	var start_gener_node = find_start_gener_node()

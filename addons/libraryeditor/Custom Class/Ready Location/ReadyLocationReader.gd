@@ -11,21 +11,23 @@ const Direction : Dictionary = { 0 : Vector2i(0 , -1), 1 : Vector2i(0 , 1), 2 : 
 
 func start_load(ready_location : ReadyLocation, parts_for_cycle : int) -> void:
 	
+	var new_ready_location = ready_location
+	
 	var free_rooms : Dictionary = { }
 	var enter_dict : Dictionary = { } ## Id : Coord
 	
 	## ОТДЕЛЬНАЯ ОБРАБОТКА ПЕРВОЙ КОМНАТЫ НА ПРЕДМЕТ ENTER ТАК НАДО, ИНАЧЕ ВСЕ СЛОМАЕТЬСЯ
-	for enters in ready_location.rooms_graph.keys()[0].room_enter_ar:
-		if ready_location.enters_location.has(enters):
-				enter_dict[ ready_location.enters_location[enters] ] = enters.coord_
+	for enters in new_ready_location.rooms_graph.keys()[0].room_enter_ar:
+		if new_ready_location.enters_location.has(enters):
+				enter_dict[ new_ready_location.enters_location[enters] ] = enters.coord_
 	
-	for room : Room in ready_location.rooms_graph.keys():
+	for room : Room in new_ready_location.rooms_graph.keys():
 		
 		load_room(room, parts_for_cycle)
 
 		## ОБНОВИТЕ ПРИ СМЕНЕ КОМНАТЫ, БЛЯДИ
 		
-		for con_to_con : ConnectorToConnector in ready_location.rooms_graph[room]:
+		for con_to_con : ConnectorToConnector in new_ready_location.rooms_graph[room]:
 			var room_offset = con_to_con.from_connector.coord_ - con_to_con.to_connector.coord_ + Direction[con_to_con.from_connector.direction]
 			for base_tile in con_to_con.to_room.base_tile:
 				base_tile.coord_ = base_tile.coord_ + room_offset
@@ -35,10 +37,10 @@ func start_load(ready_location : ReadyLocation, parts_for_cycle : int) -> void:
 			for enters in con_to_con.to_room.room_enter_ar:
 				enters.coord_ = enters.coord_ + room_offset
 				
-				if ready_location.enters_location.has(enters):
-					enter_dict[ ready_location.enters_location[enters] ] = enters.coord_
+				if new_ready_location.enters_location.has(enters):
+					enter_dict[ new_ready_location.enters_location[enters] ] = enters.coord_
 			
-			if ! ready_location.rooms_graph.has(con_to_con.to_room):
+			if ! new_ready_location.rooms_graph.has(con_to_con.to_room):
 				load_room(con_to_con.to_room, parts_for_cycle)
 	
 	ready_locatin_load_complete.emit(enter_dict)

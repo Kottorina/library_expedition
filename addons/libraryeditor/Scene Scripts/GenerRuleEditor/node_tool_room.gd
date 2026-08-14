@@ -16,8 +16,7 @@ var main_popup : PopupMenu
 func start_bake_ui() -> void:
 	main_popup = node_list.get_popup()
 	main_popup.id_pressed.connect(graph_item_selected)
-	
-	main_popup.add_item("Fuc")
+	#main_popup.add_item("Fuc")
 
 var name_to_ind_dict : Dictionary ## Name - Ind
 var ind_to_popup_dict : Dictionary ## ind - PopupMenu
@@ -34,7 +33,7 @@ func add_new_item( name_group : String, item_instr : BigGraphNodeMakeInsts ) -> 
 	
 	var cur_popup : PopupMenu = ind_to_popup_dict[name_to_ind_dict[name_group]]
 	var id = get_id()
-	cur_popup.add_item("Fuck",id)
+	cur_popup.add_item(item_instr.title_node,id)
 	id_to_big_graph_make_instr_dict[id] = item_instr
 
 var id_to_big_graph_make_instr_dict : Dictionary ## Id - BigGraphMakeNodeInstr
@@ -44,5 +43,5 @@ func graph_item_selected(id : int) -> void:
 		
 		gener_rule_editor.make_node_from_biginstr(id_to_big_graph_make_instr_dict[id])
 
-func _on_bake_node_pressed() -> void:
-	add_new_item("Fuck Fuck", BigGraphNodeMakeInsts.new())
+#func _on_bake_node_pressed() -> void:
+	#add_new_item("Fuck Fuck", BigGraphNodeMakeInsts.new())

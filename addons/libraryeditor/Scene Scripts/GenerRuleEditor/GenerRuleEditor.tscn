@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/location_ui.gd" id="3_klkmx"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/node_tool_room.gd" id="4_7l203"]
 [ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="5_klkmx"]
+[ext_resource type="Script" uid="uid://beyay8e16l0ab" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/ui_set.gd" id="6_0loe1"]
 
-[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit", "node_tool_room", "node_list")]
+[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,11 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2lqr8")
 graph_edit = NodePath("PanelContainer/VBoxContainer/GraphEdit")
-node_tool_room = NodePath("PanelContainer/VBoxContainer/MarginContainer/node_tool_room")
-room_set_path = "res://Test Resource/TestRoomSet.tres"
 ready_location_set_path = "res://Test Resource/TestLocationsSet.tres"
-custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203")])
-node_list = NodePath("PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer/NodeList")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1787863444]
 layout_mode = 1
@@ -49,6 +46,7 @@ gener_rule_editor = NodePath("../../../..")
 node_list = NodePath("Node Tool Room List/node_list")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1963053032]
+visible = false
 layout_mode = 2
 
 [node name="node_text" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=1489605509]
@@ -65,10 +63,6 @@ text = "add node"
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=410445455]
 layout_mode = 2
 
-[node name="del_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=1647430922]
-layout_mode = 2
-text = "del_select_node"
-
 [node name="Node Tool Room List" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1796060675]
 layout_mode = 2
 
@@ -79,7 +73,11 @@ text = "Bake"
 [node name="node_list" type="MenuButton" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=2011684916]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "fewfwccefwefwefwefwefwe"
+text = "Add Node:"
+
+[node name="del_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=1647430922]
+layout_mode = 2
+text = "del_select_node"
 
 [node name="location_ui" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("save_graph_node", "auto_save", "location_list", "location_name")]
 layout_mode = 2
@@ -148,6 +146,12 @@ scroll_fit_content_width = true
 layout_mode = 2
 text = "ReName"
 
+[node name="Ui_set" type="Node" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1314070446 node_paths=PackedStringArray("node_tool_room")]
+script = ExtResource("6_0loe1")
+node_tool_room = NodePath("../node_tool_room")
+custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203")])
+room_set_path = "res://Test Resource/TestRoomSet.tres"
+
 [node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
 layout_mode = 2
 size_flags_vertical = 3
@@ -162,8 +166,8 @@ script = ExtResource("5_klkmx")
 graph_edit = NodePath("../PanelContainer/VBoxContainer/GraphEdit")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer/del_node" to="." method="_on_del_node_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/bake_node" to="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" method="_on_bake_node_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/bake_node" to="PanelContainer/VBoxContainer/MarginContainer/Ui_set" method="_on_bake_node_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/del_node" to="." method="_on_del_node_pressed"]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/LocationList" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_location_list_item_selected"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/save" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_save_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/load" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_load_pressed"]

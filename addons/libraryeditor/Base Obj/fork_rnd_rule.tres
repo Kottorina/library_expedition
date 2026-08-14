@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="BigGraphNodeMakeInsts" format=3 uid="uid://k6u4765jhtrb"]
+
+[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMakeInstsClass.gd" id="1_jlf7c"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="2_wb5tl"]
+
+[sub_resource type="Resource" id="Resource_i46w3"]
+script = ExtResource("1_jlf7c")
+title_instr = "Base"
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_0loe1"]
+script = ExtResource("1_jlf7c")
+title_instr = "Alt 1:"
+body_node = 1
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_jlf7c"]
+script = ExtResource("1_jlf7c")
+title_instr = "Alt 2:"
+body_node = 1
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_b0u0k"]
+script = ExtResource("1_jlf7c")
+title_instr = "Alt 3:"
+body_node = 1
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_cyeij"]
+script = ExtResource("1_jlf7c")
+title_instr = "Alt 4:"
+body_node = 1
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_wb5tl"]
+script = ExtResource("1_jlf7c")
+title_instr = "Tool Enter"
+is_left = true
+left_type = 5
+left_color = Color(1, 1, 1, 1)
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[resource]
+script = ExtResource("2_wb5tl")
+title_node = "Fork Rnd Settings:"
+type_node = 6
+instr_ar = Array[ExtResource("1_jlf7c")]([SubResource("Resource_i46w3"), SubResource("Resource_0loe1"), SubResource("Resource_jlf7c"), SubResource("Resource_b0u0k"), SubResource("Resource_cyeij"), SubResource("Resource_wb5tl")])
+ui_category = "Tool Fork"
+metadata/_custom_type_script = "uid://wfp6jmgoghtc"

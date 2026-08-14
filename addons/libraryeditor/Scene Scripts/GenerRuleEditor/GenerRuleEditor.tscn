@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/node_tool_room.gd" id="4_7l203"]
 [ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="5_klkmx"]
 [ext_resource type="Script" uid="uid://beyay8e16l0ab" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/ui_set.gd" id="6_0loe1"]
+[ext_resource type="Resource" uid="uid://k6u4765jhtrb" path="res://addons/libraryeditor/Base Obj/fork_rnd_rule.tres" id="7_i46w3"]
 
 [node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit")]
 layout_mode = 3
@@ -149,13 +150,12 @@ text = "ReName"
 [node name="Ui_set" type="Node" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1314070446 node_paths=PackedStringArray("node_tool_room")]
 script = ExtResource("6_0loe1")
 node_tool_room = NodePath("../node_tool_room")
-custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203")])
+custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203"), ExtResource("7_i46w3")])
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 
 [node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_offset = Vector2(0, -58)
 minimap_enabled = false
 show_zoom_buttons = false
 show_minimap_button = false

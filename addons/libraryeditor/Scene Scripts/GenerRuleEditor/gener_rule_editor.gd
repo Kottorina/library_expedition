@@ -9,6 +9,8 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
+const SPINBOX_BASE_STEP : float = 0.1
+
 func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
 	var new_node = GraphNode.new()
@@ -35,6 +37,7 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 				new_node.add_child(child_node)
 			1:
 				active_node = SpinBox.new()
+				active_node.step = SPINBOX_BASE_STEP
 				child_node = HBoxContainer.new()
 				
 				new_node.add_child(child_node)

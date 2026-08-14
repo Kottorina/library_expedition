@@ -10,7 +10,6 @@ const TOOLCOLOR :=  Color.WHITE
 
 const TOOL_FORK_UI_NAME : String = "Tool Fork"
 const TOOL_UI_NAME : String = "Tool"
-const CUSTOM_UI_NAME : String = "Custom"
 const ROOMS_UI_NAME : String = "Rooms"
 
 const ENTER_LOCATION_TITLE : String = "Id Enter:"
@@ -51,6 +50,8 @@ const TOOLENTERCOLOR : Color = Color.PURPLE
 var room_set : RoomsSet
 @export var room_set_path : String
 
+func _ready() -> void:
+	_on_bake_node_pressed()
 func _on_bake_node_pressed() -> void:
 	room_set = ResourceLoader.load(room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 	bake_ui()
@@ -128,7 +129,7 @@ func bake_ui_connectors_plugs() -> void:
 
 func bake_custom_big_instr() -> void:
 	for big_instr in custom_big_instr_ar:
-		node_tool_room.add_new_item(CUSTOM_UI_NAME, big_instr)
+		node_tool_room.add_new_item(big_instr.ui_category, big_instr)
 
 func bake_ui_start_gener_node() -> void: ##Стартовая хуйня, без нее генерация по пизде идет
 	var big_instr = BigGraphNodeMakeInsts.new()
@@ -165,6 +166,16 @@ func bake_ui_all_rnd_fork() -> void: ## Случайные Перекрестк�
 func bake_ui_rnd_fork_from_connector( enter_connector : RoomConnector ) -> void: ## Случайные Перекрестки, Очень Круто
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.type_node = 5
+	
+	var tool_instr = GraphNodeMakeInsts.new()
+	tool_instr.title_instr = TOOLTITLE
+	tool_instr.is_right = true
+	tool_instr.right_type = TOOLTYPE
+	tool_instr.right_color = TOOLCOLOR
+	tool_instr.is_left = true
+	tool_instr.left_type = TOOLTYPE
+	tool_instr.left_color = TOOLCOLOR
+	big_instr.instr_ar.append(tool_instr)
 	
 	var enter_instr = make_inst_from_connector(enter_connector)
 	big_instr.instr_ar.append(enter_instr)

@@ -23,8 +23,8 @@ var rnd : RandomNumberGenerator
 func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> ReadyLocation:
 	var new_ready_location = ready_location.duplicate()
 	
-	save_graph = new_ready_location.save_graph.duplicate()
-	full_graph = new_ready_location.full_graph.duplicate()
+	save_graph = new_ready_location.save_graph.duplicate(true)
+	full_graph = new_ready_location.full_graph.duplicate(true)
 	
 	rnd = RandomNumberGenerator.new()
 	rnd.seed = c_seed
@@ -38,7 +38,7 @@ func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> Re
 			4:
 				connection_plugs_instr = node_instr 
 	
-	free_nodes.append(ready_location.start_bake_node)
+	free_nodes.append(new_ready_location.start_bake_node)
 	
 	while ! free_nodes.is_empty():
 		
@@ -50,8 +50,6 @@ func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> Re
 	
 	new_ready_location.rooms_graph = room_graph
 	new_ready_location.enters_location = enters_location
-	
-	#print(new_ready_location.save_graph.size())
 	
 	return new_ready_location
 
@@ -98,9 +96,8 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			var exit_ports : Array 
 			var const_port_direction : String
 			var setting_biginstr : BigGraphNodeMakeInsts = null
-				
+
 			var left_ports  = full_graph[nodes][LEFT_PORTS_DATA_NAME]
-			print(left_ports)
 			for left_port : Dictionary in left_ports:
 				if ! left_port.keys()[0].source_res is RoomConnector:
 					left_ports.erase(left_port)
@@ -115,9 +112,16 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 						if right_port[right_port.keys()[0]][1].type_node == 6:
 							setting_biginstr = right_port[right_port.keys()[0]][1]
 			
-			#print(right_ports,"\n\n",left_ports)
+			if left_ports.size() > right_ports.size():
+				enter_ports = right_ports
+				exit_ports = left_ports
+				const_port_direction = RIGHT_PORTS_DATA_NAME
+			else:
+				enter_ports = left_ports
+				exit_ports = right_ports
+				const_port_direction =  LEFT_PORTS_DATA_NAME
+			
 			if setting_biginstr == null:
-				print("FFFFFFFUCK")
 				## ПОДКЛЮЧИЛА К BASE, СУЧКА
 				add_free_port(exit_ports[0])
 				bake_con_to_con(
@@ -129,15 +133,6 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 					const_port_direction
 					)
 				return
-				
-			if left_ports.size() > right_ports.size():
-				enter_ports = right_ports
-				exit_ports = left_ports
-				const_port_direction = RIGHT_PORTS_DATA_NAME
-			else:
-				enter_ports = left_ports
-				exit_ports = right_ports
-				const_port_direction =  LEFT_PORTS_DATA_NAME
 				
 			for port_id in exit_ports.size():
 				port_id += 1 ## ТАК НАДО, НЕ ТРОГАТЬ, ГАВ

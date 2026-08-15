@@ -42,3 +42,4 @@ func clear_f():
 
 func end_load_ready_location( enter_dict : Dictionary ) -> void:
 	final_enter_dict = enter_dict
+	print(final_enter_dict)

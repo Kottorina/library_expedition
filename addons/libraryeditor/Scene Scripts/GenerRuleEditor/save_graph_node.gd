@@ -32,8 +32,6 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	bake_graph_node_biginstr() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
-	var connection_plugs_instr : BigGraphNodeMakeInsts = null
-	
 	while !free_nodes.is_empty(): ## Первичная обработка
 		
 		current_node = free_nodes.keys()[0]
@@ -102,7 +100,6 @@ func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
 		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 		full_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : full_left_ports, RIGHT_PORTS_DATA_NAME : full_right_ports}
 	#print(save_graph,"\n\n",full_graph)
-	bake_ready_location.connection_plugs_instr = connection_plugs_instr
 	bake_ready_location.save_graph = save_graph
 	bake_ready_location.full_graph = full_graph
 	bake_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)

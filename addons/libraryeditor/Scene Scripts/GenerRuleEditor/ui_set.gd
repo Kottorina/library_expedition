@@ -204,7 +204,7 @@ func room_to_biginstrgraphnode(room : Room) -> BigGraphNodeMakeInsts:
 	for connector : RoomConnector in room.room_connectors_ar:
 
 		big_instr.instr_ar.append(make_inst_from_connector(connector))
-	
+	print(room.room_enter_ar)
 	for enter : RoomEnter in room.room_enter_ar:
 		var instr = GraphNodeMakeInsts.new()
 		instr.body_node = 0

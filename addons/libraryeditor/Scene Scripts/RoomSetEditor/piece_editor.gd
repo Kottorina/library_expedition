@@ -77,6 +77,9 @@ func read():
 					2:
 						var atl_coord = Vector2i(CONNECTORWHITESTART.x + room_connectors.size_,CONNECTORWHITESTART.y + room_connectors.direction)
 						gener_node.set_cell(coord_tile,TOOLSOURCEID,atl_coord)
+			for room_enter : RoomEnter in current_room_set.rooms_ar[room_id].room_enter_ar:
+				var coord_tile = room_enter.coord_ + Vector2i(coord_chunk.x*current_room_set.room_size.x,coord_chunk.y*current_room_set.room_size.y)
+				gener_node.set_cell(coord_tile,TOOLSOURCEID,room_enter.atl_coord_)
 
 ## "up","down","left","right" ПРОРИСОВАТЬ В TILESET ДЛЯ ПОМЕТКИ КОННЕКТОРОВ, СУКА (gener_type) ## Connector,
 const CONNECTORBLACKSTART := Vector2i(13,0)
@@ -129,9 +132,13 @@ func write():
 				new_roomconnector.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
 				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
 			"EnterBlack", "EnterGray", "EnterWhite":
+				
+				print("!")
+				
 				var room_enter = RoomEnter.new()
 				room_enter.type = gener_type_dict[gener_type]
 				room_enter.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
+				room_enter.atl_coord_ = gener_node.get_cell_atlas_coords(coord)
 				new_room_set.rooms_ar[id_ar].room_enter_ar.append(room_enter)
 	
 	ResourceSaver.save(new_room_set, current_room_set_path) 

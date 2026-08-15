@@ -15,6 +15,7 @@ var new_ready_location : ReadyLocation
 
 func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	
+	## .duplicate(true) ПОЧЕМУ ТО НАХУЙ ЛОМАЕТ ПОИСК ВХОДНЫХ ТАЙЛОВ, НЕ ИСПОЛЬЗОВАТЬ СУКИ
 	if seed != 0:
 		var bake_node = ReadyLocationBake.new()
 		new_ready_location = bake_node.bake_ready_location(ready_location,seed)

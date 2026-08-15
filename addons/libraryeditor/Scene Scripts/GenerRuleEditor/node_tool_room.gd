@@ -15,8 +15,14 @@ func _ready() -> void:
 var main_popup : PopupMenu
 func start_bake_ui() -> void:
 	main_popup = node_list.get_popup()
+	
+	main_popup.clear()
+	
+	name_to_ind_dict.clear()
+	ind_to_popup_dict.clear()
+	id_to_big_graph_make_instr_dict.clear()
+	
 	main_popup.id_pressed.connect(graph_item_selected)
-	#main_popup.add_item("Fuc")
 
 var name_to_ind_dict : Dictionary ## Name - Ind
 var ind_to_popup_dict : Dictionary ## ind - PopupMenu
@@ -45,3 +51,6 @@ func graph_item_selected(id : int) -> void:
 
 #func _on_bake_node_pressed() -> void:
 	#add_new_item("Fuck Fuck", BigGraphNodeMakeInsts.new())
+
+func _on_update_room_pressed() -> void:
+	pass # Replace with function body.

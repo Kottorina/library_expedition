@@ -13,14 +13,19 @@ var parts_for_cycle : int = 100
 
 var new_ready_location : ReadyLocation
 
+var rnd : RandomNumberGenerator
+
 func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
+	
+	rnd = RandomNumberGenerator.new()
+	rnd.seed = seed
 	
 	## .duplicate(true) ПОЧЕМУ ТО НАХУЙ ЛОМАЕТ ПОИСК ВХОДНЫХ ТАЙЛОВ, НЕ ИСПОЛЬЗОВАТЬ СУКИ
 	if seed != 0:
 		var bake_node = ReadyLocationBake.new()
-		new_ready_location = bake_node.bake_ready_location(ready_location,seed)
+		new_ready_location = bake_node.bake_ready_location(ready_location,seed).duplicate(true)
 	else:
-		new_ready_location = ready_location
+		new_ready_location = ready_location.duplicate(true)
 	
 	var free_rooms : Dictionary = { }
 	var enter_dict : Dictionary = { } ## Id : Coord
@@ -58,10 +63,18 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 var c_parts_ar = []
 func load_room(room : Room, parts_max : int) -> void:
 	for base_tile : BaseTile in room.base_tile:
-	
+		## ВОТ ТУТ ДЕКОР А RND ВЫШЕ
+		if room.deco_istr_dict.has(base_tile.deco_type):
+			var ind = rnd.randi_range(1, room.deco_istr_dict[base_tile.deco_type].size()-1)
+			var new_deco_tile = room.deco_istr_dict[base_tile.deco_type][ind]
+			if new_deco_tile is BaseTile:
+				new_deco_tile.coord_ = base_tile.coord_
+				new_deco_tile.deco_level = base_tile.deco_level + 1
+				c_parts_ar.append(new_deco_tile)
+		
 		c_parts_ar.append(base_tile)
-			
-		if c_parts_ar.size() == parts_max:
+		
+		if c_parts_ar.size() >= parts_max:
 			load_new_parts.emit(c_parts_ar)
 			c_parts_ar.clear()
 	

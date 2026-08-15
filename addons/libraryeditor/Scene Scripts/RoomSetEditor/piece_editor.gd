@@ -1,56 +1,77 @@
 @tool
 extends Node2D
 
-@export var current_room_set_path : String
+const DecoTypeCustomDataName : String = "deco_type"
 
-@export var deco_nodes_ar : Array[TileMapLayer]
+@export var current_room_set_path : String
+@export var current_tile_set_path : String
+
+@export var debug_tile_set : TileSet
+
+@export var room_nodes_ar : Array[TileMapLayer]
 @export var gener_node : TileMapLayer
 
+@export var deco_nodes : TileMapLayer
+
 @export var tool_draw_node : TileMapLayer
+@export var tile_size := Vector2i(16,16)
 @export_tool_button("tool_draw") var tool_draw_action = tool_draw_f
 
 const ToolWallAtlas = Vector2i(12,0)
 const TOOLSOURCEID = 0
 
+const DecoSettingOffecet := Vector2i(0,-10)
+const RoomOffecet := Vector2i(0,0) 
+const DecoSizeY : int = 2
+
 func tool_draw_f():
+	update_tile_layer()
 	
-	var r_s = ResourceLoader.load(current_room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+	var room_set : RoomsSet = ResourceLoader.load(current_room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+	
 	tool_draw_node.clear()
 	
-	for c_x in r_s.cell_to_rooms.x:
-		for c_y in r_s.cell_to_rooms.y:
-				for s_x in r_s.room_size.x:
-						var coord_x = (r_s.room_size.x * c_x) + s_x
-						var coord_y = (r_s.room_size.y * c_y) 
-						
-						var final_act_coord = Vector2i(coord_x,coord_y)
-						tool_draw_node.set_cell(final_act_coord,TOOLSOURCEID,ToolWallAtlas)
-				for s_y in r_s.room_size.y:
-						var coord_x = (r_s.room_size.x * c_x) 
-						var coord_y = (r_s.room_size.y * c_y) + s_y
-						
-						var final_act_coord = Vector2i(coord_x,coord_y)
-						tool_draw_node.set_cell(final_act_coord,TOOLSOURCEID,ToolWallAtlas)
+	## ОТРИСОВКА ДЛЯ DECO
+	draw_grid(room_set.cell_to_deco_setting,room_set.deco_setting_size,DecoSettingOffecet)
+	## ОТРИСОВКА ДЛЯ ROOM
+	draw_grid(room_set.cell_to_rooms,room_set.room_size,RoomOffecet)
+
+func draw_grid(cells_num : Vector2i,cells_size, offecet : Vector2i) -> void:
+	for c_x in cells_num.x:
+		for c_y in cells_num.y:
+			for s_x in cells_size.x:
+				var coord_x = (cells_size.x * c_x) + s_x
+				var coord_y = (cells_size.y * c_y) + offecet.y
+					
+				var final_act_coord = Vector2i(coord_x,coord_y)
+				tool_draw_node.set_cell(final_act_coord,TOOLSOURCEID,ToolWallAtlas)
+			for s_y in cells_size.y:
+				var coord_x = (cells_size.x * c_x) 
+				var coord_y = (cells_size.y * c_y) + s_y + offecet.y
+					
+				var final_act_coord = Vector2i(coord_x,coord_y)
+				tool_draw_node.set_cell(final_act_coord,TOOLSOURCEID,ToolWallAtlas)
 	
-	var x_out = r_s.cell_to_rooms.x * r_s.room_size.x 
-	var y_out = r_s.cell_to_rooms.y * r_s.room_size.y 
-	
+	var x_out = cells_num.x * cells_size.x 
+	var y_out = cells_num.y * cells_size.y
 	for x in x_out:
-		var final_act_coord = Vector2i(x,y_out)
+		var final_act_coord = Vector2i(x,y_out + offecet.y)
 		tool_draw_node.set_cell(final_act_coord,TOOLSOURCEID,ToolWallAtlas)
-	
 	for y in y_out :
-		var final_act_coord = Vector2i(x_out,y)
+		var final_act_coord = Vector2i(x_out,y + offecet.y)
 		tool_draw_node.set_cell(final_act_coord,TOOLSOURCEID,ToolWallAtlas)
+	var final_corner := Vector2i(x_out,y_out + offecet.y)
+	tool_draw_node.set_cell(final_corner,TOOLSOURCEID,ToolWallAtlas)
 
 @export_tool_button("Read Set") var read_action = read
 func read():
+	update_tile_layer()
 	
 	clear_f() #Очиста перед отрисовкой
 	
 	tool_draw_f()
 	
-	var current_room_set = ResourceLoader.load(current_room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+	var current_room_set : RoomsSet = ResourceLoader.load(current_room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 	
 	for room_id in current_room_set.rooms_ar.size():
 		if current_room_set.rooms_ar[room_id] == null:
@@ -61,7 +82,7 @@ func read():
 		if current_room_set.rooms_ar[room_id].base_tile != null:
 			for base_tile : BaseTile in current_room_set.rooms_ar[room_id].base_tile:
 				var coord_tile = base_tile.coord_ + Vector2i(coord_chunk.x*current_room_set.room_size.x,coord_chunk.y*current_room_set.room_size.y)
-				deco_nodes_ar[base_tile.deco_level].set_cell(coord_tile,base_tile.id_,base_tile.atl_coord_)
+				room_nodes_ar[base_tile.deco_level].set_cell(coord_tile,base_tile.id_,base_tile.atl_coord_)
 		
 		if current_room_set.rooms_ar[room_id].room_connectors_ar != null:
 			
@@ -80,6 +101,15 @@ func read():
 			for room_enter : RoomEnter in current_room_set.rooms_ar[room_id].room_enter_ar:
 				var coord_tile = room_enter.coord_ + Vector2i(coord_chunk.x*current_room_set.room_size.x,coord_chunk.y*current_room_set.room_size.y)
 				gener_node.set_cell(coord_tile,TOOLSOURCEID,room_enter.atl_coord_)
+	
+	## ЧТЕНИИ DICT DECO
+	var offset_x : int = 0
+	for key_instr : String in current_room_set.deco_istr_dict:
+		for instr in current_room_set.deco_istr_dict[key_instr]:
+			if instr != null:
+				var fin_coord = Vector2i(instr.coord_.x + offset_x,instr.coord_.y)
+				deco_nodes.set_cell(fin_coord,instr.id_,instr.atl_coord_)
+		offset_x += current_room_set.deco_setting_size.x
 
 ## "up","down","left","right" ПРОРИСОВАТЬ В TILESET ДЛЯ ПОМЕТКИ КОННЕКТОРОВ, СУКА (gener_type) ## Connector,
 const CONNECTORBLACKSTART := Vector2i(13,0)
@@ -88,15 +118,16 @@ const CONNECTORWHITESTART := Vector2i(13,8)
 
 @export_tool_button("Write Set") var clear_action = write
 func write():
+	update_tile_layer()
 	
 	var new_room_set = RoomsSet.new() 
 	new_room_set = ResourceLoader.load(current_room_set_path).duplicate()
 	new_room_set.rooms_ar.clear()
 	new_room_set.rooms_ar.resize(new_room_set.cell_to_rooms.x*new_room_set.cell_to_rooms.y)
 	
-	##Запись декораций
+	## ЗАПИСЬ ДЕКОРАЦИЙ ОБЯЗАТЕЛЬНО ЗАПИСАТЬ deco_type
 	var heigt = 0
-	for deco_tilemap in deco_nodes_ar:
+	for deco_tilemap in room_nodes_ar:
 		
 		for coord in deco_tilemap.get_used_cells():
 			var coord_chunk := Vector2(coord.x/new_room_set.room_size.x,coord.y/new_room_set.room_size.y)
@@ -108,6 +139,11 @@ func write():
 			new_base_tile.id_ = deco_tilemap.get_cell_source_id(coord)
 			new_base_tile.deco_level = heigt
 			
+			var data_instr = deco_tilemap.get_cell_tile_data(coord)
+			if data_instr != null:
+				var custom_name = data_instr.get_custom_data(DecoTypeCustomDataName)
+				new_base_tile.deco_type = custom_name
+			
 			if new_room_set.rooms_ar[id_ar] != null:
 				new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
 			else:
@@ -116,7 +152,7 @@ func write():
 			
 		heigt += 1
 	
-	##Запись правил для генерации
+	## ЗАПИСЬ ПРАВИЛ ДЛЯ ГЕНЕРАЦИИ
 	for coord in gener_node.get_used_cells():
 		var coord_chunk := Vector2(coord.x/new_room_set.room_size.x,coord.y/new_room_set.room_size.y)
 		var id_ar = int(coord_chunk.y * new_room_set.cell_to_rooms.y + coord_chunk.x)
@@ -132,16 +168,48 @@ func write():
 				new_roomconnector.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
 				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
 			"EnterBlack", "EnterGray", "EnterWhite":
-				
-				print("!")
-				
 				var room_enter = RoomEnter.new()
 				room_enter.type = gener_type_dict[gener_type]
 				room_enter.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
 				room_enter.atl_coord_ = gener_node.get_cell_atlas_coords(coord)
 				new_room_set.rooms_ar[id_ar].room_enter_ar.append(room_enter)
 	
+	var new_deco_istr_dict : Dictionary
+	## ЗАПИСЬ ПРАВИЛ ДЛЯ ДЕКОРИРОВАНИЯ
+	for coord in deco_nodes.get_used_cells():
+		var coord_chunk := Vector2(coord.x/new_room_set.deco_setting_size.x,coord.y/new_room_set.deco_setting_size.y)
+		var coord_local = coord - Vector2i(coord_chunk.x*new_room_set.deco_setting_size.x,coord_chunk.y*new_room_set.deco_setting_size.y)
+		if coord_local == TypeGenerCoord:
+			var data_instr = deco_nodes.get_cell_tile_data(coord)
+			if data_instr != null:
+				
+				var custom_name = data_instr.get_custom_data(DecoTypeCustomDataName)
+				new_deco_istr_dict[custom_name] = []
+				
+				for plus_x in new_room_set.deco_setting_size.x-1:
+					for plus_y in new_room_set.deco_setting_size.y-1:
+						
+						var new_global_coord = Vector2i(coord.x + plus_x, coord.y + plus_y)
+						if deco_nodes.get_cell_source_id(new_global_coord) == -1:
+							new_deco_istr_dict[custom_name].append(null)
+							continue
+						
+						var new_base_tile = BaseTile.new()
+						var new_local_coord = Vector2i(coord_local.x + plus_x, coord_local.y + plus_y)
+						new_base_tile.coord_ = new_local_coord
+						new_base_tile.atl_coord_ = deco_nodes.get_cell_atlas_coords(new_global_coord)
+						new_base_tile.id_ = deco_nodes.get_cell_source_id(new_global_coord)
+						
+						new_deco_istr_dict[custom_name].append(new_base_tile)
+	
+	new_room_set.deco_istr_dict = new_deco_istr_dict
+	for room : Room in new_room_set.rooms_ar:
+		if room != null:
+			room.deco_istr_dict = new_deco_istr_dict
+	
 	ResourceSaver.save(new_room_set, current_room_set_path) 
+
+const TypeGenerCoord := Vector2i(1,1) ## ТО ГДЕ НАХОДИТЬСЯ НАЧАЛО ИСНСТРУКЦИИ ПО ОТРИСОВКЕ 
 
 var gener_type_dict = {
 "ConnectorBlack": 0, "EnterBlack": 0, "ConnectorGray": 1, "EnterGray": 1, "ConnectorWhite": 2, "EnterWhite": 2
@@ -159,11 +227,26 @@ func give_connector_from_coord(coord : Vector2i,atl_coord : Vector2i,type : int)
 
 @export_tool_button("Clear") var clear_f_action = clear_f
 func clear_f():
-	for deco_tilemap in deco_nodes_ar:
+	for deco_tilemap in room_nodes_ar:
 		deco_tilemap.clear()
 	gener_node.clear()
 	tool_draw_node.clear()
+	deco_nodes.clear()
+
+func update_tile_layer() -> void:
 	
+	tool_draw_node.tile_set = debug_tile_set
+	gener_node.tile_set = debug_tile_set
+	gener_node.position = tile_size * RoomOffecet
+	
+	var cur_tile_set = ResourceLoader.load(current_tile_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+	
+	deco_nodes.tile_set = cur_tile_set
+	deco_nodes.position = tile_size * DecoSettingOffecet
+	for child_tile_map : TileMapLayer in room_nodes_ar:
+		child_tile_map.tile_set = cur_tile_set
+		child_tile_map.position = tile_size * RoomOffecet
+
 	#var x_out = cell_to_rooms.x * room_size.x 
 	#for y_out in cell_to_rooms.x * room_size.x :
 		#var final_act_coord = Vector2i(x_out,y_out)

@@ -67,6 +67,10 @@ layout_mode = 2
 [node name="Node Tool Room List" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1796060675]
 layout_mode = 2
 
+[node name="update_room" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=591551566]
+layout_mode = 2
+text = "Update Room"
+
 [node name="bake_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=940410541]
 layout_mode = 2
 text = "Bake"
@@ -166,6 +170,7 @@ script = ExtResource("5_klkmx")
 graph_edit = NodePath("../PanelContainer/VBoxContainer/GraphEdit")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/update_room" to="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" method="_on_update_room_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/bake_node" to="PanelContainer/VBoxContainer/MarginContainer/Ui_set" method="_on_bake_node_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/del_node" to="." method="_on_del_node_pressed"]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/LocationList" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_location_list_item_selected"]

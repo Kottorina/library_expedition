@@ -207,6 +207,8 @@ func room_bake_free_port(save_graph : Dictionary, from_node_instr : BigGraphNode
 		return
 	if ! port.keys()[0].source_res is RoomConnector or ! port[port.keys()[0]] == PORT_VALUE_FREE:
 		return
+	if connection_plugs_instr == null:
+		return
 	
 	for plugs_ports in save_graph[connection_plugs_instr][const_name]:
 		var meta = plugs_ports.keys()[0]

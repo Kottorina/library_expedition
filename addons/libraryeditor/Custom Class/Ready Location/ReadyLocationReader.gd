@@ -23,9 +23,9 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	## .duplicate(true) ПОЧЕМУ ТО НАХУЙ ЛОМАЕТ ПОИСК ВХОДНЫХ ТАЙЛОВ, НЕ ИСПОЛЬЗОВАТЬ СУКИ
 	if seed != 0:
 		var bake_node = ReadyLocationBake.new()
-		new_ready_location = bake_node.bake_ready_location(ready_location,seed).duplicate(true)
+		new_ready_location = bake_node.bake_ready_location(ready_location,seed)
 	else:
-		new_ready_location = ready_location.duplicate(true)
+		new_ready_location = ready_location
 	
 	var free_rooms : Dictionary = { }
 	var enter_dict : Dictionary = { } ## Id : Coord
@@ -38,7 +38,7 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	for room : Room in new_ready_location.rooms_graph.keys():
 		
 		load_room(room, parts_for_cycle)
-
+		
 		## ОБНОВИТЕ ПРИ СМЕНЕ КОМНАТЫ, БЛЯДИ
 		
 		for con_to_con : ConnectorToConnector in new_ready_location.rooms_graph[room]:
@@ -62,6 +62,9 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 
 var c_parts_ar = []
 func load_room(room : Room, parts_max : int) -> void:
+	
+	print("!")
+	
 	for base_tile : BaseTile in room.base_tile:
 		## ВОТ ТУТ ДЕКОР А RND ВЫШЕ
 		if room.deco_istr_dict.has(base_tile.deco_type):

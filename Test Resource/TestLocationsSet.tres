@@ -1538,6 +1538,863 @@ room_ = SubResource("Resource_0a8v5")
 instr_ar = Array[ExtResource("2_jfmxe")]([SubResource("Resource_a8mac"), SubResource("Resource_5whao"), SubResource("Resource_yby0r"), SubResource("Resource_41v1k")])
 
 [sub_resource type="Resource" id="Resource_4m2xp"]
+script = ExtResource("5_lri3u")
+coord_ = Vector2i(16, 2)
+
+[sub_resource type="Resource" id="Resource_qm7hw"]
+script = ExtResource("2_jfmxe")
+title_instr = "Connector: up black tiny"
+is_left = true
+left_type = 5
+left_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+right_type = 5
+right_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+source_res = SubResource("Resource_4m2xp")
+
+[sub_resource type="Resource" id="Resource_oi7p5"]
+script = ExtResource("5_lri3u")
+direction = 1
+coord_ = Vector2i(16, 22)
+
+[sub_resource type="Resource" id="Resource_utmyb"]
+script = ExtResource("2_jfmxe")
+title_instr = "Connector: down black tiny"
+left_type = 5
+left_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+is_right = true
+right_type = 5
+right_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+source_res = SubResource("Resource_oi7p5")
+
+[sub_resource type="Resource" id="Resource_pe7c6"]
+script = ExtResource("5_lri3u")
+direction = 2
+coord_ = Vector2i(6, 10)
+
+[sub_resource type="Resource" id="Resource_vq3e0"]
+script = ExtResource("2_jfmxe")
+title_instr = "Connector: left black tiny"
+is_left = true
+left_type = 5
+left_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+right_type = 5
+right_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+source_res = SubResource("Resource_pe7c6")
+
+[sub_resource type="Resource" id="Resource_7avck"]
+script = ExtResource("5_lri3u")
+direction = 3
+coord_ = Vector2i(26, 10)
+
+[sub_resource type="Resource" id="Resource_36bjn"]
+script = ExtResource("2_jfmxe")
+title_instr = "Connector: right black tiny"
+left_type = 5
+left_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+is_right = true
+right_type = 5
+right_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+source_res = SubResource("Resource_7avck")
+
+[sub_resource type="Resource" id="Resource_r8yts"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(26, 11)
+atl_coord_ = Vector2i(3, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_piva6"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(26, 10)
+atl_coord_ = Vector2i(3, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_ejq32"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(26, 9)
+atl_coord_ = Vector2i(3, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_grnu4"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(25, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_ipvsb"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(25, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_y83h0"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(25, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_xgot1"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(24, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_ac1r3"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(24, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_ft6pd"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(24, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_n5sx1"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(23, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_4auan"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(23, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_vk1pv"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(23, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_7ap5e"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(22, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_6nsl0"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(22, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_y4l7x"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(22, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_mu8cj"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(21, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_hvboa"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(21, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_txmm7"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(21, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_lffxe"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(20, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_vf0ps"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(20, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_o6ifr"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(20, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_mtxk4"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(19, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_xq1wx"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(19, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_5ukw5"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(19, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_4t36v"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(18, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_m3p2x"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(18, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_crtad"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(18, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_3awe3"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 11)
+atl_coord_ = Vector2i(1, 4)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_jcpqx"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_yt2pd"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 9)
+atl_coord_ = Vector2i(1, 6)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_md2j5"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 11)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_gbw3w"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 10)
+atl_coord_ = Vector2i(2, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_sp2th"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 9)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_jfmch"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 11)
+atl_coord_ = Vector2i(3, 4)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_16o3r"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_vyn62"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(14, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_e7h83"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(14, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_nakud"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(14, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_j14v1"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(13, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_05kgw"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(13, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_x70y5"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(13, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_wkjg1"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(12, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_emfdh"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(12, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_x15by"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(12, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_mtd1t"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(11, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_b0ijc"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(11, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_ck3qh"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(11, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_fhpnp"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(10, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_7ejub"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(10, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_t3f20"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(10, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_ojxeo"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(9, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_2osu6"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(9, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_3gve6"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(9, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_jvmwl"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(8, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_qxglp"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(8, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_5ydk3"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(8, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_fxrcs"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(7, 11)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_xd00t"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(7, 10)
+atl_coord_ = Vector2i(2, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_h8t3b"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(7, 9)
+atl_coord_ = Vector2i(2, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_7ukgp"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(6, 11)
+atl_coord_ = Vector2i(1, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_gp5yy"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(6, 10)
+atl_coord_ = Vector2i(1, 11)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_5qos2"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(6, 9)
+atl_coord_ = Vector2i(1, 7)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_2orpb"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 22)
+atl_coord_ = Vector2i(0, 6)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_w337a"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 21)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_ed3sd"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 20)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_hm8ak"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 19)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_it6fy"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 18)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_gvwiq"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 17)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_jun6g"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 16)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_nq6hs"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 15)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_jk5sr"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 14)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_6ahn4"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 13)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_udpr2"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 12)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_oih7c"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 22)
+atl_coord_ = Vector2i(0, 10)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_7ab3i"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 21)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_unne4"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 20)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_7fssq"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 19)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_upihf"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 18)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_lf8ia"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 17)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_3rc7v"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 16)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_6pwtc"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 15)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_1yq05"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 14)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_wiumn"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 13)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_ottbc"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 12)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_t7x1i"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 22)
+atl_coord_ = Vector2i(0, 6)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_n0bic"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 21)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_fjvlr"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 20)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_nxx8l"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 19)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_01kwh"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 18)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_5krgw"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 17)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_2l6o4"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 16)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_3hqvs"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 15)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_l3b8m"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 14)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_k7l2s"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 13)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_oq7dx"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 12)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_oncyy"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 8)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_ydiew"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 7)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_v66ic"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 6)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_w7pmb"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 5)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_eytub"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 4)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_kwkr0"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 3)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_mon1t"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(17, 2)
+atl_coord_ = Vector2i(0, 4)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_apgbg"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 8)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_t6cql"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 7)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_moxes"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 6)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_d18de"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 5)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_d3kai"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 4)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_0w2uc"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 3)
+atl_coord_ = Vector2i(0, 9)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_q1i72"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(16, 2)
+atl_coord_ = Vector2i(0, 8)
+deco_type = "j"
+
+[sub_resource type="Resource" id="Resource_uou2g"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 8)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_vnqkw"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 7)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_cg53p"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 6)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_2dcw2"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 5)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_8ceic"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 4)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_egx06"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 3)
+atl_coord_ = Vector2i(0, 5)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_f3u5b"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 2)
+atl_coord_ = Vector2i(0, 4)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_5hw7d"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(15, 9)
+atl_coord_ = Vector2i(3, 6)
+deco_type = "kk"
+
+[sub_resource type="Resource" id="Resource_e81ch"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(1, 1)
+atl_coord_ = Vector2i(0, 11)
+
+[sub_resource type="Resource" id="Resource_chsos"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(2, 1)
+atl_coord_ = Vector2i(13, 8)
+
+[sub_resource type="Resource" id="Resource_3omxg"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(3, 1)
+atl_coord_ = Vector2i(14, 8)
+
+[sub_resource type="Resource" id="Resource_snpq5"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(4, 1)
+atl_coord_ = Vector2i(15, 8)
+
+[sub_resource type="Resource" id="Resource_ppav0"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(5, 1)
+atl_coord_ = Vector2i(16, 8)
+
+[sub_resource type="Resource" id="Resource_rbbcy"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(6, 1)
+atl_coord_ = Vector2i(13, 8)
+
+[sub_resource type="Resource" id="Resource_qyx3w"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(7, 1)
+atl_coord_ = Vector2i(14, 8)
+
+[sub_resource type="Resource" id="Resource_10p1y"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(8, 1)
+atl_coord_ = Vector2i(15, 8)
+
+[sub_resource type="Resource" id="Resource_7sqdc"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(9, 1)
+atl_coord_ = Vector2i(16, 8)
+
+[sub_resource type="Resource" id="Resource_w7mmi"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(10, 1)
+atl_coord_ = Vector2i(13, 8)
+
+[sub_resource type="Resource" id="Resource_1d7yb"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(11, 1)
+atl_coord_ = Vector2i(13, 8)
+
+[sub_resource type="Resource" id="Resource_s34p6"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(1, 1)
+atl_coord_ = Vector2i(0, 7)
+
+[sub_resource type="Resource" id="Resource_24dft"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(8, 1)
+atl_coord_ = Vector2i(13, 4)
+
+[sub_resource type="Resource" id="Resource_m4jli"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(9, 1)
+atl_coord_ = Vector2i(14, 4)
+
+[sub_resource type="Resource" id="Resource_2y6lm"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(10, 1)
+atl_coord_ = Vector2i(15, 4)
+
+[sub_resource type="Resource" id="Resource_0sylr"]
+script = ExtResource("6_2pxmn")
+coord_ = Vector2i(11, 1)
+atl_coord_ = Vector2i(16, 4)
+
+[sub_resource type="Resource" id="Resource_ly6tc"]
+script = ExtResource("7_37sxw")
+base_tile = Array[ExtResource("6_2pxmn")]([SubResource("Resource_r8yts"), SubResource("Resource_piva6"), SubResource("Resource_ejq32"), SubResource("Resource_grnu4"), SubResource("Resource_ipvsb"), SubResource("Resource_y83h0"), SubResource("Resource_xgot1"), SubResource("Resource_ac1r3"), SubResource("Resource_ft6pd"), SubResource("Resource_n5sx1"), SubResource("Resource_4auan"), SubResource("Resource_vk1pv"), SubResource("Resource_7ap5e"), SubResource("Resource_6nsl0"), SubResource("Resource_y4l7x"), SubResource("Resource_mu8cj"), SubResource("Resource_hvboa"), SubResource("Resource_txmm7"), SubResource("Resource_lffxe"), SubResource("Resource_vf0ps"), SubResource("Resource_o6ifr"), SubResource("Resource_mtxk4"), SubResource("Resource_xq1wx"), SubResource("Resource_5ukw5"), SubResource("Resource_4t36v"), SubResource("Resource_m3p2x"), SubResource("Resource_crtad"), SubResource("Resource_3awe3"), SubResource("Resource_jcpqx"), SubResource("Resource_yt2pd"), SubResource("Resource_md2j5"), SubResource("Resource_gbw3w"), SubResource("Resource_sp2th"), SubResource("Resource_jfmch"), SubResource("Resource_16o3r"), SubResource("Resource_vyn62"), SubResource("Resource_e7h83"), SubResource("Resource_nakud"), SubResource("Resource_j14v1"), SubResource("Resource_05kgw"), SubResource("Resource_x70y5"), SubResource("Resource_wkjg1"), SubResource("Resource_emfdh"), SubResource("Resource_x15by"), SubResource("Resource_mtd1t"), SubResource("Resource_b0ijc"), SubResource("Resource_ck3qh"), SubResource("Resource_fhpnp"), SubResource("Resource_7ejub"), SubResource("Resource_t3f20"), SubResource("Resource_ojxeo"), SubResource("Resource_2osu6"), SubResource("Resource_3gve6"), SubResource("Resource_jvmwl"), SubResource("Resource_qxglp"), SubResource("Resource_5ydk3"), SubResource("Resource_fxrcs"), SubResource("Resource_xd00t"), SubResource("Resource_h8t3b"), SubResource("Resource_7ukgp"), SubResource("Resource_gp5yy"), SubResource("Resource_5qos2"), SubResource("Resource_2orpb"), SubResource("Resource_w337a"), SubResource("Resource_ed3sd"), SubResource("Resource_hm8ak"), SubResource("Resource_it6fy"), SubResource("Resource_gvwiq"), SubResource("Resource_jun6g"), SubResource("Resource_nq6hs"), SubResource("Resource_jk5sr"), SubResource("Resource_6ahn4"), SubResource("Resource_udpr2"), SubResource("Resource_oih7c"), SubResource("Resource_7ab3i"), SubResource("Resource_unne4"), SubResource("Resource_7fssq"), SubResource("Resource_upihf"), SubResource("Resource_lf8ia"), SubResource("Resource_3rc7v"), SubResource("Resource_6pwtc"), SubResource("Resource_1yq05"), SubResource("Resource_wiumn"), SubResource("Resource_ottbc"), SubResource("Resource_t7x1i"), SubResource("Resource_n0bic"), SubResource("Resource_fjvlr"), SubResource("Resource_nxx8l"), SubResource("Resource_01kwh"), SubResource("Resource_5krgw"), SubResource("Resource_2l6o4"), SubResource("Resource_3hqvs"), SubResource("Resource_l3b8m"), SubResource("Resource_k7l2s"), SubResource("Resource_oq7dx"), SubResource("Resource_oncyy"), SubResource("Resource_ydiew"), SubResource("Resource_v66ic"), SubResource("Resource_w7pmb"), SubResource("Resource_eytub"), SubResource("Resource_kwkr0"), SubResource("Resource_mon1t"), SubResource("Resource_apgbg"), SubResource("Resource_t6cql"), SubResource("Resource_moxes"), SubResource("Resource_d18de"), SubResource("Resource_d3kai"), SubResource("Resource_0w2uc"), SubResource("Resource_q1i72"), SubResource("Resource_uou2g"), SubResource("Resource_vnqkw"), SubResource("Resource_cg53p"), SubResource("Resource_2dcw2"), SubResource("Resource_8ceic"), SubResource("Resource_egx06"), SubResource("Resource_f3u5b"), SubResource("Resource_5hw7d")])
+room_connectors_ar = Array[ExtResource("5_lri3u")]([SubResource("Resource_4m2xp"), SubResource("Resource_oi7p5"), SubResource("Resource_pe7c6"), SubResource("Resource_7avck")])
+deco_istr_dict = {
+"j": [SubResource("Resource_e81ch"), SubResource("Resource_chsos"), SubResource("Resource_3omxg"), SubResource("Resource_snpq5"), SubResource("Resource_ppav0"), SubResource("Resource_rbbcy"), SubResource("Resource_qyx3w"), SubResource("Resource_10p1y"), SubResource("Resource_7sqdc"), SubResource("Resource_w7mmi"), SubResource("Resource_1d7yb")],
+"kk": [SubResource("Resource_s34p6"), null, null, null, null, null, null, SubResource("Resource_24dft"), SubResource("Resource_m4jli"), SubResource("Resource_2y6lm"), SubResource("Resource_0sylr")]
+}
+
+[sub_resource type="Resource" id="Resource_080kt"]
+script = ExtResource("3_b1gg4")
+title_node = "Room Node:  1"
+coord_ = Vector2(980, 280)
+room_ = SubResource("Resource_ly6tc")
+instr_ar = Array[ExtResource("2_jfmxe")]([SubResource("Resource_qm7hw"), SubResource("Resource_utmyb"), SubResource("Resource_vq3e0"), SubResource("Resource_36bjn")])
+
+[sub_resource type="Resource" id="Resource_j1wnc"]
 script = ExtResource("1_6ytct")
 name_ = "Test_0"
 start_bake_node = SubResource("Resource_38u2f")
@@ -1578,9 +2435,26 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 }],
 "RightPortsData": [{
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_eb3xa"),"active_node":null,"port_num":0)
-: "PortFree"
+: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_4m2xp"),"active_node":null,"port_num":0)
+, SubResource("Resource_080kt")]
 }, {
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_avue3"),"active_node":null,"port_num":1)
+: "PortFree"
+}]
+},
+SubResource("Resource_080kt"): {
+"LeftPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_4m2xp"),"active_node":null,"port_num":0)
+: "PortOccupied"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_pe7c6"),"active_node":null,"port_num":1)
+: "PortFree"
+}],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_oi7p5"),"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_7avck"),"active_node":null,"port_num":1)
 : "PortFree"
 }]
 }
@@ -1625,15 +2499,35 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 }],
 "RightPortsData": [{
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_eb3xa"),"active_node":null,"port_num":0)
-: "PortFree"
+: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_4m2xp"),"active_node":null,"port_num":0)
+, SubResource("Resource_080kt")]
 }, {
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_avue3"),"active_node":null,"port_num":1)
+: "PortFree"
+}]
+},
+SubResource("Resource_080kt"): {
+"LeftPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_4m2xp"),"active_node":null,"port_num":0)
+: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_eb3xa"),"active_node":null,"port_num":0)
+, SubResource("Resource_ab4yl")]
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_pe7c6"),"active_node":null,"port_num":1)
+: "PortFree"
+}],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_oi7p5"),"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_7avck"),"active_node":null,"port_num":1)
 : "PortFree"
 }]
 }
 }
 rooms_graph = {
 SubResource("Resource_dpgwj"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_r6s0w"),"to_connector":SubResource("Resource_occ5t"),"to_room":SubResource("Resource_0a8v5"))
+],
+SubResource("Resource_0a8v5"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_eb3xa"),"to_connector":SubResource("Resource_4m2xp"),"to_room":SubResource("Resource_ly6tc"))
 ]
 }
 enters_location = {
@@ -1645,5 +2539,5 @@ script = ExtResource("1_6ytct")
 
 [resource]
 script = ExtResource("2_ef0i8")
-ready_location_ar = Array[ExtResource("1_6ytct")]([SubResource("Resource_4m2xp"), SubResource("Resource_o0byl")])
+ready_location_ar = Array[ExtResource("1_6ytct")]([SubResource("Resource_j1wnc"), SubResource("Resource_o0byl")])
 metadata/_custom_type_script = "uid://cf0mm7bk3dkp0"

@@ -89,7 +89,12 @@ func load_ready_location_edit(ready_location : ReadyLocation) -> void:
 	gener_rule_editor.load_graph(ready_location.save_graph)
 
 func save_current_graph( id_selected : int) -> void: ## Запекает Локацию, Позволяет Использовать / Загружать
-	current_ready_locations_set.ready_location_ar[id_selected] = save_graph_node.bake_ready_location_f(current_ready_locations_set.ready_location_ar[id_selected])
+	var curenet_ready_loc = save_graph_node.bake_ready_location_f(current_ready_locations_set.ready_location_ar[id_selected])
+	current_ready_locations_set.ready_location_ar[id_selected] = curenet_ready_loc
+	
+	## ПРОСТО ОБНОВЛЕНИЕ, НУЖНО ИНОГДА 
+	load_ready_location_edit(curenet_ready_loc)
 	
 	var locations_path = gener_rule_editor.ready_location_set_path
 	ResourceSaver.save(current_ready_locations_set, locations_path) 
+	

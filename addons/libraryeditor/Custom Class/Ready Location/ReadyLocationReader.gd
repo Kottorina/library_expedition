@@ -63,8 +63,6 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 var c_parts_ar = []
 func load_room(room : Room, parts_max : int) -> void:
 	
-	print("!")
-	
 	for base_tile : BaseTile in room.base_tile:
 		## ВОТ ТУТ ДЕКОР А RND ВЫШЕ
 		if room.deco_istr_dict.has(base_tile.deco_type):

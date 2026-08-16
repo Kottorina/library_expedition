@@ -48,9 +48,3 @@ func graph_item_selected(id : int) -> void:
 	if id_to_big_graph_make_instr_dict.has(id):
 		
 		gener_rule_editor.make_node_from_biginstr(id_to_big_graph_make_instr_dict[id])
-
-#func _on_bake_node_pressed() -> void:
-	#add_new_item("Fuck Fuck", BigGraphNodeMakeInsts.new())
-
-func _on_update_room_pressed() -> void:
-	pass # Replace with function body.

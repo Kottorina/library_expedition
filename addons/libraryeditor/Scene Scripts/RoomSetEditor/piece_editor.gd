@@ -116,6 +116,7 @@ const CONNECTORBLACKSTART := Vector2i(13,0)
 const CONNECTORGRAYSTART := Vector2i(13,4)
 const CONNECTORWHITESTART := Vector2i(13,8)
 
+## БЛЯДЬ, ТУТ ЕСТЬ БАГ С ЗАПИСЬЮ ID_ ОН НЕ КРИТИЧНЫЙ, ПОКА ЧТО, НАЙЛИ И ИСПРАВЬ
 @export_tool_button("Write Set") var clear_action = write
 func write():
 	update_tile_layer()
@@ -133,6 +134,9 @@ func write():
 			var coord_chunk := Vector2(coord.x/new_room_set.room_size.x,coord.y/new_room_set.room_size.y)
 			var id_ar = int(coord_chunk.y * new_room_set.cell_to_rooms.y + coord_chunk.x)
 			
+			if new_room_set.rooms_ar[id_ar] == null:
+				new_room_set.rooms_ar[id_ar] = Room.new()
+			
 			var new_base_tile = BaseTile.new()
 			new_base_tile.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
 			new_base_tile.atl_coord_ = deco_tilemap.get_cell_atlas_coords(coord)
@@ -144,11 +148,8 @@ func write():
 				var custom_name = data_instr.get_custom_data(DecoTypeCustomDataName)
 				new_base_tile.deco_type = custom_name
 			
-			if new_room_set.rooms_ar[id_ar] != null:
-				new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
-			else:
-				new_room_set.rooms_ar[id_ar] = Room.new()
-				new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
+			new_room_set.rooms_ar[id_ar].base_tile.append(new_base_tile)
+			new_room_set.rooms_ar[id_ar].id_ = id_ar
 			
 		heigt += 1
 	
@@ -166,14 +167,19 @@ func write():
 			"ConnectorBlack", "ConnectorGray", "ConnectorWhite":
 				var new_roomconnector = give_connector_from_coord(coord,gener_coord_dict[gener_type],gener_type_dict[gener_type])
 				new_roomconnector.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
+				
 				new_room_set.rooms_ar[id_ar].room_connectors_ar.append(new_roomconnector)
+				new_room_set.rooms_ar[id_ar].id_ = id_ar
+			
 			"EnterBlack", "EnterGray", "EnterWhite":
 				var room_enter = RoomEnter.new()
 				room_enter.type = gener_type_dict[gener_type]
 				room_enter.coord_ = coord - Vector2i(coord_chunk.x*new_room_set.room_size.x,coord_chunk.y*new_room_set.room_size.y)
 				room_enter.atl_coord_ = gener_node.get_cell_atlas_coords(coord)
+			
 				new_room_set.rooms_ar[id_ar].room_enter_ar.append(room_enter)
-	
+				new_room_set.rooms_ar[id_ar].id_ = id_ar
+				
 	var new_deco_istr_dict : Dictionary
 	## ЗАПИСЬ ПРАВИЛ ДЛЯ ДЕКОРИРОВАНИЯ
 	for coord in deco_nodes.get_used_cells():

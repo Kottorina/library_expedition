@@ -2,7 +2,10 @@ extends Control
 
 @export var graph_edit: GraphEdit 
 
+@export var make_node_settings: HBoxContainer
+
 @export var ready_location_set_path : String
+@export var room_set_path : String
 
 const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
 const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
@@ -12,6 +15,15 @@ const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode"
 const SPINBOX_BASE_STEP : float = 0.1
 
 func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
+	
+	## АВТО ОБНОВЛЕНИЕ КОМНАТ СУК
+	if make_node_settings.get_auto_room_update_state() == true:
+		
+		var room_set : RoomsSet = ResourceLoader.load(room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+		for room : Room in room_set.rooms_ar:
+			if room != null and big_instr.room_ != null:
+				if big_instr.room_.id_ == room.id_:
+					big_instr.room_ = room
 	
 	var new_node = GraphNode.new()
 	new_node.title = big_instr.title_node

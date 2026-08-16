@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_2lqr8"]
 [ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="2_7tdfr"]
 [ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://addons/libraryeditor/Base Obj/tool_crossroad.tres" id="3_7l203"]
+[ext_resource type="Script" uid="uid://cf626ex5mrmiq" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/make_node_settings.gd" id="3_b0u0k"]
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/location_ui.gd" id="3_klkmx"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/node_tool_room.gd" id="4_7l203"]
 [ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="5_klkmx"]
 [ext_resource type="Script" uid="uid://beyay8e16l0ab" path="res://addons/libraryeditor/Scene Scripts/GenerRuleEditor/ui_set.gd" id="6_0loe1"]
 [ext_resource type="Resource" uid="uid://k6u4765jhtrb" path="res://addons/libraryeditor/Base Obj/fork_rnd_rule.tres" id="7_i46w3"]
 
-[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit")]
+[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit", "make_node_settings")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +19,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2lqr8")
 graph_edit = NodePath("PanelContainer/VBoxContainer/GraphEdit")
+make_node_settings = NodePath("PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Make Node Settings")
 ready_location_set_path = "res://Test Resource/TestLocationsSet.tres"
+room_set_path = "res://Test Resource/TestRoomSet.tres"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1787863444]
 layout_mode = 1
@@ -46,30 +49,8 @@ script = ExtResource("4_7l203")
 gener_rule_editor = NodePath("../../../..")
 node_list = NodePath("Node Tool Room List/node_list")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1963053032]
-visible = false
-layout_mode = 2
-
-[node name="node_text" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=1489605509]
-layout_mode = 2
-text = "Node:"
-
-[node name="NodeList" type="OptionButton" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=1118630017]
-layout_mode = 2
-
-[node name="AddNode" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=596623089]
-layout_mode = 2
-text = "add node"
-
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer" unique_id=410445455]
-layout_mode = 2
-
 [node name="Node Tool Room List" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1796060675]
 layout_mode = 2
-
-[node name="update_room" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=591551566]
-layout_mode = 2
-text = "Update Room"
 
 [node name="bake_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=940410541]
 layout_mode = 2
@@ -83,6 +64,18 @@ text = "Add Node:"
 [node name="del_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=1647430922]
 layout_mode = 2
 text = "del_select_node"
+
+[node name="Make Node Settings" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1963053032 node_paths=PackedStringArray("auto_room_update")]
+layout_mode = 2
+script = ExtResource("3_b0u0k")
+auto_room_update = NodePath("auto_room_update")
+
+[node name="auto_room_update" type="CheckBox" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Make Node Settings" unique_id=194233882]
+layout_mode = 2
+text = "Auto room update"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Make Node Settings" unique_id=410445455]
+layout_mode = 2
 
 [node name="location_ui" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("save_graph_node", "auto_save", "location_list", "location_name")]
 layout_mode = 2
@@ -151,11 +144,11 @@ scroll_fit_content_width = true
 layout_mode = 2
 text = "ReName"
 
-[node name="Ui_set" type="Node" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1314070446 node_paths=PackedStringArray("node_tool_room")]
+[node name="Ui_set" type="Node" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1314070446 node_paths=PackedStringArray("gener_rule_editor", "node_tool_room")]
 script = ExtResource("6_0loe1")
+gener_rule_editor = NodePath("../../../..")
 node_tool_room = NodePath("../node_tool_room")
 custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203"), ExtResource("7_i46w3")])
-room_set_path = "res://Test Resource/TestRoomSet.tres"
 
 [node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
 layout_mode = 2
@@ -169,8 +162,6 @@ show_arrange_button = false
 script = ExtResource("5_klkmx")
 graph_edit = NodePath("../PanelContainer/VBoxContainer/GraphEdit")
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/VBoxContainer/AddNode" to="." method="_on_add_node_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/update_room" to="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" method="_on_update_room_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/bake_node" to="PanelContainer/VBoxContainer/MarginContainer/Ui_set" method="_on_bake_node_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/del_node" to="." method="_on_del_node_pressed"]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/MarginContainer/location_ui/HBoxContainer/LocationList" to="PanelContainer/VBoxContainer/MarginContainer/location_ui" method="_on_location_list_item_selected"]

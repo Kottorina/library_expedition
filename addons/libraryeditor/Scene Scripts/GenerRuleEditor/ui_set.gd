@@ -1,5 +1,7 @@
 extends Node
 
+@export var gener_rule_editor: Control
+
 @export var node_tool_room : Control
 
 @export var custom_big_instr_ar : Array[BigGraphNodeMakeInsts]
@@ -48,13 +50,13 @@ const TOOLENTERTYPE : int = 17
 const TOOLENTERCOLOR : Color = Color.PURPLE
 
 var room_set : RoomsSet
-@export var room_set_path : String
+
 
 func _ready() -> void:
 	_on_bake_node_pressed()
 func _on_bake_node_pressed() -> void:
 	node_tool_room.start_bake_ui() ## НУЖНО ДЛЯ ОЧИСТКИ И ТД
-	room_set = ResourceLoader.load(room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
+	room_set = ResourceLoader.load(gener_rule_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 	bake_ui()
 
 func bake_ui() -> void:

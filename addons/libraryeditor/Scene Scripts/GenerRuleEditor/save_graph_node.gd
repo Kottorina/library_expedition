@@ -12,7 +12,7 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
-func bake_ready_location_f(ready_location : ReadyLocation) -> ReadyLocation:
+func save_f(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	var bake_ready_location := ready_location.duplicate()
 	

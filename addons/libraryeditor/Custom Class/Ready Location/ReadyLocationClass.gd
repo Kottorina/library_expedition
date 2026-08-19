@@ -2,6 +2,7 @@ extends Resource
 class_name ReadyLocation
 
 @export var name_ : String
+@export var id_ : int
 
 @export var start_bake_node : BigGraphNodeMakeInsts 
 ## ДЛЯ ОБРАБОТКИ ГРАФА И ДЛЯ НОРМАЛЬНОГО СОХРАНЕНИЯ А ТАКЖЕ ДЛЯ УДОБНОЙ ЗАГРУЗКИ
@@ -13,3 +14,5 @@ class_name ReadyLocation
 @export var enters_location : Dictionary ## Сожерит в себе вход res и его id входа --- { RoomEnter : Int }
 
 @export var connection_plugs_instr : BigGraphNodeMakeInsts 
+
+@export var ui : SceneGraphUi

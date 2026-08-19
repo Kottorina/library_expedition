@@ -1,11 +1,14 @@
 extends Control
 
+@export var big_ready_location_set_path : String
+@export var ready_location_set_path : String
+@export var room_set_path : String
+
+@export_group("tool")
+
 @export var graph_edit: GraphEdit 
 
 @export var make_node_settings: HBoxContainer
-
-@export var ready_location_set_path : String
-@export var room_set_path : String
 
 const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
 const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]

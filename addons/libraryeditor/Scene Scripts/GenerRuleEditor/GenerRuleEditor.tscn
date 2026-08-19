@@ -19,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2lqr8")
 big_ready_location_set_path = "res://Test Resource/TestBigLocationsSet.tres"
-ready_location_set_path = "res://Test Resource/TestLocationsSet.tres"
+ready_location_set_path = "res://Test Resource/TestLocationSet.tres"
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 graph_edit = NodePath("PanelContainer/VBoxContainer/GraphEdit")
 make_node_settings = NodePath("PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Make Node Settings")
@@ -48,23 +48,27 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("4_7l203")
 gener_rule_editor = NodePath("../../../..")
-node_list = NodePath("Node Tool Room List/node_list")
+node_list = NodePath("Node Tool Room List/node_list_cont/node_list")
 
 [node name="Node Tool Room List" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1796060675]
 layout_mode = 2
 
 [node name="bake_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=940410541]
+visible = false
 layout_mode = 2
 text = "Bake"
 
-[node name="node_list" type="MenuButton" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=2011684916]
+[node name="node_list_cont" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=1904740183]
+layout_mode = 2
+
+[node name="node_list" type="MenuButton" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/node_list_cont" unique_id=2011684916]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Add Node:"
 
 [node name="del_node" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List" unique_id=1647430922]
 layout_mode = 2
-text = "del_select_node"
+text = "Del Select Node"
 
 [node name="Make Node Settings" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room" unique_id=1963053032 node_paths=PackedStringArray("auto_room_update")]
 layout_mode = 2
@@ -78,14 +82,16 @@ text = "Auto room update"
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Make Node Settings" unique_id=410445455]
 layout_mode = 2
 
-[node name="Big Location & Lociton" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("gener_rule_editor", "type_item", "id_item", "save_ready_location_node")]
+[node name="Big Location & Lociton" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1500545986 node_paths=PackedStringArray("gener_rule_editor", "type_item", "id_item", "item_name", "save_node", "add_node_ui")]
 layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("3_klkmx")
 gener_rule_editor = NodePath("../../../..")
 type_item = NodePath("HBoxContainer/Type Item")
 id_item = NodePath("HBoxContainer/Id Load")
-save_ready_location_node = NodePath("../../../../Save Ready Location")
+item_name = NodePath("HBoxContainer2/item_name")
+save_node = NodePath("../../../../Save Ready Location")
+add_node_ui = NodePath("../Add Node UI")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Big Location & Lociton" unique_id=160965422]
 layout_mode = 2
@@ -153,16 +159,16 @@ scroll_fit_content_width = true
 layout_mode = 2
 text = "ReName"
 
-[node name="Ui_set" type="Node" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1314070446 node_paths=PackedStringArray("gener_rule_editor", "node_tool_room")]
+[node name="Add Node UI" type="Node" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1314070446 node_paths=PackedStringArray("gener_rule_editor", "node_tool_room", "type_item")]
 script = ExtResource("6_0loe1")
 gener_rule_editor = NodePath("../../../..")
 node_tool_room = NodePath("../node_tool_room")
 custom_big_instr_ar = Array[ExtResource("2_7tdfr")]([ExtResource("3_7l203"), ExtResource("7_i46w3")])
+type_item = NodePath("../Big Location & Lociton/HBoxContainer/Type Item")
 
 [node name="GraphEdit" type="GraphEdit" parent="PanelContainer/VBoxContainer" unique_id=1448610270]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_offset = Vector2(0, -4)
 minimap_enabled = false
 show_zoom_buttons = false
 show_minimap_button = false
@@ -172,7 +178,7 @@ show_arrange_button = false
 script = ExtResource("5_klkmx")
 graph_edit = NodePath("../PanelContainer/VBoxContainer/GraphEdit")
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/bake_node" to="PanelContainer/VBoxContainer/MarginContainer/Ui_set" method="_on_bake_node_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/bake_node" to="PanelContainer/VBoxContainer/MarginContainer/Add Node UI" method="_on_bake_node_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Node Tool Room List/del_node" to="." method="_on_del_node_pressed"]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/MarginContainer/Big Location & Lociton/HBoxContainer/Type Item" to="PanelContainer/VBoxContainer/MarginContainer/Big Location & Lociton" method="_on_type_item_item_selected"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/Big Location & Lociton/HBoxContainer/load_button" to="PanelContainer/VBoxContainer/MarginContainer/Big Location & Lociton" method="_on_load_button_pressed"]

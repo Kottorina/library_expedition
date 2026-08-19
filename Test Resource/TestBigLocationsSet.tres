@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="BigReadyLocationSet" format=3 uid="uid://c4lcrfxc7g5tj"]
+[gd_resource type="Resource" script_class="BigReadyLocationSet" format=3 uid="uid://cynqmdirl5fot"]
 
 [ext_resource type="Script" uid="uid://clof17uqbvmw8" path="res://addons/libraryeditor/Custom Class/Big Ready Location/BigReadyLocationClass.gd" id="1_ehmge"]
 [ext_resource type="Script" uid="uid://dl88mmud1nhe6" path="res://addons/libraryeditor/Custom Class/Big Ready Location/BigReadyLocationSetClass.gd" id="2_dnlxl"]
+[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMakeInstsClass.gd" id="2_rgrn5"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="3_h65tu"]
+[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/Gener Rule/SceneGraphUiClass.gd" id="4_j5vh5"]
 
 [sub_resource type="Resource" id="Resource_ehmge"]
 script = ExtResource("1_ehmge")
@@ -10,7 +13,70 @@ script = ExtResource("1_ehmge")
 script = ExtResource("1_ehmge")
 id_ = 1
 
+[sub_resource type="Resource" id="Resource_6sjhc"]
+script = ExtResource("1_ehmge")
+id_ = 2
+
+[sub_resource type="Resource" id="Resource_essys"]
+script = ExtResource("2_rgrn5")
+title_instr = "Tool:"
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_gvwic"]
+script = ExtResource("2_rgrn5")
+title_instr = "Id Enter:"
+is_right = true
+right_type = 17
+right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
+body_node = 1
+
+[sub_resource type="Resource" id="Resource_rgrn5"]
+script = ExtResource("3_h65tu")
+title_node = "Start Gener Node"
+coord_ = Vector2(280, 100)
+type_node = 2
+instr_ar = Array[ExtResource("2_rgrn5")]([SubResource("Resource_essys"), SubResource("Resource_gvwic")])
+
+[sub_resource type="Resource" id="Resource_h65tu"]
+script = ExtResource("4_j5vh5")
+zoom = 1.0
+scroll_offset = Vector2(-319, -138)
+
+[sub_resource type="Resource" id="Resource_j5vh5"]
+script = ExtResource("1_ehmge")
+id_ = 3
+start_bake_node = SubResource("Resource_rgrn5")
+save_graph = {
+SubResource("Resource_rgrn5"): {
+"LeftPortsData": [],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"pivot_offset_ratio":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":0.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
+,"port_num":1)
+: "PortFree"
+}]
+}
+}
+full_graph = {
+SubResource("Resource_rgrn5"): {
+"LeftPortsData": [],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"pivot_offset_ratio":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":0.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
+,"port_num":1)
+: "PortFree"
+}]
+}
+}
+ui = SubResource("Resource_h65tu")
+
 [resource]
 script = ExtResource("2_dnlxl")
-big_ready_location_ar = Array[ExtResource("1_ehmge")]([SubResource("Resource_ehmge"), SubResource("Resource_dnlxl")])
+big_ready_location_ar = Array[ExtResource("1_ehmge")]([SubResource("Resource_ehmge"), SubResource("Resource_dnlxl"), SubResource("Resource_6sjhc"), SubResource("Resource_j5vh5")])
 metadata/_custom_type_script = "uid://dl88mmud1nhe6"

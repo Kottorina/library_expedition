@@ -7,8 +7,9 @@ extends Control
 
 @export var item_name : TextEdit
 
-@export var save_ready_location_node : Node
-@export var save_big_ready_location_node : Node
+@export var save_node : Node
+
+@export var add_node_ui : Node 
 
 func _ready() -> void:
 	update_id_list()
@@ -22,12 +23,14 @@ func _on_load_button_pressed() -> void:
 			var cur_ready_location = ready_location_set.get_ready_location_from_id(cur_id)
 			if cur_ready_location != null:
 				load_graph(cur_ready_location.save_graph)
+				load_ui(cur_ready_location.ui)
 		1:
 			var big_ready_location_set : BigReadyLocationSet = ResourceLoader.load(
 				gener_rule_editor.big_ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 			var cur_big_ready_location = big_ready_location_set.get_big_ready_location_from_id(cur_id)
 			if cur_big_ready_location != null:
 				load_graph(cur_big_ready_location.save_graph)
+				load_ui(cur_big_ready_location.ui)
 
 func _on_save_button_pressed() -> void:
 	save_graph()
@@ -45,6 +48,7 @@ func _on_add_new_button_pressed() -> void:
 			
 			if new_ready_location != null:
 				load_graph(new_ready_location.save_graph)
+				load_ui(new_ready_location.ui)
 				item_name.text = new_ready_location.name_
 		1:
 			var big_ready_location_set : BigReadyLocationSet = ResourceLoader.load(
@@ -57,6 +61,7 @@ func _on_add_new_button_pressed() -> void:
 			
 			if cur_big_ready_location != null:
 				load_graph(cur_big_ready_location.save_graph)
+				load_ui(cur_big_ready_location.ui)
 				item_name.text = cur_big_ready_location.name_
 
 func _on_del_item_pressed() -> void:
@@ -80,6 +85,8 @@ func _on_del_item_pressed() -> void:
 func load_graph(graph : Dictionary) -> void:
 	print("load graph")
 	gener_rule_editor.load_graph(graph)
+func load_ui( scene_graph_ui : SceneGraphUi) -> void:
+	gener_rule_editor.load_ui_set(scene_graph_ui)
 
 func save_graph() -> void:
 	print("save graph")
@@ -93,7 +100,7 @@ func save_graph() -> void:
 			if cur_ready_location != null:
 				var save_ind = ready_location_set.ready_location_ar.find(cur_ready_location)
 				
-				ready_location_set.ready_location_ar[save_ind] = save_ready_location_node.save_f(
+				ready_location_set.ready_location_ar[save_ind] = save_node.save_ready_location(
 					cur_ready_location)
 				
 				ResourceSaver.save(ready_location_set, gener_rule_editor.ready_location_set_path) 
@@ -106,15 +113,16 @@ func save_graph() -> void:
 			if cur_big_ready_location != null:
 				var save_ind = big_ready_location_set.big_ready_location_ar.find(cur_big_ready_location)
 				
-				big_ready_location_set.big_ready_location_ar[save_ind] = save_big_ready_location_node.save_f(
+				big_ready_location_set.big_ready_location_ar[save_ind] = save_node.save_big_ready_location(
 					cur_big_ready_location)
 				
-				ResourceSaver.save(big_ready_location_set, gener_rule_editor.ready_location_set_path) 
+				ResourceSaver.save(big_ready_location_set, gener_rule_editor.big_ready_location_set_path) 
 				
 			
 
 ## ПРИ ИЗМЕНЕНИИ ТЕКУЩЕГО ТИПА ПРЕДМЕТА 
 func _on_type_item_item_selected(index: int) -> void:
+	add_node_ui.update_ui()
 	update_id_list()
 
 func update_id_list() -> void:

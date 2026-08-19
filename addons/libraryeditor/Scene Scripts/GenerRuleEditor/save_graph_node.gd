@@ -12,19 +12,65 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
-func save_f(ready_location : ReadyLocation) -> ReadyLocation:
+func save_ready_location(ready_location : ReadyLocation) -> ReadyLocation:
 	
-	var bake_ready_location := ready_location.duplicate()
-	
-	
-	var save_graph : Dictionary = {} ##Граф нужен для сохранения сцены
-	var full_graph : Dictionary = {}
-	occupied_ports.clear()
+	var new_ready_location = ready_location.duplicate(true)
 	
 	var start_gener_node = find_start_gener_node()
 	if start_gener_node == null:
 		print("Start Gener Is Broken")
-		return ready_location
+		return
+	
+	var save_full_ar = get_save_full_graph(start_gener_node)
+	
+	new_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
+	new_ready_location.save_graph = save_full_ar[0]
+	new_ready_location.full_graph = save_full_ar[1]
+	new_ready_location.ui = get_scene_ui_graph()
+	
+	## ЗАПЕКНИЕ
+	var baker = ReadyLocationBake.new()
+	var fin_bake_ready_location = baker.bake_ready_location(new_ready_location)
+	
+	return fin_bake_ready_location
+
+func save_big_ready_location(big_ready_location : BigReadyLocation) -> BigReadyLocation:
+	
+	var new_big_ready_location = big_ready_location.duplicate(true)
+	
+	var start_gener_node = find_start_gener_node()
+	if start_gener_node == null:
+		print("Start Gener Is Broken")
+		return
+	
+	var save_full_ar = get_save_full_graph(start_gener_node)
+	
+	new_big_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
+	new_big_ready_location.save_graph = save_full_ar[0]
+	new_big_ready_location.full_graph = save_full_ar[1]
+	new_big_ready_location.ui = get_scene_ui_graph()
+	
+	## ЗАПЕКНИЕ
+	#var baker = ReadyLocationBake.new()
+	#var fin_bake_ready_location = baker.bake_ready_location(new_ready_location)
+	
+	return new_big_ready_location
+
+# zoom scroll_offset
+
+func get_scene_ui_graph() -> SceneGraphUi:
+	var new_graph_ui := SceneGraphUi.new()
+	
+	new_graph_ui.zoom = graph_edit.zoom
+	new_graph_ui.scroll_offset = graph_edit.scroll_offset
+	
+	return new_graph_ui
+
+func get_save_full_graph( start_gener_node : Node ) -> Array: ## [ savegraph, fullgraph ]
+	
+	var save_graph : Dictionary = {} ##Граф нужен для сохранения сцены
+	var full_graph : Dictionary = {}
+	occupied_ports.clear()
 	
 	var current_node : Node = start_gener_node
 	var free_nodes : Dictionary ## { node (StringName) : true } --- Ноды которые нужно обработать
@@ -32,7 +78,7 @@ func save_f(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	bake_graph_node_biginstr() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
-	while !free_nodes.is_empty(): ## Первичная обработка
+	while !free_nodes.is_empty(): ## ЗАПОЛНЕНИЕ СОХРАНЕННОГО И ПОЛНОГО ГРАФА
 		
 		current_node = free_nodes.keys()[0]
 		var curent_node_big_instr : BigGraphNodeMakeInsts = current_node.get_meta(BIG_INSTR_NODE_DATA_NAME) ##Испольховать в графе, так как нужно только оно
@@ -99,16 +145,8 @@ func save_f(ready_location : ReadyLocation) -> ReadyLocation:
 		
 		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 		full_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : full_left_ports, RIGHT_PORTS_DATA_NAME : full_right_ports}
-	#print(save_graph,"\n\n",full_graph)
-	bake_ready_location.save_graph = save_graph
-	bake_ready_location.full_graph = full_graph
-	bake_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
 	
-	## Тестовое Финальное Запекание
-	var baker = ReadyLocationBake.new()
-	var fin_bake_ready_location = baker.bake_ready_location(bake_ready_location)
-	
-	return fin_bake_ready_location
+	return [ save_graph, full_graph ]
 
 func find_start_gener_node() -> Node:
 	var start_ar : Array[Node]

@@ -17,6 +17,11 @@ const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode"
 
 const SPINBOX_BASE_STEP : float = 0.1
 
+func load_ui_set( scene_graph_ui : SceneGraphUi ) -> void:
+	if scene_graph_ui != null:
+		graph_edit.zoom = scene_graph_ui.zoom
+		graph_edit.scroll_offset = scene_graph_ui.scroll_offset
+
 func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
 	## АВТО ОБНОВЛЕНИЕ КОМНАТ СУК

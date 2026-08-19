@@ -53,20 +53,30 @@ var room_set : RoomsSet
 
 
 func _ready() -> void:
-	_on_bake_node_pressed()
+	update_ui()
 func _on_bake_node_pressed() -> void:
+	update_ui()
+
+@export var type_item : OptionButton ## ReadyLocation или BigReadyLocation
+
+func update_ui() -> void:
+	
 	node_tool_room.start_bake_ui() ## НУЖНО ДЛЯ ОЧИСТКИ И ТД
 	room_set = ResourceLoader.load(gener_rule_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-	bake_ui()
-
-func bake_ui() -> void:
-	bake_ui_all_rnd_fork()
-	bake_ui_start_gener_node()
-	bake_custom_big_instr()
-	bake_ui_connectors_plugs()
-	bake_ui_enter_node()
 	
-	bake_ui_rooms_nodes()
+	match type_item.selected:
+		0:
+			bake_ui_start_gener_node()
+			
+			bake_ui_all_rnd_fork()
+			bake_custom_big_instr() ## А ОНО НАМ ВООБЩЕ БЛЯДЬ НАДО В ЭТОМ ВИДЕ?
+			bake_ui_connectors_plugs()
+			bake_ui_enter_node()
+	
+			bake_ui_rooms_nodes()
+		1:
+			bake_ui_start_gener_node()
+			#bake_custom_big_instr()
 
 func bake_ui_rooms_nodes() -> void:
 	for room_ind in room_set.rooms_ar.size():
@@ -130,6 +140,7 @@ func bake_ui_connectors_plugs() -> void:
 
 	node_tool_room.add_new_item(TOOL_UI_NAME, big_instr)
 
+## А НАХУЙ, ПОДУМАЙ, БЛЯДЬ (это обращение)
 func bake_custom_big_instr() -> void:
 	for big_instr in custom_big_instr_ar:
 		node_tool_room.add_new_item(big_instr.ui_category, big_instr)

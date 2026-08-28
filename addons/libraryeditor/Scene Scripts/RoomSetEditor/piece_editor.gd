@@ -300,7 +300,11 @@ func update_tile_layer() -> void:
 #@export_tool_button("Write") var write_action = write
 #
 #var direction_base = ["down","up","left","right"]
-#
+
+#Прости меня Алиса, я не хотела что бы все так закончилось
+#Это не твоя вина, ты афигенна, надеюсь у тебя все будет хорошо
+#Прости, и прощай
+
 #func write():
 	#
 	#var min_x = INF

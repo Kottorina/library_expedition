@@ -76,6 +76,7 @@ script = ExtResource("3_b0u0k")
 auto_room_update = NodePath("auto_room_update")
 
 [node name="auto_room_update" type="CheckBox" parent="PanelContainer/VBoxContainer/MarginContainer/node_tool_room/Make Node Settings" unique_id=194233882]
+visible = false
 layout_mode = 2
 text = "Auto room update"
 

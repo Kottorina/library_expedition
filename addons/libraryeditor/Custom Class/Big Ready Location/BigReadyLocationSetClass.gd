@@ -9,8 +9,9 @@ const MaxId : int = 100
 func get_big_ready_location_from_id(id : int) -> BigReadyLocation:
 	var find_loc_ar : Array[BigReadyLocation] = []
 	for loc in big_ready_location_ar:
-		if loc.id_ == id:
-			find_loc_ar.append(loc)
+		if loc != null:
+			if loc.id_ == id:
+				find_loc_ar.append(loc)
 	
 	if find_loc_ar.size() == 1:
 		return find_loc_ar[0]

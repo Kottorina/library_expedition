@@ -53,6 +53,7 @@ func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> Re
 	
 	return new_ready_location
 
+## ДОБАВЛЯЕТ НОДЫ ДЛЯ ПОСЛЕДУЮЩЕЙ ОБРАБОТКИ, СУКА
 func add_free_port(port : Dictionary) -> void:
 	if ! port[port.keys()[0]] is String:
 		free_nodes.append(port[port.keys()[0]][1])

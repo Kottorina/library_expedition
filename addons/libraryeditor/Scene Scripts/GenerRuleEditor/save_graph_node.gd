@@ -14,8 +14,6 @@ const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode"
 
 func save_ready_location(ready_location : ReadyLocation) -> ReadyLocation:
 	
-	var new_ready_location = ready_location.duplicate(true)
-	
 	var start_gener_node = find_start_gener_node()
 	if start_gener_node == null:
 		print("Start Gener Is Broken")
@@ -23,21 +21,19 @@ func save_ready_location(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	var save_full_ar = get_save_full_graph(start_gener_node)
 	
-	new_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
-	new_ready_location.save_graph = save_full_ar[0]
-	new_ready_location.full_graph = save_full_ar[1]
-	new_ready_location.ui = get_scene_ui_graph()
+	ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
+	ready_location.save_graph = save_full_ar[0]
+	ready_location.full_graph = save_full_ar[1]
+	ready_location.ui = get_scene_ui_graph()
 	
 	## ЗАПЕКНИЕ
 	var baker = ReadyLocationBake.new()
-	var fin_bake_ready_location = baker.bake_ready_location(new_ready_location)
+	var fin_bake_ready_location = baker.bake_ready_location(ready_location)
 	
 	return fin_bake_ready_location
 
 func save_big_ready_location(big_ready_location : BigReadyLocation) -> BigReadyLocation:
 	
-	var new_big_ready_location = big_ready_location.duplicate(true)
-	
 	var start_gener_node = find_start_gener_node()
 	if start_gener_node == null:
 		print("Start Gener Is Broken")
@@ -45,16 +41,16 @@ func save_big_ready_location(big_ready_location : BigReadyLocation) -> BigReadyL
 	
 	var save_full_ar = get_save_full_graph(start_gener_node)
 	
-	new_big_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
-	new_big_ready_location.save_graph = save_full_ar[0]
-	new_big_ready_location.full_graph = save_full_ar[1]
-	new_big_ready_location.ui = get_scene_ui_graph()
+	big_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
+	big_ready_location.save_graph = save_full_ar[0]
+	big_ready_location.full_graph = save_full_ar[1]
+	big_ready_location.ui = get_scene_ui_graph()
 	
 	## ЗАПЕКНИЕ
-	#var baker = ReadyLocationBake.new()
-	#var fin_bake_ready_location = baker.bake_ready_location(new_ready_location)
+	var baker = BigReadyLocationBake.new()
+	var fin_bake_ready_location = baker.bake_big_ready_location(big_ready_location)
 	
-	return new_big_ready_location
+	return fin_bake_ready_location
 
 # zoom scroll_offset
 

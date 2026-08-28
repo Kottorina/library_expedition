@@ -18,7 +18,7 @@ func read():
 	clear_f()
 	
 	var ready_locations_set : ReadyLocationSet = ResourceLoader.load(path_current_ready_location_set,"",ResourceLoader.CACHE_MODE_IGNORE)
-	var ready_locations = ready_locations_set.ready_location_ar[location_ind]
+	var ready_locations = ready_locations_set.get_ready_location_from_id(location_ind)
 	
 	var location_loader := ReadyLocationLoader.new()
 	

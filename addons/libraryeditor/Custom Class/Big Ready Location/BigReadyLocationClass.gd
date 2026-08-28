@@ -9,5 +9,7 @@ class_name BigReadyLocation
 @export var save_graph : Dictionary ## {Big_instr : { right / left ports : [ port_metadata :  String free/occupied/new BigInstr ] } }
 ## ГРАФ СОДЕРЖАЩИЙ ВСЕ СОЕДИНЕНИЯ
 @export var full_graph : Dictionary 
- 
+
+@export var enters_location : Dictionary ## Отдельно Граф С Локациями и Переходами Между --- { Room : [ IdEnterToIdEnter ] }
+
 @export var ui : SceneGraphUi

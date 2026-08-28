@@ -20,7 +20,7 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	rnd = RandomNumberGenerator.new()
 	rnd.seed = seed
 	
-	## .duplicate(true) ПОЧЕМУ ТО НАХУЙ ЛОМАЕТ ПОИСК ВХОДНЫХ ТАЙЛОВ, НЕ ИСПОЛЬЗОВАТЬ СУКИ
+		## .duplicate(true) ЛОМАЕТ СООТВЕСТВИЕ В ТАЙЛАХ, ПРОСТО НЕ ЗАПЕКАЙТЕ ЕСЛИ БЕСПОКОИТЕСЬ О ВЕСЕ
 	if seed != 0:
 		var bake_node = ReadyLocationBake.new()
 		new_ready_location = bake_node.bake_ready_location(ready_location,seed)
@@ -34,10 +34,11 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	for enters in new_ready_location.rooms_graph.keys()[0].room_enter_ar:
 		if new_ready_location.enters_location.has(enters):
 				enter_dict[ new_ready_location.enters_location[enters] ] = enters.coord_
+	load_room(new_ready_location.rooms_graph.keys()[0], parts_for_cycle)
 	
 	for room : Room in new_ready_location.rooms_graph.keys():
 		
-		load_room(room, parts_for_cycle)
+		
 		
 		## ОБНОВИТЕ ПРИ СМЕНЕ КОМНАТЫ, БЛЯДИ
 		
@@ -54,14 +55,25 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 				if new_ready_location.enters_location.has(enters):
 					enter_dict[ new_ready_location.enters_location[enters] ] = enters.coord_
 			
-			if ! new_ready_location.rooms_graph.has(con_to_con.to_room):
-				load_room(con_to_con.to_room, parts_for_cycle)
+			load_room(con_to_con.to_room, parts_for_cycle)
 	
 	ready_locatin_load_complete.emit(enter_dict)
 
 
 var c_parts_ar = []
+
+#var occupied_room_ar : Array[Room]
+
 func load_room(room : Room, parts_max : int) -> void:
+	
+	## ИЗБЫТОЧНО, ТЕКУЩИЙ КОД И ТАК ЗАЩИЩЕН ОТ ПОДОБНОГО
+	#if occupied_room_ar.has(room):
+		#return
+	#occupied_room_ar.append(room)
+	
+	print("!")
+	
+	c_parts_ar.clear()
 	
 	for base_tile : BaseTile in room.base_tile:
 		## ВОТ ТУТ ДЕКОР А RND ВЫШЕ

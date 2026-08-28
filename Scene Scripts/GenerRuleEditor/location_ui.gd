@@ -1,8 +1,23 @@
 extends Control
 
 @export var gener_rule_editor : Control ## Главный нод, из него подтигиваються, пути и рисуються ноды 
-
 @export var type_item : OptionButton
+
+var save_data_all_library : SaveDataAllLibrary = null ## СЕЙВ ДАТА, АККУРАТНЕЕ БЛЯДИ
+
+var editor_obj_layers : Array[EditorObjectLayer]
+
+func _ready() -> void:
+	update_ui()
+
+func update_ui() -> void:  ## Обновляет editor_obj_layers и делает ui в type_item
+	editor_obj_layers = gener_rule_editor.editor_obj_layers
+	var ind = 0
+	for obj in editor_obj_layers:
+		type_item.add_item(obj.ui_name,ind)
+		ind += 1
+
+
 @export var id_item : OptionButton
 
 @export var item_name : TextEdit
@@ -11,83 +26,60 @@ extends Control
 
 @export var add_node_ui : Node 
 
-func _ready() -> void:
+func update_all_save_data(new_save_data : SaveDataAllLibrary) -> void: ## Обновляет save_data_all_library
+	save_data_all_library = new_save_data.duplicate()
 	update_id_list()
 
-func _on_load_button_pressed() -> void:
-	var cur_id = id_item.get_selected_id()
-	match type_item.selected:
-		0:
-			var ready_location_set : ReadyLocationSet = ResourceLoader.load(
-				gener_rule_editor.ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			var cur_ready_location = ready_location_set.get_ready_location_from_id(cur_id)
-			if cur_ready_location != null:
-				load_graph(cur_ready_location.save_graph)
-				load_ui(cur_ready_location.ui)
-		1:
-			var big_ready_location_set : BigReadyLocationSet = ResourceLoader.load(
-				gener_rule_editor.big_ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			var cur_big_ready_location = big_ready_location_set.get_big_ready_location_from_id(cur_id)
-			if cur_big_ready_location != null:
-				load_graph(cur_big_ready_location.save_graph)
-				load_ui(cur_big_ready_location.ui)
+func update_id_list() -> void: ## Обновляет список достпных id
+	if save_data_all_library == null:
+		return
+	
+	id_item.clear()
+	
+	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
+	
+	var object_ar : Variant = save_data_all_library.get(cur_editor_obj_layers.save_array_name)
+	
+	for object in object_ar:
+		var name_item = str(object.name_," ",object.id_)
+		id_item.add_item(name_item,object.id_)
+	
+	if id_item.item_count == 0:
+		_on_add_new_button_pressed()
 
-func _on_save_button_pressed() -> void:
-	save_graph()
+func _on_add_new_button_pressed() -> void: ## Добовляет новый ресурс
+	
+	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
+	
+	var new_obj = save_data_all_library.add_new_obj_in_array(cur_editor_obj_layers.object_script_path,cur_editor_obj_layers.save_array_name)
+	update_id_list()
+	load_res_f(new_obj)
+ 
+@warning_ignore("unused_parameter")
+func _on_type_item_item_selected(index: int) -> void: ## ПРИ выборе ТЕКУЩЕГО Глобального типа редактора, для смены ui везде
+	add_node_ui.update_ui()
+	update_id_list()
 
-func _on_add_new_button_pressed() -> void:
-	match type_item.selected:
-		0:
-			var ready_location_set : ReadyLocationSet = ResourceLoader.load(
-				gener_rule_editor.ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			var new_ready_location = ready_location_set.add_new_ready_location()
-			
-			ResourceSaver.save(ready_location_set, gener_rule_editor.ready_location_set_path) 
-			
-			update_id_list()
-			
-			if new_ready_location != null:
-				load_graph(new_ready_location.save_graph)
-				load_ui(new_ready_location.ui)
-				item_name.text = new_ready_location.name_
-		1:
-			var big_ready_location_set : BigReadyLocationSet = ResourceLoader.load(
-				gener_rule_editor.big_ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			var cur_big_ready_location = big_ready_location_set.add_new_ready_location()
-			
-			ResourceSaver.save(big_ready_location_set, gener_rule_editor.big_ready_location_set_path) 
-			
-			update_id_list()
-			
-			if cur_big_ready_location != null:
-				load_graph(cur_big_ready_location.save_graph)
-				load_ui(cur_big_ready_location.ui)
-				item_name.text = cur_big_ready_location.name_
-
-func _on_del_item_pressed() -> void:
-	var cur_id = id_item.get_selected_id()
-	match type_item.selected:
-		0:
-			var ready_location_set : ReadyLocationSet = ResourceLoader.load(
-				gener_rule_editor.ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			ready_location_set.del_item_from_id(cur_id)
-			
-			ResourceSaver.save(ready_location_set, gener_rule_editor.ready_location_set_path) 
-			update_id_list()
-		1:
-			var big_ready_location_set : BigReadyLocationSet = ResourceLoader.load(
-				gener_rule_editor.big_ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			big_ready_location_set.del_item_from_id(cur_id)
-			
-			ResourceSaver.save(big_ready_location_set, gener_rule_editor.big_ready_location_set_path) 
-			update_id_list()
-
+func load_res_f(object : Resource) -> void: ## для загрузки ReadyLocation BigReadyLocation
+	load_graph(object.save_graph)
+	load_ui(object.ui)
+	item_name.text = object.name_
 func load_graph(graph : Dictionary) -> void:
 	print("load graph")
 	gener_rule_editor.load_graph(graph)
 func load_ui( scene_graph_ui : SceneGraphUi) -> void:
 	gener_rule_editor.load_ui_set(scene_graph_ui)
 
+func _on_load_button_pressed() -> void: ## Загружает ресурс по текущему id
+	var cur_id = id_item.get_selected_id()
+	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
+	
+	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.save_array_name,cur_id)
+	if cur_oject != null:
+		load_res_f(cur_oject)
+
+func _on_save_button_pressed() -> void:
+	save_graph()
 func save_graph() -> void:
 	print("save graph")
 	
@@ -117,33 +109,33 @@ func save_graph() -> void:
 					cur_big_ready_location)
 				
 				ResourceSaver.save(big_ready_location_set, gener_rule_editor.big_ready_location_set_path) 
-				
-			
 
-## ПРИ ИЗМЕНЕНИИ ТЕКУЩЕГО ТИПА ПРЕДМЕТА 
-@warning_ignore("unused_parameter")
-func _on_type_item_item_selected(index: int) -> void:
-	add_node_ui.update_ui()
-	update_id_list()
-
-func update_id_list() -> void:
-	id_item.clear()
+func _on_del_item_pressed() -> void:
+	var cur_id = id_item.get_selected_id()
 	match type_item.selected:
 		0:
 			var ready_location_set : ReadyLocationSet = ResourceLoader.load(
 				gener_rule_editor.ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			for loc in ready_location_set.ready_location_ar:
-				var name_loc = str(loc.name_," ",loc.id_)
-				id_item.add_item(name_loc,loc.id_)
+			ready_location_set.del_item_from_id(cur_id)
+			
+			ResourceSaver.save(ready_location_set, gener_rule_editor.ready_location_set_path) 
+			update_id_list()
 		1:
 			var big_ready_location_set : BigReadyLocationSet = ResourceLoader.load(
 				gener_rule_editor.big_ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-			for loc in big_ready_location_set.big_ready_location_ar:
-				var name_loc = str(loc.name_," ",loc.id_)
-				id_item.add_item(name_loc,loc.id_)
-	
-	if id_item.item_count == 0:
-		_on_add_new_button_pressed()
+			big_ready_location_set.del_item_from_id(cur_id)
+			
+			ResourceSaver.save(big_ready_location_set, gener_rule_editor.big_ready_location_set_path) 
+			update_id_list()
+
+
+
+
+				
+			
+
+
+
 
 #@onready var gener_rule_editor: Control = $"../../../.."
 #

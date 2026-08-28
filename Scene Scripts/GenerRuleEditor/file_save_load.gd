@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+@export var editor_layer_manager: VBoxContainer 
+
 var edditor_save_data : EditorSaveData = null
 
 @export var gener_rule_editor: Control
@@ -28,7 +30,9 @@ func load_file_path( path : String ) -> void:
 	if load_node is SaveDataAllLibrary:
 		
 		print("SaveDataAllLibrary Load")
+		
 		update_ui(path)
+		editor_layer_manager.update_all_save_data(load_node)
 		
 		edditor_save_data.current_file_save_path = path
 		save_f() 
@@ -43,8 +47,12 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	load_file_path(path)
 
 func _on_save_file_pressed() -> void:
-	print("SaveDataAllLibrary Save")
 	save_f()
 
 func save_f() -> void:
+	print("SaveDataAllLibrary Save")
+	if editor_layer_manager.save_data_all_library != null:
+		## СОХРАНЯЕТ САМИ ДАНННЫЕ SaveDataAllLibrary
+		ResourceSaver.save(editor_layer_manager.save_data_all_library,edditor_save_data.current_file_save_path)
+	## СОХРАНЯЕТ ФАЙЛ НАСТРОЕК EditorSaveData
 	ResourceSaver.save(edditor_save_data, gener_rule_editor.editor_save_data_path) 

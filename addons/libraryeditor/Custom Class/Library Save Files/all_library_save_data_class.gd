@@ -3,11 +3,11 @@ extends Resource
 ## УНИВЕРСАЛЬНАЯ ЗАМЕНА ReadyLocationSet BigReadyLocationSet
 class_name SaveDataAllLibrary
 
-@export var big_ready_location_ar_ : Array[BigReadyLocation] 
+@export var big_ready_location_ar : Array[BigReadyLocation] 
 
-@export var ready_location_set : Array[ReadyLocation] 
+@export var ready_location_ar : Array[ReadyLocation] 
 
-@export var room_set : RoomsSet
+# @export var room_set : RoomsSet
 
 
 const MinId : int = 0
@@ -39,7 +39,7 @@ func del_item_from_id(name_ar : String,id : int) -> void:
 	if find_ar is not Array:
 		return
 	
-	var find_loc_ar : Array[ReadyLocation] = []
+	var find_loc_ar : Array[Resource] = []
 	for loc in find_ar:
 		if loc.id_ == id:
 			find_ar.erase(loc)

@@ -19,7 +19,7 @@ var rnd : RandomNumberGenerator
 
 var enters_location : Dictionary
 
-func bake_big_ready_location(big_ready_location : BigReadyLocation, c_seed : int = 0) -> BigReadyLocation:
+func bake(big_ready_location : BigReadyLocation, c_seed : int = 0) -> BigReadyLocation:
 	var new_big_ready_location = big_ready_location.duplicate()
 	
 	save_graph = new_big_ready_location.save_graph.duplicate(true)

@@ -51,41 +51,35 @@ const TOOLENTERTYPE : int = 17
 const TOOLENTERCOLOR : Color = Color.PURPLE
 
 var room_set : RoomsSet
-var ready_location_set : ReadyLocationSet
+var ready_location_ar : Array[ReadyLocation]
 
-func _ready() -> void:
-	update_ui()
-func _on_bake_node_pressed() -> void:
-	update_ui()
+var tasks : Dictionary = {
+"ui_start_gener_node" : "bake_ui_start_gener_node",
+"ui_all_rnd_fork" : "bake_ui_all_rnd_fork",
+"ui_custom_big_instr" : "bake_custom_big_instr",
+"ui_connectors_plugs" : "bake_ui_connectors_plugs",
+"ui_enter_node" : "bake_ui_enter_node",
+"ui_rooms_nodes" : "bake_ui_rooms_nodes",
+"ui_ready_location_nodes" : "bake_ui_ready_location_nodes"
+}
 
-@export var type_item : OptionButton ## ReadyLocation или BigReadyLocation
-
-func update_ui() -> void:
+func update_ui(editor_obj_layer : EditorObjectLayer,save_data_all_library : SaveDataAllLibrary) -> void:
 	
 	node_tool_room.start_bake_ui() ## НУЖНО ДЛЯ ОЧИСТКИ И ТД
+	## ХОРОШИЙ ВОПРОС КАК РАБОТАТЬ С room_set
 	room_set = ResourceLoader.load(gener_rule_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-	ready_location_set = ResourceLoader.load(gener_rule_editor.ready_location_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 	
-	match type_item.selected:
-		0:
-			bake_ui_start_gener_node()
-			
-			bake_ui_all_rnd_fork()
-			bake_custom_big_instr() ## А ОНО НАМ ВООБЩЕ БЛЯДЬ НАДО В ЭТОМ ВИДЕ?
-			bake_ui_connectors_plugs()
-			bake_ui_enter_node()
+	ready_location_ar = save_data_all_library.ready_location_ar
 	
-			bake_ui_rooms_nodes()
-		1:
-			bake_ui_start_gener_node()
-			bake_ui_enter_node()
-			bake_ui_ready_location_nodes()
-			#bake_custom_big_instr()
+	for task in tasks.keys():
+		var is_true = editor_obj_layer.get(task)
+		if is_true == true:
+			Callable(self, tasks[task]).call()
 
 func bake_ui_ready_location_nodes() -> void:
-	for ready_loc_ind in ready_location_set.ready_location_ar.size():
+	for ready_loc_ind in ready_location_ar.size():
 		
-		var current_ready_loc = ready_location_set.ready_location_ar[ready_loc_ind]
+		var current_ready_loc = ready_location_ar[ready_loc_ind]
 		
 		if current_ready_loc != null:
 			var name_item : String = ROOMNODENAME + current_ready_loc.name_+" "+str(ready_loc_ind)
@@ -94,8 +88,7 @@ func bake_ui_ready_location_nodes() -> void:
 			big_instr.ready_location_ = current_ready_loc
 			
 			node_tool_room.add_new_item(ROOMS_UI_LOCATIONS, big_instr)
-			
-
+	
 func ready_location_to_biginstrgraphnode( ready_location : ReadyLocation ) -> BigGraphNodeMakeInsts:
 	
 	var big_instr := BigGraphNodeMakeInsts.new()
@@ -210,7 +203,7 @@ func bake_ui_start_gener_node() -> void: ##Стартовая хуйня, без
 	big_instr.instr_ar.append(enter_instr)
 	
 	node_tool_room.add_new_item(TOOL_UI_NAME, big_instr)
-
+	
 func bake_ui_all_rnd_fork() -> void: ## Случайные Перекрестки, Очень Круто
 	for type_ in CONNECTOR_TYPE_COUNT:
 		for size_ in CONNECTOR_SIZE_COUNT:

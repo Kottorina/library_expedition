@@ -12,7 +12,7 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
-func save_ready_location(ready_location : ReadyLocation) -> ReadyLocation:
+func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : Resource) -> Resource:
 	
 	var start_gener_node = find_start_gener_node()
 	if start_gener_node == null:
@@ -21,38 +21,20 @@ func save_ready_location(ready_location : ReadyLocation) -> ReadyLocation:
 	
 	var save_full_ar = get_save_full_graph(start_gener_node)
 	
-	ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
-	ready_location.save_graph = save_full_ar[0]
-	ready_location.full_graph = save_full_ar[1]
-	ready_location.ui = get_scene_ui_graph()
+	object.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
+	object.save_graph = save_full_ar[0]
+	object.full_graph = save_full_ar[1]
+	object.ui = get_scene_ui_graph()
 	
-	## ЗАПЕКНИЕ
-	var baker = ReadyLocationBaker.new()
-	var fin_bake_ready_location = baker.bake_ready_location(ready_location)
+	var baker_class = load(editor_obj_layer.baker_script_path)
+	if baker_class != null:
+		var ready_baker = baker_class.new()
+		var bake_object = ready_baker.bake(object)
+		return bake_object
+	else:
+		push_warning("Baker for "+ editor_obj_layer.ui_name+" not find!")
 	
-	return fin_bake_ready_location
-
-func save_big_ready_location(big_ready_location : BigReadyLocation) -> BigReadyLocation:
-	
-	var start_gener_node = find_start_gener_node()
-	if start_gener_node == null:
-		print("Start Gener Is Broken")
-		return
-	
-	var save_full_ar = get_save_full_graph(start_gener_node)
-	
-	big_ready_location.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
-	big_ready_location.save_graph = save_full_ar[0]
-	big_ready_location.full_graph = save_full_ar[1]
-	big_ready_location.ui = get_scene_ui_graph()
-	
-	## ЗАПЕКНИЕ
-	var baker = BigReadyLocationBaker.new()
-	var fin_bake_ready_location = baker.bake_big_ready_location(big_ready_location)
-	
-	return fin_bake_ready_location
-
-# zoom scroll_offset
+	return object
 
 func get_scene_ui_graph() -> SceneGraphUi:
 	var new_graph_ui := SceneGraphUi.new()

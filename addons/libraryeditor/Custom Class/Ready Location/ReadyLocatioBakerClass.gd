@@ -20,7 +20,7 @@ var full_graph : Dictionary
 
 var rnd : RandomNumberGenerator
 
-func bake_ready_location(ready_location : ReadyLocation, c_seed : int = 0) -> ReadyLocation:
+func bake(ready_location : ReadyLocation, c_seed : int = 0) -> ReadyLocation:
 	var new_ready_location = ready_location.duplicate()
 	
 	save_graph = new_ready_location.save_graph.duplicate(true)

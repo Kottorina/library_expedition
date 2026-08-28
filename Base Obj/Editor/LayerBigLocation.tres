@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://bbdqop16cfr2o"]
+
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/Editor Object Layer/editor_object_layer_class.gd" id="1_gnomq"]
+
+[resource]
+script = ExtResource("1_gnomq")
+ui_name = "Big Location"
+save_array_name = "big_ready_location_ar_"
+save_object_name = "BigReadyLocation"
+metadata/_custom_type_script = "uid://dyh1823n402rk"

@@ -121,6 +121,7 @@ func save_graph() -> void:
 			
 
 ## ПРИ ИЗМЕНЕНИИ ТЕКУЩЕГО ТИПА ПРЕДМЕТА 
+@warning_ignore("unused_parameter")
 func _on_type_item_item_selected(index: int) -> void:
 	add_node_ui.update_ui()
 	update_id_list()

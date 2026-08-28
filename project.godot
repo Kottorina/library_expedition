@@ -26,11 +26,11 @@ enabled=PackedStringArray("res://addons/libraryeditor/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://Base Obj/": "purple",
+"res://Draw/": "green",
+"res://Scene Scripts/": "orange",
 "res://Test Resource/": "purple",
-"res://addons/libraryeditor/Base Obj/": "purple",
-"res://addons/libraryeditor/Custom Class/": "blue",
-"res://addons/libraryeditor/Draw/": "green",
-"res://addons/libraryeditor/Scene Scripts/": "orange"
+"res://addons/libraryeditor/Custom Class/": "blue"
 }
 
 [physics]

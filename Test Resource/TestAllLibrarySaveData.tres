@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://b6hgrkjj1of24"]
+
+[ext_resource type="Script" uid="uid://clof17uqbvmw8" path="res://addons/libraryeditor/Custom Class/Big Ready Location/BigReadyLocationClass.gd" id="1_brtap"]
+[ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_p28te"]
+[ext_resource type="Script" uid="uid://bhomfyw6phsq3" path="res://addons/libraryeditor/Custom Class/Ready Location/ReadyLocationClass.gd" id="2_mr20w"]
+
+[resource]
+script = ExtResource("1_p28te")
+ready_location_set = Array[ExtResource("2_mr20w")]([null])
+metadata/_custom_type_script = "uid://bn0kpxd11khos"

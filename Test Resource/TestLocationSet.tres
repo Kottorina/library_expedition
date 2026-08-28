@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ReadyLocationSet" format=3]
 
 [ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Ready Location/ReadyLocationClass.gd" id="1_y3le8"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Level/RoomEnterClass.gd" id="2_ipikh"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="2_ipikh"]
 [ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Ready Location/ReadyLocationSetClass.gd" id="2_yxoi6"]
 [ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMakeInstsClass.gd" id="3_i3rqy"]
 [ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="4_qpysc"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Level/RoomConnectorClass.gd" id="5_hrb0s"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Level/BaseTileClass.gd" id="6_5l7d5"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Level/RoomClass.gd" id="7_cvpre"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="5_hrb0s"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="6_5l7d5"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="7_cvpre"]
 [ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Gener Rule/SceneGraphUiClass.gd" id="8_i3rqy"]
 
 [sub_resource type="Resource" id="Resource_bm7vt"]
@@ -9680,7 +9680,7 @@ instr_ar = Array[ExtResource("3_i3rqy")]([SubResource("Resource_k5kpq")])
 [sub_resource type="Resource" id="Resource_5ibvo"]
 script = ExtResource("8_i3rqy")
 zoom = 0.5644736
-scroll_offset = Vector2(-55.02899, 96.55585)
+scroll_offset = Vector2(-18.028992, 71.55585)
 
 [sub_resource type="Resource" id="Resource_qr8xe"]
 script = ExtResource("1_y3le8")
@@ -10007,10 +10007,7 @@ SubResource("Resource_hrb0s"): 5.0
 }
 ui = SubResource("Resource_5ibvo")
 
-[sub_resource type="Resource" id="Resource_bg33s"]
-script = ExtResource("1_y3le8")
-
 [resource]
 script = ExtResource("2_yxoi6")
-ready_location_ar = Array[ExtResource("1_y3le8")]([SubResource("Resource_qr8xe"), SubResource("Resource_bg33s")])
+ready_location_ar = Array[ExtResource("1_y3le8")]([SubResource("Resource_qr8xe")])
 metadata/_custom_type_script = "uid://cf0mm7bk3dkp0"

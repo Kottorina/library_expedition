@@ -1,5 +1,5 @@
 extends Node
-class_name ReadyLocationBake
+class_name ReadyLocationBaker
 
 const PORT_VALUE_FREE : String = "PortFree"
 const PORT_VALUE_OCCUPIED : String = "PortOccupied"

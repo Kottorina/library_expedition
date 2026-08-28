@@ -22,7 +22,8 @@ func start_bake_ui() -> void:
 	ind_to_popup_dict.clear()
 	id_to_big_graph_make_instr_dict.clear()
 	
-	main_popup.id_pressed.connect(graph_item_selected)
+	if not main_popup.id_pressed.is_connected(graph_item_selected):
+		main_popup.id_pressed.connect(graph_item_selected)
 
 var name_to_ind_dict : Dictionary ## Name - Ind
 var ind_to_popup_dict : Dictionary ## ind - PopupMenu

@@ -1,5 +1,9 @@
 extends Control
 
+@export var editor_obj_layers : Array[EditorObjectLayer]
+
+@export var editor_save_data_path : String
+
 @export var big_ready_location_set_path : String
 @export var ready_location_set_path : String
 @export var room_set_path : String

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://c22nf50opgd0"]
 
-[ext_resource type="Script" uid="uid://kpmqghn7d7cb" path="res://addons/libraryeditor/Scene Scripts/Base ReadyLocation Reader/test_ready_location_reader.gd" id="1_53qv3"]
+[ext_resource type="Script" uid="uid://kpmqghn7d7cb" path="res://Scene Scripts/Base ReadyLocation Reader/test_ready_location_reader.gd" id="1_53qv3"]
 [ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://Test Resource/TestTile_set.tres" id="2_mcqch"]
 
 [node name="TestReadyLocationReader" type="Node2D" unique_id=377190287 node_paths=PackedStringArray("draw_ar")]

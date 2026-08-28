@@ -27,7 +27,7 @@ func save_ready_location(ready_location : ReadyLocation) -> ReadyLocation:
 	ready_location.ui = get_scene_ui_graph()
 	
 	## ЗАПЕКНИЕ
-	var baker = ReadyLocationBake.new()
+	var baker = ReadyLocationBaker.new()
 	var fin_bake_ready_location = baker.bake_ready_location(ready_location)
 	
 	return fin_bake_ready_location
@@ -47,7 +47,7 @@ func save_big_ready_location(big_ready_location : BigReadyLocation) -> BigReadyL
 	big_ready_location.ui = get_scene_ui_graph()
 	
 	## ЗАПЕКНИЕ
-	var baker = BigReadyLocationBake.new()
+	var baker = BigReadyLocationBaker.new()
 	var fin_bake_ready_location = baker.bake_big_ready_location(big_ready_location)
 	
 	return fin_bake_ready_location

@@ -1,5 +1,5 @@
 extends Node
-class_name BigReadyLocationBake
+class_name BigReadyLocationBaker
 
 ## КОНСТАНТЫ НУЖНЫ ДЛЯ РАБОТЫ С МЕТАДАННЫМИ И ПРОСТО ДАННЫМИ, НАДО КОРОЧЕ
 const PORT_VALUE_FREE : String = "PortFree"

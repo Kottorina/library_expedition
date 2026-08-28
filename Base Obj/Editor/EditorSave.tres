@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EditorSaveData" format=3 uid="uid://botk3gy0fk2ke"]
+
+[ext_resource type="Script" uid="uid://d4nkvqoglldsg" path="res://addons/libraryeditor/Custom Class/Library Save Files/editor_save_data_class.gd" id="1_ajksn"]
+
+[resource]
+script = ExtResource("1_ajksn")
+current_file_save_path = "C:/dew/game_project/library_expedition/library_expedition/Test Resource/TestAllLibrarySaveData.tres"
+metadata/_custom_type_script = "uid://d4nkvqoglldsg"

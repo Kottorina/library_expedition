@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://ea5c8bsgghd4"]
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://fj1q4gcklb3j"]
 
 [ext_resource type="Script" uid="uid://clof17uqbvmw8" path="res://addons/libraryeditor/Custom Class/Big Ready Location/BigReadyLocationClass.gd" id="1_brtap"]
 [ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_p28te"]
@@ -88,7 +88,7 @@ instr_ar = Array[ExtResource("3_v2uc2")]([SubResource("Resource_q6tww"), SubReso
 [sub_resource type="Resource" id="Resource_44gy0"]
 script = ExtResource("5_2hcom")
 zoom = 1.3310001
-scroll_offset = Vector2(-365.56094, -132.13797)
+scroll_offset = Vector2(-165.448, -22.13797)
 
 [sub_resource type="Resource" id="Resource_mxmgf"]
 script = ExtResource("2_mr20w")
@@ -125,5 +125,5 @@ ui = SubResource("Resource_44gy0")
 [resource]
 script = ExtResource("1_p28te")
 big_ready_location_ar = Array[ExtResource("1_brtap")]([SubResource("Resource_7ymyx")])
-ready_location_ar = Array[ExtResource("2_mr20w")]([SubResource("Resource_mxmgf"), null])
+ready_location_ar = Array[ExtResource("2_mr20w")]([SubResource("Resource_mxmgf")])
 metadata/_custom_type_script = "uid://bn0kpxd11khos"

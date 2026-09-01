@@ -4,8 +4,6 @@ extends Control
 
 @export var editor_save_data_path : String
 
-@export var big_ready_location_set_path : String
-@export var ready_location_set_path : String
 @export var room_set_path : String
 
 @export_group("tool")
@@ -28,13 +26,16 @@ func load_ui_set( scene_graph_ui : SceneGraphUi ) -> void:
 
 func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
-	## АВТО ОБНОВЛЕНИЕ КОМНАТ СУК
+	## АВТО ОБНОВЛЕНИЕ КОМНАТ СУК. НЕ ПРИ КАКИХ ОБСОТОЯТЕЛЬСТВАХ НЕ ВКЛЮЧАТЬ, ОНО СЛОВАЕТ ВЕСЬ ПРОЕКТ
 	if make_node_settings.get_auto_room_update_state() == true:
 		
 		var room_set : RoomsSet = ResourceLoader.load(room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 		for room : Room in room_set.rooms_ar:
 			if room != null and big_instr.room_ != null:
 				if big_instr.room_.id_ == room.id_:
+					
+					## !!! НЕ ССЫЛКУ МЕНЯТЬ, А ДАННЫЕ БЛЯДЬ, ТАМ ПРИВЯЗАННОСТЬ В CON TO CON, ИСПРАВЬ СУЧКА
+					
 					big_instr.room_ = room
 	
 	var new_node = GraphNode.new()

@@ -23,7 +23,7 @@ func start_load(ready_location : GraphDataObjects, seed : int = 0) -> void:
 		## .duplicate(true) ЛОМАЕТ СООТВЕСТВИЕ В ТАЙЛАХ, ПРОСТО НЕ ЗАПЕКАЙТЕ ЕСЛИ БЕСПОКОИТЕСЬ О ВЕСЕ
 	if seed != 0:
 		var bake_node = LocationBaker.new()
-		new_ready_location = bake_node.bake(ready_location,seed)
+		new_ready_location = bake_node.bake_data(ready_location,seed)
 	else:
 		new_ready_location = ready_location
 	

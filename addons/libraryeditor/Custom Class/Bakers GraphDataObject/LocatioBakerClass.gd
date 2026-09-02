@@ -198,3 +198,32 @@ func is_connectors_identical(connector_one : RoomConnector, connector_two : Room
 	if connector_one.direction == connector_two.direction and connector_one.size_ == connector_two.size_ and connector_one.type == connector_two.type:
 		return true
 	return false
+
+
+const ENTER_LOCATION_TITLE : String = "Id Enter:"
+
+func from_GraphDataObjects_to_BigGraphNodeMakeInsts( ready_location : GraphDataObjects ) -> BigGraphNodeMakeInsts:
+	
+	var big_instr := BigGraphNodeMakeInsts.new()
+	
+	big_instr.title_node = ready_location.name_ + " " + str(ready_location.id_)
+	big_instr.type_node = 8
+	
+	for enters_id : int in ready_location.enters_location.values():
+		
+		var instr = GraphNodeMakeInsts.new()
+		instr.body_node = 0
+		instr.title_instr = ENTER_LOCATION_TITLE + str(enters_id)
+		
+		
+		instr.is_right = true 
+		instr.right_type = TOOLENTERTYPE
+		instr.right_color = TOOLENTERCOLOR
+		instr.is_left = true
+		instr.left_type = TOOLENTERTYPE
+		instr.left_color = TOOLENTERCOLOR
+		
+		big_instr.instr_ar.append(instr)
+
+	
+	return big_instr

@@ -13,5 +13,7 @@ class_name EditorObjectLayer
 @export var ui_custom_big_instr : bool = false ## А ОНО НАМ ВООБЩЕ БЛЯДЬ НАДО В ЭТОМ ВИДЕ?
 @export var ui_connectors_plugs : bool = false
 @export var ui_enter_node : bool = false
+## ПОКА ВОПРОС ПО НЕОБХОДИМОСТИ И ОФОРМЛЕНИЮ
 @export var ui_rooms_nodes : bool = false
-@export var ui_ready_location_nodes : bool = false
+## МОЖЕТ ВЫЗВАТЬ ОБЬЕКТЫ ИЗ EDITORLAYER В ВИДЕ UI
+@export var ui_editor_layer_nodes : String = ""

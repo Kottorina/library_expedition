@@ -24,8 +24,7 @@ func update_ui() -> void:  ## Обновляет editor_obj_layers и делае
 func update_all_save_data(new_save_data : SaveDataAllLibrary) -> void: ## Обновляет save_data_all_library
 	save_data_all_library = new_save_data.duplicate()
 	
-	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
-	add_node_ui.update_ui(cur_editor_obj_layers, save_data_all_library)
+	add_node_ui.update_ui(type_item.selected,editor_obj_layers, save_data_all_library)
 	update_id_list()
 
 func update_id_list() -> void: ## Обновляет список достпных id
@@ -58,8 +57,7 @@ func _on_add_new_button_pressed() -> void: ## Добовляет новый ре
 @warning_ignore("unused_parameter")
 func _on_type_item_item_selected(index: int) -> void: ## ПРИ выборе ТЕКУЩЕГО Глобального типа редактора, для смены ui везде
 	
-	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
-	add_node_ui.update_ui(cur_editor_obj_layers, save_data_all_library)
+	add_node_ui.update_ui(type_item.selected,editor_obj_layers, save_data_all_library)
 	update_id_list()
 
 func load_res_f(object : Resource) -> void: ## для загрузки ReadyLocation BigReadyLocation
@@ -94,8 +92,7 @@ func save_graph() -> void:
 	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.data_key,cur_id)
 	if cur_oject != null:
 		var cur_ar : Array = save_data_all_library.get_ar_from_key(cur_editor_obj_layers.data_key)
-		var save_ind = cur_ar.find(cur_oject)
-		print(save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject))
+		save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject)
 		#save_data_all_library.all_data[cur_editor_obj_layers.data_key][save_ind] = save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject)
 	
 func _on_del_item_pressed() -> void:

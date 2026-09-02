@@ -28,8 +28,8 @@ func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : Resource
 	
 	var baker_class = (editor_obj_layer.baker_object_script_path)
 	if baker_class != null:
-		var ready_baker = baker_class.new()
-		var bake_object = ready_baker.bake(object)
+		var ready_baker : BakerGraphDataObject = baker_class.new()
+		var bake_object = ready_baker.bake_data(object)
 		return bake_object
 	else:
 		push_warning("Baker for "+ editor_obj_layer.ui_name+" not find!")

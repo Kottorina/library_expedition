@@ -13,7 +13,6 @@ const TOOLCOLOR :=  Color.WHITE
 const TOOL_FORK_UI_NAME : String = "Tool Fork"
 const TOOL_UI_NAME : String = "Tool"
 const ROOMS_UI_NAME : String = "Rooms"
-const ROOMS_UI_LOCATIONS : String = "Locations"
 
 const ENTER_LOCATION_TITLE : String = "Id Enter:"
 const ROOMNODENAME = "Room Node: "
@@ -53,7 +52,7 @@ const TOOLENTERCOLOR : Color = Color.PURPLE
 var room_set : RoomsSet
 #var ready_location_ar : Array[ReadyLocation]
 
-var tasks : Dictionary = {
+var tasks_bool : Dictionary = {
 "ui_start_gener_node" : "bake_ui_start_gener_node",
 "ui_all_rnd_fork" : "bake_ui_all_rnd_fork",
 "ui_custom_big_instr" : "bake_custom_big_instr",
@@ -62,8 +61,17 @@ var tasks : Dictionary = {
 "ui_rooms_nodes" : "bake_ui_rooms_nodes",
 "ui_ready_location_nodes" : "bake_ui_ready_location_nodes"
 }
+var tasks_string : Dictionary = {
+"ui_editor_layer_nodes" : "bake_ui_editor_layer_nodes"
+}
 
-func update_ui(editor_obj_layer : EditorObjectLayer,save_data_all_library : SaveDataAllLibrary) -> void:
+var cur_editor_obj_layer_ar : Array[EditorObjectLayer]
+var cur_save_data_all_library : SaveDataAllLibrary
+
+func update_ui(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],save_data_all_library : SaveDataAllLibrary) -> void:
+	
+	cur_editor_obj_layer_ar = editor_obj_layer_ar
+	cur_save_data_all_library = save_data_all_library
 	
 	node_tool_room.start_bake_ui() ## НУЖНО ДЛЯ ОЧИСТКИ И ТД
 	## ХОРОШИЙ ВОПРОС КАК РАБОТАТЬ С room_set
@@ -71,51 +79,39 @@ func update_ui(editor_obj_layer : EditorObjectLayer,save_data_all_library : Save
 	
 	#ready_location_ar = save_data_all_library.ready_location_ar
 	
-	for task in tasks.keys():
-		var is_true = editor_obj_layer.get(task)
+	var cur_editor_layer = cur_editor_obj_layer_ar[cur_editor_obj_layer_id]
+	
+	for task in tasks_bool.keys():
+		var is_true = cur_editor_layer.get(task)
 		if is_true == true:
-			var callable = Callable(self, tasks[task])
+			var callable = Callable(self, tasks_bool[task])
 			if callable.is_valid():
 				callable.call()
+	
+	for task in tasks_string.keys():
+		var new_data_task : String = cur_editor_layer.get(task)
+		if not new_data_task.is_empty():
+			var callable = Callable(self, tasks_string[task])
+			if callable.is_valid():
+				callable.call(new_data_task)
 
-#func bake_ui_ready_location_nodes() -> void:
-	#for ready_loc_ind in ready_location_ar.size():
-		#
-		#var current_ready_loc = ready_location_ar[ready_loc_ind]
-		#
-		#if current_ready_loc != null:
-			#var name_item : String = ROOMNODENAME + current_ready_loc.name_+" "+str(ready_loc_ind)
-			#var big_instr = ready_location_to_biginstrgraphnode(current_ready_loc)
-			#big_instr.title_node = name_item
-			#big_instr.ready_location_ = current_ready_loc
-			#
-			#node_tool_room.add_new_item(ROOMS_UI_LOCATIONS, big_instr)
-	#
-#func ready_location_to_biginstrgraphnode( ready_location : ReadyLocation ) -> BigGraphNodeMakeInsts:
-	#
-	#var big_instr := BigGraphNodeMakeInsts.new()
-	#
-	#big_instr.title_node = ready_location.name_ + " " + str(ready_location.id_)
-	#big_instr.type_node = 8
-	#
-	#for enters_id : int in ready_location.enters_location.values():
-		#
-		#var instr = GraphNodeMakeInsts.new()
-		#instr.body_node = 0
-		#instr.title_instr = ENTER_LOCATION_TITLE + str(enters_id)
-		#
-		#
-		#instr.is_right = true 
-		#instr.right_type = TOOLENTERTYPE
-		#instr.right_color = TOOLENTERCOLOR
-		#instr.is_left = true
-		#instr.left_type = TOOLENTERTYPE
-		#instr.left_color = TOOLENTERCOLOR
-		#
-		#big_instr.instr_ar.append(instr)
-#
-	#
-	#return big_instr
+func bake_ui_editor_layer_nodes(data_str : String) -> void:
+	
+	var cur_editor_layer : EditorObjectLayer
+	for layer : EditorObjectLayer in cur_editor_obj_layer_ar:
+		if layer.data_key == data_str:
+			cur_editor_layer = layer
+	
+	var baker : BakerGraphDataObject = cur_editor_layer.baker_object_script_path.new()
+	if baker == null:
+		return
+	var graph_obj_ar = cur_save_data_all_library.get_ar_from_key(cur_editor_layer.data_key)
+	var graph_ui_ui_set : GraphDataObjectsUiSet = baker.bake_ui(graph_obj_ar)
+	if graph_ui_ui_set == null:
+		return
+	
+	for big_instr in graph_ui_ui_set.biginstr_ar:
+		node_tool_room.add_new_item(graph_ui_ui_set.ui_category, big_instr)
 	
 func bake_ui_rooms_nodes() -> void:
 	for room_ind in room_set.rooms_ar.size():

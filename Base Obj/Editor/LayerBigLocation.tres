@@ -8,5 +8,5 @@ script = ExtResource("1_gnomq")
 data_key = "Big Location"
 baker_object_script_path = ExtResource("1_djsmt")
 ui_enter_node = true
-ui_ready_location_nodes = true
+ui_editor_layer_nodes = "Location"
 metadata/_custom_type_script = "uid://dyh1823n402rk"

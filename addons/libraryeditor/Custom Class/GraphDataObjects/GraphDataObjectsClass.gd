@@ -1,5 +1,5 @@
 extends Resource
-class_name ReadyLocation
+class_name GraphDataObjects
 
 @export var name_ : String
 @export var id_ : int

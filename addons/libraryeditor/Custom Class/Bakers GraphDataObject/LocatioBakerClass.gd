@@ -1,63 +1,11 @@
-extends Node
-class_name ReadyLocationBaker
-
-const PORT_VALUE_FREE : String = "PortFree"
-const PORT_VALUE_OCCUPIED : String = "PortOccupied"
-
-const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
-const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
-const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
-const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
-
-var room_graph : Dictionary
-var enters_location : Dictionary
-var connection_plugs_instr : BigGraphNodeMakeInsts
-
-var free_nodes : Array[BigGraphNodeMakeInsts] ## ЕЩЕ НЕ ОБРАБОТАННЫЕ НОДЫ
-
-var save_graph : Dictionary
-var full_graph : Dictionary
-
-var rnd : RandomNumberGenerator
-
-func bake(ready_location : ReadyLocation, c_seed : int = 0) -> ReadyLocation:
-	var new_ready_location = ready_location.duplicate()
-	
-	save_graph = new_ready_location.save_graph.duplicate(true)
-	full_graph = new_ready_location.full_graph.duplicate(true)
-	
-	rnd = RandomNumberGenerator.new()
-	rnd.seed = c_seed
-	
-	room_graph.clear()
-	enters_location.clear()
-	
-	## ПРЕД ОБРАБОТКА, НАДО
-	for node_instr : BigGraphNodeMakeInsts in save_graph: 
-		match node_instr.type_node:
-			4:
-				connection_plugs_instr = node_instr 
-	
-	free_nodes.append(new_ready_location.start_bake_node)
-	
-	while ! free_nodes.is_empty():
-		
-		var cur_node = free_nodes[0]
-		#print(cur_node.type_node)
-		bake_node(cur_node)
-		
-		free_nodes.remove_at(0)
-	
-	new_ready_location.rooms_graph = room_graph
-	new_ready_location.enters_location = enters_location
-	
-	return new_ready_location
+@tool
+extends BakerGraphDataObject
+class_name LocationBaker
 
 ## ДОБАВЛЯЕТ НОДЫ ДЛЯ ПОСЛЕДУЮЩЕЙ ОБРАБОТКИ, СУКА
 func add_free_port(port : Dictionary) -> void:
 	if ! port[port.keys()[0]] is String:
 		free_nodes.append(port[port.keys()[0]][1])
-
 
 func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 	match nodes.type_node:
@@ -92,7 +40,6 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 						enters_location[enter] = value
 	
 		5:
-				
 			var enter_ports : Array 
 			var exit_ports : Array 
 			var const_port_direction : String

@@ -33,53 +33,53 @@ atl_coord_ = Vector2i(16, 12)
 
 [sub_resource type="Resource" id="Resource_4spba"]
 script = ExtResource("2_6ic48")
+coord_ = Vector2i(6, 1)
+atl_coord_ = Vector2i(14, 12)
+
+[sub_resource type="Resource" id="Resource_en7iy"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(7, 1)
+atl_coord_ = Vector2i(15, 12)
+
+[sub_resource type="Resource" id="Resource_h651q"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(8, 1)
+atl_coord_ = Vector2i(13, 12)
+
+[sub_resource type="Resource" id="Resource_uhodw"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(9, 1)
+atl_coord_ = Vector2i(14, 12)
+
+[sub_resource type="Resource" id="Resource_va2cm"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(10, 1)
+atl_coord_ = Vector2i(15, 12)
+
+[sub_resource type="Resource" id="Resource_f0wwn"]
+script = ExtResource("2_6ic48")
+coord_ = Vector2i(11, 1)
+atl_coord_ = Vector2i(16, 12)
+
+[sub_resource type="Resource" id="Resource_47a14"]
+script = ExtResource("2_6ic48")
 coord_ = Vector2i(1, 1)
 atl_coord_ = Vector2i(0, 11)
 
-[sub_resource type="Resource" id="Resource_en7iy"]
+[sub_resource type="Resource" id="Resource_pr8l1"]
 script = ExtResource("2_6ic48")
 coord_ = Vector2i(2, 1)
 atl_coord_ = Vector2i(13, 8)
 
-[sub_resource type="Resource" id="Resource_h651q"]
-script = ExtResource("2_6ic48")
-coord_ = Vector2i(3, 1)
-atl_coord_ = Vector2i(14, 8)
-
-[sub_resource type="Resource" id="Resource_uhodw"]
-script = ExtResource("2_6ic48")
-coord_ = Vector2i(4, 1)
-atl_coord_ = Vector2i(15, 8)
-
-[sub_resource type="Resource" id="Resource_va2cm"]
-script = ExtResource("2_6ic48")
-coord_ = Vector2i(5, 1)
-atl_coord_ = Vector2i(16, 8)
-
-[sub_resource type="Resource" id="Resource_f0wwn"]
-script = ExtResource("2_6ic48")
-coord_ = Vector2i(6, 1)
-atl_coord_ = Vector2i(13, 8)
-
-[sub_resource type="Resource" id="Resource_47a14"]
-script = ExtResource("2_6ic48")
-coord_ = Vector2i(7, 1)
-atl_coord_ = Vector2i(14, 8)
-
-[sub_resource type="Resource" id="Resource_pr8l1"]
-script = ExtResource("2_6ic48")
-coord_ = Vector2i(8, 1)
-atl_coord_ = Vector2i(15, 8)
-
 [sub_resource type="Resource" id="Resource_0v3fp"]
 script = ExtResource("2_6ic48")
-coord_ = Vector2i(9, 1)
-atl_coord_ = Vector2i(16, 8)
+coord_ = Vector2i(1, 1)
+atl_coord_ = Vector2i(0, 7)
 
 [sub_resource type="Resource" id="Resource_2qmet"]
 script = ExtResource("2_6ic48")
-coord_ = Vector2i(10, 1)
-atl_coord_ = Vector2i(13, 8)
+coord_ = Vector2i(2, 1)
+atl_coord_ = Vector2i(13, 4)
 
 [sub_resource type="Resource" id="Resource_p6hi1"]
 script = ExtResource("2_6ic48")
@@ -1923,8 +1923,9 @@ base_tile = Array[ExtResource("2_6ic48")]([SubResource("Resource_p6hi1"), SubRes
 room_connectors_ar = Array[ExtResource("3_i1y2t")]([SubResource("Resource_4uf4i")])
 room_enter_ar = Array[ExtResource("4_i1y2t")]([SubResource("Resource_bm7vt")])
 deco_istr_dict = {
-"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), null, null, null, null, null, null],
-"j": [SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn"), SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null]
+"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn")],
+"j": [SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), null, null, null, null, null, null, null, null, null],
+"kk": [SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null, null, null, null, null, null, null, null, null]
 }
 
 [sub_resource type="Resource" id="Resource_2ynab"]
@@ -3238,8 +3239,9 @@ id_ = 1
 base_tile = Array[ExtResource("2_6ic48")]([SubResource("Resource_2ynab"), SubResource("Resource_5kbkd"), SubResource("Resource_bwpow"), SubResource("Resource_8s2wv"), SubResource("Resource_m3gn2"), SubResource("Resource_ytxh5"), SubResource("Resource_dmeef"), SubResource("Resource_oqmge"), SubResource("Resource_cqcrm"), SubResource("Resource_unbkr"), SubResource("Resource_eydpd"), SubResource("Resource_8rmyv"), SubResource("Resource_sqggw"), SubResource("Resource_4jhuc"), SubResource("Resource_csq4w"), SubResource("Resource_vfkoy"), SubResource("Resource_huq8c"), SubResource("Resource_muft2"), SubResource("Resource_5wf4a"), SubResource("Resource_usuju"), SubResource("Resource_8jn0g"), SubResource("Resource_7k657"), SubResource("Resource_hrxxc"), SubResource("Resource_fq7j7"), SubResource("Resource_kxilj"), SubResource("Resource_pf7dd"), SubResource("Resource_8ehfp"), SubResource("Resource_w26vb"), SubResource("Resource_ukhox"), SubResource("Resource_h08oq"), SubResource("Resource_jg0bw"), SubResource("Resource_6rwb0"), SubResource("Resource_xbkes"), SubResource("Resource_0ahkk"), SubResource("Resource_1m3xo"), SubResource("Resource_a5xfw"), SubResource("Resource_dq27n"), SubResource("Resource_u5lw3"), SubResource("Resource_41ppa"), SubResource("Resource_adjl7"), SubResource("Resource_egt72"), SubResource("Resource_kpnk6"), SubResource("Resource_peg4d"), SubResource("Resource_2moqs"), SubResource("Resource_ca3oy"), SubResource("Resource_0u427"), SubResource("Resource_jnw8n"), SubResource("Resource_lumic"), SubResource("Resource_tt23q"), SubResource("Resource_iuojs"), SubResource("Resource_o6r1b"), SubResource("Resource_tpty7"), SubResource("Resource_clnua"), SubResource("Resource_dv2wj"), SubResource("Resource_hgivx"), SubResource("Resource_osnbt"), SubResource("Resource_lflj7"), SubResource("Resource_3tdgq"), SubResource("Resource_eyaew"), SubResource("Resource_ixxvv"), SubResource("Resource_ad6u3"), SubResource("Resource_765ny"), SubResource("Resource_m2rhw"), SubResource("Resource_kbavs"), SubResource("Resource_wj7fj"), SubResource("Resource_khngt"), SubResource("Resource_d4twh"), SubResource("Resource_xrk8r"), SubResource("Resource_5t5jp"), SubResource("Resource_ieq5p"), SubResource("Resource_5wfhb"), SubResource("Resource_hn0ng"), SubResource("Resource_0knh0"), SubResource("Resource_eg1ui"), SubResource("Resource_vp0me"), SubResource("Resource_ngyg5"), SubResource("Resource_du7ie"), SubResource("Resource_cttfb"), SubResource("Resource_qflaf"), SubResource("Resource_mgo8x"), SubResource("Resource_fcyxc"), SubResource("Resource_v3jak"), SubResource("Resource_fxwkj"), SubResource("Resource_034qh"), SubResource("Resource_dwus5"), SubResource("Resource_y8rg1"), SubResource("Resource_1vfo7"), SubResource("Resource_amu3t"), SubResource("Resource_q4xcc"), SubResource("Resource_wlw6g"), SubResource("Resource_xld85"), SubResource("Resource_t7qn2"), SubResource("Resource_mgrh5"), SubResource("Resource_8ktee"), SubResource("Resource_s35l0"), SubResource("Resource_bh5ar"), SubResource("Resource_opic3"), SubResource("Resource_0vhpv"), SubResource("Resource_ofngt"), SubResource("Resource_8fbhu"), SubResource("Resource_v2mea"), SubResource("Resource_v3upr"), SubResource("Resource_86hyr"), SubResource("Resource_d6u0u"), SubResource("Resource_ivsq5"), SubResource("Resource_0a1ij"), SubResource("Resource_ftfna"), SubResource("Resource_qlmfw"), SubResource("Resource_ot45t"), SubResource("Resource_12jqh"), SubResource("Resource_kcleg"), SubResource("Resource_3e4c4"), SubResource("Resource_1ow5h"), SubResource("Resource_xi084"), SubResource("Resource_anxni"), SubResource("Resource_m44w0"), SubResource("Resource_nlgxh"), SubResource("Resource_14q3e"), SubResource("Resource_55nmy"), SubResource("Resource_0booj"), SubResource("Resource_v1a8o"), SubResource("Resource_g4kue"), SubResource("Resource_yi3e2"), SubResource("Resource_43qv0"), SubResource("Resource_ek32e"), SubResource("Resource_vxkmg"), SubResource("Resource_ro8lg"), SubResource("Resource_1hjac"), SubResource("Resource_y2csd"), SubResource("Resource_d2ocr"), SubResource("Resource_3iffa"), SubResource("Resource_my8ti"), SubResource("Resource_ytx4m"), SubResource("Resource_bjsuv"), SubResource("Resource_afish"), SubResource("Resource_wp00d"), SubResource("Resource_jv4et"), SubResource("Resource_xhrs8"), SubResource("Resource_q3yyn"), SubResource("Resource_ban2a"), SubResource("Resource_pm41j"), SubResource("Resource_0yjck"), SubResource("Resource_5qpw0"), SubResource("Resource_uuw64"), SubResource("Resource_nqncw"), SubResource("Resource_pnate"), SubResource("Resource_lftsx"), SubResource("Resource_jdi15"), SubResource("Resource_2es4q"), SubResource("Resource_nb2ga"), SubResource("Resource_ylcbu"), SubResource("Resource_df1ds"), SubResource("Resource_ffvin"), SubResource("Resource_nf48c"), SubResource("Resource_w81wh"), SubResource("Resource_5psaf"), SubResource("Resource_8jfjy"), SubResource("Resource_x03dq"), SubResource("Resource_8g00y"), SubResource("Resource_ey42y"), SubResource("Resource_wqngi"), SubResource("Resource_u8jan"), SubResource("Resource_dr6s0"), SubResource("Resource_860jy"), SubResource("Resource_0pq6d"), SubResource("Resource_3u7aj"), SubResource("Resource_af8gj"), SubResource("Resource_2y2br"), SubResource("Resource_gl310"), SubResource("Resource_ad7vx"), SubResource("Resource_erxr0"), SubResource("Resource_04tbr"), SubResource("Resource_dvykp"), SubResource("Resource_rvm2f"), SubResource("Resource_71kt4"), SubResource("Resource_nb2wc"), SubResource("Resource_kkopj"), SubResource("Resource_vitay"), SubResource("Resource_kv44q"), SubResource("Resource_wojbo"), SubResource("Resource_nouve"), SubResource("Resource_fc0o3"), SubResource("Resource_ggws3"), SubResource("Resource_n6v3d"), SubResource("Resource_dk5i2"), SubResource("Resource_8pxcy"), SubResource("Resource_ajxrh"), SubResource("Resource_ludq7"), SubResource("Resource_tk0rd"), SubResource("Resource_fd0nl"), SubResource("Resource_2wv46"), SubResource("Resource_a8eb7"), SubResource("Resource_6cxlo"), SubResource("Resource_13kwh"), SubResource("Resource_cd17f"), SubResource("Resource_c2s5u"), SubResource("Resource_1mpfy"), SubResource("Resource_ee0mw"), SubResource("Resource_env65"), SubResource("Resource_k48t1"), SubResource("Resource_h2fm8"), SubResource("Resource_8abv3"), SubResource("Resource_kwuo6"), SubResource("Resource_cr1e6"), SubResource("Resource_3b1g3"), SubResource("Resource_wniml"), SubResource("Resource_tdkae"), SubResource("Resource_gwpq5"), SubResource("Resource_e1cer"), SubResource("Resource_nw28h"), SubResource("Resource_88pto"), SubResource("Resource_eips0"), SubResource("Resource_x1bp0"), SubResource("Resource_vtrlv"), SubResource("Resource_nyhik"), SubResource("Resource_2byn8"), SubResource("Resource_u0i62"), SubResource("Resource_nvvpj"), SubResource("Resource_kxdi5"), SubResource("Resource_mtu8k"), SubResource("Resource_8x4de"), SubResource("Resource_j4o5d"), SubResource("Resource_4seyu"), SubResource("Resource_sfl03"), SubResource("Resource_jplu4")])
 room_connectors_ar = Array[ExtResource("3_i1y2t")]([SubResource("Resource_jh226"), SubResource("Resource_5pj2q"), SubResource("Resource_ubxk7"), SubResource("Resource_kev8q")])
 deco_istr_dict = {
-"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), null, null, null, null, null, null],
-"j": [SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn"), SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null]
+"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn")],
+"j": [SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), null, null, null, null, null, null, null, null, null],
+"kk": [SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null, null, null, null, null, null, null, null, null]
 }
 
 [sub_resource type="Resource" id="Resource_ljbqq"]
@@ -3916,8 +3918,9 @@ id_ = 2
 base_tile = Array[ExtResource("2_6ic48")]([SubResource("Resource_ljbqq"), SubResource("Resource_dwvle"), SubResource("Resource_5p276"), SubResource("Resource_2g6rl"), SubResource("Resource_egpi3"), SubResource("Resource_up4f3"), SubResource("Resource_vn7v3"), SubResource("Resource_47hsr"), SubResource("Resource_jhwce"), SubResource("Resource_x1rb4"), SubResource("Resource_6b5yi"), SubResource("Resource_wn2kw"), SubResource("Resource_v6alp"), SubResource("Resource_yex5u"), SubResource("Resource_1h3ul"), SubResource("Resource_3nyei"), SubResource("Resource_x6n6n"), SubResource("Resource_rk8un"), SubResource("Resource_dexl8"), SubResource("Resource_n258t"), SubResource("Resource_ppfuw"), SubResource("Resource_eoeur"), SubResource("Resource_rro00"), SubResource("Resource_6egiq"), SubResource("Resource_c1qx3"), SubResource("Resource_vhxy2"), SubResource("Resource_k2yxr"), SubResource("Resource_o2q86"), SubResource("Resource_ajy08"), SubResource("Resource_d2nmg"), SubResource("Resource_qkuot"), SubResource("Resource_52n2b"), SubResource("Resource_6jkvs"), SubResource("Resource_37jnk"), SubResource("Resource_tvuxe"), SubResource("Resource_fcfg6"), SubResource("Resource_gsqyy"), SubResource("Resource_cjn24"), SubResource("Resource_2qo5e"), SubResource("Resource_0oceh"), SubResource("Resource_he6ta"), SubResource("Resource_eiwci"), SubResource("Resource_rdmxt"), SubResource("Resource_0pvbm"), SubResource("Resource_dtcru"), SubResource("Resource_bjsfs"), SubResource("Resource_fqufn"), SubResource("Resource_wnbrv"), SubResource("Resource_6mogt"), SubResource("Resource_bw5tf"), SubResource("Resource_5k5y5"), SubResource("Resource_8jn0i"), SubResource("Resource_qnj03"), SubResource("Resource_7lk0a"), SubResource("Resource_715mp"), SubResource("Resource_8x1cy"), SubResource("Resource_y300b"), SubResource("Resource_bjqj6"), SubResource("Resource_33ahl"), SubResource("Resource_f44u1"), SubResource("Resource_230at"), SubResource("Resource_ftwam"), SubResource("Resource_nhjn5"), SubResource("Resource_qqpra"), SubResource("Resource_vl6n1"), SubResource("Resource_4e5jq"), SubResource("Resource_2x52j"), SubResource("Resource_mmp15"), SubResource("Resource_15r4l"), SubResource("Resource_0ay4x"), SubResource("Resource_4aiow"), SubResource("Resource_q77nr"), SubResource("Resource_bf7gu"), SubResource("Resource_ychlb"), SubResource("Resource_poepw"), SubResource("Resource_qwchl"), SubResource("Resource_lyrm3"), SubResource("Resource_8sx0f"), SubResource("Resource_awva5"), SubResource("Resource_3t8p1"), SubResource("Resource_v3y3k"), SubResource("Resource_g0jul"), SubResource("Resource_ykcml"), SubResource("Resource_18oa8"), SubResource("Resource_eg7ew"), SubResource("Resource_054g1"), SubResource("Resource_tycbk"), SubResource("Resource_lk557"), SubResource("Resource_87mgw"), SubResource("Resource_umgwh"), SubResource("Resource_hia8c"), SubResource("Resource_fe7vr"), SubResource("Resource_aqvoc"), SubResource("Resource_2k53r"), SubResource("Resource_d3dcw"), SubResource("Resource_1a166"), SubResource("Resource_trimf"), SubResource("Resource_pjbnp"), SubResource("Resource_ehpdl"), SubResource("Resource_ntux7"), SubResource("Resource_24is7"), SubResource("Resource_c7mfn"), SubResource("Resource_vx2nh"), SubResource("Resource_bqv63"), SubResource("Resource_af67f"), SubResource("Resource_s4k7q"), SubResource("Resource_7h63o"), SubResource("Resource_3v15s"), SubResource("Resource_83uih"), SubResource("Resource_5bk4c"), SubResource("Resource_ce8e5"), SubResource("Resource_mnx4x"), SubResource("Resource_mlh4g"), SubResource("Resource_fyuyo"), SubResource("Resource_xb5y5")])
 room_connectors_ar = Array[ExtResource("3_i1y2t")]([SubResource("Resource_6f7q6"), SubResource("Resource_iqxsk")])
 deco_istr_dict = {
-"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), null, null, null, null, null, null],
-"j": [SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn"), SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null]
+"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn")],
+"j": [SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), null, null, null, null, null, null, null, null, null],
+"kk": [SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null, null, null, null, null, null, null, null, null]
 }
 
 [sub_resource type="Resource" id="Resource_rkp1v"]
@@ -4593,8 +4596,9 @@ id_ = 3
 base_tile = Array[ExtResource("2_6ic48")]([SubResource("Resource_rkp1v"), SubResource("Resource_cd37w"), SubResource("Resource_1lsip"), SubResource("Resource_q6um4"), SubResource("Resource_135e8"), SubResource("Resource_31uf7"), SubResource("Resource_okigx"), SubResource("Resource_ejhh8"), SubResource("Resource_1n2e5"), SubResource("Resource_txj77"), SubResource("Resource_ye6t5"), SubResource("Resource_tol4c"), SubResource("Resource_hlcko"), SubResource("Resource_km77d"), SubResource("Resource_d3thl"), SubResource("Resource_07661"), SubResource("Resource_lhcl7"), SubResource("Resource_f5e8w"), SubResource("Resource_xhdif"), SubResource("Resource_oi4r6"), SubResource("Resource_i6kee"), SubResource("Resource_erjgs"), SubResource("Resource_6miiy"), SubResource("Resource_neeqh"), SubResource("Resource_gpnuf"), SubResource("Resource_cvuns"), SubResource("Resource_acxyl"), SubResource("Resource_hhbqt"), SubResource("Resource_2yrts"), SubResource("Resource_xeqoy"), SubResource("Resource_c4hdw"), SubResource("Resource_1b108"), SubResource("Resource_h44dp"), SubResource("Resource_61eoy"), SubResource("Resource_6q6tw"), SubResource("Resource_ihh7v"), SubResource("Resource_t7wo6"), SubResource("Resource_u1bkc"), SubResource("Resource_hpk7o"), SubResource("Resource_2qm6p"), SubResource("Resource_6slku"), SubResource("Resource_0babl"), SubResource("Resource_thn8i"), SubResource("Resource_33n8g"), SubResource("Resource_q5k4w"), SubResource("Resource_q7gji"), SubResource("Resource_7ro0y"), SubResource("Resource_ri3ns"), SubResource("Resource_ocije"), SubResource("Resource_vftpy"), SubResource("Resource_7n1i0"), SubResource("Resource_8kaoq"), SubResource("Resource_y8aeb"), SubResource("Resource_e60yy"), SubResource("Resource_7mfam"), SubResource("Resource_dj3su"), SubResource("Resource_lroqa"), SubResource("Resource_ddok5"), SubResource("Resource_7k3c0"), SubResource("Resource_ya5wb"), SubResource("Resource_iab7n"), SubResource("Resource_7fwkk"), SubResource("Resource_qjero"), SubResource("Resource_1jdqx"), SubResource("Resource_2wj31"), SubResource("Resource_hwsgl"), SubResource("Resource_bv63x"), SubResource("Resource_iwswo"), SubResource("Resource_mlpen"), SubResource("Resource_akcil"), SubResource("Resource_wwhi3"), SubResource("Resource_pydi3"), SubResource("Resource_wy1mt"), SubResource("Resource_08i0c"), SubResource("Resource_n0g0c"), SubResource("Resource_1c7p1"), SubResource("Resource_w0h6e"), SubResource("Resource_yxnim"), SubResource("Resource_ytsmg"), SubResource("Resource_phmqh"), SubResource("Resource_8cgqm"), SubResource("Resource_ygqr5"), SubResource("Resource_i86gs"), SubResource("Resource_q4eva"), SubResource("Resource_hi8ga"), SubResource("Resource_62doa"), SubResource("Resource_kk8o0"), SubResource("Resource_re5sf"), SubResource("Resource_fm7gr"), SubResource("Resource_4l14w"), SubResource("Resource_f2msw"), SubResource("Resource_ec1eb"), SubResource("Resource_4touu"), SubResource("Resource_13rti"), SubResource("Resource_vbyrb"), SubResource("Resource_v6hl7"), SubResource("Resource_e37js"), SubResource("Resource_8mr7k"), SubResource("Resource_jirmo"), SubResource("Resource_dgbc3"), SubResource("Resource_3flqs"), SubResource("Resource_vaxia"), SubResource("Resource_vgvqa"), SubResource("Resource_hhs3q"), SubResource("Resource_617gc"), SubResource("Resource_o8rut"), SubResource("Resource_6g2eg"), SubResource("Resource_w2kpk"), SubResource("Resource_sgidd"), SubResource("Resource_2agec"), SubResource("Resource_2alrh"), SubResource("Resource_1yovv"), SubResource("Resource_7x1r4"), SubResource("Resource_g3o0o"), SubResource("Resource_mt66k")])
 room_connectors_ar = Array[ExtResource("3_i1y2t")]([SubResource("Resource_p4ghd"), SubResource("Resource_qrti4")])
 deco_istr_dict = {
-"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), null, null, null, null, null, null],
-"j": [SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn"), SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null]
+"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn")],
+"j": [SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), null, null, null, null, null, null, null, null, null],
+"kk": [SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null, null, null, null, null, null, null, null, null]
 }
 
 [sub_resource type="Resource" id="Resource_iqxuy"]
@@ -5619,8 +5623,9 @@ id_ = 10
 base_tile = Array[ExtResource("2_6ic48")]([SubResource("Resource_iqxuy"), SubResource("Resource_p1fwf"), SubResource("Resource_snv2d"), SubResource("Resource_2aukj"), SubResource("Resource_28yoa"), SubResource("Resource_sfhtv"), SubResource("Resource_mp632"), SubResource("Resource_crihp"), SubResource("Resource_m11rm"), SubResource("Resource_dnshl"), SubResource("Resource_vkd0e"), SubResource("Resource_f3rpq"), SubResource("Resource_tor6l"), SubResource("Resource_db3hh"), SubResource("Resource_q8v7p"), SubResource("Resource_ado17"), SubResource("Resource_jut27"), SubResource("Resource_f81p4"), SubResource("Resource_hnpor"), SubResource("Resource_vov1i"), SubResource("Resource_hhjts"), SubResource("Resource_d63x2"), SubResource("Resource_fbfwl"), SubResource("Resource_huild"), SubResource("Resource_qnk70"), SubResource("Resource_tvcig"), SubResource("Resource_1clbp"), SubResource("Resource_xysng"), SubResource("Resource_kj3gs"), SubResource("Resource_8nd7q"), SubResource("Resource_e15g4"), SubResource("Resource_70wao"), SubResource("Resource_4swp4"), SubResource("Resource_cv617"), SubResource("Resource_2km2c"), SubResource("Resource_1ujwq"), SubResource("Resource_ipr2l"), SubResource("Resource_bmtix"), SubResource("Resource_v2kuh"), SubResource("Resource_8kvyn"), SubResource("Resource_76jpm"), SubResource("Resource_g7gf2"), SubResource("Resource_j0qrl"), SubResource("Resource_854d4"), SubResource("Resource_rvp5n"), SubResource("Resource_vibgl"), SubResource("Resource_dsq46"), SubResource("Resource_waxeu"), SubResource("Resource_x50uk"), SubResource("Resource_mwtal"), SubResource("Resource_3stu8"), SubResource("Resource_c204b"), SubResource("Resource_m07e4"), SubResource("Resource_jhn6k"), SubResource("Resource_uui55"), SubResource("Resource_gs5ep"), SubResource("Resource_joqiw"), SubResource("Resource_wg8uj"), SubResource("Resource_4bgyk"), SubResource("Resource_1bll7"), SubResource("Resource_xx01b"), SubResource("Resource_mnnuh"), SubResource("Resource_e1exr"), SubResource("Resource_1uus2"), SubResource("Resource_slfjh"), SubResource("Resource_dsxt4"), SubResource("Resource_2iyf1"), SubResource("Resource_mukwv"), SubResource("Resource_1m6yi"), SubResource("Resource_mrx70"), SubResource("Resource_sghno"), SubResource("Resource_0x8wv"), SubResource("Resource_sj13e"), SubResource("Resource_srtsg"), SubResource("Resource_srw5k"), SubResource("Resource_j32x0"), SubResource("Resource_6jo6k"), SubResource("Resource_hyopq"), SubResource("Resource_xv2o7"), SubResource("Resource_q3jmr"), SubResource("Resource_lu78e"), SubResource("Resource_7o0p1"), SubResource("Resource_igckg"), SubResource("Resource_h0hav"), SubResource("Resource_bave1"), SubResource("Resource_sw465"), SubResource("Resource_0w13p"), SubResource("Resource_0edvo"), SubResource("Resource_ggfyc"), SubResource("Resource_1yt82"), SubResource("Resource_hrnws"), SubResource("Resource_frm5v"), SubResource("Resource_pl54i"), SubResource("Resource_1a220"), SubResource("Resource_rbu4w"), SubResource("Resource_nvwt4"), SubResource("Resource_jy8f5"), SubResource("Resource_8ywey"), SubResource("Resource_oxmtd"), SubResource("Resource_ph5f8"), SubResource("Resource_2sac5"), SubResource("Resource_rhiu4"), SubResource("Resource_86wor"), SubResource("Resource_fyfgu"), SubResource("Resource_gvjmn"), SubResource("Resource_tebhq"), SubResource("Resource_tpsxv"), SubResource("Resource_wqfw8"), SubResource("Resource_r0vnv"), SubResource("Resource_s1hhm"), SubResource("Resource_2tfpv"), SubResource("Resource_j4ywl"), SubResource("Resource_q63fk"), SubResource("Resource_eu6wr"), SubResource("Resource_b5ktg"), SubResource("Resource_bhssa"), SubResource("Resource_sdvo7"), SubResource("Resource_khjro"), SubResource("Resource_hd53i"), SubResource("Resource_bdk3j"), SubResource("Resource_57aqp"), SubResource("Resource_bw1ba"), SubResource("Resource_eolbf"), SubResource("Resource_cn47v"), SubResource("Resource_o4gjv"), SubResource("Resource_prf2n"), SubResource("Resource_7hcgc"), SubResource("Resource_4ka4x"), SubResource("Resource_a6u0e"), SubResource("Resource_mfbxl"), SubResource("Resource_hskfl"), SubResource("Resource_s45sg"), SubResource("Resource_unbco"), SubResource("Resource_q0wta"), SubResource("Resource_rhu41"), SubResource("Resource_ph4i4"), SubResource("Resource_rg5uq"), SubResource("Resource_j8jnj"), SubResource("Resource_f8ata"), SubResource("Resource_5t15n"), SubResource("Resource_4ee70"), SubResource("Resource_vfhfr"), SubResource("Resource_xvkc0"), SubResource("Resource_5ruuj"), SubResource("Resource_8pknp"), SubResource("Resource_00pre"), SubResource("Resource_2jvfg"), SubResource("Resource_tbypl"), SubResource("Resource_bp3w8"), SubResource("Resource_cqql8"), SubResource("Resource_rtfef"), SubResource("Resource_y78x2"), SubResource("Resource_b5ey6"), SubResource("Resource_s4mc7"), SubResource("Resource_jm53d"), SubResource("Resource_dajp8"), SubResource("Resource_m2fxr"), SubResource("Resource_jfym0"), SubResource("Resource_b6tgy"), SubResource("Resource_wdpo6"), SubResource("Resource_8b7v1"), SubResource("Resource_cdymn"), SubResource("Resource_evvi1"), SubResource("Resource_jvwjd"), SubResource("Resource_3gyqq"), SubResource("Resource_mdc08"), SubResource("Resource_80ryo"), SubResource("Resource_5bxif"), SubResource("Resource_nn4uj"), SubResource("Resource_t4pkn"), SubResource("Resource_bsmbk"), SubResource("Resource_j00bu"), SubResource("Resource_bllnr"), SubResource("Resource_ag1ha"), SubResource("Resource_cj6ya")])
 room_connectors_ar = Array[ExtResource("3_i1y2t")]([SubResource("Resource_wns3x"), SubResource("Resource_8tbab"), SubResource("Resource_0nsvl")])
 deco_istr_dict = {
-"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), null, null, null, null, null, null],
-"j": [SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn"), SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null]
+"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn")],
+"j": [SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), null, null, null, null, null, null, null, null, null],
+"kk": [SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null, null, null, null, null, null, null, null, null]
 }
 
 [resource]
@@ -5631,7 +5636,8 @@ room_size = Vector2i(30, 30)
 cell_to_deco_setting = Vector2i(5, 1)
 deco_setting_size = Vector2i(12, 2)
 deco_istr_dict = {
-"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), null, null, null, null, null, null],
-"j": [SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn"), SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null]
+"hh": [SubResource("Resource_0lgw1"), SubResource("Resource_jmehb"), SubResource("Resource_lq328"), SubResource("Resource_msbiv"), SubResource("Resource_i3v3x"), SubResource("Resource_4spba"), SubResource("Resource_en7iy"), SubResource("Resource_h651q"), SubResource("Resource_uhodw"), SubResource("Resource_va2cm"), SubResource("Resource_f0wwn")],
+"j": [SubResource("Resource_47a14"), SubResource("Resource_pr8l1"), null, null, null, null, null, null, null, null, null],
+"kk": [SubResource("Resource_0v3fp"), SubResource("Resource_2qmet"), null, null, null, null, null, null, null, null, null]
 }
 metadata/_custom_type_script = "uid://h3ubtombidhi"

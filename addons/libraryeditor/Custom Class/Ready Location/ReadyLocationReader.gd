@@ -11,19 +11,19 @@ const Direction : Dictionary = { 0 : Vector2i(0 , -1), 1 : Vector2i(0 , 1), 2 : 
 
 var parts_for_cycle : int = 100
 
-var new_ready_location : ReadyLocation
+var new_ready_location : GraphDataObjects
 
 var rnd : RandomNumberGenerator
 
-func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
+func start_load(ready_location : GraphDataObjects, seed : int = 0) -> void:
 	
 	rnd = RandomNumberGenerator.new()
 	rnd.seed = seed
 	
 		## .duplicate(true) ЛОМАЕТ СООТВЕСТВИЕ В ТАЙЛАХ, ПРОСТО НЕ ЗАПЕКАЙТЕ ЕСЛИ БЕСПОКОИТЕСЬ О ВЕСЕ
 	if seed != 0:
-		var bake_node = ReadyLocationBake.new()
-		new_ready_location = bake_node.bake_ready_location(ready_location,seed)
+		var bake_node = LocationBaker.new()
+		new_ready_location = bake_node.bake(ready_location,seed)
 	else:
 		new_ready_location = ready_location
 	
@@ -37,8 +37,6 @@ func start_load(ready_location : ReadyLocation, seed : int = 0) -> void:
 	load_room(new_ready_location.rooms_graph.keys()[0], parts_for_cycle)
 	
 	for room : Room in new_ready_location.rooms_graph.keys():
-		
-		
 		
 		## ОБНОВИТЕ ПРИ СМЕНЕ КОМНАТЫ, БЛЯДИ
 		
@@ -71,7 +69,7 @@ func load_room(room : Room, parts_max : int) -> void:
 		#return
 	#occupied_room_ar.append(room)
 	
-	print("!")
+	print("load room")
 	
 	c_parts_ar.clear()
 	

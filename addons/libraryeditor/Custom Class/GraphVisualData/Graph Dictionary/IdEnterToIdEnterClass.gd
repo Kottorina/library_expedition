@@ -4,4 +4,4 @@ class_name IdEnterToIdEnter ## Связь коннектора исходной 
 @export var from_id : int
 @export var to_id : int
 
-@export var to_location : ReadyLocation ## Чекнуть на существование перед отрисовкой!
+@export var to_data : GraphDataObjects ## Чекнуть на существование перед отрисовкой!

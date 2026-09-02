@@ -51,7 +51,7 @@ const TOOLENTERTYPE : int = 17
 const TOOLENTERCOLOR : Color = Color.PURPLE
 
 var room_set : RoomsSet
-var ready_location_ar : Array[ReadyLocation]
+#var ready_location_ar : Array[ReadyLocation]
 
 var tasks : Dictionary = {
 "ui_start_gener_node" : "bake_ui_start_gener_node",
@@ -69,51 +69,53 @@ func update_ui(editor_obj_layer : EditorObjectLayer,save_data_all_library : Save
 	## ХОРОШИЙ ВОПРОС КАК РАБОТАТЬ С room_set
 	room_set = ResourceLoader.load(gener_rule_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
 	
-	ready_location_ar = save_data_all_library.ready_location_ar
+	#ready_location_ar = save_data_all_library.ready_location_ar
 	
 	for task in tasks.keys():
 		var is_true = editor_obj_layer.get(task)
 		if is_true == true:
-			Callable(self, tasks[task]).call()
+			var callable = Callable(self, tasks[task])
+			if callable.is_valid():
+				callable.call()
 
-func bake_ui_ready_location_nodes() -> void:
-	for ready_loc_ind in ready_location_ar.size():
-		
-		var current_ready_loc = ready_location_ar[ready_loc_ind]
-		
-		if current_ready_loc != null:
-			var name_item : String = ROOMNODENAME + current_ready_loc.name_+" "+str(ready_loc_ind)
-			var big_instr = ready_location_to_biginstrgraphnode(current_ready_loc)
-			big_instr.title_node = name_item
-			big_instr.ready_location_ = current_ready_loc
-			
-			node_tool_room.add_new_item(ROOMS_UI_LOCATIONS, big_instr)
-	
-func ready_location_to_biginstrgraphnode( ready_location : ReadyLocation ) -> BigGraphNodeMakeInsts:
-	
-	var big_instr := BigGraphNodeMakeInsts.new()
-	
-	big_instr.title_node = ready_location.name_ + " " + str(ready_location.id_)
-	big_instr.type_node = 8
-	
-	for enters_id : int in ready_location.enters_location.values():
-		
-		var instr = GraphNodeMakeInsts.new()
-		instr.body_node = 0
-		instr.title_instr = ENTER_LOCATION_TITLE + str(enters_id)
-		
-		
-		instr.is_right = true 
-		instr.right_type = TOOLENTERTYPE
-		instr.right_color = TOOLENTERCOLOR
-		instr.is_left = true
-		instr.left_type = TOOLENTERTYPE
-		instr.left_color = TOOLENTERCOLOR
-		
-		big_instr.instr_ar.append(instr)
-
-	
-	return big_instr
+#func bake_ui_ready_location_nodes() -> void:
+	#for ready_loc_ind in ready_location_ar.size():
+		#
+		#var current_ready_loc = ready_location_ar[ready_loc_ind]
+		#
+		#if current_ready_loc != null:
+			#var name_item : String = ROOMNODENAME + current_ready_loc.name_+" "+str(ready_loc_ind)
+			#var big_instr = ready_location_to_biginstrgraphnode(current_ready_loc)
+			#big_instr.title_node = name_item
+			#big_instr.ready_location_ = current_ready_loc
+			#
+			#node_tool_room.add_new_item(ROOMS_UI_LOCATIONS, big_instr)
+	#
+#func ready_location_to_biginstrgraphnode( ready_location : ReadyLocation ) -> BigGraphNodeMakeInsts:
+	#
+	#var big_instr := BigGraphNodeMakeInsts.new()
+	#
+	#big_instr.title_node = ready_location.name_ + " " + str(ready_location.id_)
+	#big_instr.type_node = 8
+	#
+	#for enters_id : int in ready_location.enters_location.values():
+		#
+		#var instr = GraphNodeMakeInsts.new()
+		#instr.body_node = 0
+		#instr.title_instr = ENTER_LOCATION_TITLE + str(enters_id)
+		#
+		#
+		#instr.is_right = true 
+		#instr.right_type = TOOLENTERTYPE
+		#instr.right_color = TOOLENTERCOLOR
+		#instr.is_left = true
+		#instr.left_type = TOOLENTERTYPE
+		#instr.left_color = TOOLENTERCOLOR
+		#
+		#big_instr.instr_ar.append(instr)
+#
+	#
+	#return big_instr
 	
 func bake_ui_rooms_nodes() -> void:
 	for room_ind in room_set.rooms_ar.size():

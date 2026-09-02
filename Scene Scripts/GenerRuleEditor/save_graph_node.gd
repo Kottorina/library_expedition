@@ -26,7 +26,7 @@ func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : Resource
 	object.full_graph = save_full_ar[1]
 	object.ui = get_scene_ui_graph()
 	
-	var baker_class = load(editor_obj_layer.baker_script_path)
+	var baker_class = (editor_obj_layer.baker_object_script_path)
 	if baker_class != null:
 		var ready_baker = baker_class.new()
 		var bake_object = ready_baker.bake(object)

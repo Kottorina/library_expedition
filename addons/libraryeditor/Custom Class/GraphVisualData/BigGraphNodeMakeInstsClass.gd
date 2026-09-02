@@ -9,7 +9,7 @@ class_name BigGraphNodeMakeInsts
 ) var type_node : int ##make_room,enter_location,start_gener,tool_crossroad,con_pl,rnd_fork,rool_rnd_fork_set
 
 @export var room_ : Room
-@export var ready_location_ : ReadyLocation
+@export var ready_location_ : GraphDataObjects
 
 @export var instr_ar : Array[GraphNodeMakeInsts]
 

@@ -4,12 +4,14 @@ extends Node2D
 @export var cur_seed : int = 0
 @export var seed_auto_add : bool = true
 
-@export var path_current_ready_location_set : String
+@export var data_key : String
 @export var location_ind : int
 
 @export var parts_for_cycle : int = 30
 
 @export var draw_ar : Array[TileMapLayer]
+
+@export var save_data_all_library : SaveDataAllLibrary  ## СЕЙВ ДАТА, АККУРАТНЕЕ БЛЯДИ
 
 var final_enter_dict : Dictionary
 
@@ -17,8 +19,7 @@ var final_enter_dict : Dictionary
 func read():
 	clear_f()
 	
-	var ready_locations_set : ReadyLocationSet = ResourceLoader.load(path_current_ready_location_set,"",ResourceLoader.CACHE_MODE_IGNORE)
-	var ready_locations = ready_locations_set.get_ready_location_from_id(location_ind)
+	var ready_locations = save_data_all_library.get_object_from_id(data_key,location_ind)
 	
 	var location_loader := ReadyLocationLoader.new()
 	

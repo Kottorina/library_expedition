@@ -18,7 +18,7 @@ func update_ui() -> void:  ## Обновляет editor_obj_layers и делае
 	editor_obj_layers = gener_rule_editor.editor_obj_layers
 	var ind = 0
 	for obj in editor_obj_layers:
-		type_item.add_item(obj.ui_name,ind)
+		type_item.add_item(obj.data_key,ind)
 		ind += 1
 
 func update_all_save_data(new_save_data : SaveDataAllLibrary) -> void: ## Обновляет save_data_all_library
@@ -36,7 +36,9 @@ func update_id_list() -> void: ## Обновляет список достпны
 	
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var object_ar : Variant = save_data_all_library.get(cur_editor_obj_layers.save_array_name)
+	var object_ar : Array = save_data_all_library.get_ar_from_key(cur_editor_obj_layers.data_key)
+	if object_ar == null:
+		return
 	
 	for object in object_ar:
 		var name_item = str(object.name_," ",object.id_)
@@ -49,7 +51,7 @@ func _on_add_new_button_pressed() -> void: ## Добовляет новый ре
 	
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var new_obj = save_data_all_library.add_new_obj_in_array(cur_editor_obj_layers.object_script_path,cur_editor_obj_layers.save_array_name)
+	var new_obj = save_data_all_library.add_new_obj_in_array(cur_editor_obj_layers.data_key)
 	update_id_list()
 	load_res_f(new_obj)
  
@@ -75,30 +77,33 @@ func _on_load_button_pressed() -> void: ## Загружает ресурс по 
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.save_array_name,cur_id)
+	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.data_key,cur_id)
 	if cur_oject != null:
 		load_res_f(cur_oject)
 
 func _on_save_button_pressed() -> void:
 	save_graph()
+	
+## НЕ НУЖНА, ПОЧЕМУ ТО ОНО И ТАК СОХРАНЯЕТ АВТОМАТОМ
 func save_graph() -> void:
 	print("save graph")
 	
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.save_array_name,cur_id)
+	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.data_key,cur_id)
 	if cur_oject != null:
-		var cur_ar : Array = save_data_all_library.get(cur_editor_obj_layers.save_array_name)
+		var cur_ar : Array = save_data_all_library.get_ar_from_key(cur_editor_obj_layers.data_key)
 		var save_ind = cur_ar.find(cur_oject)
-		cur_ar[save_ind] = save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject)
+		print(save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject))
+		#save_data_all_library.all_data[cur_editor_obj_layers.data_key][save_ind] = save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject)
 	
 func _on_del_item_pressed() -> void:
 	
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	save_data_all_library.del_item_from_id(cur_editor_obj_layers.save_array_name,cur_id)
+	save_data_all_library.del_item_from_id(cur_editor_obj_layers.data_key,cur_id)
 	update_id_list()
 
 func _on_rename_pressed() -> void:
@@ -106,6 +111,6 @@ func _on_rename_pressed() -> void:
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.save_array_name,cur_id)
+	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.data_key,cur_id)
 	cur_oject.name_ = item_name.text
 	update_id_list()

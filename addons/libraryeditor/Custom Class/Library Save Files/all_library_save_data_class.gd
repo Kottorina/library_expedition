@@ -1,26 +1,30 @@
+@tool
 extends Resource
 
 ## УНИВЕРСАЛЬНАЯ ЗАМЕНА ReadyLocationSet BigReadyLocationSet
 class_name SaveDataAllLibrary
 
-@export var big_ready_location_ar : Array[BigReadyLocation] 
+@export var all_data : Dictionary ##  Хранит все данные { data_key : Array[GraphDataObjects] }
 
-@export var ready_location_ar : Array[ReadyLocation] 
+# @export var room_set : RoomsSet ПОДУМАЙ КАК И ЗАЧЕМ
 
-# @export var room_set : RoomsSet
-
+func get_ar_from_key(data_key : String ) -> Array:
+	
+	if all_data.has(data_key):
+		return all_data[data_key]
+	else:
+		all_data[data_key] = []
+		return all_data[data_key]
 
 const MinId : int = 0
 const MaxId : int = 100
 
-func get_object_from_id(name_ar : String, id : int) -> Variant:
+func get_object_from_id(data_key : String, id : int) -> Variant:
 	
-	var find_ar = get(name_ar)
-	if find_ar is not Array:
-		return
+	var cur_ar = get_ar_from_key(data_key)
 	
 	var find_loc_ar : Array[Resource] = []
-	for loc in find_ar:
+	for loc in cur_ar:
 		if loc != null:
 			if loc.id_ == id:
 				find_loc_ar.append(loc)
@@ -33,35 +37,29 @@ func get_object_from_id(name_ar : String, id : int) -> Variant:
 	
 	return null
 
-func del_item_from_id(name_ar : String,id : int) -> void:
+func del_item_from_id(data_key : String,id : int) -> void:
 	
-	var find_ar = get(name_ar)
-	if find_ar is not Array:
-		return
+	var cur_ar = get_ar_from_key(data_key)
 	
 	var find_loc_ar : Array[Resource] = []
-	for loc in find_ar:
+	for loc in cur_ar:
 		if loc.id_ == id:
-			find_ar.erase(loc)
+			cur_ar.erase(loc)
 			return
 
-func add_new_obj_in_array(obj_path : String,name_ar : String) -> Resource:
+func add_new_obj_in_array(data_key : String) -> Resource:
 	
-	var find_ar = get(name_ar)
-	if find_ar is not Array:
-		return
+	var cur_ar = get_ar_from_key(data_key)
 	
 	var new_id : int
 	for id in range(MinId,MaxId):
-		if get_object_from_id(name_ar,id) == null:
+		if get_object_from_id(data_key , id) == null:
 			new_id = id
 			break
 	
-	var script = load(obj_path)
-	
-	var object : Resource = script.new()
+	var object := GraphDataObjects.new()
 	object.id_ = new_id ## ПРОСТО ПОВЕРЬ, У НЕГО ЕСТЬ id_, ЕСЛИ НЕТ ТО Я НА КОЛЕНЯХ ИЗВЕНЯТЬСЯ БУДУ
 	
-	find_ar.append(object)
+	cur_ar.append(object)
 
 	return object

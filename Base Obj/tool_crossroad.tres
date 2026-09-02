@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BigGraphNodeMakeInsts" format=3 uid="uid://dltpcxec70lcp"]
 
-[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/Gener Rule/GraphNodeMakeInstsClass.gd" id="1_cpn3h"]
-[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/Gener Rule/BigGraphNodeMakeInstsClass.gd" id="2_b6xbx"]
+[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_cpn3h"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_b6xbx"]
 
 [sub_resource type="Resource" id="Resource_0loe1"]
 script = ExtResource("1_cpn3h")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6cm1kqxhbotr"]
 
 [ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_mhfe8"]
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="2_1lj8g"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://Scene Scripts/GenerRuleEditor/EditorObjectLayerClass.gd" id="2_1lj8g"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/GenerRuleEditor/node_tool_room.gd" id="2_4kd4q"]
 [ext_resource type="Script" uid="uid://cf626ex5mrmiq" path="res://Scene Scripts/GenerRuleEditor/make_node_settings.gd" id="3_3uhl4"]
 [ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://Base Obj/Editor/LayerLocation.tres" id="3_nig86"]

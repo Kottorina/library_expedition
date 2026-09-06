@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://cni4eqi4hcvra"]
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3]
 
-[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_2kto6"]
-[ext_resource type="Script" uid="uid://b43lnce4bp8vd" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="1_ndvnd"]
-[ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_yccmo"]
-[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_thuch"]
-[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="3_65lkj"]
-[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="4_2qb2w"]
-[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="4_w3qdg"]
-[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="5_pa3dx"]
-[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="6_m6hf0"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_2kto6"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="1_ndvnd"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_yccmo"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_thuch"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="3_65lkj"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="4_2qb2w"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="4_w3qdg"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="5_pa3dx"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="6_m6hf0"]
 
 [sub_resource type="Resource" id="Resource_odo21"]
 script = ExtResource("1_2kto6")
@@ -16,6 +16,7 @@ title_instr = "Tool:"
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 
 [sub_resource type="Resource" id="Resource_52sy2"]
 script = ExtResource("1_2kto6")
@@ -24,6 +25,7 @@ is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 body_node = 1
+body_value = null
 
 [sub_resource type="Resource" id="Resource_et7dc"]
 script = ExtResource("2_thuch")
@@ -76,6 +78,7 @@ title_instr = "Tool:"
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 
 [sub_resource type="Resource" id="Resource_65lkj"]
 script = ExtResource("1_2kto6")
@@ -84,6 +87,7 @@ is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 body_node = 1
+body_value = 0.0
 
 [sub_resource type="Resource" id="Resource_w3qdg"]
 script = ExtResource("2_thuch")
@@ -106,6 +110,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_4uf4i")
 
 [sub_resource type="Resource" id="Resource_bm7vt"]
@@ -122,6 +127,7 @@ left_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
+body_value = null
 source_res = SubResource("Resource_bm7vt")
 
 [sub_resource type="Resource" id="Resource_p6hi1"]
@@ -2067,6 +2073,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_jh226")
 
 [sub_resource type="Resource" id="Resource_5pj2q"]
@@ -2083,6 +2090,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_5pj2q")
 
 [sub_resource type="Resource" id="Resource_ubxk7"]
@@ -2099,6 +2107,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_ubxk7")
 
 [sub_resource type="Resource" id="Resource_kev8q"]
@@ -2114,6 +2123,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_kev8q")
 
 [sub_resource type="Resource" id="Resource_m6hf0"]
@@ -3523,6 +3533,7 @@ left_color = Color(1, 1, 1, 1)
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 
 [sub_resource type="Resource" id="Resource_u5kan"]
 script = ExtResource("3_65lkj")
@@ -3537,6 +3548,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_u5kan")
 
 [sub_resource type="Resource" id="Resource_x6w46"]
@@ -3552,6 +3564,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_x6w46")
 
 [sub_resource type="Resource" id="Resource_niar2"]
@@ -3563,6 +3576,7 @@ is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
 body_node = 1
+body_value = 0.0
 source_res = SubResource("Resource_x6w46")
 
 [sub_resource type="Resource" id="Resource_xydbm"]
@@ -3575,6 +3589,7 @@ instr_ar = Array[ExtResource("1_2kto6")]([SubResource("Resource_r8oor"), SubReso
 [sub_resource type="Resource" id="Resource_i46w3"]
 script = ExtResource("1_2kto6")
 title_instr = "Base"
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_0loe1"]
@@ -3595,12 +3610,14 @@ metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 script = ExtResource("1_2kto6")
 title_instr = "Alt 3:"
 body_node = 1
+body_value = 0.1
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_cyeij"]
 script = ExtResource("1_2kto6")
 title_instr = "Alt 4:"
 body_node = 1
+body_value = 100.0
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_wb5tl"]
@@ -3612,6 +3629,7 @@ left_color = Color(1, 1, 1, 1)
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_olx5o"]
@@ -3637,6 +3655,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_mtim7")
 
 [sub_resource type="Resource" id="Resource_8t3us"]
@@ -3653,6 +3672,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_8t3us")
 
 [sub_resource type="Resource" id="Resource_q73yc"]
@@ -3669,6 +3689,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_q73yc")
 
 [sub_resource type="Resource" id="Resource_w31sj"]
@@ -3684,6 +3705,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_w31sj")
 
 [sub_resource type="Resource" id="Resource_w6m6y"]
@@ -5098,6 +5120,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_83xtq")
 
 [sub_resource type="Resource" id="Resource_lqql0"]
@@ -5114,6 +5137,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_lqql0")
 
 [sub_resource type="Resource" id="Resource_bftnp"]
@@ -5130,6 +5154,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_bftnp")
 
 [sub_resource type="Resource" id="Resource_j3d5q"]
@@ -5145,6 +5170,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_j3d5q")
 
 [sub_resource type="Resource" id="Resource_xiv4s"]
@@ -6559,6 +6585,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_wk8y3")
 
 [sub_resource type="Resource" id="Resource_0sdsm"]
@@ -6575,6 +6602,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_0sdsm")
 
 [sub_resource type="Resource" id="Resource_j34h1"]
@@ -6591,6 +6619,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_j34h1")
 
 [sub_resource type="Resource" id="Resource_6g3c0"]
@@ -6606,6 +6635,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_6g3c0")
 
 [sub_resource type="Resource" id="Resource_w0q5q"]
@@ -8020,6 +8050,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_5k007")
 
 [sub_resource type="Resource" id="Resource_2j4hp"]
@@ -8036,6 +8067,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_2j4hp")
 
 [sub_resource type="Resource" id="Resource_iq1ci"]
@@ -8827,6 +8859,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_308dp")
 
 [sub_resource type="Resource" id="Resource_ucete"]
@@ -8843,6 +8876,7 @@ left_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
+body_value = null
 source_res = SubResource("Resource_ucete")
 
 [sub_resource type="Resource" id="Resource_lef3q"]
@@ -10795,8 +10829,8 @@ instr_ar = Array[ExtResource("1_2kto6")]([SubResource("Resource_pu24e")])
 
 [sub_resource type="Resource" id="Resource_j8g8o"]
 script = ExtResource("4_2qb2w")
-zoom = 0.42409736
-scroll_offset = Vector2(46.814087, -333.58005)
+zoom = 1.3309997
+scroll_offset = Vector2(111.12689, -462.80927)
 
 [sub_resource type="Resource" id="Resource_vssk0"]
 script = ExtResource("1_ndvnd")
@@ -11229,6 +11263,7 @@ title_instr = "Tool:"
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 
 [sub_resource type="Resource" id="Resource_e41t7"]
 script = ExtResource("1_2kto6")
@@ -11260,6 +11295,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_jmai1")
 
 [sub_resource type="Resource" id="Resource_7mf81"]
@@ -11271,6 +11307,7 @@ left_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
+body_value = null
 source_res = SubResource("Resource_f2gh3")
 
 [sub_resource type="Resource" id="Resource_yb3yl"]
@@ -13205,6 +13242,7 @@ left_type = 6
 left_color = Color(0, 0, 1, 1)
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_6f7q6")
 
 [sub_resource type="Resource" id="Resource_iqxsk"]
@@ -13221,6 +13259,7 @@ left_color = Color(0, 0, 1, 1)
 is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
+body_value = null
 source_res = SubResource("Resource_iqxsk")
 
 [sub_resource type="Resource" id="Resource_7g4e5"]

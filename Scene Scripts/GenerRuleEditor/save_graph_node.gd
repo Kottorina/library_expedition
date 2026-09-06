@@ -54,7 +54,7 @@ func get_save_full_graph( start_gener_node : Node ) -> Array: ## [ savegraph, fu
 	var free_nodes : Dictionary ## { node (StringName) : true } --- Ноды которые нужно обработать
 	free_nodes[current_node] = true
 	
-	bake_graph_node_biginstr() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
+	SynchronizationDataFromUI() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
 	
 	while !free_nodes.is_empty(): ## ЗАПОЛНЕНИЕ СОХРАНЕННОГО И ПОЛНОГО ГРАФА
 		
@@ -139,7 +139,7 @@ func find_start_gener_node() -> Node:
 		return start_ar[0] 
 	return null
 
-func bake_graph_node_biginstr() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУКЦИИ К ТЕКУЩЕМУ СОСТОЯНИЯ НОДА ВЫЗВАТЬ ПЕРЕД СОХРАНЕНИЕМ
+func SynchronizationDataFromUI() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУКЦИИ К ТЕКУЩЕМУ СОСТОЯНИЯ НОДА ВЫЗВАТЬ ПЕРЕД СОХРАНЕНИЕМ
 	
 	var graph_nodes_ar : Array[GraphNode]
 	for child in graph_edit.get_children():
@@ -147,7 +147,7 @@ func bake_graph_node_biginstr() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУ
 			graph_nodes_ar.append(child)
 	
 	for graph_node in graph_nodes_ar:
-		var big_instr : BigGraphNodeMakeInsts = graph_node.get_meta(BIG_INSTR_NODE_DATA_NAME).duplicate()
+		var big_instr : BigGraphNodeMakeInsts = graph_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
 		big_instr.coord_ = graph_node.position_offset
 		
 		var ind = 0
@@ -157,8 +157,6 @@ func bake_graph_node_biginstr() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУ
 				if meta_data != null:
 					big_instr.instr_ar[ind].body_value = meta_data.value
 			ind += 1
-		
-		graph_node.set_meta(BIG_INSTR_NODE_DATA_NAME,big_instr)
 
 func block_port(node_name : StringName, port : int, direction : String) -> void:
 	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):

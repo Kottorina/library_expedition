@@ -62,7 +62,11 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 				child_node.add_child(label)
 				child_node.add_child(active_node)
 				
-				active_node.value = inst.body_value
+				if inst.body_value != null:
+					active_node.value = inst.body_value
+				else:
+					inst.body_value = 0
+					active_node.value = inst.body_value
 		
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		

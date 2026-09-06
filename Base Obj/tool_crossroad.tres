@@ -12,6 +12,7 @@ left_color = Color(1, 1, 1, 1)
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_i46w3"]
@@ -23,6 +24,7 @@ left_color = Color(1, 1, 1, 1)
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [resource]

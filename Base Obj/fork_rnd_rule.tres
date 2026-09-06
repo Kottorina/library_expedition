@@ -6,30 +6,35 @@
 [sub_resource type="Resource" id="Resource_i46w3"]
 script = ExtResource("1_jlf7c")
 title_instr = "Base"
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_0loe1"]
 script = ExtResource("1_jlf7c")
 title_instr = "Alt 1:"
 body_node = 1
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_jlf7c"]
 script = ExtResource("1_jlf7c")
 title_instr = "Alt 2:"
 body_node = 1
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_b0u0k"]
 script = ExtResource("1_jlf7c")
 title_instr = "Alt 3:"
 body_node = 1
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_cyeij"]
 script = ExtResource("1_jlf7c")
 title_instr = "Alt 4:"
 body_node = 1
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [sub_resource type="Resource" id="Resource_wb5tl"]
@@ -41,6 +46,7 @@ left_color = Color(1, 1, 1, 1)
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
+body_value = null
 metadata/_custom_type_script = "uid://bpcjxhhu46lny"
 
 [resource]

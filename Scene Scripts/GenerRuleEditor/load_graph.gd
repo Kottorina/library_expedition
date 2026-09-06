@@ -12,7 +12,7 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 
 
-func load_ui_set( scene_graph_ui : SceneGraphUi ) -> void:
+func LoadUiSet( scene_graph_ui : SceneGraphUi ) -> void:
 	if scene_graph_ui != null:
 		graph_edit.zoom = scene_graph_ui.zoom
 		graph_edit.scroll_offset = scene_graph_ui.scroll_offset
@@ -73,7 +73,6 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		if inst.is_left == true:
 			var metadata = GraphNodeMetadata.new()
 			metadata.source_res = inst.source_res
-			metadata.active_node = active_node
 			metadata.port_num = left_port_mum
 			left_ports_data_ar.append(metadata)
 			
@@ -82,7 +81,6 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		if inst.is_right == true:
 			var metadata = GraphNodeMetadata.new()
 			metadata.source_res = inst.source_res
-			metadata.active_node = active_node
 			metadata.port_num = right_port_mum
 			right_ports_data_ar.append(metadata)
 			
@@ -99,56 +97,43 @@ func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	graph_edit.add_child(new_node)
 	return new_node
 
-func load_graph(graph : Dictionary) -> void:
+## ЗАГРУЗКА SAVEGRAPH, гав гав
+func LoadSaveGraph(save_graph : Dictionary) -> void:
 	
-	clear_graph_scene()
-	
-	## СОБСВТЕННО ЗАГРУЗКА, ЧЕКНИ ГРАФ НА ХУЙНЮ А НЕ ДАННЫЕ
-	
-	## \\\...
-	
-	if graph.is_empty():
+	ClearGraphScene()
+	if save_graph.is_empty():
 		return
 	
-	var ready_graph_nodes_from_instr : Dictionary ## BigInstr : Node
+	## ЗАГРУЗКА НОДОВ
+	#var ready_graph_nodes_from_instr : Dictionary ## BigInstr : Node
 	
-	for cur_ind in graph.keys().size():
+	var big_instr_to_node : Dictionary
+	
+	for big_instr in save_graph.keys():
+		var new_node = make_node_from_biginstr(big_instr)
+		big_instr_to_node[big_instr] = new_node
 		
-		var curent_node : Node
-		var curent_node_instr = graph.keys()[cur_ind]
-		
-		if !ready_graph_nodes_from_instr.has(curent_node_instr):
-			curent_node = make_node_from_biginstr(curent_node_instr)
-			ready_graph_nodes_from_instr[ graph.keys()[cur_ind] ] = curent_node
-		else:
-			curent_node = ready_graph_nodes_from_instr[curent_node_instr]
-		
-		for left_port : Dictionary in graph[curent_node_instr][LEFT_PORTS_DATA_NAME]:
+	for big_instr in save_graph.keys():
+		## ЗАГРУЗКА СОЕДИНЕНИЙ
+		for left_port : FromToWith in save_graph[big_instr][LEFT_PORTS_DATA_NAME]:
 			
-			var start_port_meta : GraphNodeMetadata = left_port.keys()[0]
-			if left_port[start_port_meta] is String:
+			if left_port.to_obj is String:
 				continue
-			var end_port_meta : GraphNodeMetadata = left_port[start_port_meta][0]
-			var final_node_instr : BigGraphNodeMakeInsts = left_port[start_port_meta][1]
+			LoadConnect(big_instr_to_node[big_instr],left_port,big_instr_to_node[left_port.to_obj])
 			
-			if ! ready_graph_nodes_from_instr.has(final_node_instr):
-				ready_graph_nodes_from_instr[final_node_instr] = make_node_from_biginstr(final_node_instr)
-			graph_edit.connect_node(ready_graph_nodes_from_instr[final_node_instr].name, end_port_meta.port_num,curent_node.name, start_port_meta.port_num)
-
+		for right_port : FromToWith in save_graph[big_instr][RIGHT_PORTS_DATA_NAME]:
 			
-		for right_port : Dictionary in graph[curent_node_instr][RIGHT_PORTS_DATA_NAME]:
-			var start_port_meta : GraphNodeMetadata = right_port.keys()[0]
-			if right_port[start_port_meta] is String:
+			if right_port.to_obj is String:
 				continue
-			var end_port_meta : GraphNodeMetadata = right_port[start_port_meta][0]
-			var final_node_instr : BigGraphNodeMakeInsts = right_port[start_port_meta][1]
-			
-			if ! ready_graph_nodes_from_instr.has(final_node_instr):
-				ready_graph_nodes_from_instr[final_node_instr] = make_node_from_biginstr(final_node_instr)
-			graph_edit.connect_node(curent_node.name, start_port_meta.port_num, ready_graph_nodes_from_instr[final_node_instr].name, end_port_meta.port_num)
+			LoadConnect(big_instr_to_node[big_instr],right_port,big_instr_to_node[right_port.to_obj])
 
-
-func clear_graph_scene() -> void:
+func LoadConnect(from_node : Node, from_to_with : FromToWith,to_obj : Node) -> void:
+	
+	graph_edit.connect_node(
+		from_node.name,from_to_with.from_data.port_num,to_obj.name, from_to_with.to_data.port_num
+		)
+	
+func ClearGraphScene() -> void:
 	
 	## ОЧИСТИТЬ НАСТРОЙКИ ЕСЛИ ДОБАВЛЮ, ебала я вас всех
 	
@@ -157,17 +142,20 @@ func clear_graph_scene() -> void:
 		if child is GraphNode:
 			child.queue_free()
 
-func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+
+
+var selected_node : Node
+func _on_del_node_pressed() -> void:
+	if selected_node != null:
+		selected_node.queue_free()
+func _on_main_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
 	if graph_edit.is_node_connected(from_node, from_port, to_node, to_port):
 		graph_edit.disconnect_node(from_node, from_port, to_node, to_port)
 	else:
 		graph_edit.connect_node(from_node, from_port, to_node, to_port)
-var selected_node : Node
-func _on_graph_edit_node_selected(node: Node) -> void:
-	selected_node = node
+		
 @warning_ignore("unused_parameter")
-func _on_graph_edit_node_deselected(node: Node) -> void:
+func _on_main_graph_edit_node_deselected(node: Node) -> void:
 	selected_node = null
-func _on_del_node_pressed() -> void:
-	if selected_node != null:
-		selected_node.queue_free()
+func _on_main_graph_edit_node_selected(node: Node) -> void:
+	selected_node = node

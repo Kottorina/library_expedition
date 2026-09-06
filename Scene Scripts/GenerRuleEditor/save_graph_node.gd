@@ -12,7 +12,7 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
-func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : Resource) -> Resource:
+func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : GraphDataObjects) -> GraphDataObjects:
 	
 	var start_gener_node = find_start_gener_node()
 	if start_gener_node == null:
@@ -141,7 +141,7 @@ func GetSaveFullGraph( start_gener_node : Node ) -> Array:
 		
 		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
 		full_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : full_left_ports, RIGHT_PORTS_DATA_NAME : full_right_ports}
-	
+		
 	return [ save_graph, full_graph ]
 
 func block_port(node_name : StringName, port : int, direction : String) -> void:

@@ -49,12 +49,12 @@ theme_override_constants/margin_bottom = 14
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MainControl" unique_id=756753027]
 layout_mode = 2
 
-[node name="Node Tool Room" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer" unique_id=36879208 node_paths=PackedStringArray("load_node", "node_list")]
+[node name="Node Tool Room" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer" unique_id=36879208 node_paths=PackedStringArray("gener_rule_editor", "node_list")]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 script = ExtResource("2_4kd4q")
-load_node = NodePath("../../../../../Load Graph")
+gener_rule_editor = NodePath("../../../../..")
 node_list = NodePath("Node Tool Room List/node_list_cont/node_list")
 
 [node name="Node Tool Room List" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer/Node Tool Room" unique_id=1796060675]
@@ -235,6 +235,6 @@ gener_rule_editor = NodePath("..")
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MainControl/HBoxContainer/File Save Load/HBoxContainer/Load File" to="PanelContainer/VBoxContainer/MainControl/HBoxContainer/File Save Load" method="_on_load_file_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MainControl/HBoxContainer/File Save Load/HBoxContainer/Save File" to="PanelContainer/VBoxContainer/MainControl/HBoxContainer/File Save Load" method="_on_save_file_pressed"]
 [connection signal="file_selected" from="PanelContainer/VBoxContainer/MainControl/HBoxContainer/File Save Load/FileDialog" to="PanelContainer/VBoxContainer/MainControl/HBoxContainer/File Save Load" method="_on_file_dialog_file_selected"]
-[connection signal="connection_request" from="PanelContainer/VBoxContainer/MainGraphEdit" to="Load Graph" method="_on_main_graph_edit_connection_request"]
-[connection signal="node_deselected" from="PanelContainer/VBoxContainer/MainGraphEdit" to="Load Graph" method="_on_main_graph_edit_node_deselected"]
-[connection signal="node_selected" from="PanelContainer/VBoxContainer/MainGraphEdit" to="Load Graph" method="_on_main_graph_edit_node_selected"]
+[connection signal="connection_request" from="PanelContainer/VBoxContainer/MainGraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="node_deselected" from="PanelContainer/VBoxContainer/MainGraphEdit" to="." method="_on_graph_edit_node_deselected"]
+[connection signal="node_selected" from="PanelContainer/VBoxContainer/MainGraphEdit" to="." method="_on_graph_edit_node_selected"]

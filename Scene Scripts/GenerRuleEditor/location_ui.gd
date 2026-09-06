@@ -73,9 +73,9 @@ func load_res_f(object : Resource) -> void: ## для загрузки ReadyLoca
 
 func load_graph(graph : Dictionary) -> void:
 	print("load graph")
-	load_graph_node.load_graph(graph)
+	load_graph_node.LoadSaveGraph(graph)
 func load_ui( scene_graph_ui : SceneGraphUi) -> void:
-	load_graph_node.load_ui_set(scene_graph_ui)
+	load_graph_node.LoadUiSet(scene_graph_ui)
 
 func _on_load_button_pressed() -> void: ## Загружает ресурс по текущему id
 	var cur_id = id_item.get_selected_id()

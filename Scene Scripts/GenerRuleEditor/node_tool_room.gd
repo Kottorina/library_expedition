@@ -1,7 +1,6 @@
 extends Control
 
-@export var gener_rule_editor: Control 
-
+@export var load_node: Node 
 @export var node_list: MenuButton 
 
 var un_id = 0
@@ -48,4 +47,4 @@ var id_to_big_graph_make_instr_dict : Dictionary ## Id - BigGraphMakeNodeInstr
 func graph_item_selected(id : int) -> void:
 	if id_to_big_graph_make_instr_dict.has(id):
 		
-		gener_rule_editor.make_node_from_biginstr(id_to_big_graph_make_instr_dict[id])
+		load_node.make_node_from_biginstr(id_to_big_graph_make_instr_dict[id])

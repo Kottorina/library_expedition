@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://Base Obj/Editor/LayerBigLocation.tres" id="4_tdal3"]
 [ext_resource type="Script" uid="uid://beyay8e16l0ab" path="res://Scene Scripts/GenerRuleEditor/ui_set.gd" id="5_1lj8g"]
 [ext_resource type="Script" uid="uid://dipklt5872u21" path="res://Scene Scripts/GenerRuleEditor/file_save_load.gd" id="5_4kd4q"]
+[ext_resource type="Resource" uid="uid://cx8l1x0ewjlq2" path="res://Base Obj/Editor/LayerAnimation.tres" id="5_nig86"]
 [ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="6_nig86"]
 [ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://Base Obj/tool_crossroad.tres" id="7_mhfe8"]
 [ext_resource type="Resource" uid="uid://k6u4765jhtrb" path="res://Base Obj/fork_rnd_rule.tres" id="8_4kd4q"]
@@ -22,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mhfe8")
-editor_obj_layers = Array[ExtResource("2_1lj8g")]([ExtResource("3_nig86"), ExtResource("4_tdal3")])
+editor_obj_layers = Array[ExtResource("2_1lj8g")]([ExtResource("3_nig86"), ExtResource("4_tdal3"), ExtResource("5_nig86")])
 editor_save_data_path = "res://Base Obj/Editor/EditorSave.tres"
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 graph_edit = NodePath("PanelContainer/VBoxContainer/MainGraphEdit")

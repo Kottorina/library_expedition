@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://7swkdswsfk22"]
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3]
 
-[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_2kto6"]
-[ext_resource type="Script" uid="uid://b43lnce4bp8vd" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="1_ndvnd"]
-[ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_yccmo"]
-[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_thuch"]
-[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="3_65lkj"]
-[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="4_2qb2w"]
-[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="4_w3qdg"]
-[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="5_pa3dx"]
-[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="6_m6hf0"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_2kto6"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="1_ndvnd"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_yccmo"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_thuch"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="3_65lkj"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="4_2qb2w"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="4_w3qdg"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="5_pa3dx"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="6_m6hf0"]
 
 [sub_resource type="Resource" id="Resource_xuwrr"]
 script = ExtResource("1_2kto6")
@@ -11157,6 +11157,11 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 }
 ui = SubResource("Resource_j8g8o")
 
+[sub_resource type="Resource" id="Resource_f2gh3"]
+script = ExtResource("4_w3qdg")
+coord_ = Vector2i(15, 21)
+atl_coord_ = Vector2i(18, 0)
+
 [sub_resource type="Resource" id="Resource_d70ou"]
 script = ExtResource("1_2kto6")
 title_instr = "Tool:"
@@ -11195,11 +11200,6 @@ is_right = true
 right_type = 6
 right_color = Color(0, 0, 1, 1)
 source_res = SubResource("Resource_jmai1")
-
-[sub_resource type="Resource" id="Resource_f2gh3"]
-script = ExtResource("4_w3qdg")
-coord_ = Vector2i(15, 21)
-atl_coord_ = Vector2i(18, 0)
 
 [sub_resource type="Resource" id="Resource_7mf81"]
 script = ExtResource("1_2kto6")
@@ -13099,9 +13099,8 @@ atl_coord_ = Vector2i(0, 11)
 
 [sub_resource type="Resource" id="Resource_23wag"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(22, 16)
+coord_ = Vector2i(2, 1)
 atl_coord_ = Vector2i(13, 8)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_bmjmg"]
 script = ExtResource("5_pa3dx")
@@ -13110,9 +13109,8 @@ atl_coord_ = Vector2i(0, 7)
 
 [sub_resource type="Resource" id="Resource_7p64n"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(11, 19)
+coord_ = Vector2i(2, 1)
 atl_coord_ = Vector2i(13, 4)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_gg21r"]
 script = ExtResource("6_m6hf0")
@@ -13136,7 +13134,7 @@ instr_ar = Array[ExtResource("1_2kto6")]([SubResource("Resource_r0y5e"), SubReso
 script = ExtResource("3_65lkj")
 size_ = 1
 direction = 2
-coord_ = Vector2i(23, 15)
+coord_ = Vector2i(4, 12)
 
 [sub_resource type="Resource" id="Resource_i2jtv"]
 script = ExtResource("1_2kto6")
@@ -13152,7 +13150,7 @@ source_res = SubResource("Resource_6f7q6")
 script = ExtResource("3_65lkj")
 size_ = 1
 direction = 3
-coord_ = Vector2i(39, 15)
+coord_ = Vector2i(20, 12)
 
 [sub_resource type="Resource" id="Resource_r25yw"]
 script = ExtResource("1_2kto6")
@@ -13166,658 +13164,658 @@ source_res = SubResource("Resource_iqxsk")
 
 [sub_resource type="Resource" id="Resource_7g4e5"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 16)
+coord_ = Vector2i(7, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_7irvx"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 15)
+coord_ = Vector2i(7, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_aac7h"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 14)
+coord_ = Vector2i(7, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_ego1d"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 16)
+coord_ = Vector2i(6, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_kabhb"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 15)
+coord_ = Vector2i(6, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_6oefm"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 14)
+coord_ = Vector2i(6, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_1kh7l"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 16)
+coord_ = Vector2i(5, 13)
 atl_coord_ = Vector2i(5, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_n2edb"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 15)
+coord_ = Vector2i(5, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_e7wop"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 14)
+coord_ = Vector2i(5, 11)
 atl_coord_ = Vector2i(5, 13)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_4x0aw"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 16)
+coord_ = Vector2i(10, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_f0sdl"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 15)
+coord_ = Vector2i(10, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_8xahp"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 14)
+coord_ = Vector2i(10, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_4cu3f"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 16)
+coord_ = Vector2i(9, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_vyv5h"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 15)
+coord_ = Vector2i(9, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_mobsa"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 14)
+coord_ = Vector2i(9, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_4hi52"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 16)
+coord_ = Vector2i(8, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_10r4k"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 15)
+coord_ = Vector2i(8, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_laeqj"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 14)
+coord_ = Vector2i(8, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_yo4nb"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 16)
+coord_ = Vector2i(13, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_k4cs0"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 15)
+coord_ = Vector2i(13, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_k5eum"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 14)
+coord_ = Vector2i(13, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_jve66"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 16)
+coord_ = Vector2i(12, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_qmymd"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 15)
+coord_ = Vector2i(12, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_yxoux"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 14)
+coord_ = Vector2i(12, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_vjk1e"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 16)
+coord_ = Vector2i(11, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_glygk"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 15)
+coord_ = Vector2i(11, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_nwnog"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 14)
+coord_ = Vector2i(11, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_5eet5"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 16)
+coord_ = Vector2i(16, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_7d4r8"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 15)
+coord_ = Vector2i(16, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_lv6fl"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 14)
+coord_ = Vector2i(16, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_b26ow"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 16)
+coord_ = Vector2i(15, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_ckp27"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 15)
+coord_ = Vector2i(15, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_wsoxc"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 14)
+coord_ = Vector2i(15, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_lm8te"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 16)
+coord_ = Vector2i(14, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_xs4cj"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 15)
+coord_ = Vector2i(14, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_o5kxg"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 14)
+coord_ = Vector2i(14, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_aeqis"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 16)
+coord_ = Vector2i(19, 13)
 atl_coord_ = Vector2i(6, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_rwgd6"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 15)
+coord_ = Vector2i(19, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_u7l4f"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 14)
+coord_ = Vector2i(19, 11)
 atl_coord_ = Vector2i(6, 13)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_qsaq4"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 16)
+coord_ = Vector2i(18, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_rimbf"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 15)
+coord_ = Vector2i(18, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_bc1x6"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 14)
+coord_ = Vector2i(18, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_23cmr"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 16)
+coord_ = Vector2i(17, 13)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_weqe4"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 15)
+coord_ = Vector2i(17, 12)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_n8lhg"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 14)
+coord_ = Vector2i(17, 11)
 atl_coord_ = Vector2i(9, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_teaig"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 17)
+coord_ = Vector2i(19, 14)
 atl_coord_ = Vector2i(11, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_qe38n"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 13)
+coord_ = Vector2i(19, 10)
 atl_coord_ = Vector2i(11, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_vq5yl"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 17)
+coord_ = Vector2i(18, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_q38bh"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 13)
+coord_ = Vector2i(18, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_77k8d"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 17)
+coord_ = Vector2i(17, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_881x1"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 13)
+coord_ = Vector2i(17, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_vwt5k"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 17)
+coord_ = Vector2i(16, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_rfhrt"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 13)
+coord_ = Vector2i(16, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_oaiyk"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 17)
+coord_ = Vector2i(15, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_fl6wc"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 13)
+coord_ = Vector2i(15, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_cc785"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 17)
+coord_ = Vector2i(14, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_uoqc1"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 13)
+coord_ = Vector2i(14, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_6w11r"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 17)
+coord_ = Vector2i(13, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_fokjs"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 13)
+coord_ = Vector2i(13, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_dt7pf"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 17)
+coord_ = Vector2i(12, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_xu8mf"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 13)
+coord_ = Vector2i(12, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_bwoiy"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 17)
+coord_ = Vector2i(11, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_5ta6d"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 13)
+coord_ = Vector2i(11, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_3w5d4"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 17)
+coord_ = Vector2i(10, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_lmaef"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 13)
+coord_ = Vector2i(10, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_5fg3d"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 17)
+coord_ = Vector2i(9, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_5t4le"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 13)
+coord_ = Vector2i(9, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_uljq3"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 17)
+coord_ = Vector2i(8, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_yhxkx"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 13)
+coord_ = Vector2i(8, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_bwj4i"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 17)
+coord_ = Vector2i(7, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_yhd1m"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 13)
+coord_ = Vector2i(7, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_38tvh"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 17)
+coord_ = Vector2i(6, 14)
 atl_coord_ = Vector2i(9, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_miiwa"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 13)
+coord_ = Vector2i(6, 10)
 atl_coord_ = Vector2i(10, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_30dwt"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 17)
+coord_ = Vector2i(5, 14)
 atl_coord_ = Vector2i(8, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_kg2m1"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 13)
+coord_ = Vector2i(5, 10)
 atl_coord_ = Vector2i(8, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_unkpq"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 16)
+coord_ = Vector2i(20, 13)
 atl_coord_ = Vector2i(11, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_mcmex"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 15)
+coord_ = Vector2i(20, 12)
 atl_coord_ = Vector2i(11, 14)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_8hlc0"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 14)
+coord_ = Vector2i(20, 11)
 atl_coord_ = Vector2i(11, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_q7nu2"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 16)
+coord_ = Vector2i(4, 13)
 atl_coord_ = Vector2i(8, 15)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_v4ji0"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 15)
+coord_ = Vector2i(4, 12)
 atl_coord_ = Vector2i(8, 13)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_e0uev"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 14)
+coord_ = Vector2i(4, 11)
 atl_coord_ = Vector2i(8, 12)
 deco_type = "hh"
 
 [sub_resource type="Resource" id="Resource_5oqfx"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 17)
+coord_ = Vector2i(4, 14)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_8k1e4"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 13)
+coord_ = Vector2i(4, 10)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_d8jkj"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 13)
+coord_ = Vector2i(20, 10)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_4mik6"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 17)
+coord_ = Vector2i(20, 14)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_us2o4"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 18)
+coord_ = Vector2i(19, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_ahq5d"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 18)
+coord_ = Vector2i(18, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_3xi3w"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 18)
+coord_ = Vector2i(17, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_b0l4c"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 18)
+coord_ = Vector2i(16, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_7ghjg"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 18)
+coord_ = Vector2i(15, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_gh0t5"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 18)
+coord_ = Vector2i(14, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_sg5wr"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 18)
+coord_ = Vector2i(13, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_jf00r"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 18)
+coord_ = Vector2i(12, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_042ah"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 18)
+coord_ = Vector2i(11, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_byclw"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 18)
+coord_ = Vector2i(10, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_hk0k2"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 18)
+coord_ = Vector2i(9, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_ru6wy"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 18)
+coord_ = Vector2i(8, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_np33k"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 18)
+coord_ = Vector2i(7, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_jvotg"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 18)
+coord_ = Vector2i(6, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_ab8ri"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 18)
+coord_ = Vector2i(5, 15)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_y7g0b"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 12)
+coord_ = Vector2i(5, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_uwxgv"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 12)
+coord_ = Vector2i(6, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_p54vc"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 12)
+coord_ = Vector2i(7, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_mjffe"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(27, 12)
+coord_ = Vector2i(8, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_x0rsx"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(28, 12)
+coord_ = Vector2i(9, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_wju1c"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(29, 12)
+coord_ = Vector2i(10, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_bxd31"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 12)
+coord_ = Vector2i(11, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_sgc7b"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(31, 12)
+coord_ = Vector2i(12, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_ofbit"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(32, 12)
+coord_ = Vector2i(13, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_0rwsp"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(33, 12)
+coord_ = Vector2i(14, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_q046y"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(34, 12)
+coord_ = Vector2i(15, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_x6hx1"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(35, 12)
+coord_ = Vector2i(16, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_m6v5b"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(36, 12)
+coord_ = Vector2i(17, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_qry2b"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(37, 12)
+coord_ = Vector2i(18, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_loigs"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 12)
+coord_ = Vector2i(19, 9)
 deco_type = "g"
 
 [sub_resource type="Resource" id="Resource_qjb4r"]
@@ -13827,63 +13825,53 @@ atl_coord_ = Vector2i(0, 15)
 
 [sub_resource type="Resource" id="Resource_0k36p"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 15)
+coord_ = Vector2i(2, 1)
 atl_coord_ = Vector2i(13, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_4pmfw"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(24, 13)
+coord_ = Vector2i(3, 1)
 atl_coord_ = Vector2i(14, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_iqt2e"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(25, 13)
+coord_ = Vector2i(4, 1)
 atl_coord_ = Vector2i(15, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_g6psb"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(39, 16)
+coord_ = Vector2i(5, 1)
 atl_coord_ = Vector2i(16, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_r62rl"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 14)
+coord_ = Vector2i(6, 1)
 atl_coord_ = Vector2i(14, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_exp7t"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(38, 17)
+coord_ = Vector2i(7, 1)
 atl_coord_ = Vector2i(15, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_yi0i8"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(26, 13)
+coord_ = Vector2i(8, 1)
 atl_coord_ = Vector2i(13, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_dx3ki"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 15)
+coord_ = Vector2i(9, 1)
 atl_coord_ = Vector2i(14, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_l0vd0"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(23, 16)
+coord_ = Vector2i(10, 1)
 atl_coord_ = Vector2i(15, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_v78q1"]
 script = ExtResource("5_pa3dx")
-coord_ = Vector2i(30, 13)
+coord_ = Vector2i(11, 1)
 atl_coord_ = Vector2i(16, 12)
-deco_level = 1
 
 [sub_resource type="Resource" id="Resource_fdgnb"]
 script = ExtResource("5_pa3dx")
@@ -13925,8 +13913,8 @@ instr_ar = Array[ExtResource("1_2kto6")]([SubResource("Resource_i2jtv"), SubReso
 
 [sub_resource type="Resource" id="Resource_lcp56"]
 script = ExtResource("4_2qb2w")
-zoom = 1.1
-scroll_offset = Vector2(-10.817017, -83.89)
+zoom = 0.6830134
+scroll_offset = Vector2(-262.2156, -74.20545)
 
 [sub_resource type="Resource" id="Resource_k8q75"]
 script = ExtResource("1_ndvnd")
@@ -13939,7 +13927,7 @@ SubResource("Resource_krlg7"): {
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":0)
 : "PortFree"
 }, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"pivot_offset_ratio":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":5.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":2,"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":5.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
 ,"port_num":1)
 : [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_f2gh3"),"active_node":null,"port_num":0)
 , SubResource("Resource_te56h")]
@@ -13977,7 +13965,7 @@ SubResource("Resource_krlg7"): {
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":0)
 : "PortFree"
 }, {
-Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"pivot_offset_ratio":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":5.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":2,"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":5.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
 ,"port_num":1)
 : [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_f2gh3"),"active_node":null,"port_num":0)
 , SubResource("Resource_te56h")]
@@ -13986,7 +13974,7 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 SubResource("Resource_te56h"): {
 "LeftPortsData": [{
 Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":SubResource("Resource_f2gh3"),"active_node":null,"port_num":0)
-: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"pivot_offset_ratio":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":5.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
+: [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":Object(SpinBox,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(0, 0),"custom_maximum_size":Vector2(-1, -1),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":2,"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","min_value":0.0,"max_value":100.0,"step":0.1,"page":0.0,"value":5.0,"rounded":false,"allow_greater":false,"allow_lesser":false,"alignment":0,"editable":true,"update_on_text_changed":false,"prefix":"","suffix":"","custom_arrow_step":0.0,"custom_arrow_round":false,"select_all_on_focus":false,"script":null)
 ,"port_num":1)
 , SubResource("Resource_krlg7")]
 }],
@@ -14011,11 +13999,80 @@ Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"
 }]
 }
 }
+rooms_graph = {
+SubResource("Resource_gg21r"): [Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/Graph Dictionary/ConnectorToConnectorClass.gd"),"from_connector":SubResource("Resource_jmai1"),"to_connector":SubResource("Resource_6f7q6"),"to_room":SubResource("Resource_0uxdy"))
+]
+}
+enters_location = {
+SubResource("Resource_f2gh3"): 5.0
+}
 ui = SubResource("Resource_lcp56")
+
+[sub_resource type="Resource" id="Resource_odo21"]
+script = ExtResource("1_2kto6")
+title_instr = "Tool:"
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_52sy2"]
+script = ExtResource("1_2kto6")
+title_instr = "Id Enter:"
+is_right = true
+right_type = 17
+right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
+body_node = 1
+
+[sub_resource type="Resource" id="Resource_et7dc"]
+script = ExtResource("2_thuch")
+title_node = "Start Gener Node"
+coord_ = Vector2(40, 60)
+type_node = 2
+instr_ar = Array[ExtResource("1_2kto6")]([SubResource("Resource_odo21"), SubResource("Resource_52sy2")])
+
+[sub_resource type="Resource" id="Resource_t3kd5"]
+script = ExtResource("4_2qb2w")
+zoom = 1.3310001
+scroll_offset = Vector2(-249.63461, 7.055893)
+
+[sub_resource type="Resource" id="Resource_u35fr"]
+script = ExtResource("1_ndvnd")
+id_ = 1
+start_bake_node = SubResource("Resource_et7dc")
+save_graph = {
+SubResource("Resource_et7dc"): {
+"LeftPortsData": [],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":1)
+: "PortFree"
+}]
+}
+}
+full_graph = {
+SubResource("Resource_et7dc"): {
+"LeftPortsData": [],
+"RightPortsData": [{
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":0)
+: "PortFree"
+}, {
+Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd"),"source_res":null,"active_node":null,"port_num":1)
+: "PortFree"
+}]
+}
+}
+ui = SubResource("Resource_t3kd5")
+
+[sub_resource type="Resource" id="Resource_0t180"]
+script = ExtResource("1_ndvnd")
 
 [resource]
 script = ExtResource("1_yccmo")
 all_data = {
+"Animation": [SubResource("Resource_u35fr")],
+"Big Location": [SubResource("Resource_0t180")],
 "Location": [SubResource("Resource_vssk0"), SubResource("Resource_k8q75")]
 }
 metadata/_custom_type_script = "uid://bn0kpxd11khos"

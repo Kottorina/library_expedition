@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://cx8l1x0ewjlq2"]
+
+[ext_resource type="Script" uid="uid://bgx2nm2jvljhr" path="res://addons/libraryeditor/Custom Class/Bakers GraphDataObject/LocatioBakerClass.gd" id="1_k7nyw"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="2_f51gd"]
+
+[resource]
+script = ExtResource("2_f51gd")
+data_key = "Animation"
+baker_object_script_path = ExtResource("1_k7nyw")
+ui_custom_big_instr = true
+metadata/_custom_type_script = "uid://dyh1823n402rk"

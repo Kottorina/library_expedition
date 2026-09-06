@@ -32,7 +32,7 @@ func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : Resource
 		var bake_object = ready_baker.bake_data(object)
 		return bake_object
 	else:
-		push_warning("Baker for "+ editor_obj_layer.ui_name+" not find!")
+		push_warning("Baker for "+ editor_obj_layer.data_key+" not find!")
 	
 	return object
 

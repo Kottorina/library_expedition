@@ -14,8 +14,9 @@
 [ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://Base Obj/tool_crossroad.tres" id="7_mhfe8"]
 [ext_resource type="Resource" uid="uid://k6u4765jhtrb" path="res://Base Obj/fork_rnd_rule.tres" id="8_4kd4q"]
 [ext_resource type="Script" uid="uid://dnu5ec8txncbe" path="res://Scene Scripts/GenerRuleEditor/save_graph_node.gd" id="9_vb8tg"]
+[ext_resource type="Script" uid="uid://be8unciwcayvo" path="res://Scene Scripts/GenerRuleEditor/load_graph.gd" id="15_tdal3"]
 
-[node name="GenerRuleEditor" type="Control" unique_id=529019256 node_paths=PackedStringArray("graph_edit", "make_node_settings")]
+[node name="GenerRuleEditor" type="Control" unique_id=529019256]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,8 +27,6 @@ script = ExtResource("1_mhfe8")
 editor_obj_layers = Array[ExtResource("2_1lj8g")]([ExtResource("3_nig86"), ExtResource("4_tdal3"), ExtResource("5_nig86")])
 editor_save_data_path = "res://Base Obj/Editor/EditorSave.tres"
 room_set_path = "res://Test Resource/TestRoomSet.tres"
-graph_edit = NodePath("PanelContainer/VBoxContainer/MainGraphEdit")
-make_node_settings = NodePath("PanelContainer/VBoxContainer/MainControl/HBoxContainer/Node Tool Room/Make Node Settings")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1787863444]
 layout_mode = 1
@@ -92,15 +91,16 @@ text = "Auto room update"
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer/Node Tool Room/Make Node Settings" unique_id=410445455]
 layout_mode = 2
 
-[node name="Editor Layer Manager" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer" unique_id=1500545986 node_paths=PackedStringArray("gener_rule_editor", "type_item", "id_item", "item_name", "save_node", "add_node_ui")]
+[node name="Editor Layer Manager" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer" unique_id=1500545986 node_paths=PackedStringArray("gener_rule_editor", "load_graph_node", "type_item", "id_item", "item_name", "save_node", "add_node_ui")]
 layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("4_lcwxr")
 gener_rule_editor = NodePath("../../../../..")
+load_graph_node = NodePath("../../../../../Load Graph")
 type_item = NodePath("HBoxContainer/Type Item")
 id_item = NodePath("HBoxContainer/Id Load")
 item_name = NodePath("HBoxContainer2/item_name")
-save_node = NodePath("../../../../../Save Bake Location")
+save_node = NodePath("../../../../../Save Bake")
 add_node_ui = NodePath("../../../../../Add Node UI")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer/Editor Layer Manager" unique_id=160965422]
@@ -209,7 +209,7 @@ show_zoom_buttons = false
 show_minimap_button = false
 show_arrange_button = false
 
-[node name="Save Bake Location" type="Node" parent="." unique_id=135609733 node_paths=PackedStringArray("graph_edit")]
+[node name="Save Bake" type="Node" parent="." unique_id=135609733 node_paths=PackedStringArray("graph_edit")]
 script = ExtResource("9_vb8tg")
 graph_edit = NodePath("../PanelContainer/VBoxContainer/MainGraphEdit")
 
@@ -218,6 +218,11 @@ script = ExtResource("5_1lj8g")
 gener_rule_editor = NodePath("..")
 node_tool_room = NodePath("../PanelContainer/VBoxContainer/MainControl/HBoxContainer/Node Tool Room")
 custom_big_instr_ar = Array[ExtResource("6_nig86")]([ExtResource("7_mhfe8"), ExtResource("8_4kd4q")])
+
+[node name="Load Graph" type="Node" parent="." unique_id=1244479498 node_paths=PackedStringArray("graph_edit", "gener_rule_editor")]
+script = ExtResource("15_tdal3")
+graph_edit = NodePath("../PanelContainer/VBoxContainer/MainGraphEdit")
+gener_rule_editor = NodePath("..")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MainControl/HBoxContainer/Node Tool Room/Node Tool Room List/bake_node" to="Add Node UI" method="_on_bake_node_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MainControl/HBoxContainer/Node Tool Room/Node Tool Room List/del_node" to="." method="_on_del_node_pressed"]

@@ -1,6 +1,12 @@
 extends Control
 
-@export var gener_rule_editor : Control ## Главный нод, из него подтигиваються, пути и рисуються ноды 
+@export_group("main")
+
+@export var gener_rule_editor : Control ## Главный нод, из него подтигиваються, пути
+@export var load_graph_node : Node
+
+@export_group("ui")
+
 @export var type_item : OptionButton
 @export var id_item : OptionButton
 @export var item_name : TextEdit
@@ -67,9 +73,9 @@ func load_res_f(object : Resource) -> void: ## для загрузки ReadyLoca
 
 func load_graph(graph : Dictionary) -> void:
 	print("load graph")
-	gener_rule_editor.load_graph(graph)
+	load_graph_node.load_graph(graph)
 func load_ui( scene_graph_ui : SceneGraphUi) -> void:
-	gener_rule_editor.load_ui_set(scene_graph_ui)
+	load_graph_node.load_ui_set(scene_graph_ui)
 
 func _on_load_button_pressed() -> void: ## Загружает ресурс по текущему id
 	var cur_id = id_item.get_selected_id()
@@ -82,7 +88,7 @@ func _on_load_button_pressed() -> void: ## Загружает ресурс по 
 func _on_save_button_pressed() -> void:
 	save_graph()
 	
-## НЕ НУЖНА, ПОЧЕМУ ТО ОНО И ТАК СОХРАНЯЕТ АВТОМАТОМ
+## НЕ НУЖНА, ПОЧЕМУ ТО ОНО И ТАК СОХРАНЯЕТ АВТОМАТОМ PS - В ТЕЕКУЩЕМ ВИДЕ СОХРАНЯЕТ
 func save_graph() -> void:
 	print("save graph")
 	
@@ -91,7 +97,7 @@ func save_graph() -> void:
 	
 	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.data_key,cur_id)
 	if cur_oject != null:
-		var cur_ar : Array = save_data_all_library.get_ar_from_key(cur_editor_obj_layers.data_key)
+		#var cur_ar : Array = save_data_all_library.get_ar_from_key(cur_editor_obj_layers.data_key)
 		save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject)
 		#save_data_all_library.all_data[cur_editor_obj_layers.data_key][save_ind] = save_node.save_and_bake_graph(cur_editor_obj_layers, cur_oject)
 	
@@ -110,4 +116,6 @@ func _on_rename_pressed() -> void:
 	
 	var cur_oject = save_data_all_library.get_object_from_id(cur_editor_obj_layers.data_key,cur_id)
 	cur_oject.name_ = item_name.text
+	
+	save_graph()
 	update_id_list()

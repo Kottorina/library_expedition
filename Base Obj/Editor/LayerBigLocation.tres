@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://bbdqop16cfr2o"]
 
-[ext_resource type="Script" uid="uid://c2yhwpqtylk7x" path="res://addons/libraryeditor/Custom Class/Bakers GraphDataObject/BigReadyLocationBakerClass.gd" id="1_djsmt"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="1_gnomq"]
 
 [resource]
 script = ExtResource("1_gnomq")
 data_key = "Big Location"
-baker_object_script_path = ExtResource("1_djsmt")
 ui_enter_node = true
 ui_editor_layer_nodes = "Location"
 metadata/_custom_type_script = "uid://dyh1823n402rk"

@@ -19,7 +19,8 @@ func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : Resource
 		print("Start Gener Is Broken")
 		return
 	
-	var save_full_ar = get_save_full_graph(start_gener_node)
+	SynchronizationDataFromUI() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
+	var save_full_ar = GetSaveFullGraph(start_gener_node)
 	
 	object.start_bake_node = start_gener_node.get_meta(BIG_INSTR_NODE_DATA_NAME)
 	object.save_graph = save_full_ar[0]
@@ -44,88 +45,6 @@ func get_scene_ui_graph() -> SceneGraphUi:
 	
 	return new_graph_ui
 
-func get_save_full_graph( start_gener_node : Node ) -> Array: ## [ savegraph, fullgraph ]
-	
-	var save_graph : Dictionary = {} ##Граф нужен для сохранения сцены
-	var full_graph : Dictionary = {}
-	occupied_ports.clear()
-	
-	var current_node : Node = start_gener_node
-	var free_nodes : Dictionary ## { node (StringName) : true } --- Ноды которые нужно обработать
-	free_nodes[current_node] = true
-	
-	SynchronizationDataFromUI() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
-	
-	while !free_nodes.is_empty(): ## ЗАПОЛНЕНИЕ СОХРАНЕННОГО И ПОЛНОГО ГРАФА
-		
-		current_node = free_nodes.keys()[0]
-		var curent_node_big_instr : BigGraphNodeMakeInsts = current_node.get_meta(BIG_INSTR_NODE_DATA_NAME) ##Испольховать в графе, так как нужно только оно
-		
-		var right_ports : Array ## Все правые порты обьекта и их соеденения
-		var full_right_ports : Array
-		var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
-		for data in right_data_meta:
-			right_ports.append({data : PORT_VALUE_FREE})
-		for data in right_data_meta: ## duplicate НЕ РАБОТАЕТ ТАК КАК Я ОТ НЕЕ ОЖИДАЛА, НЕ УДАЛЯТЬ КОСТЫЛЬ, ИНАЧЕ ДАМ ПИЗДЫ
-			full_right_ports.append({data : PORT_VALUE_FREE})
-		
-		var left_ports : Array ## Все левые порты обьекта и их соеденения 
-		var full_left_ports : Array
-		var left_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(LEFT_PORTS_DATA_NAME)
-		for data in left_data_meta:
-			left_ports.append({data : PORT_VALUE_FREE})
-		for data in left_data_meta: ## duplicate НЕ РАБОТАЕТ ТАК КАК Я ОТ НЕЕ ОЖИДАЛА, НЕ УДАЛЯТЬ КОСТЫЛЬ, ИНАЧЕ ДАМ ПИЗДЫ
-			full_left_ports.append({data : PORT_VALUE_FREE})
-		
-		var connections = graph_edit.get_connection_list_from_node(current_node.name)
-		for connect_line in connections:
-			
-			if current_node.name != connect_line["to_node"]:
-				
-				var to_left_big_instr_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
-				var to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
-				var final_meta = to_left_metadata[connect_line["to_port"]]
-				
-				if  is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
-					var key_right = right_ports[connect_line["from_port"]].keys()[0]
-					right_ports[connect_line["from_port"]][key_right] = [ final_meta, to_left_big_instr_metadata ]
-					full_right_ports[connect_line["from_port"]][key_right] = [ final_meta, to_left_big_instr_metadata ]
-					
-					free_nodes[ graph_edit.get_node(NodePath(connect_line["to_node"])) ] = true
-					block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
-				else:
-					var key_right = right_ports[connect_line["from_port"]].keys()[0]
-					right_ports[connect_line["from_port"]][key_right] = PORT_VALUE_OCCUPIED
-					full_right_ports[connect_line["from_port"]][key_right] = [ final_meta, to_left_big_instr_metadata ]
-				
-			
-			if current_node.name != connect_line["from_node"]:
-				
-				var to_right_big_instr_metadata : BigGraphNodeMakeInsts = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
-				var from_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
-				var final_meta = from_right_metadata[connect_line["from_port"]]
-				
-				if is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
-					
-					var key_left = left_ports[connect_line["to_port"]].keys()[0]
-					left_ports[connect_line["to_port"]][key_left] = [ final_meta , to_right_big_instr_metadata ]
-					full_left_ports[connect_line["to_port"]][key_left] = [ final_meta , to_right_big_instr_metadata ]
-					
-					free_nodes[ graph_edit.get_node(NodePath(connect_line["from_node"])) ] = true
-					block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
-				
-				else:
-					var key_left = left_ports[connect_line["to_port"]].keys()[0]
-					left_ports[connect_line["to_port"]][key_left] = PORT_VALUE_OCCUPIED
-					full_left_ports[connect_line["to_port"]][key_left] = [ final_meta , to_right_big_instr_metadata ]
-					
-		free_nodes.erase(current_node)
-		
-		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
-		full_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : full_left_ports, RIGHT_PORTS_DATA_NAME : full_right_ports}
-	
-	return [ save_graph, full_graph ]
-
 func find_start_gener_node() -> Node:
 	var start_ar : Array[Node]
 	
@@ -138,6 +57,104 @@ func find_start_gener_node() -> Node:
 	if start_ar.size() == 1:
 		return start_ar[0] 
 	return null
+
+## отдает [ savegraph, fullgraph ]
+func GetSaveFullGraph( start_gener_node : Node ) -> Array: 
+	
+	var save_graph : Dictionary = {} ##Граф нужен для сохранения сцены
+	var full_graph : Dictionary = {}
+	occupied_ports.clear()
+	
+	var current_node : Node = start_gener_node
+	var free_nodes : Dictionary ## { node (StringName) : true } --- Ноды которые нужно обработать
+	free_nodes[current_node] = true
+	
+	while !free_nodes.is_empty(): ## ЗАПОЛНЕНИЕ СОХРАНЕННОГО И ПОЛНОГО ГРАФА
+		
+		current_node = free_nodes.keys()[0]
+		var curent_node_big_instr : BigGraphNodeMakeInsts = current_node.get_meta(BIG_INSTR_NODE_DATA_NAME) ##Испольховать в графе, так как нужно только оно
+		
+		var right_ports : Array[FromToWith] ## Все правые порты обьекта и их соеденения
+		var full_right_ports : Array[FromToWith]
+		var right_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(RIGHT_PORTS_DATA_NAME)
+		for data in right_data_meta: ## duplicate НЕ РАБОТАЕТ ТАК КАК Я ОТ НЕЕ ОЖИДАЛА, НЕ УДАЛЯТЬ КОСТЫЛЬ, ИНАЧЕ ДАМ ПИЗДЫ
+			var from_to_obj := FromToWith.new()
+			from_to_obj.from_data = data
+			from_to_obj.to_obj = PORT_VALUE_FREE
+			right_ports.append(from_to_obj.duplicate())
+			full_right_ports.append(from_to_obj.duplicate())
+		
+		var left_ports : Array[FromToWith] ## Все левые порты обьекта и их соеденения 
+		var full_left_ports : Array[FromToWith]
+		var left_data_meta : Array[GraphNodeMetadata] = current_node.get_meta(LEFT_PORTS_DATA_NAME)
+		for data in left_data_meta: ## duplicate НЕ РАБОТАЕТ ТАК КАК Я ОТ НЕЕ ОЖИДАЛА, НЕ УДАЛЯТЬ КОСТЫЛЬ, ИНАЧЕ ДАМ ПИЗДЫ
+			var from_to_obj := FromToWith.new()
+			from_to_obj.from_data = data
+			from_to_obj.to_obj = PORT_VALUE_FREE
+			left_ports.append(from_to_obj.duplicate())
+			full_left_ports.append(from_to_obj.duplicate())
+		
+		var connections = graph_edit.get_connection_list_from_node(current_node.name)
+		for connect_line in connections:
+			
+			if current_node.name != connect_line["to_node"]:
+				
+				var to_left_big_instr_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
+				
+				var all_to_left_metadata = graph_edit.get_node( NodePath(connect_line["to_node"]) ).get_meta(LEFT_PORTS_DATA_NAME)
+				var to_left_metadata = all_to_left_metadata[connect_line["to_port"]]
+				
+				full_right_ports[connect_line["from_port"]].to_data = to_left_metadata
+				full_right_ports[connect_line["from_port"]].to_obj = to_left_big_instr_metadata
+				
+				if  is_port_block(current_node.name,connect_line["from_port"],RIGHT_PORTS_DATA_NAME) == false:
+					right_ports[connect_line["from_port"]].to_data = to_left_metadata
+					right_ports[connect_line["from_port"]].to_obj = to_left_big_instr_metadata
+
+					free_nodes[ graph_edit.get_node(NodePath(connect_line["to_node"])) ] = true
+					block_port(connect_line["to_node"],connect_line["to_port"],LEFT_PORTS_DATA_NAME)
+				else:
+					right_ports[connect_line["from_port"]].to_obj = PORT_VALUE_OCCUPIED
+			
+			if current_node.name != connect_line["from_node"]:
+				
+				var to_right_big_instr_metadata : BigGraphNodeMakeInsts = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(BIG_INSTR_NODE_DATA_NAME)
+			
+				var all_right_metadata = graph_edit.get_node( NodePath(connect_line["from_node"]) ).get_meta(RIGHT_PORTS_DATA_NAME)
+				var to_right_metadata = all_right_metadata[connect_line["from_port"]]
+				
+				full_left_ports[connect_line["to_port"]].to_data = to_right_metadata
+				full_left_ports[connect_line["to_port"]].to_obj = to_right_big_instr_metadata
+				
+				if is_port_block(current_node.name,connect_line["to_port"],LEFT_PORTS_DATA_NAME) == false:
+					
+					left_ports[connect_line["to_port"]].to_data = to_right_metadata
+					left_ports[connect_line["to_port"]].to_obj = to_right_big_instr_metadata
+
+					free_nodes[ graph_edit.get_node(NodePath(connect_line["from_node"])) ] = true
+					block_port(connect_line["from_node"],connect_line["from_port"],RIGHT_PORTS_DATA_NAME)
+				
+				else:
+					left_ports[connect_line["to_port"]].to_obj = PORT_VALUE_OCCUPIED
+
+		free_nodes.erase(current_node)
+		
+		save_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : left_ports, RIGHT_PORTS_DATA_NAME : right_ports}
+		full_graph[curent_node_big_instr] = { LEFT_PORTS_DATA_NAME : full_left_ports, RIGHT_PORTS_DATA_NAME : full_right_ports}
+	
+	return [ save_graph, full_graph ]
+
+func block_port(node_name : StringName, port : int, direction : String) -> void:
+	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
+		occupied_ports[node_name][direction].append(port)
+	else:
+		occupied_ports[node_name] = { direction : [port]}
+
+func is_port_block(node_name : StringName, port : int, direction : String) -> bool:
+	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
+		if occupied_ports[node_name][direction].has(port):
+			return true
+	return false
 
 func SynchronizationDataFromUI() -> void: ## ДЛЯ ПОДГОНКИ ИНСТРУКЦИИ К ТЕКУЩЕМУ СОСТОЯНИЯ НОДА ВЫЗВАТЬ ПЕРЕД СОХРАНЕНИЕМ
 	
@@ -157,15 +174,3 @@ func SynchronizationDataFromUI() -> void: ## ДЛЯ ПОДГОНКИ ИНСТР�
 				if meta_data != null:
 					big_instr.instr_ar[ind].body_value = meta_data.value
 			ind += 1
-
-func block_port(node_name : StringName, port : int, direction : String) -> void:
-	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
-		occupied_ports[node_name][direction].append(port)
-	else:
-		occupied_ports[node_name] = { direction : [port]}
-
-func is_port_block(node_name : StringName, port : int, direction : String) -> bool:
-	if occupied_ports.has(node_name) and occupied_ports[node_name].has(direction):
-		if occupied_ports[node_name][direction].has(port):
-			return true
-	return false

@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3]
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://br08426e72c45"]
 
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_2kto6"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="1_ndvnd"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_yccmo"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_thuch"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="3_65lkj"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="4_2qb2w"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="4_w3qdg"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="5_pa3dx"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="6_m6hf0"]
+[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_2kto6"]
+[ext_resource type="Script" uid="uid://b43lnce4bp8vd" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="1_ndvnd"]
+[ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="1_yccmo"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_thuch"]
+[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="3_65lkj"]
+[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="4_2qb2w"]
+[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="4_w3qdg"]
+[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="5_pa3dx"]
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="6_m6hf0"]
 
 [sub_resource type="Resource" id="Resource_odo21"]
 script = ExtResource("1_2kto6")
@@ -10829,8 +10829,8 @@ instr_ar = Array[ExtResource("1_2kto6")]([SubResource("Resource_pu24e")])
 
 [sub_resource type="Resource" id="Resource_j8g8o"]
 script = ExtResource("4_2qb2w")
-zoom = 1.3309997
-scroll_offset = Vector2(111.12689, -462.80927)
+zoom = 0.26333106
+scroll_offset = Vector2(-201.85992, -227.38998)
 
 [sub_resource type="Resource" id="Resource_vssk0"]
 script = ExtResource("1_ndvnd")

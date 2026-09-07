@@ -1,29 +1,22 @@
 extends Resource
 class_name BakerGraphDataObject
 
-## КОНСТАНТЫ НУЖНЫ ДЛЯ РАБОТЫ С МЕТАДАННЫМИ И ПРОСТО ДАННЫМИ, НАДО КОРОЧЕ
-const PORT_VALUE_FREE : String = "PortFree"
-const PORT_VALUE_OCCUPIED : String = "PortOccupied"
+var ui_const_func := UiConstFunc.new()
 
-const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
 const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
-const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
+
+var bake_data_dict : Dictionary ## ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ
 
 var free_nodes : Array[BigGraphNodeMakeInsts] ## ЕЩЕ НЕ ОБРАБОТАННЫЕ НОДЫ
 
 var save_graph : Dictionary
 var full_graph : Dictionary
 
-var room_graph : Dictionary
-var enters_location : Dictionary
-
 var rnd : RandomNumberGenerator
 
+## ВРЕМЕННО, ПОКА ВВИДЕ ОБРАЗЦА
 var connection_plugs_instr : BigGraphNodeMakeInsts
-
-const TOOLENTERTYPE : int = 17
-const TOOLENTERCOLOR : Color = Color.PURPLE
 
 func bake_data(graph_data_objects : GraphDataObjects, c_seed : int = 0) -> GraphDataObjects:
 	
@@ -33,8 +26,6 @@ func bake_data(graph_data_objects : GraphDataObjects, c_seed : int = 0) -> Graph
 	rnd = RandomNumberGenerator.new()
 	rnd.seed = c_seed
 	
-	enters_location.clear()
-
 	free_nodes.append(graph_data_objects.start_bake_node)
 	
 	## ПРЕДВАРИТЕЛЬНАЯ ОБРАБОТКА, НАДО, ПРОСТО НАДО
@@ -51,13 +42,20 @@ func bake_data(graph_data_objects : GraphDataObjects, c_seed : int = 0) -> Graph
 		
 		var last_ind = free_nodes.size()-1
 		callable.call(free_nodes[last_ind])
-		
-		free_nodes.pop_back()
+		free_nodes.remove_at(last_ind)
 	
-	graph_data_objects.rooms_graph = room_graph
-	graph_data_objects.enters_location = enters_location
+	graph_data_objects.bake_data = bake_data_dict
+	
+	var last_callable = Callable(self, "last_bake_call")
+	if callable.is_valid():
+		last_callable.call()
 	
 	return graph_data_objects
+
+
+
+
+
 
 const ROOMNODENAME = "Room Node: "
 const ROOMS_UI_LOCATIONS : String = "Locations"
@@ -85,6 +83,19 @@ func bake_ui(graph_data_objects_ar : Array) -> GraphDataObjectsUiSet:
 
 ## ДОБАВЛЯЕТ НОДЫ ДЛЯ ПОСЛЕДУЮЩЕЙ ОБРАБОТКИ, СУКА
 func AddFreePort(from_to_with : FromToWith) -> void:
-	if from_to_with.to_obj is String:
-		return
 	free_nodes.append(from_to_with.to_obj)
+
+func get_free_ports(rom_to_with_ar : Array[FromToWith]) -> Array[FromToWith]:
+	var free_ports_ar : Array[FromToWith]
+		
+	for port in rom_to_with_ar:
+		if IsPortFree(port) == true:
+			free_ports_ar.append(port)
+		
+	return free_ports_ar
+	
+func IsPortFree(from_to_with : FromToWith) -> bool:
+	if from_to_with.to_obj is String:
+		return false
+	return true
+	

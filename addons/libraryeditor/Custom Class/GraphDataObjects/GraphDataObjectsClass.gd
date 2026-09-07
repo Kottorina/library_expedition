@@ -6,13 +6,15 @@ class_name GraphDataObjects
 
 @export var start_bake_node : BigGraphNodeMakeInsts 
 ## ДЛЯ ОБРАБОТКИ ГРАФА И ДЛЯ НОРМАЛЬНОГО СОХРАНЕНИЯ А ТАКЖЕ ДЛЯ УДОБНОЙ ЗАГРУЗКИ
-@export var save_graph : Dictionary ## {Big_instr : { right / left ports : [ port_metadata :  String free/occupied/new BigInstr ] } }
+@export var save_graph : Dictionary ## {Big_instr : { right / left ports : FromToWith }
 ## ГРАФ СОДЕРЖАЩИЙ ВСЕ СОЕДИНЕНИЯ
 @export var full_graph : Dictionary 
 
-@export var rooms_graph : Dictionary ## Отдельно Граф С Комнатами и коннекторами между --- { Room : [ ConnectorToConnector ] }
-@export var enters_location : Dictionary ## Сожерит в себе вход res и его id входа --- { RoomEnter : Int }
-
-@export var connection_plugs_instr : BigGraphNodeMakeInsts 
+@export var bake_data : Dictionary ## СОДЕРЖИТ ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ, УНИВЕРСАЛЬНЫЙ ВИД
 
 @export var ui : SceneGraphUi
+
+## УСТАРЕЛО, ПРОСТО В ВИДЕ ПРИМЕРА
+#@export var rooms_graph : Dictionary ## Отдельно Граф С Комнатами и коннекторами между --- { Room : [ ConnectorToConnector ] }
+#@export var enters_location : Dictionary ## Сожерит в себе вход res и его id входа --- { RoomEnter : Int }
+#@export var connection_plugs_instr : BigGraphNodeMakeInsts 

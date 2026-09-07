@@ -99,7 +99,7 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		
 		if inst.is_left == true:
 			var metadata = GraphNodeMetadata.new()
-			metadata.source_res = inst.source_res
+			metadata.instr = inst
 			metadata.port_num = left_port_mum
 			left_ports_data_ar.append(metadata)
 			
@@ -107,7 +107,7 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 			
 		if inst.is_right == true:
 			var metadata = GraphNodeMetadata.new()
-			metadata.source_res = inst.source_res
+			metadata.instr = inst
 			metadata.port_num = right_port_mum
 			right_ports_data_ar.append(metadata)
 			

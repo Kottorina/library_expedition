@@ -12,10 +12,11 @@ var cur_save_data_all_library : SaveDataAllLibrary
 ## НУЖНО В ОДНОМ МЕСТЕ
 const DIRECTION_INVERT : Array[int] = [1,0,3,2] 
 
+const START_DIALOGUE := 9
 func bake_ui_dialogue_start() -> void:
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ui_const_func.DIALOGUE_START_BIG_TITLE
-	big_instr.type_node = "start_dialogue"
+	big_instr.type_node = START_DIALOGUE
 	
 	var tool_instr = ui_const_func.get_tool_instr()
 	tool_instr.body_node = 2
@@ -28,19 +29,21 @@ func bake_ui_dialogue_start() -> void:
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
+const DIALOGUE_NODE := 10
 func bake_ui_dialogue_node() -> void:
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ui_const_func.DIALOGUE_NODE_TITLE
-	big_instr.type_node = "dialogue_node"
+	big_instr.type_node = DIALOGUE_NODE
 	
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
+const END_DIALOGUE := 11
 func bake_ui_dialogue_end() -> void:
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ui_const_func.DIALOGUE_END_BIG_TITLE
-	big_instr.type_node = "end_dialogue"
+	big_instr.type_node = END_DIALOGUE
 	
 	var tool_instr = ui_const_func.get_tool_instr()
 	tool_instr.body_node = 2
@@ -63,11 +66,12 @@ func bake_ui_dialogue_choice_4() -> void:
 	var big_instr = get_dialogue_choise(4)
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
+const DIALOGUE_CHOICE := 12
 func get_dialogue_choise( num_choise : int ) -> BigGraphNodeMakeInsts:
 	
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ui_const_func.DIALOGUE_CHOISE_BIG_TITLE + str(num_choise)
-	big_instr.type_node = "dialogue_choise"
+	big_instr.type_node = DIALOGUE_CHOICE
 	
 	var dialogue_instr = ui_const_func.get_dialogue_instr()
 	dialogue_instr.body_node = 2

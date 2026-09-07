@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://da7mknb2vjo1m"]
 
+[ext_resource type="Script" uid="uid://cw6o7onp6aa1c" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/Bakers GraphDataObject/Baker Dialogue GraphDataObject/baker_Dialogue_graphdataobject.gd" id="1_h78o0"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="1_l5ft7"]
 
 [resource]
 script = ExtResource("1_l5ft7")
 data_key = "Dialogue"
+baker_object_script_path = ExtResource("1_h78o0")
 ui_start_gener_node = false
 ui_start_gener_empty_node = true
 ui_custom_big_instr = true

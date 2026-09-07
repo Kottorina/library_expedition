@@ -2,28 +2,23 @@
 extends BakerGraphDataObject
 class_name LocationBaker
 
-## ДОБАВЛЯЕТ НОДЫ ДЛЯ ПОСЛЕДУЮЩЕЙ ОБРАБОТКИ, СУКА
-func add_free_port(port : Dictionary) -> void:
-	if ! port[port.keys()[0]] is String:
-		free_nodes.append(port[port.keys()[0]][1])
-
 func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 	match nodes.type_node:
 		0: ## ОБРАБОТКА ПОРТОВ У MAKEROOM
 			for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
 				room_bake_not_free_port(save_graph,nodes,left_port,LEFT_PORTS_DATA_NAME)
 				room_bake_free_port(save_graph,nodes,left_port,LEFT_PORTS_DATA_NAME)
-				add_free_port(left_port)
+				AddFreePort(left_port)
 				
 			## ДЛЯ ПРАВЫХ ПОРТОВ, НАХУЙ ФАШИСТОВ
 			for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
 				room_bake_not_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
 				room_bake_free_port(save_graph,nodes,right_port,RIGHT_PORTS_DATA_NAME)
-				add_free_port(right_port)
+				AddFreePort(right_port)
 
 		2:  ## ОБРАБОТКА СТРАТОВОГО НОДА ОТДЕЛЬНО и ТОЛЬКО СУКА ПРАВЫЕ
 			for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
-				add_free_port(right_port)
+				AddFreePort(right_port)
 				## ОБРАБОТКА ГОТОВЫХ ПОРТОВ
 				if right_port[right_port.keys()[0]] is Array:
 					## Запекаем готовый порт
@@ -71,7 +66,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			
 			if setting_biginstr == null:
 				## ПОДКЛЮЧИЛА К BASE, СУЧКА
-				add_free_port(exit_ports[0])
+				AddFreePort(exit_ports[0])
 				bake_con_to_con(
 					save_graph,
 					enter_ports[0][enter_ports[0].keys()[0]][0],
@@ -88,7 +83,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 					continue
 					
 				if rnd.randf_range(0,1) < setting_biginstr.instr_ar[port_id].body_value:
-					add_free_port(exit_ports[port_id])
+					AddFreePort(exit_ports[port_id])
 					bake_con_to_con(
 						save_graph,
 						enter_ports[0][enter_ports[0].keys()[0]][0],
@@ -99,7 +94,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 						)
 					return
 				
-				add_free_port(exit_ports[0])
+				AddFreePort(exit_ports[0])
 				bake_con_to_con(
 					save_graph,
 					enter_ports[0][enter_ports[0].keys()[0]][0],
@@ -110,9 +105,9 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 					)
 		_:
 			for left_port : Dictionary in save_graph[nodes][LEFT_PORTS_DATA_NAME]:
-				add_free_port(left_port)
+				AddFreePort(left_port)
 			for right_port : Dictionary in save_graph[nodes][RIGHT_PORTS_DATA_NAME]:
-				add_free_port(right_port)
+				AddFreePort(right_port)
 				
 				#print(enter_ports,"\n\n",exit_ports)
 				

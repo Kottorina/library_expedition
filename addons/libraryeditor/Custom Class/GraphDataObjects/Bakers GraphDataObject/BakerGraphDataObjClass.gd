@@ -49,10 +49,10 @@ func bake_data(graph_data_objects : GraphDataObjects, c_seed : int = 0) -> Graph
 	
 	while ! free_nodes.is_empty():
 		
-		var cur_node = free_nodes[0]
-		callable.call(cur_node)
+		var last_ind = free_nodes.size()-1
+		callable.call(free_nodes[last_ind])
 		
-		free_nodes.remove_at(0)
+		free_nodes.pop_back()
 	
 	graph_data_objects.rooms_graph = room_graph
 	graph_data_objects.enters_location = enters_location
@@ -82,3 +82,9 @@ func bake_ui(graph_data_objects_ar : Array) -> GraphDataObjectsUiSet:
 			new_graph_data_obj_ui_set.biginstr_ar.append(big_instr)
 	
 	return new_graph_data_obj_ui_set
+
+## ДОБАВЛЯЕТ НОДЫ ДЛЯ ПОСЛЕДУЮЩЕЙ ОБРАБОТКИ, СУКА
+func AddFreePort(from_to_with : FromToWith) -> void:
+	if from_to_with.to_obj is String:
+		return
+	free_nodes.append(from_to_with.to_obj)

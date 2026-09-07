@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3]
 
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_shi4s"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_ljuci"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/FromToWith.gd" id="3_75riq"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd" id="4_o8pbc"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="6_5bkih"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="7_16c6w"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="7_tn10f"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="8_hjai4"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="8_to20a"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="9_yun03"]
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="10_yxcnf"]
+[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_shi4s"]
+[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_ljuci"]
+[ext_resource type="Script" uid="uid://cqjdhnhlo4da" path="res://addons/libraryeditor/Custom Class/FromToWith.gd" id="3_75riq"]
+[ext_resource type="Script" uid="uid://d32p7fyru3up" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd" id="4_o8pbc"]
+[ext_resource type="Script" uid="uid://b43lnce4bp8vd" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="6_5bkih"]
+[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/Ui/SceneGraphUiClass.gd" id="7_16c6w"]
+[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="7_tn10f"]
+[ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="8_hjai4"]
+[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="8_to20a"]
+[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="9_yun03"]
+[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="10_yxcnf"]
 
 [sub_resource type="Resource" id="Resource_txcq7"]
 script = ExtResource("1_shi4s")
@@ -498,9 +498,185 @@ SubResource("Resource_oihx7"): {
 }
 ui = SubResource("Resource_y843x")
 
+[sub_resource type="Resource" id="Resource_ir35u"]
+script = ExtResource("1_shi4s")
+title_instr = "Tool:"
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+body_value = null
+
+[sub_resource type="Resource" id="Resource_rclft"]
+script = ExtResource("1_shi4s")
+title_instr = "Id Enter:"
+is_right = true
+right_type = 17
+right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
+body_node = 1
+body_value = 0.0
+
+[sub_resource type="Resource" id="Resource_jljo3"]
+script = ExtResource("2_ljuci")
+title_node = "Start Gener Node"
+coord_ = Vector2(220, 180)
+type_node = 2
+instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_ir35u"), SubResource("Resource_rclft")])
+
+[sub_resource type="Resource" id="Resource_e7djr"]
+script = ExtResource("4_o8pbc")
+
+[sub_resource type="Resource" id="Resource_wa437"]
+script = ExtResource("4_o8pbc")
+port_num = 1
+
+[sub_resource type="Resource" id="Resource_bhqc5"]
+script = ExtResource("1_shi4s")
+title_instr = "Tool"
+is_left = true
+left_type = 5
+left_color = Color(1, 1, 1, 1)
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+body_value = null
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_1juhp"]
+script = ExtResource("1_shi4s")
+title_instr = "Tool"
+is_left = true
+left_type = 5
+left_color = Color(1, 1, 1, 1)
+is_right = true
+right_type = 5
+right_color = Color(1, 1, 1, 1)
+body_value = null
+metadata/_custom_type_script = "uid://bpcjxhhu46lny"
+
+[sub_resource type="Resource" id="Resource_747xh"]
+script = ExtResource("2_ljuci")
+title_node = "Tool Crossroad"
+coord_ = Vector2(620, 220)
+type_node = 3
+instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_bhqc5"), SubResource("Resource_1juhp")])
+metadata/_custom_type_script = "uid://wfp6jmgoghtc"
+
+[sub_resource type="Resource" id="Resource_1kxom"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_e7djr")
+to_data = SubResource("Resource_wa437")
+to_obj = SubResource("Resource_747xh")
+
+[sub_resource type="Resource" id="Resource_5q8rp"]
+script = ExtResource("4_o8pbc")
+port_num = 1
+
+[sub_resource type="Resource" id="Resource_aktyw"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_5q8rp")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_x1p0q"]
+script = ExtResource("4_o8pbc")
+
+[sub_resource type="Resource" id="Resource_6uhh7"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_x1p0q")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_ibuko"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_wa437")
+to_data = SubResource("Resource_e7djr")
+to_obj = SubResource("Resource_jljo3")
+
+[sub_resource type="Resource" id="Resource_iprcp"]
+script = ExtResource("4_o8pbc")
+
+[sub_resource type="Resource" id="Resource_32qk0"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_iprcp")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_pevhw"]
+script = ExtResource("4_o8pbc")
+port_num = 1
+
+[sub_resource type="Resource" id="Resource_ewrso"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_pevhw")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_a5n3g"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_e7djr")
+to_data = SubResource("Resource_wa437")
+to_obj = SubResource("Resource_747xh")
+
+[sub_resource type="Resource" id="Resource_y2d16"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_5q8rp")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_74eyr"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_x1p0q")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_jed5c"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_wa437")
+to_data = null
+to_obj = "PortOccupied"
+
+[sub_resource type="Resource" id="Resource_m8g4v"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_iprcp")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_iumcg"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_pevhw")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_jrlo0"]
+script = ExtResource("7_16c6w")
+zoom = 0.9090906
+scroll_offset = Vector2(-166.6425, -83.37622)
+
 [sub_resource type="Resource" id="Resource_roblr"]
 script = ExtResource("6_5bkih")
 id_ = 1
+start_bake_node = SubResource("Resource_jljo3")
+save_graph = {
+SubResource("Resource_jljo3"): {
+"LeftPortsData": Array[ExtResource("3_75riq")]([]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_a5n3g"), SubResource("Resource_y2d16")])
+},
+SubResource("Resource_747xh"): {
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_74eyr"), SubResource("Resource_jed5c")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_m8g4v"), SubResource("Resource_iumcg")])
+}
+}
+full_graph = {
+SubResource("Resource_jljo3"): {
+"LeftPortsData": Array[ExtResource("3_75riq")]([]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_1kxom"), SubResource("Resource_aktyw")])
+},
+SubResource("Resource_747xh"): {
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_6uhh7"), SubResource("Resource_ibuko")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_32qk0"), SubResource("Resource_ewrso")])
+}
+}
+ui = SubResource("Resource_jrlo0")
 
 [sub_resource type="Resource" id="Resource_2yq01"]
 script = ExtResource("1_shi4s")

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cqjdhnhlo4da" path="res://addons/libraryeditor/Custom Class/FromToWith.gd" id="3_w3qdg"]
 [ext_resource type="Script" uid="uid://d32p7fyru3up" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd" id="4_pa3dx"]
 [ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://Base Obj/tool_crossroad.tres" id="5_m6hf0"]
-[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/SceneGraphUiClass.gd" id="7_406ih"]
+[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/Ui/SceneGraphUiClass.gd" id="7_406ih"]
 
 [sub_resource type="Resource" id="Resource_txcq7"]
 script = ExtResource("1_xuwrr")

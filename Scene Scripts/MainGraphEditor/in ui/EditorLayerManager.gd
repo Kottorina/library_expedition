@@ -106,7 +106,7 @@ func _on_del_item_pressed() -> void:
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	save_data_all_library.del_item_from_id(cur_editor_obj_layers.data_key,cur_id)
+	save_data_all_library.DelItemFromId(cur_editor_obj_layers.data_key,cur_id)
 	UpdateIdList()
 
 func _on_rename_pressed() -> void:

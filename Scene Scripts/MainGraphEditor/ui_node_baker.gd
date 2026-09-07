@@ -23,6 +23,7 @@ func bake_ui_dialogue_start() -> void:
 	
 	var dialogue_instr = ui_const_func.get_dialogue_instr()
 	dialogue_instr.body_node = 0
+	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CON_TITLE
 	big_instr.instr_ar.append(dialogue_instr)
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
@@ -47,11 +48,36 @@ func bake_ui_dialogue_end() -> void:
 	
 	var dialogue_instr = ui_const_func.get_dialogue_instr()
 	dialogue_instr.body_node = 0
+	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CON_TITLE
 	big_instr.instr_ar.append(dialogue_instr)
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
+func bake_ui_dialogue_choice_2() -> void:
+	var big_instr = get_dialogue_choise(2)
+	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
+func bake_ui_dialogue_choice_3() -> void:
+	var big_instr = get_dialogue_choise(3)
+	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
+func bake_ui_dialogue_choice_4() -> void:
+	var big_instr = get_dialogue_choise(4)
+	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
+func get_dialogue_choise( num_choise : int ) -> BigGraphNodeMakeInsts:
+	
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_CHOISE_BIG_TITLE + str(num_choise)
+	big_instr.type_node = "dialogue_choise"
+	
+	var dialogue_instr = ui_const_func.get_dialogue_instr()
+	dialogue_instr.body_node = 2
+	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CHOISE_TITLE
+	big_instr.instr_ar.append(dialogue_instr)
+	for i in num_choise:
+		big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
+	
+	return big_instr
+	
 func bake_ui_editor_layer_nodes(data_str : String) -> void:
 	
 	var cur_editor_layer : EditorObjectLayer

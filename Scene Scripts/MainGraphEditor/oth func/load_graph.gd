@@ -4,7 +4,11 @@ extends Node
 @export var main_graph_editor : Node
 
 ## НАСТРОЙКИ UI В GRAPH NODE
+#Label
+const LABEL_HORIZONTAL_ALIGNMENT = HORIZONTAL_ALIGNMENT_CENTER
+#SpinBox
 const SPINBOX_BASE_STEP : float = 0.1
+#TextEdit
 const TEXT_FIT_CONTENT_HEIGHT : bool = true
 const TEXT_FIT_CONTENT_WIDTH : bool = true
 const TEXT_MINIMUM_SIZE_X : int = 150
@@ -52,6 +56,7 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		match inst.body_node:
 			0: ## Label
 				child_node = Label.new()
+				child_node.horizontal_alignment = LABEL_HORIZONTAL_ALIGNMENT
 				
 				child_node.text = inst.title_instr
 				new_node.add_child(child_node)

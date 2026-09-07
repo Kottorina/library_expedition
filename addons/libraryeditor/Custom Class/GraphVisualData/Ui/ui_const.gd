@@ -28,6 +28,8 @@ const DIALOGUE_START_BIG_TITLE = "Dialogue Start"
 const DIALOGUE_NODE_TITLE = "Dialogue Node"
 const DIALOGUE_END_BIG_TITLE = "Dialogue End"
 
+const DIALOGUE_CHOISE_BIG_TITLE = "Dialogue Choise: "
+
 ## ДЛЯ INSTR
 const TOOL_TITLE : String = "Tool:"
 const ENTER_LOCATION_TITLE : String = "Id Enter:"
@@ -35,7 +37,9 @@ const INSTR_FORK_BASE_TITLE : String = "Base Option: "
 const INSTR_FORK_ALT_CHANCE_TITLE : String = "Alt Chance: "
 const TOOL_CONNECTOR_TITLE : String = "Connector:"
 
+const DIALOGUE_CON_TITLE : String = "Dialogue Con: "
 const DIALOGUE_TITLE : String = "Dialogue: "
+const DIALOGUE_CHOISE_TITLE : String = "Dialogue Choise: "
 
 ## ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
 const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]

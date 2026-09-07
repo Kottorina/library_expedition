@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://bbdqop16cfr2o"]
 
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://Scene Scripts/GenerRuleEditor/EditorObjectLayerClass.gd" id="1_gnomq"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="1_gnomq"]
 
 [resource]
 script = ExtResource("1_gnomq")

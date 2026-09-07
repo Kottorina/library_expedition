@@ -69,7 +69,7 @@ func bake_ui_connectors_plugs() -> void:
 				connector.type = type_
 				connector.direction = direction_
 				connector.size_ = size_
-				big_instr.instr_ar.append(ui_const_func.make_inst_from_connector(connector))
+				big_instr.instr_ar.append(ui_const_func.get_inst_from_connector(connector))
 
 	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_UI_NAME, big_instr)
 
@@ -83,7 +83,16 @@ func bake_ui_start_gener_node() -> void: ##Стартовая хуйня, без
 	big_instr.instr_ar.append(ui_const_func.get_tool_enter_instr())
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_UI_NAME, big_instr)
+
+func bake_ui_start_gener_empty_node() -> void:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.START_GENER_LOCATION_BIG_TITLE
+	big_instr.type_node = 2
 	
+	big_instr.instr_ar.append(ui_const_func.get_tool_instr())
+	
+	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_UI_NAME, big_instr)
+
 func bake_ui_all_rnd_fork() -> void: ## Случайные Перекрестки, Очень Круто
 	for type_ in ui_const_func.BASE_COLOR_TYPE.size():
 		for size_ in ui_const_func.SIZE.size():
@@ -100,7 +109,7 @@ func bake_ui_rnd_fork_from_connector( enter_connector : RoomConnector ) -> void:
 	
 	big_instr.instr_ar.append(ui_const_func.get_tool_instr())
 	
-	var enter_instr = ui_const_func.make_inst_from_connector(enter_connector)
+	var enter_instr = ui_const_func.get_inst_from_connector(enter_connector)
 	big_instr.instr_ar.append(enter_instr)
 	
 	var big_title = ui_const_func.BIG_RND_FORK_BIG_TITLE + " " + enter_instr.title_instr
@@ -109,11 +118,11 @@ func bake_ui_rnd_fork_from_connector( enter_connector : RoomConnector ) -> void:
 	
 	var exit_connector = enter_connector.duplicate()
 	exit_connector.direction = DIRECTION_INVERT[enter_connector.direction]
-	var exit_instr_one = ui_const_func.make_inst_from_connector(exit_connector)
+	var exit_instr_one = ui_const_func.get_inst_from_connector(exit_connector)
 	exit_instr_one.title_instr = ui_const_func.INSTR_FORK_BASE_TITLE
 	big_instr.instr_ar.append(exit_instr_one)
 	
-	var exit_instr_two = ui_const_func.make_inst_from_connector(exit_connector)
+	var exit_instr_two = ui_const_func.get_inst_from_connector(exit_connector)
 	exit_instr_two.body_node = 1
 	exit_instr_two.title_instr = ui_const_func.INSTR_FORK_ALT_CHANCE_TITLE
 	big_instr.instr_ar.append(exit_instr_two)
@@ -126,7 +135,7 @@ func RoomToBigInstrGraphNode(room : Room) -> BigGraphNodeMakeInsts:
 	
 	for connector : RoomConnector in room.room_connectors_ar:
 
-		big_instr.instr_ar.append(ui_const_func.make_inst_from_connector(connector))
+		big_instr.instr_ar.append(ui_const_func.get_inst_from_connector(connector))
 	for enter : RoomEnter in room.room_enter_ar:
 		
 		var instr = ui_const_func.get_tool_enter_instr()

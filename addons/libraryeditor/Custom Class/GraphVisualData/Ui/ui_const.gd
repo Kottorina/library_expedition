@@ -81,7 +81,7 @@ func get_tool_enter_instr() -> GraphNodeMakeInsts:
 	return instr
 
 ## ИНСТРУКЦИЯ ИЗ КОННЕКТОРА
-func make_inst_from_connector(connector : RoomConnector ) -> GraphNodeMakeInsts:
+func get_inst_from_connector(connector : RoomConnector ) -> GraphNodeMakeInsts:
 	var instr := GraphNodeMakeInsts.new()
 
 	instr.body_node = 0

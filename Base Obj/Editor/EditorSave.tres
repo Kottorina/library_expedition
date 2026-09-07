@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EditorSaveData" format=3]
 
-[ext_resource type="Script" path="res://Scene Scripts/GenerRuleEditor/editor_save_data_class.gd" id="1_ajksn"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/editor_save_data_class.gd" id="1_ajksn"]
 
 [resource]
 script = ExtResource("1_ajksn")

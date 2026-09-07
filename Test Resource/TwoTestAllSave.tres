@@ -1,45 +1,48 @@
-[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://nlc7xmr27k0f"]
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3]
 
-[ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_shi4s"]
-[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_ljuci"]
-[ext_resource type="Script" uid="uid://cqjdhnhlo4da" path="res://addons/libraryeditor/Custom Class/FromToWith.gd" id="3_75riq"]
-[ext_resource type="Script" uid="uid://d32p7fyru3up" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd" id="4_o8pbc"]
-[ext_resource type="Script" uid="uid://b43lnce4bp8vd" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="6_5bkih"]
-[ext_resource type="Script" uid="uid://dtaohupbxticg" path="res://addons/libraryeditor/Custom Class/GraphVisualData/Ui/SceneGraphUiClass.gd" id="7_16c6w"]
-[ext_resource type="Script" uid="uid://dhfd7p74pf7nu" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="7_tn10f"]
-[ext_resource type="Script" uid="uid://bn0kpxd11khos" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="8_hjai4"]
-[ext_resource type="Script" uid="uid://cc0oq3lo1k24g" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="8_to20a"]
-[ext_resource type="Script" uid="uid://c1q51pwhymwu6" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="9_yun03"]
-[ext_resource type="Script" uid="uid://bp2yg2emt4tov" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="10_yxcnf"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_shi4s"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="2_ljuci"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/FromToWith.gd" id="3_75riq"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMetaClass.gd" id="4_o8pbc"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/GraphDataObjectsClass.gd" id="6_5bkih"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/GraphVisualData/Ui/SceneGraphUiClass.gd" id="7_16c6w"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomEnterClass.gd" id="7_tn10f"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/all_library_save_data_class.gd" id="8_hjai4"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomConnectorClass.gd" id="8_to20a"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/BaseTileClass.gd" id="9_yun03"]
+[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Room/Piece Room/RoomClass.gd" id="10_yxcnf"]
 
-[sub_resource type="Resource" id="Resource_txcq7"]
+[sub_resource type="Resource" id="Resource_sq3wi"]
 script = ExtResource("1_shi4s")
 title_instr = "Tool:"
+is_left = true
+left_type = 5
+left_color = Color(1, 1, 1, 1)
 is_right = true
 right_type = 5
 right_color = Color(1, 1, 1, 1)
 body_value = null
 
-[sub_resource type="Resource" id="Resource_fe5tg"]
-script = ExtResource("1_shi4s")
-title_instr = "Id Enter:"
-is_right = true
-right_type = 17
-right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
-body_node = 1
-body_value = 0.4
-
-[sub_resource type="Resource" id="Resource_r8oor"]
+[sub_resource type="Resource" id="Resource_ygcb8"]
 script = ExtResource("2_ljuci")
 title_node = "Start Gener Node"
-coord_ = Vector2(460, 460)
+coord_ = Vector2(620, 680)
 type_node = 2
-instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_txcq7"), SubResource("Resource_fe5tg")])
+instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_sq3wi")])
 
-[sub_resource type="Resource" id="Resource_sq3wi"]
+[sub_resource type="Resource" id="Resource_bes2y"]
 script = ExtResource("4_o8pbc")
 
-[sub_resource type="Resource" id="Resource_ygcb8"]
+[sub_resource type="Resource" id="Resource_x18sy"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_bes2y")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_vgedd"]
+script = ExtResource("4_o8pbc")
+
+[sub_resource type="Resource" id="Resource_q2gmj"]
 script = ExtResource("4_o8pbc")
 port_num = 1
 
@@ -75,26 +78,16 @@ type_node = 3
 instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_dikrd"), SubResource("Resource_cg4bs")])
 metadata/_custom_type_script = "uid://wfp6jmgoghtc"
 
-[sub_resource type="Resource" id="Resource_bes2y"]
+[sub_resource type="Resource" id="Resource_0mnt0"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_sq3wi")
-to_data = SubResource("Resource_ygcb8")
+from_data = SubResource("Resource_vgedd")
+to_data = SubResource("Resource_q2gmj")
 to_obj = SubResource("Resource_tn10f")
 
-[sub_resource type="Resource" id="Resource_x18sy"]
-script = ExtResource("4_o8pbc")
-port_num = 1
-
-[sub_resource type="Resource" id="Resource_vgedd"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_x18sy")
-to_data = null
-to_obj = "PortFree"
-
-[sub_resource type="Resource" id="Resource_q2gmj"]
+[sub_resource type="Resource" id="Resource_qoovn"]
 script = ExtResource("4_o8pbc")
 
-[sub_resource type="Resource" id="Resource_0mnt0"]
+[sub_resource type="Resource" id="Resource_8kdt2"]
 script = ExtResource("4_o8pbc")
 port_num = 1
 
@@ -130,22 +123,22 @@ type_node = 3
 instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_3xhpb"), SubResource("Resource_70rkw")])
 metadata/_custom_type_script = "uid://wfp6jmgoghtc"
 
-[sub_resource type="Resource" id="Resource_qoovn"]
+[sub_resource type="Resource" id="Resource_tq8fc"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_q2gmj")
-to_data = SubResource("Resource_0mnt0")
+from_data = SubResource("Resource_qoovn")
+to_data = SubResource("Resource_8kdt2")
 to_obj = SubResource("Resource_eugdd")
 
-[sub_resource type="Resource" id="Resource_8kdt2"]
+[sub_resource type="Resource" id="Resource_qoh0e"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_ygcb8")
-to_data = SubResource("Resource_sq3wi")
-to_obj = SubResource("Resource_r8oor")
+from_data = SubResource("Resource_q2gmj")
+to_data = SubResource("Resource_vgedd")
+to_obj = SubResource("Resource_ygcb8")
 
-[sub_resource type="Resource" id="Resource_tq8fc"]
+[sub_resource type="Resource" id="Resource_vjkvl"]
 script = ExtResource("4_o8pbc")
 
-[sub_resource type="Resource" id="Resource_qoh0e"]
+[sub_resource type="Resource" id="Resource_du6gj"]
 script = ExtResource("4_o8pbc")
 
 [sub_resource type="Resource" id="Resource_ote16"]
@@ -180,17 +173,17 @@ type_node = 3
 instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_ote16"), SubResource("Resource_gasdg")])
 metadata/_custom_type_script = "uid://wfp6jmgoghtc"
 
-[sub_resource type="Resource" id="Resource_vjkvl"]
+[sub_resource type="Resource" id="Resource_nes7y"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_tq8fc")
-to_data = SubResource("Resource_qoh0e")
+from_data = SubResource("Resource_vjkvl")
+to_data = SubResource("Resource_du6gj")
 to_obj = SubResource("Resource_r03hf")
 
-[sub_resource type="Resource" id="Resource_du6gj"]
+[sub_resource type="Resource" id="Resource_w1xha"]
 script = ExtResource("4_o8pbc")
 port_num = 1
 
-[sub_resource type="Resource" id="Resource_nes7y"]
+[sub_resource type="Resource" id="Resource_ebxik"]
 script = ExtResource("4_o8pbc")
 
 [sub_resource type="Resource" id="Resource_nas5w"]
@@ -225,24 +218,14 @@ type_node = 3
 instr_ar = Array[ExtResource("1_shi4s")]([SubResource("Resource_nas5w"), SubResource("Resource_mfbpl")])
 metadata/_custom_type_script = "uid://wfp6jmgoghtc"
 
-[sub_resource type="Resource" id="Resource_w1xha"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_du6gj")
-to_data = SubResource("Resource_nes7y")
-to_obj = SubResource("Resource_oihx7")
-
-[sub_resource type="Resource" id="Resource_ebxik"]
-script = ExtResource("4_o8pbc")
-
 [sub_resource type="Resource" id="Resource_tq2yp"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_ebxik")
-to_data = null
-to_obj = "PortFree"
+from_data = SubResource("Resource_w1xha")
+to_data = SubResource("Resource_ebxik")
+to_obj = SubResource("Resource_oihx7")
 
 [sub_resource type="Resource" id="Resource_mskrv"]
 script = ExtResource("4_o8pbc")
-port_num = 1
 
 [sub_resource type="Resource" id="Resource_aax3f"]
 script = ExtResource("3_75riq")
@@ -252,6 +235,7 @@ to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_uelgf"]
 script = ExtResource("4_o8pbc")
+port_num = 1
 
 [sub_resource type="Resource" id="Resource_tkgaa"]
 script = ExtResource("3_75riq")
@@ -260,29 +244,29 @@ to_data = null
 to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_voxkn"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_0mnt0")
-to_data = SubResource("Resource_q2gmj")
-to_obj = SubResource("Resource_tn10f")
+script = ExtResource("4_o8pbc")
 
 [sub_resource type="Resource" id="Resource_apwv0"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_qoh0e")
-to_data = SubResource("Resource_tq8fc")
-to_obj = SubResource("Resource_tn10f")
-
-[sub_resource type="Resource" id="Resource_0gv1h"]
-script = ExtResource("4_o8pbc")
-port_num = 1
-
-[sub_resource type="Resource" id="Resource_o4kl7"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_0gv1h")
+from_data = SubResource("Resource_voxkn")
 to_data = null
 to_obj = "PortFree"
 
+[sub_resource type="Resource" id="Resource_0gv1h"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_8kdt2")
+to_data = SubResource("Resource_qoovn")
+to_obj = SubResource("Resource_tn10f")
+
+[sub_resource type="Resource" id="Resource_o4kl7"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_du6gj")
+to_data = SubResource("Resource_vjkvl")
+to_obj = SubResource("Resource_tn10f")
+
 [sub_resource type="Resource" id="Resource_ev2wg"]
 script = ExtResource("4_o8pbc")
+port_num = 1
 
 [sub_resource type="Resource" id="Resource_mrog1"]
 script = ExtResource("3_75riq")
@@ -292,7 +276,6 @@ to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_adb1t"]
 script = ExtResource("4_o8pbc")
-port_num = 1
 
 [sub_resource type="Resource" id="Resource_5p12t"]
 script = ExtResource("3_75riq")
@@ -301,23 +284,24 @@ to_data = null
 to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_1fnar"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_nes7y")
-to_data = SubResource("Resource_du6gj")
-to_obj = SubResource("Resource_tn10f")
-
-[sub_resource type="Resource" id="Resource_l2lbw"]
 script = ExtResource("4_o8pbc")
 port_num = 1
 
-[sub_resource type="Resource" id="Resource_e2cwm"]
+[sub_resource type="Resource" id="Resource_l2lbw"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_l2lbw")
+from_data = SubResource("Resource_1fnar")
 to_data = null
 to_obj = "PortFree"
 
+[sub_resource type="Resource" id="Resource_e2cwm"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_ebxik")
+to_data = SubResource("Resource_w1xha")
+to_obj = SubResource("Resource_tn10f")
+
 [sub_resource type="Resource" id="Resource_p654y"]
 script = ExtResource("4_o8pbc")
+port_num = 1
 
 [sub_resource type="Resource" id="Resource_nxdwj"]
 script = ExtResource("3_75riq")
@@ -327,7 +311,6 @@ to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_6ckvr"]
 script = ExtResource("4_o8pbc")
-port_num = 1
 
 [sub_resource type="Resource" id="Resource_ytogw"]
 script = ExtResource("3_75riq")
@@ -336,167 +319,177 @@ to_data = null
 to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_x2300"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_sq3wi")
-to_data = SubResource("Resource_ygcb8")
-to_obj = SubResource("Resource_tn10f")
+script = ExtResource("4_o8pbc")
+port_num = 1
 
 [sub_resource type="Resource" id="Resource_d56gm"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_x18sy")
+from_data = SubResource("Resource_x2300")
 to_data = null
 to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_trbq4"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_q2gmj")
-to_data = SubResource("Resource_0mnt0")
-to_obj = SubResource("Resource_eugdd")
-
-[sub_resource type="Resource" id="Resource_mxkwx"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_ygcb8")
-to_data = null
-to_obj = "PortOccupied"
-
-[sub_resource type="Resource" id="Resource_6axei"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_tq8fc")
-to_data = SubResource("Resource_qoh0e")
-to_obj = SubResource("Resource_r03hf")
-
-[sub_resource type="Resource" id="Resource_oq6ol"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_du6gj")
-to_data = SubResource("Resource_nes7y")
-to_obj = SubResource("Resource_oihx7")
-
-[sub_resource type="Resource" id="Resource_u7gdd"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_ebxik")
+from_data = SubResource("Resource_bes2y")
 to_data = null
 to_obj = "PortFree"
 
+[sub_resource type="Resource" id="Resource_mxkwx"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_vgedd")
+to_data = SubResource("Resource_q2gmj")
+to_obj = SubResource("Resource_tn10f")
+
+[sub_resource type="Resource" id="Resource_6axei"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_qoovn")
+to_data = SubResource("Resource_8kdt2")
+to_obj = SubResource("Resource_eugdd")
+
+[sub_resource type="Resource" id="Resource_oq6ol"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_q2gmj")
+to_data = null
+to_obj = "PortOccupied"
+
+[sub_resource type="Resource" id="Resource_u7gdd"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_vjkvl")
+to_data = SubResource("Resource_du6gj")
+to_obj = SubResource("Resource_r03hf")
+
 [sub_resource type="Resource" id="Resource_2ykb2"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_w1xha")
+to_data = SubResource("Resource_ebxik")
+to_obj = SubResource("Resource_oihx7")
+
+[sub_resource type="Resource" id="Resource_poen6"]
 script = ExtResource("3_75riq")
 from_data = SubResource("Resource_mskrv")
 to_data = null
 to_obj = "PortFree"
 
-[sub_resource type="Resource" id="Resource_poen6"]
+[sub_resource type="Resource" id="Resource_ppoxw"]
 script = ExtResource("3_75riq")
 from_data = SubResource("Resource_uelgf")
 to_data = null
 to_obj = "PortFree"
 
-[sub_resource type="Resource" id="Resource_ppoxw"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_0mnt0")
-to_data = null
-to_obj = "PortOccupied"
-
 [sub_resource type="Resource" id="Resource_4aumq"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_qoh0e")
-to_data = null
-to_obj = "PortOccupied"
-
-[sub_resource type="Resource" id="Resource_em447"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_0gv1h")
+from_data = SubResource("Resource_voxkn")
 to_data = null
 to_obj = "PortFree"
 
+[sub_resource type="Resource" id="Resource_em447"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_8kdt2")
+to_data = null
+to_obj = "PortOccupied"
+
 [sub_resource type="Resource" id="Resource_vthau"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_du6gj")
+to_data = null
+to_obj = "PortOccupied"
+
+[sub_resource type="Resource" id="Resource_yc1ob"]
 script = ExtResource("3_75riq")
 from_data = SubResource("Resource_ev2wg")
 to_data = null
 to_obj = "PortFree"
 
-[sub_resource type="Resource" id="Resource_yc1ob"]
+[sub_resource type="Resource" id="Resource_0illt"]
 script = ExtResource("3_75riq")
 from_data = SubResource("Resource_adb1t")
 to_data = null
 to_obj = "PortFree"
 
-[sub_resource type="Resource" id="Resource_0illt"]
-script = ExtResource("3_75riq")
-from_data = SubResource("Resource_nes7y")
-to_data = null
-to_obj = "PortOccupied"
-
 [sub_resource type="Resource" id="Resource_c6sgs"]
 script = ExtResource("3_75riq")
-from_data = SubResource("Resource_l2lbw")
+from_data = SubResource("Resource_1fnar")
 to_data = null
 to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_g1hsq"]
 script = ExtResource("3_75riq")
+from_data = SubResource("Resource_ebxik")
+to_data = null
+to_obj = "PortOccupied"
+
+[sub_resource type="Resource" id="Resource_0d2dd"]
+script = ExtResource("3_75riq")
 from_data = SubResource("Resource_p654y")
 to_data = null
 to_obj = "PortFree"
 
-[sub_resource type="Resource" id="Resource_0d2dd"]
+[sub_resource type="Resource" id="Resource_y843x"]
 script = ExtResource("3_75riq")
 from_data = SubResource("Resource_6ckvr")
 to_data = null
 to_obj = "PortFree"
 
-[sub_resource type="Resource" id="Resource_y843x"]
+[sub_resource type="Resource" id="Resource_xp4f6"]
+script = ExtResource("3_75riq")
+from_data = SubResource("Resource_x2300")
+to_data = null
+to_obj = "PortFree"
+
+[sub_resource type="Resource" id="Resource_kse2o"]
 script = ExtResource("7_16c6w")
-zoom = 0.9090906
-scroll_offset = Vector2(227.36267, 131.94077)
+zoom = 0.75131446
+scroll_offset = Vector2(118.436905, 108.59839)
 
 [sub_resource type="Resource" id="Resource_vssk0"]
 script = ExtResource("6_5bkih")
 name_ = "FirstTest"
-start_bake_node = SubResource("Resource_r8oor")
+start_bake_node = SubResource("Resource_ygcb8")
 save_graph = {
-SubResource("Resource_r8oor"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_x2300"), SubResource("Resource_d56gm")])
+SubResource("Resource_ygcb8"): {
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_trbq4")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_mxkwx")])
 },
 SubResource("Resource_tn10f"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_trbq4"), SubResource("Resource_mxkwx")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_6axei"), SubResource("Resource_oq6ol")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_6axei"), SubResource("Resource_oq6ol")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_u7gdd"), SubResource("Resource_2ykb2")])
 },
 SubResource("Resource_eugdd"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_u7gdd"), SubResource("Resource_2ykb2")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_poen6"), SubResource("Resource_ppoxw")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_poen6"), SubResource("Resource_ppoxw")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_4aumq"), SubResource("Resource_em447")])
 },
 SubResource("Resource_r03hf"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_4aumq"), SubResource("Resource_em447")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_vthau"), SubResource("Resource_yc1ob")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_vthau"), SubResource("Resource_yc1ob")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_0illt"), SubResource("Resource_c6sgs")])
 },
 SubResource("Resource_oihx7"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_0illt"), SubResource("Resource_c6sgs")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_g1hsq"), SubResource("Resource_0d2dd")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_g1hsq"), SubResource("Resource_0d2dd")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_y843x"), SubResource("Resource_xp4f6")])
 }
 }
 full_graph = {
-SubResource("Resource_r8oor"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_bes2y"), SubResource("Resource_vgedd")])
+SubResource("Resource_ygcb8"): {
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_x18sy")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_0mnt0")])
 },
 SubResource("Resource_tn10f"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_qoovn"), SubResource("Resource_8kdt2")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_vjkvl"), SubResource("Resource_w1xha")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_tq8fc"), SubResource("Resource_qoh0e")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_nes7y"), SubResource("Resource_tq2yp")])
 },
 SubResource("Resource_eugdd"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_tq2yp"), SubResource("Resource_aax3f")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_tkgaa"), SubResource("Resource_voxkn")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_aax3f"), SubResource("Resource_tkgaa")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_apwv0"), SubResource("Resource_0gv1h")])
 },
 SubResource("Resource_r03hf"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_apwv0"), SubResource("Resource_o4kl7")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_mrog1"), SubResource("Resource_5p12t")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_o4kl7"), SubResource("Resource_mrog1")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_5p12t"), SubResource("Resource_l2lbw")])
 },
 SubResource("Resource_oihx7"): {
-"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_1fnar"), SubResource("Resource_e2cwm")]),
-"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_nxdwj"), SubResource("Resource_ytogw")])
+"LeftPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_e2cwm"), SubResource("Resource_nxdwj")]),
+"RightPortsData": Array[ExtResource("3_75riq")]([SubResource("Resource_ytogw"), SubResource("Resource_d56gm")])
 }
 }
-ui = SubResource("Resource_y843x")
+ui = SubResource("Resource_kse2o")
 
 [sub_resource type="Resource" id="Resource_ir35u"]
 script = ExtResource("1_shi4s")
@@ -693,7 +686,7 @@ is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 body_node = 1
-body_value = null
+body_value = 100.0
 
 [sub_resource type="Resource" id="Resource_n848l"]
 script = ExtResource("2_ljuci")
@@ -9250,7 +9243,7 @@ is_right = true
 right_type = 17
 right_color = Color(0.627451, 0.1254902, 0.9411765, 1)
 body_node = 1
-body_value = null
+body_value = 5.0
 
 [sub_resource type="Resource" id="Resource_yqjeo"]
 script = ExtResource("2_ljuci")
@@ -9431,8 +9424,8 @@ to_obj = "PortOccupied"
 
 [sub_resource type="Resource" id="Resource_sychx"]
 script = ExtResource("7_16c6w")
-zoom = 0.75131446
-scroll_offset = Vector2(-58.381958, -391.54987)
+zoom = 0.82644594
+scroll_offset = Vector2(-107.67145, -314.44678)
 
 [sub_resource type="Resource" id="Resource_xvleu"]
 script = ExtResource("6_5bkih")

@@ -9,6 +9,7 @@ class_name EditorObjectLayer
 ## ФЛАГИ ДЛЯ UI, ПРИ ЗАГРУЗКЕ
 
 @export var ui_start_gener_node : bool = true
+@export var ui_start_gener_empty_node : bool = false
 @export var ui_all_rnd_fork : bool = false
 @export var ui_custom_big_instr : bool = false ## А ОНО НАМ ВООБЩЕ БЛЯДЬ НАДО В ЭТОМ ВИДЕ?
 @export var ui_connectors_plugs : bool = false

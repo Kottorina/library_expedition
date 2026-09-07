@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://Scene Scripts/MainGraphEditor/oth func/MainGraphEditor.gd" id="1_0gdv0"]
 [ext_resource type="Script" uid="uid://laafe23yiddc" path="res://Scene Scripts/MainGraphEditor/in ui/FileSaveLoad.gd" id="1_0un4p"]
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://Scene Scripts/GenerRuleEditor/EditorObjectLayerClass.gd" id="2_eduwg"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="2_eduwg"]
 [ext_resource type="Resource" uid="uid://cx8l1x0ewjlq2" path="res://Base Obj/Editor/LayerAnimation.tres" id="3_4100p"]
 [ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://Base Obj/Editor/LayerBigLocation.tres" id="4_ojduo"]
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://Base Obj/Editor/LayerDialogue.tres" id="5_fshts"]

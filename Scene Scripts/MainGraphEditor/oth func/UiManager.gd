@@ -6,6 +6,7 @@ extends Node
 ## ДЛЯ ИТЕРАЦИИ ПО UI В EDITOR LAYER
 var tasks_bool : Dictionary = {
 "ui_start_gener_node" : "bake_ui_start_gener_node",
+"ui_start_gener_empty_node": "bake_ui_start_gener_empty_node",
 "ui_all_rnd_fork" : "bake_ui_all_rnd_fork",
 "ui_custom_big_instr" : "bake_custom_big_instr",
 "ui_connectors_plugs" : "bake_ui_connectors_plugs",
@@ -16,7 +17,6 @@ var tasks_bool : Dictionary = {
 var tasks_string : Dictionary = {
 "ui_editor_layer_nodes" : "bake_ui_editor_layer_nodes"
 }
-
 
 func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],save_data_all_library : SaveDataAllLibrary) -> void:
 	

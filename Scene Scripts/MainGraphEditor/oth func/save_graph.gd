@@ -12,11 +12,11 @@ const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 
-func save_and_bake_graph(editor_obj_layer : EditorObjectLayer, object : GraphDataObjects) -> GraphDataObjects:
+func SaveBakeGraph(editor_obj_layer : EditorObjectLayer, object : GraphDataObjects) -> GraphDataObjects:
 	
 	var start_gener_node = find_start_gener_node()
 	if start_gener_node == null:
-		print("Start Gener Is Broken")
+		push_warning("Start Gener Is Broken")
 		return
 	
 	SynchronizationDataFromUI() ## <-- СУКА! НЕ ЗАБУДЬ ПРО ДОПОЛНИТЕЛЬНУЮ ХТОНЬ В METADATA, ДЛЯ ЗАГРУЗКИ!!!
@@ -172,9 +172,10 @@ func SynchronizationDataFromUI() -> void: ## ДЛЯ ПОДГОНКИ ИНСТР�
 			if child_node.has_meta(ACTIVE_NODE_DATA_NAME):
 				var meta_data = child_node.get_meta(ACTIVE_NODE_DATA_NAME)
 				if meta_data != null:
-					match meta_data:
-						SpinBox:
+					
+					if meta_data is SpinBox:
 							big_instr.instr_ar[ind].body_value = meta_data.value
-						TextEdit: 
+					elif meta_data is TextEdit: 
 							big_instr.instr_ar[ind].body_value = meta_data.text
+			
 			ind += 1

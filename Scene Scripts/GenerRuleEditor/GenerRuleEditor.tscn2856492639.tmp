@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cacrpvr7s5nhx" path="res://Scene Scripts/GenerRuleEditor/gener_rule_editor.gd" id="1_mhfe8"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://Scene Scripts/GenerRuleEditor/EditorObjectLayerClass.gd" id="2_1lj8g"]
-[ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/GenerRuleEditor/graph_node_ui.gd" id="2_4kd4q"]
-[ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://Base Obj/Editor/LayerDialogue.tres" id="3_1dcar"]
+[ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/GenerRuleEditor/node_tool_room.gd" id="2_4kd4q"]
 [ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://Base Obj/Editor/LayerLocation.tres" id="3_nig86"]
-[ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="4_lcwxr"]
+[ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/GenerRuleEditor/location_ui.gd" id="4_lcwxr"]
 [ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://Base Obj/Editor/LayerBigLocation.tres" id="4_tdal3"]
 [ext_resource type="Script" uid="uid://beyay8e16l0ab" path="res://Scene Scripts/GenerRuleEditor/ui_set.gd" id="5_1lj8g"]
 [ext_resource type="Script" uid="uid://dipklt5872u21" path="res://Scene Scripts/GenerRuleEditor/file_save_load.gd" id="5_4kd4q"]
@@ -25,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mhfe8")
-editor_obj_layers = Array[ExtResource("2_1lj8g")]([ExtResource("3_1dcar"), ExtResource("3_nig86"), ExtResource("4_tdal3"), ExtResource("5_nig86")])
+editor_obj_layers = Array[ExtResource("2_1lj8g")]([ExtResource("3_nig86"), ExtResource("4_tdal3"), ExtResource("5_nig86")])
 editor_save_data_path = "res://Base Obj/Editor/EditorSave.tres"
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 
@@ -78,16 +77,17 @@ text = "Add Node:"
 layout_mode = 2
 text = "Del Select Node"
 
-[node name="Editor Layer Manager" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer" unique_id=1500545986 node_paths=PackedStringArray("gener_rule_editor", "load_graph_node", "save_node", "type_item", "id_item", "item_name")]
+[node name="Editor Layer Manager" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer" unique_id=1500545986 node_paths=PackedStringArray("gener_rule_editor", "load_graph_node", "type_item", "id_item", "item_name", "save_node", "add_node_ui")]
 layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("4_lcwxr")
 gener_rule_editor = NodePath("../../../../..")
 load_graph_node = NodePath("../../../../../Load Graph")
-save_node = NodePath("../../../../../Save Bake")
 type_item = NodePath("HBoxContainer/Type Item")
 id_item = NodePath("HBoxContainer/Id Load")
 item_name = NodePath("HBoxContainer2/item_name")
+save_node = NodePath("../../../../../Save Bake")
+add_node_ui = NodePath("../../../../../Add Node UI")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MainControl/HBoxContainer/Editor Layer Manager" unique_id=160965422]
 layout_mode = 2

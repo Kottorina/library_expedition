@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="library_expedition"
-run/main_scene="uid://c6cm1kqxhbotr"
+run/main_scene="uid://cv7jwmmq5cb4p"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://iantqf4cd3u"
 
@@ -29,6 +29,7 @@ folder_colors={
 "res://Base Obj/": "purple",
 "res://Draw/": "green",
 "res://Scene Scripts/": "orange",
+"res://Scene Scripts/GenerRuleEditor/": "gray",
 "res://Test Resource/": "purple",
 "res://addons/libraryeditor/Custom Class/": "blue"
 }

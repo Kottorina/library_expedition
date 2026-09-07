@@ -9,10 +9,10 @@ func get_id() -> int:
 	return un_id
 
 func _ready() -> void:
-	start_bake_ui()
+	StartBakeUi()
 
 var main_popup : PopupMenu
-func start_bake_ui() -> void:
+func StartBakeUi() -> void:
 	main_popup = node_list.get_popup()
 	
 	main_popup.clear()
@@ -21,18 +21,18 @@ func start_bake_ui() -> void:
 	ind_to_popup_dict.clear()
 	id_to_big_graph_make_instr_dict.clear()
 	
-	if not main_popup.id_pressed.is_connected(graph_item_selected):
-		main_popup.id_pressed.connect(graph_item_selected)
+	if not main_popup.id_pressed.is_connected(GraphItemSelected):
+		main_popup.id_pressed.connect(GraphItemSelected)
 
 var name_to_ind_dict : Dictionary ## Name - Ind
 var ind_to_popup_dict : Dictionary ## ind - PopupMenu
 
-func add_new_item( name_group : String, item_instr : BigGraphNodeMakeInsts ) -> void:
+func AddNewUiItem( name_group : String, item_instr : BigGraphNodeMakeInsts ) -> void:
 	
 	if ! name_to_ind_dict.has(name_group):
 		var new_popup := PopupMenu.new()
 		main_popup.add_submenu_node_item(name_group,new_popup)
-		new_popup.id_pressed.connect(graph_item_selected)
+		new_popup.id_pressed.connect(GraphItemSelected)
 		
 		name_to_ind_dict[name_group] = main_popup.item_count-1
 		ind_to_popup_dict[main_popup.item_count-1] = new_popup
@@ -44,7 +44,9 @@ func add_new_item( name_group : String, item_instr : BigGraphNodeMakeInsts ) -> 
 
 var id_to_big_graph_make_instr_dict : Dictionary ## Id - BigGraphMakeNodeInstr
 
-func graph_item_selected(id : int) -> void:
+func GraphItemSelected(id : int) -> void:
 	if id_to_big_graph_make_instr_dict.has(id):
+		## ОЧЕНЬ ВАЖНО НЕ ТРОГАТЬ СТРОКУ, СУКИ
+		var new_big_instr = id_to_big_graph_make_instr_dict[id].duplicate(true)
 		
-		load_node.make_node_from_biginstr(id_to_big_graph_make_instr_dict[id])
+		load_node.MakeNodeFromBigInstr(new_big_instr)

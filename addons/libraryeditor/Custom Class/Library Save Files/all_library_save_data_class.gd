@@ -8,7 +8,7 @@ class_name SaveDataAllLibrary
 
 # @export var room_set : RoomsSet ПОДУМАЙ КАК И ЗАЧЕМ
 
-func get_ar_from_key(data_key : String ) -> Array:
+func GetArFromKey(data_key : String ) -> Array:
 	
 	if all_data.has(data_key):
 		return all_data[data_key]
@@ -19,9 +19,9 @@ func get_ar_from_key(data_key : String ) -> Array:
 const MinId : int = 0
 const MaxId : int = 100
 
-func get_object_from_id(data_key : String, id : int) -> Variant:
+func GetObjectFromId(data_key : String, id : int) -> Variant:
 	
-	var cur_ar = get_ar_from_key(data_key)
+	var cur_ar = GetArFromKey(data_key)
 	
 	var find_loc_ar : Array[Resource] = []
 	for loc in cur_ar:
@@ -37,9 +37,9 @@ func get_object_from_id(data_key : String, id : int) -> Variant:
 	
 	return null
 
-func del_item_from_id(data_key : String,id : int) -> void:
+func DelItemFromId(data_key : String,id : int) -> void:
 	
-	var cur_ar = get_ar_from_key(data_key)
+	var cur_ar = GetArFromKey(data_key)
 	
 	var find_loc_ar : Array[Resource] = []
 	for loc in cur_ar:
@@ -47,13 +47,13 @@ func del_item_from_id(data_key : String,id : int) -> void:
 			cur_ar.erase(loc)
 			return
 
-func add_new_obj_in_array(data_key : String) -> Resource:
+func AddNewObjInArray(data_key : String) -> Resource:
 	
-	var cur_ar = get_ar_from_key(data_key)
+	var cur_ar = GetArFromKey(data_key)
 	
 	var new_id : int
 	for id in range(MinId,MaxId):
-		if get_object_from_id(data_key , id) == null:
+		if GetObjectFromId(data_key , id) == null:
 			new_id = id
 			break
 	

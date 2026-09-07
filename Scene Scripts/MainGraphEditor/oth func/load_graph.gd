@@ -1,7 +1,7 @@
 extends Node
 
 @export var graph_edit: GraphEdit 
-@export var gener_rule_editor : Control
+@export var main_graph_editor : Node
 
 const SPINBOX_BASE_STEP : float = 0.1
 
@@ -17,10 +17,10 @@ func LoadUiSet( scene_graph_ui : SceneGraphUi ) -> void:
 		graph_edit.zoom = scene_graph_ui.zoom
 		graph_edit.scroll_offset = scene_graph_ui.scroll_offset
 
-func make_node_from_biginstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
+func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
 	var room_set : RoomsSet = ResourceLoader.load(
-		gener_rule_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE
+		main_graph_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE
 		)
 	for new_room : Room in room_set.rooms_ar:
 		if new_room != null and big_instr.room_ != null:
@@ -118,12 +118,11 @@ func LoadSaveGraph(save_graph : Dictionary) -> void:
 		return
 	
 	## ЗАГРУЗКА НОДОВ
-	#var ready_graph_nodes_from_instr : Dictionary ## BigInstr : Node
 	
 	var big_instr_to_node : Dictionary
 	
 	for big_instr in save_graph.keys():
-		var new_node = make_node_from_biginstr(big_instr)
+		var new_node = MakeNodeFromBigInstr(big_instr)
 		big_instr_to_node[big_instr] = new_node
 		
 	for big_instr in save_graph.keys():
@@ -132,16 +131,18 @@ func LoadSaveGraph(save_graph : Dictionary) -> void:
 			
 			if left_port.to_obj is String:
 				continue
-			LoadConnect(big_instr_to_node[big_instr],left_port,big_instr_to_node[left_port.to_obj])
+			
+			graph_edit.connect_node(
+				big_instr_to_node[left_port.to_obj].name, left_port.to_data.port_num,
+				big_instr_to_node[big_instr].name,left_port.from_data.port_num
+				)
 			
 		for right_port : FromToWith in save_graph[big_instr][RIGHT_PORTS_DATA_NAME]:
 			
 			if right_port.to_obj is String:
 				continue
-			LoadConnect(big_instr_to_node[big_instr],right_port,big_instr_to_node[right_port.to_obj])
-
-func LoadConnect(from_node : Node, from_to_with : FromToWith,to_obj : Node) -> void:
-	
-	graph_edit.connect_node(
-		from_node.name,from_to_with.from_data.port_num,to_obj.name, from_to_with.to_data.port_num
-		)
+			
+			graph_edit.connect_node(
+				big_instr_to_node[big_instr].name,right_port.from_data.port_num,
+				big_instr_to_node[right_port.to_obj].name, right_port.to_data.port_num
+				)

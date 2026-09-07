@@ -8,21 +8,19 @@
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://Base Obj/Editor/LayerDialogue.tres" id="5_fshts"]
 [ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://Base Obj/Editor/LayerLocation.tres" id="6_sgnql"]
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="7_4100p"]
-[ext_resource type="Script" uid="uid://wfp6jmgoghtc" path="res://addons/libraryeditor/Custom Class/GraphVisualData/BigGraphNodeMakeInstsClass.gd" id="7_dltes"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/GenerRuleEditor/graph_node_ui.gd" id="7_fshts"]
-[ext_resource type="Resource" uid="uid://dltpcxec70lcp" path="res://Base Obj/tool_crossroad.tres" id="8_snist"]
-[ext_resource type="Resource" uid="uid://k6u4765jhtrb" path="res://Base Obj/fork_rnd_rule.tres" id="9_4wgic"]
+[ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://Base Obj/Editor/LayerDebug.tres" id="7_snist"]
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/oth func/UiManager.gd" id="9_ojduo"]
 [ext_resource type="Script" uid="uid://dccq0y6xy1ay3" path="res://Scene Scripts/MainGraphEditor/in ui/graph_edit.gd" id="10_ighae"]
 [ext_resource type="Script" uid="uid://dcggylv8ku0fg" path="res://Scene Scripts/MainGraphEditor/oth func/load_graph.gd" id="10_sgnql"]
 [ext_resource type="Script" uid="uid://dvhimjq1675qn" path="res://Scene Scripts/MainGraphEditor/oth func/save_graph.gd" id="12_pkdnh"]
+[ext_resource type="Script" uid="uid://dw4dpickx4mej" path="res://Scene Scripts/MainGraphEditor/ui_node_baker.gd" id="18_4wgic"]
 
 [node name="MainGraphEditor" type="Node" unique_id=544549692]
 script = ExtResource("1_0gdv0")
 editor_save_data_path = "res://Base Obj/Editor/EditorSave.tres"
-editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql")])
+editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql"), ExtResource("7_snist")])
 room_set_path = "res://Test Resource/TestRoomSet.tres"
-custom_big_instr_ar = Array[ExtResource("7_dltes")]([ExtResource("8_snist"), ExtResource("9_4wgic")])
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=657537674]
 anchors_preset = 15
@@ -195,10 +193,14 @@ main_graph_editor = NodePath("..")
 script = ExtResource("12_pkdnh")
 graph_edit = NodePath("../Panel/VBoxContainer/MainGraphEdit")
 
-[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("main_graph_editor", "graph_node_ui")]
+[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("main_graph_editor", "ui_node_baker")]
 script = ExtResource("9_ojduo")
 main_graph_editor = NodePath("..")
-graph_node_ui = NodePath("../Panel/VBoxContainer/HBoxContainer/Graph Node Ui")
+ui_node_baker = NodePath("Ui Node Baker")
+
+[node name="Ui Node Baker" type="Node" parent="Ui Manager" unique_id=1562043268 node_paths=PackedStringArray("graph_node_ui")]
+script = ExtResource("18_4wgic")
+graph_node_ui = NodePath("../../Panel/VBoxContainer/HBoxContainer/Graph Node Ui")
 
 [connection signal="item_selected" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/Type Item" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_type_item_item_selected"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/load_button" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_load_button_pressed"]

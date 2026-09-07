@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://cxj5wpqmklt8n"]
+
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://Scene Scripts/GenerRuleEditor/EditorObjectLayerClass.gd" id="1_dlsq7"]
+
+[resource]
+script = ExtResource("1_dlsq7")
+data_key = "Debug"
+ui_all_rnd_fork = true
+ui_custom_big_instr = true
+ui_connectors_plugs = true
+ui_enter_node = true
+ui_rooms_nodes = true
+ui_editor_layer_nodes = "Location"
+metadata/_custom_type_script = "uid://dyh1823n402rk"

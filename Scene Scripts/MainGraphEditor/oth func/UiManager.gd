@@ -12,7 +12,12 @@ var tasks_bool : Dictionary = {
 "ui_connectors_plugs" : "bake_ui_connectors_plugs",
 "ui_enter_node" : "bake_ui_enter_node",
 "ui_rooms_nodes" : "bake_ui_rooms_nodes",
-"ui_ready_location_nodes" : "bake_ui_ready_location_nodes"
+"ui_ready_location_nodes" : "bake_ui_ready_location_nodes",
+
+"ui_dialogue_start" : "bake_ui_dialogue_start",
+"ui_dialogue_node" : "bake_ui_dialogue_node",
+"ui_dialogue_end" : "bake_ui_dialogue_end"
+
 }
 var tasks_string : Dictionary = {
 "ui_editor_layer_nodes" : "bake_ui_editor_layer_nodes"

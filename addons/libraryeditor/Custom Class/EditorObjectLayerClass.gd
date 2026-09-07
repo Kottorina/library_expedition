@@ -18,3 +18,7 @@ class_name EditorObjectLayer
 @export var ui_rooms_nodes : bool = false
 ## МОЖЕТ ВЫЗВАТЬ ОБЬЕКТЫ ИЗ EDITORLAYER В ВИДЕ UI
 @export var ui_editor_layer_nodes : String = ""
+
+@export var ui_dialogue_start : bool = false
+@export var ui_dialogue_node : bool = false
+@export var ui_dialogue_end : bool = false

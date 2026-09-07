@@ -3,7 +3,11 @@ extends Node
 @export var graph_edit: GraphEdit 
 @export var main_graph_editor : Node
 
+## НАСТРОЙКИ UI В GRAPH NODE
 const SPINBOX_BASE_STEP : float = 0.1
+const TEXT_FIT_CONTENT_HEIGHT : bool = true
+const TEXT_FIT_CONTENT_WIDTH : bool = true
+const TEXT_MINIMUM_SIZE_X : int = 150
 
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
@@ -69,6 +73,11 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 			
 			2: ## TextEdit
 				active_node = TextEdit.new()
+				
+				active_node.scroll_fit_content_height = TEXT_FIT_CONTENT_HEIGHT
+				active_node.scroll_fit_content_width = TEXT_FIT_CONTENT_WIDTH
+				active_node.custom_minimum_size.x = TEXT_MINIMUM_SIZE_X
+				
 				child_node = HBoxContainer.new()
 				
 				new_node.add_child(child_node)

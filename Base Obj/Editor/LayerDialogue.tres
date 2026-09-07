@@ -8,4 +8,7 @@ data_key = "Dialogue"
 ui_start_gener_node = false
 ui_start_gener_empty_node = true
 ui_custom_big_instr = true
+ui_dialogue_start = true
+ui_dialogue_node = true
+ui_dialogue_end = true
 metadata/_custom_type_script = "uid://dyh1823n402rk"

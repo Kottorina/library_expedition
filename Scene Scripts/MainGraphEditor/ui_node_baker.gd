@@ -12,6 +12,46 @@ var cur_save_data_all_library : SaveDataAllLibrary
 ## НУЖНО В ОДНОМ МЕСТЕ
 const DIRECTION_INVERT : Array[int] = [1,0,3,2] 
 
+func bake_ui_dialogue_start() -> void:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_START_BIG_TITLE
+	big_instr.type_node = "start_dialogue"
+	
+	var tool_instr = ui_const_func.get_tool_instr()
+	tool_instr.body_node = 2
+	big_instr.instr_ar.append(tool_instr)
+	
+	var dialogue_instr = ui_const_func.get_dialogue_instr()
+	dialogue_instr.body_node = 0
+	big_instr.instr_ar.append(dialogue_instr)
+	
+	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
+
+func bake_ui_dialogue_node() -> void:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_NODE_TITLE
+	big_instr.type_node = "dialogue_node"
+	
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
+	
+	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
+
+func bake_ui_dialogue_end() -> void:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_END_BIG_TITLE
+	big_instr.type_node = "end_dialogue"
+	
+	var tool_instr = ui_const_func.get_tool_instr()
+	tool_instr.body_node = 2
+	big_instr.instr_ar.append(tool_instr)
+	
+	var dialogue_instr = ui_const_func.get_dialogue_instr()
+	dialogue_instr.body_node = 0
+	big_instr.instr_ar.append(dialogue_instr)
+	
+	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
+
+
 func bake_ui_editor_layer_nodes(data_str : String) -> void:
 	
 	var cur_editor_layer : EditorObjectLayer

@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://c22nf50opgd0"]
 
-[ext_resource type="Script" uid="uid://kpmqghn7d7cb" path="res://Scene Scripts/Base ReadyLocation Reader/test_ready_location_reader.gd" id="1_53qv3"]
+[ext_resource type="Script" uid="uid://kpmqghn7d7cb" path="res://Scene Scripts/Base Reader/test_ready_location_reader.gd" id="1_53qv3"]
 [ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://Test Resource/TestTile_set.tres" id="2_mcqch"]
-[ext_resource type="Resource" uid="uid://bhlshtb2w2t70" path="res://Test Resource/TestAllSave.tres" id="2_sduw1"]
+[ext_resource type="Resource" path="res://Test Resource/TestAllSave.tres" id="2_sduw1"]
 
 [node name="TestReadyLocationReader" type="Node2D" unique_id=377190287 node_paths=PackedStringArray("draw_ar")]
 position = Vector2(-1, 0)

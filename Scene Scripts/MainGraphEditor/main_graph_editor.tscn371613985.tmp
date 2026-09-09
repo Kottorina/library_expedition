@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://cv7jwmmq5cb4p"]
+
+[ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://Scene Scripts/MainGraphEditor/oth func/MainGraphEditor.gd" id="1_0gdv0"]
+[ext_resource type="Script" uid="uid://laafe23yiddc" path="res://Scene Scripts/MainGraphEditor/in ui/FileSaveLoad.gd" id="1_0un4p"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="2_eduwg"]
+[ext_resource type="Resource" uid="uid://cx8l1x0ewjlq2" path="res://Base Obj/Editor/LayerAnimation.tres" id="3_4100p"]
+[ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://Base Obj/Editor/LayerBigLocation.tres" id="4_ojduo"]
+[ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://Base Obj/Editor/LayerDialogue.tres" id="5_fshts"]
+[ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://Base Obj/Editor/LayerLocation.tres" id="6_sgnql"]
+[ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="7_4100p"]
+[ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/GenerRuleEditor/graph_node_ui.gd" id="7_fshts"]
+[ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://Base Obj/Editor/LayerDebug.tres" id="7_snist"]
+[ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/oth func/UiManager.gd" id="9_ojduo"]
+[ext_resource type="Script" uid="uid://dccq0y6xy1ay3" path="res://Scene Scripts/MainGraphEditor/in ui/graph_edit.gd" id="10_ighae"]
+[ext_resource type="Script" uid="uid://dcggylv8ku0fg" path="res://Scene Scripts/MainGraphEditor/oth func/load_graph.gd" id="10_sgnql"]
+[ext_resource type="Script" uid="uid://dvhimjq1675qn" path="res://Scene Scripts/MainGraphEditor/oth func/save_graph.gd" id="12_pkdnh"]
+[ext_resource type="Script" uid="uid://dw4dpickx4mej" path="res://Scene Scripts/MainGraphEditor/ui_node_baker.gd" id="18_4wgic"]
+
+[node name="MainGraphEditor" type="Node" unique_id=544549692]
+script = ExtResource("1_0gdv0")
+editor_save_data_path = "res://Base Obj/Editor/EditorSave.tres"
+editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql"), ExtResource("7_snist")])
+room_set_path = "res://Test Resource/TestRoomSet.tres"
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=657537674]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1891778120]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=870230849]
+layout_mode = 2
+
+[node name="Graph Node Ui" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=269342877 node_paths=PackedStringArray("load_node", "node_list")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+script = ExtResource("7_fshts")
+load_node = NodePath("../../../../Load Graph")
+node_list = NodePath("Node Tool Room List/node_list_cont/node_list")
+
+[node name="Node Tool Room List" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Graph Node Ui" unique_id=1649342104]
+layout_mode = 2
+
+[node name="bake_node" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Graph Node Ui/Node Tool Room List" unique_id=1066472262]
+visible = false
+layout_mode = 2
+text = "Bake"
+
+[node name="node_list_cont" type="PanelContainer" parent="Panel/VBoxContainer/HBoxContainer/Graph Node Ui/Node Tool Room List" unique_id=1503511630]
+layout_mode = 2
+
+[node name="node_list" type="MenuButton" parent="Panel/VBoxContainer/HBoxContainer/Graph Node Ui/Node Tool Room List/node_list_cont" unique_id=1239748296]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add Node:"
+
+[node name="del_node" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Graph Node Ui/Node Tool Room List" unique_id=601181002]
+layout_mode = 2
+text = "Del Select Node"
+
+[node name="Editor Layer Manager" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=335517613 node_paths=PackedStringArray("gener_rule_editor", "load_graph_node", "save_node", "ui_manager", "type_item", "id_item", "item_name")]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("7_4100p")
+gener_rule_editor = NodePath("../../../..")
+load_graph_node = NodePath("../../../../Load Graph")
+save_node = NodePath("../../../../Save Graph")
+ui_manager = NodePath("../../../../Ui Manager")
+type_item = NodePath("HBoxContainer/Type Item")
+id_item = NodePath("HBoxContainer/Id Load")
+item_name = NodePath("HBoxContainer2/item_name")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" unique_id=255054623]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=1918626622]
+layout_mode = 2
+text = "Type Item:"
+
+[node name="Type Item" type="OptionButton" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=988103881]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=316817314]
+layout_mode = 2
+text = "Id:"
+
+[node name="Id Load" type="OptionButton" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=2142928330]
+layout_mode = 2
+
+[node name="load_button" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=665473415]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Load"
+
+[node name="save_button" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=655159811]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Save"
+
+[node name="VSeparator" type="VSeparator" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=851248221]
+layout_mode = 2
+
+[node name="add_new_button" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=1296119124]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Add New Item"
+
+[node name="del_item" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer" unique_id=1369742972]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Del Item"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" unique_id=1296511536]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer2" unique_id=1050397539]
+layout_mode = 2
+text = "Item Name:"
+
+[node name="item_name" type="TextEdit" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer2" unique_id=334369898]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Item Name"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="rename" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer2" unique_id=495253469]
+layout_mode = 2
+text = "ReName"
+
+[node name="VSeparator" type="VSeparator" parent="Panel/VBoxContainer/HBoxContainer" unique_id=460227468]
+layout_mode = 2
+
+[node name="File Save Load" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1826082706 node_paths=PackedStringArray("editor_layer_manager", "main_graph_editor", "file_dialog_popup", "name_ui_label")]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("1_0un4p")
+editor_layer_manager = NodePath("../Editor Layer Manager")
+main_graph_editor = NodePath("../../../..")
+file_dialog_popup = NodePath("../../../../FileDialog")
+name_ui_label = NodePath("name_file")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/File Save Load" unique_id=1005030421]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="New Path" type="Button" parent="Panel/VBoxContainer/HBoxContainer/File Save Load/HBoxContainer" unique_id=989929479]
+layout_mode = 2
+text = "New Path"
+
+[node name="Load" type="Button" parent="Panel/VBoxContainer/HBoxContainer/File Save Load/HBoxContainer" unique_id=1156160416]
+layout_mode = 2
+text = "Load"
+
+[node name="Save" type="Button" parent="Panel/VBoxContainer/HBoxContainer/File Save Load/HBoxContainer" unique_id=644519753]
+layout_mode = 2
+text = "Save"
+
+[node name="name_file" type="Label" parent="Panel/VBoxContainer/HBoxContainer/File Save Load" unique_id=2075902309]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MainGraphEdit" type="GraphEdit" parent="Panel/VBoxContainer" unique_id=1291819869 node_paths=PackedStringArray("del_button")]
+layout_mode = 2
+size_flags_vertical = 3
+minimap_enabled = false
+show_menu = false
+script = ExtResource("10_ighae")
+del_button = NodePath("../HBoxContainer/Graph Node Ui/Node Tool Room List/del_node")
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=851139765]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+file_mode = 0
+display_mode = 1
+access = 2
+use_native_dialog = true
+
+[node name="Load Graph" type="Node" parent="." unique_id=227454827 node_paths=PackedStringArray("graph_edit", "main_graph_editor")]
+script = ExtResource("10_sgnql")
+graph_edit = NodePath("../Panel/VBoxContainer/MainGraphEdit")
+main_graph_editor = NodePath("..")
+
+[node name="Save Graph" type="Node" parent="." unique_id=1819617441 node_paths=PackedStringArray("graph_edit")]
+script = ExtResource("12_pkdnh")
+graph_edit = NodePath("../Panel/VBoxContainer/MainGraphEdit")
+
+[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("main_graph_editor", "ui_node_baker")]
+script = ExtResource("9_ojduo")
+main_graph_editor = NodePath("..")
+ui_node_baker = NodePath("Ui Node Baker")
+
+[node name="Ui Node Baker" type="Node" parent="Ui Manager" unique_id=1562043268 node_paths=PackedStringArray("graph_node_ui")]
+script = ExtResource("18_4wgic")
+graph_node_ui = NodePath("../../Panel/VBoxContainer/HBoxContainer/Graph Node Ui")
+
+[connection signal="item_selected" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/Type Item" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_type_item_item_selected"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/load_button" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_load_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/save_button" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_save_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/add_new_button" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_add_new_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer/del_item" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_del_item_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager/HBoxContainer2/rename" to="Panel/VBoxContainer/HBoxContainer/Editor Layer Manager" method="_on_rename_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/File Save Load/HBoxContainer/New Path" to="Panel/VBoxContainer/HBoxContainer/File Save Load" method="NewPathPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/File Save Load/HBoxContainer/Load" to="Panel/VBoxContainer/HBoxContainer/File Save Load" method="LoadFilePath"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/File Save Load/HBoxContainer/Save" to="Panel/VBoxContainer/HBoxContainer/File Save Load" method="SaveEditData"]
+[connection signal="connection_request" from="Panel/VBoxContainer/MainGraphEdit" to="Panel/VBoxContainer/MainGraphEdit" method="_on_connection_request"]
+[connection signal="node_deselected" from="Panel/VBoxContainer/MainGraphEdit" to="Panel/VBoxContainer/MainGraphEdit" method="_on_node_deselected"]
+[connection signal="node_selected" from="Panel/VBoxContainer/MainGraphEdit" to="Panel/VBoxContainer/MainGraphEdit" method="_on_node_selected"]
+[connection signal="file_selected" from="FileDialog" to="Panel/VBoxContainer/HBoxContainer/File Save Load" method="LoadFilePath"]

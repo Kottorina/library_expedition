@@ -1289,8 +1289,8 @@ to_obj = "PortFree"
 
 [sub_resource type="Resource" id="Resource_7s7oo"]
 script = ExtResource("7_16c6w")
-zoom = 0.51315784
-scroll_offset = Vector2(-232.9403, -48.374146)
+zoom = 0.620921
+scroll_offset = Vector2(-948.39777, 43.23729)
 
 [sub_resource type="Resource" id="Resource_vssk0"]
 script = ExtResource("6_5bkih")

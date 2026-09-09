@@ -39,6 +39,7 @@ const TOOL_CONNECTOR_TITLE : String = "Connector:"
 
 const DIALOGUE_CON_TITLE : String = "Dialogue Con: "
 const DIALOGUE_TITLE : String = "Dialogue: "
+const DIALOGUE_CHARACTER_TITLE : String = "Dialogue Character: "
 const DIALOGUE_CHOISE_TITLE : String = "Dialogue Choise: "
 
 ## ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
@@ -96,6 +97,20 @@ func get_dialogue_instr() -> GraphNodeMakeInsts:
 	var instr = GraphNodeMakeInsts.new()
 	instr.body_node = 2
 	instr.title_instr = DIALOGUE_TITLE
+	
+	instr.is_right = true 
+	instr.right_type = TOOL_DIALOGUR_TYPE_CON
+	instr.right_color = TOOL_DIALOGUE_COLOR_CON
+	instr.is_left = true
+	instr.left_type = TOOL_DIALOGUR_TYPE_CON
+	instr.left_color = TOOL_DIALOGUE_COLOR_CON
+	
+	return instr
+
+func get_dialogue_character_instr() -> GraphNodeMakeInsts:
+	var instr = GraphNodeMakeInsts.new()
+	instr.body_node = 2
+	instr.title_instr = DIALOGUE_CHARACTER_TITLE
 	
 	instr.is_right = true 
 	instr.right_type = TOOL_DIALOGUR_TYPE_CON

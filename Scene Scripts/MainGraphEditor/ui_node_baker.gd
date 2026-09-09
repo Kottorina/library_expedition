@@ -35,6 +35,7 @@ func bake_ui_dialogue_node() -> void:
 	big_instr.title_node = ui_const_func.DIALOGUE_NODE_TITLE
 	big_instr.type_node = DIALOGUE_NODE
 	
+	#big_instr.instr_ar.append(ui_const_func.get_dialogue_character_instr())
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)

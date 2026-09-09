@@ -2,9 +2,7 @@ extends Resource
 class_name BakerGraphDataObject
 
 var ui_const_func := UiConstFunc.new()
-
-const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
-const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
+var graph_const := GraphNodeConstants.new()
 
 var bake_data_dict : Dictionary ## ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ
 

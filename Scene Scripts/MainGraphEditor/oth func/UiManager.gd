@@ -20,8 +20,15 @@ var tasks_bool : Dictionary = {
 
 "ui_dialogue_choice_2" : "bake_ui_dialogue_choice_2",
 "ui_dialogue_choice_3" : "bake_ui_dialogue_choice_3",
-"ui_dialogue_choice_4" : "bake_ui_dialogue_choice_4"
+"ui_dialogue_choice_4" : "bake_ui_dialogue_choice_4",
+
+"ui_crossroad_2" : "bake_ui_crossroad_2",
+"ui_crossroad_4" : "bake_ui_crossroad_4",
+"ui_crossroad_6" : "bake_ui_crossroad_6"
+
 }
+
+
 
 var tasks_string : Dictionary = {
 "ui_editor_layer_nodes" : "bake_ui_editor_layer_nodes"

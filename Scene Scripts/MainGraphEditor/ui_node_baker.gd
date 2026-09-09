@@ -22,10 +22,7 @@ func bake_ui_dialogue_start() -> void:
 	tool_instr.body_node = 2
 	big_instr.instr_ar.append(tool_instr)
 	
-	var dialogue_instr = ui_const_func.get_dialogue_instr()
-	dialogue_instr.body_node = 0
-	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CON_TITLE
-	big_instr.instr_ar.append(dialogue_instr)
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
@@ -35,8 +32,9 @@ func bake_ui_dialogue_node() -> void:
 	big_instr.title_node = ui_const_func.DIALOGUE_NODE_TITLE
 	big_instr.type_node = DIALOGUE_NODE
 	
-	#big_instr.instr_ar.append(ui_const_func.get_dialogue_character_instr())
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_character_instr())
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
@@ -50,10 +48,7 @@ func bake_ui_dialogue_end() -> void:
 	tool_instr.body_node = 2
 	big_instr.instr_ar.append(tool_instr)
 	
-	var dialogue_instr = ui_const_func.get_dialogue_instr()
-	dialogue_instr.body_node = 0
-	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CON_TITLE
-	big_instr.instr_ar.append(dialogue_instr)
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.DIALOGUE_UI_NAME, big_instr)
 
@@ -111,7 +106,7 @@ func bake_ui_rooms_nodes() -> void:
 		if current_room != null:
 			var name_item : String = ui_const_func.ROOM_BIG_TITLE + current_room.name_+" "+str(room_ind)
 			
-			var big_instr = RoomToBigInstrGraphNode(current_room)
+			var big_instr = ui_const_func.room_to_big_instr_graphnode(current_room)
 			big_instr.title_node = name_item
 			big_instr.room_ = current_room
 			
@@ -200,20 +195,23 @@ func bake_ui_rnd_fork_from_connector( enter_connector : RoomConnector ) -> void:
 	
 	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_FORK_UI_NAME, big_instr)
 	
-func RoomToBigInstrGraphNode(room : Room) -> BigGraphNodeMakeInsts:
-	var big_instr = BigGraphNodeMakeInsts.new()
-	big_instr.room_ = room
+func bake_ui_crossroad_2() -> void:
+	var big_instr = get_crossroad(2)
+	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_UI_NAME, big_instr)
+func bake_ui_crossroad_4() -> void:
+	var big_instr = get_crossroad(4)
+	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_UI_NAME, big_instr)
+func bake_ui_crossroad_6() -> void:
+	var big_instr = get_crossroad(6)
+	graph_node_ui.AddNewUiItem(ui_const_func.TOOL_UI_NAME, big_instr)
 	
-	for connector : RoomConnector in room.room_connectors_ar:
-
-		big_instr.instr_ar.append(ui_const_func.get_inst_from_connector(connector))
-	for enter : RoomEnter in room.room_enter_ar:
-		
-		var instr = ui_const_func.get_tool_enter_instr()
-		instr.body_node = 0
-		instr.source_res = enter
-		instr.title_instr = " ".join([ui_const_func.TOOLENTERTITLE, ui_const_func.BASE_COLOR_TYPE[enter.type]]) 
-		big_instr.instr_ar.append(instr)
+func get_crossroad( num_choise : int ) -> BigGraphNodeMakeInsts:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = " ".join([ui_const_func.TOOL_TITLE,str(num_choise)])  
+	big_instr.type_node = 0
+	
+	for i in num_choise:
+		big_instr.instr_ar.append(ui_const_func.get_tool_instr())
 	
 	return big_instr
 

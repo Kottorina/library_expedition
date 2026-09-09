@@ -26,3 +26,7 @@ class_name EditorObjectLayer
 @export var ui_dialogue_choice_2 : bool = false
 @export var ui_dialogue_choice_3 : bool = false
 @export var ui_dialogue_choice_4 : bool = false
+
+@export var ui_crossroad_2 : bool = false
+@export var ui_crossroad_4 : bool = false
+@export var ui_crossroad_6 : bool = false

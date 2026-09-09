@@ -16,6 +16,7 @@ const TEXT_MINIMUM_SIZE_X : int = 150
 const ACTIVE_NODE_DATA_NAME  : String  = "ActiveNode" 
 const BIG_INSTR_NODE_DATA_NAME : String = "BigInstrNodeData" ## String --- Хранит тип нода, для быстрой выпечки
 
+const CENTRAL_PORTS_DATA_NAME  : String  = "CentralPortsData" ## Array[Metadata...]
 const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
 
@@ -41,6 +42,7 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	new_node.title = big_instr.title_node
 	new_node.position_offset = big_instr.coord_ ## Для удобства менять при спавне от кнопки, СУКА
 	
+	var central_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	var left_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	var right_ports_data_ar : Array[GraphNodeMetadata] = [] ## Сам RES + active_node
 	
@@ -97,17 +99,17 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		
+		var metadata = GraphNodeMetadata.new()
+		metadata.instr = inst
+		central_ports_data_ar.append(metadata)
+		
 		if inst.is_left == true:
-			var metadata = GraphNodeMetadata.new()
-			metadata.instr = inst
 			metadata.port_num = left_port_mum
 			left_ports_data_ar.append(metadata)
 			
 			left_port_mum += 1
 			
 		if inst.is_right == true:
-			var metadata = GraphNodeMetadata.new()
-			metadata.instr = inst
 			metadata.port_num = right_port_mum
 			right_ports_data_ar.append(metadata)
 			
@@ -118,6 +120,8 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		ind += 1
 	
 	new_node.set_meta(BIG_INSTR_NODE_DATA_NAME,big_instr)
+	
+	new_node.set_meta(CENTRAL_PORTS_DATA_NAME,central_ports_data_ar)
 	new_node.set_meta(LEFT_PORTS_DATA_NAME,left_ports_data_ar)
 	new_node.set_meta(RIGHT_PORTS_DATA_NAME,right_ports_data_ar)
 	

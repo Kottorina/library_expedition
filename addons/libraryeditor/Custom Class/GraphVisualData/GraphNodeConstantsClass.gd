@@ -18,3 +18,6 @@ const CENTRAL_DATA_NAME : String  = "CentralPortsData" ## Array[Metadata...]
 
 const LEFT_PORTS_DATA_NAME  : String  = "LeftPortsData" ## Array[Metadata...]
 const RIGHT_PORTS_DATA_NAME  : String  = "RightPortsData" ## Array[Metadata...]
+
+const PORT_VALUE_FREE : String = "PortFree"
+const PORT_VALUE_OCCUPIED : String = "PortOccupied"

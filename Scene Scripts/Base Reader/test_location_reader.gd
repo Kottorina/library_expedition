@@ -17,8 +17,8 @@ var final_enter_dict : Dictionary
 
 @export_tool_button("Read Set") var read_action = read
 func read():
+	return
 	clear_f()
-	
 	var ready_locations = save_data_all_library.get_object_from_id(data_key,location_ind)
 	
 	var location_loader := ReadyLocationLoader.new()

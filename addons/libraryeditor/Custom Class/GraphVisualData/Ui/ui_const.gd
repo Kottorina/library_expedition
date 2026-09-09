@@ -119,6 +119,17 @@ func get_dialogue_connector_instr() -> GraphNodeMakeInsts:
 	
 	return instr
 
+func open_all_ports(instr : GraphNodeMakeInsts) -> GraphNodeMakeInsts:
+	
+	instr.is_right = true 
+	instr.right_type = TOOL_DIALOGUR_TYPE_CON
+	instr.right_color = TOOL_DIALOGUE_COLOR_CON
+	instr.is_left = true
+	instr.left_type = TOOL_DIALOGUR_TYPE_CON
+	instr.left_color = TOOL_DIALOGUE_COLOR_CON
+	
+	return instr
+
 ## ИНСТРУКЦИЯ ИЗ КОННЕКТОРА
 func get_inst_from_connector(connector : RoomConnector ) -> GraphNodeMakeInsts:
 	var instr := GraphNodeMakeInsts.new()

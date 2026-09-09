@@ -72,9 +72,12 @@ func get_dialogue_choise( num_choise : int ) -> BigGraphNodeMakeInsts:
 	var dialogue_instr = ui_const_func.get_dialogue_instr()
 	dialogue_instr.body_node = 2
 	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CHOISE_TITLE
+	dialogue_instr = ui_const_func.open_all_ports(dialogue_instr)
 	big_instr.instr_ar.append(dialogue_instr)
 	for i in num_choise:
-		big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
+		var instr = ui_const_func.get_dialogue_instr()
+		instr = ui_const_func.open_all_ports(instr)
+		big_instr.instr_ar.append(instr)
 	
 	return big_instr
 	

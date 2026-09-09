@@ -8,6 +8,7 @@ var bake_data_dict : Dictionary ## ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ
 
 var free_nodes : Array[BigGraphNodeMakeInsts] ## ЕЩЕ НЕ ОБРАБОТАННЫЕ НОДЫ
 
+var central_data_graph : Dictionary
 var save_graph : Dictionary
 var full_graph : Dictionary
 
@@ -18,6 +19,7 @@ var connection_plugs_instr : BigGraphNodeMakeInsts
 
 func bake_data(graph_data_objects : GraphDataObjects, c_seed : int = 0) -> GraphDataObjects:
 	
+	central_data_graph = graph_data_objects.central_data_graph.duplicate(true)
 	save_graph = graph_data_objects.save_graph.duplicate(true)
 	full_graph = graph_data_objects.full_graph.duplicate(true)
 	

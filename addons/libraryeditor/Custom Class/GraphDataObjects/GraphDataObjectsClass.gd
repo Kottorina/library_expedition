@@ -6,6 +6,7 @@ class_name GraphDataObjects
 
 @export var start_bake_node : BigGraphNodeMakeInsts 
 ## ДЛЯ ОБРАБОТКИ ГРАФА И ДЛЯ НОРМАЛЬНОГО СОХРАНЕНИЯ А ТАКЖЕ ДЛЯ УДОБНОЙ ЗАГРУЗКИ
+@export var central_data_graph : Dictionary
 @export var save_graph : Dictionary ## {Big_instr : { right / left ports : FromToWith }
 ## ГРАФ СОДЕРЖАЩИЙ ВСЕ СОЕДИНЕНИЯ
 @export var full_graph : Dictionary 

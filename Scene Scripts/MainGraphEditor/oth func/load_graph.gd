@@ -81,7 +81,20 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 					active_node.text = inst.body_value
 				else:
 					active_node.text = ""
-		
+			
+			3: ## CheckBox
+				active_node = CheckBox.new()
+
+				child_node = HBoxContainer.new()
+				
+				new_node.add_child(child_node)
+				var label = Label.new()
+				label.text = inst.title_instr
+				child_node.add_child(label)
+				child_node.add_child(active_node)
+				if inst.body_value != null:
+					active_node.button_pressed = inst.body_value
+			
 		new_node.set_slot(ind,inst.is_left,inst.left_type,inst.left_color,inst.is_right,inst.right_type,inst.right_color)
 		
 		var metadata = GraphNodeMetadata.new()

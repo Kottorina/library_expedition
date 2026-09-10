@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://da7mknb2vjo1m"]
 
-[ext_resource type="Script" uid="uid://cw6o7onp6aa1c" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/Bakers GraphDataObject/Baker Dialogue GraphDataObject/baker_Dialogue_graphdataobject.gd" id="1_h78o0"]
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectLayerClass.gd" id="1_l5ft7"]
+[ext_resource type="Script" uid="uid://cw6o7onp6aa1c" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/Bakers GraphDataObject/baker_Dialogue_graphdataobject.gd" id="1_h78o0"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="1_l5ft7"]
 
 [resource]
 script = ExtResource("1_l5ft7")

@@ -172,8 +172,10 @@ func SynchronizationDataFromUI() -> void: ## ДЛЯ ПОДГОНКИ ИНСТР�
 				if meta_data != null:
 					
 					if meta_data is SpinBox:
-							big_instr.instr_ar[ind].body_value = meta_data.value
+						big_instr.instr_ar[ind].body_value = meta_data.value
 					elif meta_data is TextEdit: 
-							big_instr.instr_ar[ind].body_value = meta_data.text
+						big_instr.instr_ar[ind].body_value = meta_data.text
+					elif meta_data is CheckBox:
+						big_instr.instr_ar[ind].body_value = meta_data.button_pressed
 			
 			ind += 1

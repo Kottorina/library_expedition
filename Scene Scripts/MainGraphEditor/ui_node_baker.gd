@@ -12,6 +12,10 @@ var cur_save_data_all_library : SaveDataAllLibrary
 ## НУЖНО В ОДНОМ МЕСТЕ
 const DIRECTION_INVERT : Array[int] = [1,0,3,2] 
 
+
+#const DIALOGUE_IS_SKIPED_TITLE : String = "Is skiped: "
+#const DIALOGUE_EXTRA_TIME_TITLE : String = "Extra Time: "
+
 const START_DIALOGUE := 9
 func bake_ui_dialogue_start() -> void:
 	var big_instr = BigGraphNodeMakeInsts.new()
@@ -21,6 +25,16 @@ func bake_ui_dialogue_start() -> void:
 	var tool_instr = ui_const_func.get_tool_instr()
 	tool_instr.body_node = 2
 	big_instr.instr_ar.append(tool_instr)
+	
+	var instr_skip = GraphNodeMakeInsts.new()
+	instr_skip.body_node = 3
+	instr_skip.title_instr = ui_const_func.DIALOGUE_IS_SKIPED_TITLE
+	big_instr.instr_ar.append(instr_skip)
+	
+	var instr_extra = GraphNodeMakeInsts.new()
+	instr_extra.body_node = 1
+	instr_extra.title_instr = ui_const_func.DIALOGUE_EXTRA_TIME_TITLE
+	big_instr.instr_ar.append(instr_extra)
 	
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	

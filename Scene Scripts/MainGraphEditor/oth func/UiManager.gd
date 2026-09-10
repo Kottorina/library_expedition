@@ -28,8 +28,6 @@ var tasks_bool : Dictionary = {
 
 }
 
-
-
 var tasks_string : Dictionary = {
 "ui_editor_layer_nodes" : "bake_ui_editor_layer_nodes"
 }

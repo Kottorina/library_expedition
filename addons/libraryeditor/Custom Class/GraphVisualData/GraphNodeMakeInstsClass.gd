@@ -11,7 +11,7 @@ class_name GraphNodeMakeInsts
 @export var right_type : int = 0
 @export var right_color : Color = Color.BLACK
 
-@export_enum("label","spin_box") var body_node : int = 0 ##"label","spin_box","TextEdit"
+@export_enum("label","spin_box") var body_node : int = 0 ##"label","spin_box","TextEdit" "CheckBox"
 @export var body_value : Variant ## int, float, str и тд, все схавает
 
 @export var source_res : Resource ##Иточник при созданнии, connector, enter и тд

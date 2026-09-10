@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dr8ljoyoema8a"]
+
+[sub_resource type="GDScript" id="GDScript_yqhqn"]
+script/source = "extends Control
+
+const OPEN_POSITION := Vector2.ZERO
+const CLOSE_POSITION := Vector2(0,200)
+
+func open_anim(time_anim : float) -> bool:
+	position = CLOSE_POSITION
+	show()
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(self,\"position\",OPEN_POSITION,time_anim)
+	await tween.finished
+	return true
+func close_anim(time_anim : float) -> bool:
+	position = OPEN_POSITION
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self,\"position\",CLOSE_POSITION,time_anim)
+	hide()
+	await tween.finished
+	return true
+"
+
+[node name="DialogueUi" type="Control" unique_id=1754154450]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = SubResource("GDScript_yqhqn")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=481393611]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=592802459]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=777281712]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=913782408]
+layout_mode = 2
+
+[node name="character" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1576033295]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1653901791]
+layout_mode = 2
+
+[node name="line" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=520136597]
+layout_mode = 2
+
+[node name="choise_container" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=528124511]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=610061802]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Next"

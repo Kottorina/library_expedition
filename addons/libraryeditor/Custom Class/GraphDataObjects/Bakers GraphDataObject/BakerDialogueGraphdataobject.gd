@@ -9,7 +9,7 @@ const DIALOGUE_CONNECTOR := 13
 const DIALOGUE_SETTING := 14
 
 
-const START_CHOISE_IND := 1
+const START_CHOISE_IND := 3
 
 const DIALOGUE_SET : String = "dialogue_set"
 
@@ -125,13 +125,14 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 				und_step.dialogue_data = meta.instr.body_value
 				und_step.signal_data = ind - START_CHOISE_IND
 				
-				current_dialogue.step_dialogue_ar.append(new_step)
 				new_step.next_step_ar.append(und_step)
 			
 			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
 			for data in data_meta_ar:
-				if data.instr.title_instr == ui_const_func.DIALOGUE_CHOISE_TITLE:
+				if data.instr.title_instr == ui_const_func.DIALOGUE_CHARACTER_TITLE:
 					new_step.character_data = data.instr.body_value
+				elif data.instr.title_instr == ui_const_func.DIALOGUE_TITLE:
+					new_step.dialogue_data = data.instr.body_value
 			
 			var last_dialogue_step : DialogueStep
 			var last_dialogue_port_num : int
@@ -162,8 +163,12 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 					current_dialogue.after_time = data.instr.body_value
 				if data.instr.title_instr == ui_const_func.DIALOGUE_BEFOR_TIME_TITLE:
 					current_dialogue.befor_time = data.instr.body_value
-				if data.instr.title_instr == ui_const_func.DIALOGUE_CHAR_TIME_TITLE:
-					current_dialogue.char_time = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_BETWEEN_CHARACTER_TIME_TITLE:
+					current_dialogue.between_character_line_time = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_CHAR_CHARACTER_TIME_TITLE:
+					current_dialogue.char_character_time = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_CHAR_LINE_TIME_TITLE:
+					current_dialogue.char_line_time = data.instr.body_value
 		
 		_:
 			var free_port = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])

@@ -20,6 +20,7 @@ func clear_all() -> void:
 	clear_dialogue()
 	skip_button.hide()
 	hide()
+	choise_container.hide()
 
 func clear_dialogue() -> void:
 	for i in choise_container.get_children():
@@ -45,10 +46,9 @@ func close_anim(time_anim : float) -> bool:
 	hide()
 	return true
 
-func add_choise(text_ : String) -> Button:
+func add_choise() -> Button:
 	var new_button := Button.new()
-	new_button.text = text_
-	
+	choise_container.show()
 	choise_container.add_child(new_button)
 	
 	return new_button
@@ -104,7 +104,7 @@ layout_mode = 2
 [node name="line" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=520136597]
 layout_mode = 2
 
-[node name="choise_container" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=528124511]
+[node name="choise_container" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1452584298]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1

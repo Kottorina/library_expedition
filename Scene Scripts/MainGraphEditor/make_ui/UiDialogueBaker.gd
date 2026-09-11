@@ -29,9 +29,9 @@ func bake_ui_dialogue_node() -> Array:
 	big_instr.title_node = ui_const_func.DIALOGUE_NODE_TITLE
 	big_instr.type_node = DIALOGUE_NODE
 	
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_character_instr())
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
-	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]
 
@@ -65,13 +65,13 @@ func get_dialogue_choise( num_choise : int ) -> BigGraphNodeMakeInsts:
 	big_instr.title_node = ui_const_func.DIALOGUE_CHOISE_BIG_TITLE + str(num_choise)
 	big_instr.type_node = DIALOGUE_CHOICE
 	
-	var dialogue_instr = ui_const_func.get_dialogue_instr()
-	dialogue_instr.body_node = 2
-	dialogue_instr.title_instr = ui_const_func.DIALOGUE_CHOISE_TITLE
-	dialogue_instr = ui_const_func.open_all_ports(dialogue_instr)
-	big_instr.instr_ar.append(dialogue_instr)
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_character_instr())
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_instr())
+	
 	for i in num_choise:
 		var instr = ui_const_func.get_dialogue_instr()
+		instr.title_instr = ui_const_func.DIALOGUE_CHOISE_TITLE
 		instr = ui_const_func.open_all_ports(instr)
 		big_instr.instr_ar.append(instr)
 	
@@ -115,14 +115,25 @@ func bake_ui_dialogue_setting() -> Array:
 	instr_0.title_instr = ui_const_func.DIALOGUE_BEFOR_TIME_TITLE
 	big_instr.instr_ar.append(instr_0)
 	
+	var instr_2 = GraphNodeMakeInsts.new()
+	instr_2.body_node = 1
+	instr_2.title_instr = ui_const_func.DIALOGUE_BETWEEN_CHARACTER_TIME_TITLE
+	big_instr.instr_ar.append(instr_2)
+	
 	var instr_1 = GraphNodeMakeInsts.new()
 	instr_1.body_node = 1
 	instr_1.title_instr = ui_const_func.DIALOGUE_AFTER_TIME_TITLE
 	big_instr.instr_ar.append(instr_1)
 	
-	var instr_2 = GraphNodeMakeInsts.new()
-	instr_2.body_node = 1
-	instr_2.title_instr = ui_const_func.DIALOGUE_CHAR_TIME_TITLE
-	big_instr.instr_ar.append(instr_2)
+	var instr_3 = GraphNodeMakeInsts.new()
+	instr_3.body_node = 1
+	instr_3.title_instr = ui_const_func.DIALOGUE_CHAR_CHARACTER_TIME_TITLE
+	big_instr.instr_ar.append(instr_3)
+	
+	var instr_4 = GraphNodeMakeInsts.new()
+	instr_4.body_node = 1
+	instr_4.title_instr = ui_const_func.DIALOGUE_CHAR_LINE_TIME_TITLE
+	big_instr.instr_ar.append(instr_4)
+	
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]

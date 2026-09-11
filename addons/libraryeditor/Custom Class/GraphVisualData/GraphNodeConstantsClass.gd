@@ -5,7 +5,7 @@ class_name GraphNodeConstants
 #Label
 const LABEL_HORIZONTAL_ALIGNMENT = HORIZONTAL_ALIGNMENT_CENTER
 #SpinBox
-const SPINBOX_BASE_STEP : float = 0.1
+const SPINBOX_BASE_STEP : float = 0.01
 #TextEdit
 const TEXT_FIT_CONTENT_HEIGHT : bool = true
 const TEXT_FIT_CONTENT_WIDTH : bool = true

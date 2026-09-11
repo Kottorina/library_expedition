@@ -11,9 +11,11 @@ var ui_scene_node : Control
 
 @export var time_anim : float = 2
 
+var timer := Timer.new()
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui_scene_node = UI_SCENE.instantiate()
+	add_child(timer)
 	
 	#ui_scene_node.hide()
 	add_child(ui_scene_node)
@@ -43,33 +45,19 @@ func start_dialogue(id_obj : int, dialogue_name : String) -> bool:
 	reader.continue_read.emit()
 	return true
 
-@export var time_next_char_character : float = 0.1
-@export var time_between_character_and_line : float = 0.5
-@export var time_next_char_line : float = 0.1
-
 func make_line( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> void:
-	var timer := Timer.new()
-	add_child(timer)
-	
-	var text_ : String
+
 	ui_scene_node.clear_dialogue()
 	
-	text_ = ""
-	timer.start(time_next_char_character)
-	for char in tr(dialogue_step.character_data):
-		await timer.timeout
-		text_ += char
-		ui_scene_node.character.text = text_
-	
-	timer.start(time_between_character_and_line)
+	timer.start(data_dialogue.befor_time)
 	await timer.timeout
 	
-	timer.start(time_next_char_line)
-	text_ = ""
-	for char in tr(dialogue_step.dialogue_data):
-		await timer.timeout
-		text_ += char
-		ui_scene_node.line.text = text_
+	await write_step_by_step(ui_scene_node.character,dialogue_step.character_data,data_dialogue.char_character_time)
+	
+	timer.start(data_dialogue.between_character_line_time)
+	await timer.timeout
+	
+	await write_step_by_step(ui_scene_node.line,dialogue_step.dialogue_data,data_dialogue.char_line_time)
 	
 	if data_dialogue.is_skiped == true:
 		ui_scene_node.skip_button.show()
@@ -79,20 +67,45 @@ func make_line( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> v
 		ui_scene_node.clear_dialogue()
 		reader.continue_read.emit()
 	else:
-		timer.stop()
-		timer.start(data_dialogue.extra_time)
+		timer.start(data_dialogue.after_time)
 		await timer.timeout
 		
 		ui_scene_node.clear_dialogue()
 		reader.continue_read.emit()
 
+func write_step_by_step(node : Control, write_text : String, time : float) -> bool:
+	var cur_text = ""
+	timer.start(time)
+	for char in tr(write_text):
+		await timer.timeout
+		cur_text += char
+		node.text = cur_text
+	return true
+
 func make_choise( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> void:
+	
+	ui_scene_node.clear_dialogue()
+	
+	timer.start(data_dialogue.befor_time)
+	await timer.timeout
+	
+	await write_step_by_step(ui_scene_node.character,dialogue_step.character_data,data_dialogue.char_character_time)
+	
+	timer.start(data_dialogue.between_character_line_time)
+	await timer.timeout
+	
+	await write_step_by_step(ui_scene_node.line,dialogue_step.dialogue_data,data_dialogue.char_line_time)
+	
+	timer.start(data_dialogue.after_time)
+	await timer.timeout
 	
 	var buttons : Array[Button]
 	
 	for step : DialogueStep in dialogue_step.next_step_ar:
-		var button = ui_scene_node.add_choise(step.dialogue_data)
+		var button = ui_scene_node.add_choise()
 		buttons.append(button)
+		
+		await write_step_by_step(button,step.dialogue_data,data_dialogue.char_line_time)
 	
 	for i in buttons.size():
 		buttons[i].pressed.connect(_on_button_choise_pressed.bind(i))

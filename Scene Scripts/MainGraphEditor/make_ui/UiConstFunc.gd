@@ -39,15 +39,24 @@ const INSTR_FORK_BASE_TITLE : String = "Base Option: "
 const INSTR_FORK_ALT_CHANCE_TITLE : String = "Alt Chance: "
 const TOOL_CONNECTOR_TITLE : String = "Connector:"
 
+
 const DIALOGUE_TITLE : String = "Dialogue: "
 const DIALOGUE_CON_TITLE : String = "Dialogue Con: "
 const DIALOGUE_CHARACTER_TITLE : String = "Dialogue Character: "
+
 const DIALOGUE_CHOISE_TITLE : String = "Dialogue Choise: "
 
 const DIALOGUE_IS_SKIPED_TITLE : String = "Is skiped: "
 const DIALOGUE_BEFOR_TIME_TITLE : String = "Befor Time: "
 const DIALOGUE_AFTER_TIME_TITLE : String = "After Time: "
-const DIALOGUE_CHAR_TIME_TITLE : String = "Char Time: "
+const DIALOGUE_BETWEEN_CHARACTER_TIME_TITLE : String = "Between Character Line Time: "
+const DIALOGUE_CHAR_CHARACTER_TIME_TITLE : String = "Char Character Time: "
+const DIALOGUE_CHAR_LINE_TIME_TITLE : String = "Char Line Time: "
+
+@export var time_next_char_character : float = 0.1
+@export var time_between_character_and_line : float = 0.5
+@export var time_next_char_line : float = 0.1
+
 
 ## ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
 const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]

@@ -41,7 +41,6 @@ func start_read(dialogue_graph_data : GraphDataObjects, dialogue_name : String, 
 	return true
 
 func read_dialogue_step( dialogue_step : DialogueStep) -> void:
-	print(dialogue_step.step_type)
 	match dialogue_step.step_type:
 		0:
 			base_signal.emit("start_sdialogue")
@@ -54,7 +53,6 @@ func read_dialogue_step( dialogue_step : DialogueStep) -> void:
 		2:
 			make_choise.emit(data_dialogue, dialogue_step)
 			var value  = await continue_read
-			print("val ", value)
 			read_dialogue_step(dialogue_step.next_step_ar[value].next_step_ar[0])
 		3:
 			base_signal.emit(dialogue_step.signal_data)

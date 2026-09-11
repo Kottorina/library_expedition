@@ -15,14 +15,19 @@ var main_popup : PopupMenu
 func StartBakeUi() -> void:
 	main_popup = node_list.get_popup()
 	
+	Clear()
+	
+	if not main_popup.id_pressed.is_connected(GraphItemSelected):
+		main_popup.id_pressed.connect(GraphItemSelected)
+
+func Clear() -> void:
+	main_popup = node_list.get_popup()
+	
 	main_popup.clear()
 	
 	name_to_ind_dict.clear()
 	ind_to_popup_dict.clear()
 	id_to_big_graph_make_instr_dict.clear()
-	
-	if not main_popup.id_pressed.is_connected(GraphItemSelected):
-		main_popup.id_pressed.connect(GraphItemSelected)
 
 var name_to_ind_dict : Dictionary ## Name - Ind
 var ind_to_popup_dict : Dictionary ## ind - PopupMenu

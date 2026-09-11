@@ -7,4 +7,6 @@ class_name DataDialogue
 
 @export_group("skip")
 @export var is_skiped : bool ## МОЖНО ЛИ ПРОПУСКАТЬ ДИАЛОГИ
-@export var extra_time : bool ## СКОЛЬКО БУДЕТ ВИСТЕЬ ДИАЛОГ ПОСЛЕ ПОСЛЕДНЕГО СИМВОЛА
+@export var befor_time : bool 
+@export var after_time : bool 
+@export var char_time : bool 

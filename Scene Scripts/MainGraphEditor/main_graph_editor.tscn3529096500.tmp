@@ -194,15 +194,13 @@ main_graph_editor = NodePath("..")
 script = ExtResource("12_pkdnh")
 graph_edit = NodePath("../Panel/VBoxContainer/MainGraphEdit")
 
-[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("graph_node_ui", "main_graph_editor", "ui_all_baker", "ui_dialogue_baker")]
+[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("main_graph_editor")]
 script = ExtResource("9_ojduo")
-graph_node_ui = NodePath("../Panel/VBoxContainer/HBoxContainer/Graph Node Ui")
 main_graph_editor = NodePath("..")
-ui_all_baker = NodePath("Ui All Baker")
-ui_dialogue_baker = NodePath("Ui Dialogue Baker")
 
-[node name="Ui All Baker" type="Node" parent="Ui Manager" unique_id=1562043268]
+[node name="Ui All Baker" type="Node" parent="Ui Manager" unique_id=1562043268 node_paths=PackedStringArray("graph_node_ui")]
 script = ExtResource("18_4wgic")
+graph_node_ui = NodePath("../../Panel/VBoxContainer/HBoxContainer/Graph Node Ui")
 
 [node name="Ui Dialogue Baker" type="Node" parent="Ui Manager" unique_id=317710435]
 script = ExtResource("16_dltes")

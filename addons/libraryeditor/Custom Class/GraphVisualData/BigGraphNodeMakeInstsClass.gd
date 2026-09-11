@@ -6,7 +6,7 @@ class_name BigGraphNodeMakeInsts
 
 @export_enum("make_room", "enter_location","start_gener","tool_crossroad","con_pl","rnd_fork",
 "rool_rnd_fork_set","rool_rnd_deco_tile","make_location",
-"start_dialogue","dialogue_node","end_dialogue","dialogue_choise"
+"start_dialogue","dialogue_node","end_dialogue","dialogue_choise","dialogue_con","dialogue_setting"
 ) var type_node : int ##make_room,enter_location,start_gener,tool_crossroad,con_pl,rnd_fork,rool_rnd_fork_set
 
 @export var room_ : Room

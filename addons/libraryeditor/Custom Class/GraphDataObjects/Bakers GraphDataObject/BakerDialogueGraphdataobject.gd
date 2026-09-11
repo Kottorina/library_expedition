@@ -5,7 +5,9 @@ const START_DIALOGUE := 9
 const DIALOGUE_NODE := 10
 const END_DIALOGUE := 11
 const DIALOGUE_CHOICE := 12
-const CHOISE_DIALOGUE := 13
+const DIALOGUE_CONNECTOR := 13
+const DIALOGUE_SETTING := 14
+
 
 const START_CHOISE_IND := 1
 
@@ -30,10 +32,6 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			for data in data_meta_ar:
 				if data.instr.title_instr == ui_const_func.TOOL_TITLE:
 					new_dialogue.dialogue_name = data.instr.body_value
-				if data.instr.title_instr == ui_const_func.DIALOGUE_IS_SKIPED_TITLE:
-					new_dialogue.is_skiped = data.instr.body_value
-				if data.instr.title_instr == ui_const_func.DIALOGUE_EXTRA_TIME_TITLE:
-					new_dialogue.extra_time = data.instr.body_value
 			
 			save_last_dialogue()
 			current_dialogue = new_dialogue
@@ -153,6 +151,19 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
+		
+		DIALOGUE_SETTING:
+			
+			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
+			for data in data_meta_ar:
+				if data.instr.title_instr == ui_const_func.DIALOGUE_IS_SKIPED_TITLE:
+					current_dialogue.is_skiped = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_AFTER_TIME_TITLE:
+					current_dialogue.after_time = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_BEFOR_TIME_TITLE:
+					current_dialogue.befor_time = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_CHAR_TIME_TITLE:
+					current_dialogue.char_time = data.instr.body_value
 		
 		_:
 			var free_port = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])

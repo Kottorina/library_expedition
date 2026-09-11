@@ -29,6 +29,8 @@ const DIALOGUE_NODE_TITLE = "Dialogue Node"
 const DIALOGUE_END_BIG_TITLE = "Dialogue End"
 
 const DIALOGUE_CHOISE_BIG_TITLE = "Dialogue Choise: "
+const DIALOGUE_CONNETOR_BIG_TITLE = "Dialogue Connector: "
+const DIALOGUE_SETTING_BIG_TITLE = "Dialogue Setting: "
 
 ## ДЛЯ INSTR
 const TOOL_TITLE : String = "Tool:"
@@ -41,8 +43,11 @@ const DIALOGUE_TITLE : String = "Dialogue: "
 const DIALOGUE_CON_TITLE : String = "Dialogue Con: "
 const DIALOGUE_CHARACTER_TITLE : String = "Dialogue Character: "
 const DIALOGUE_CHOISE_TITLE : String = "Dialogue Choise: "
+
 const DIALOGUE_IS_SKIPED_TITLE : String = "Is skiped: "
-const DIALOGUE_EXTRA_TIME_TITLE : String = "Extra Time: "
+const DIALOGUE_BEFOR_TIME_TITLE : String = "Befor Time: "
+const DIALOGUE_AFTER_TIME_TITLE : String = "After Time: "
+const DIALOGUE_CHAR_TIME_TITLE : String = "Char Time: "
 
 ## ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
 const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]

@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
 [ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://Test Resource/TestTile_set.tres" id="2_mcqch"]
-[ext_resource type="Resource" uid="uid://g0nw8fftdjfm" path="res://Test Resource/TwoTestAllSave.tres" id="3_mbcb0"]
+[ext_resource type="Resource" uid="uid://dv0c2fomugbxp" path="res://Test Resource/TwoTestAllSave.tres" id="3_mbcb0"]
 [ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/GraphDataObjects/Reader GraphDataObject/Reader Dialogue/reader_dialogue_ui_graphdataobject.gd" id="4_u3i11"]
+
+[sub_resource type="GDScript" id="GDScript_tv1na"]
+script/source = "extends Button
+
+@export var node : Node
+
+@export var test_dial_name : String = \"Dial_1\"
+
+func _on_pressed() -> void:
+	var id = 0
+	
+	node.start_dialogue(id,test_dial_name)
+"
 
 [node name="Node" type="Node" unique_id=304995115]
 
@@ -18,10 +31,12 @@ tile_set = ExtResource("2_mcqch")
 texture_filter = 1
 tile_set = ExtResource("2_mcqch")
 
-[node name="Button" type="Button" parent="." unique_id=471411679]
+[node name="Button" type="Button" parent="." unique_id=471411679 node_paths=PackedStringArray("node")]
 offset_right = 8.0
 offset_bottom = 8.0
 text = "read dial"
+script = SubResource("GDScript_tv1na")
+node = NodePath("../ReaderDialogueUiGraphDataObject")
 
 [node name="ReaderDialogueUiGraphDataObject" type="Control" parent="." unique_id=1846829880]
 layout_mode = 3
@@ -33,6 +48,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_u3i11")
 all_data_save = ExtResource("3_mbcb0")
+time_anim = 0.5
 metadata/_custom_type_script = "uid://b6e1urt4k82au"
 
-[connection signal="pressed" from="Button" to="ReaderDialogueUiGraphDataObject" method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

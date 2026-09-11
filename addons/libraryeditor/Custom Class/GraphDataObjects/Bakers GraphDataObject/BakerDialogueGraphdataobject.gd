@@ -15,7 +15,7 @@ var dialogue_set : Dictionary
 
 var obj_to_dialogue_step : Dictionary ## to_obj : int
 
-var last_dialogue_set_name : String
+var current_dialogue : DataDialogue
 
 func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 	match nodes.type_node:
@@ -24,15 +24,24 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			for port in free_ports:
 				AddFreePort(port)
 			
+			var new_dialogue := DataDialogue.new()
+			
 			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
 			for data in data_meta_ar:
 				if data.instr.title_instr == ui_const_func.TOOL_TITLE:
-					last_dialogue_set_name = data.instr.body_value
+					new_dialogue.dialogue_name = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_IS_SKIPED_TITLE:
+					new_dialogue.is_skiped = data.instr.body_value
+				if data.instr.title_instr == ui_const_func.DIALOGUE_EXTRA_TIME_TITLE:
+					new_dialogue.extra_time = data.instr.body_value
+			
+			save_last_dialogue()
+			current_dialogue = new_dialogue
 			
 			var new_step := DialogueStep.new()
 			new_step.step_type = 0
 			
-			dialogue_set[last_dialogue_set_name] = [new_step]
+			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 			
 		DIALOGUE_NODE:
@@ -66,7 +75,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
 				real_last_step.next_step_ar.append(new_step)
 			
-			dialogue_set[last_dialogue_set_name].append(new_step)
+			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 		
 		END_DIALOGUE:
@@ -98,7 +107,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
 				real_last_step.next_step_ar.append(new_step)
 			
-			dialogue_set[last_dialogue_set_name].append(new_step)
+			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 			
 		DIALOGUE_CHOICE:
@@ -112,13 +121,13 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			for ind in range(START_CHOISE_IND,central_data_graph[nodes].size()): ## Пока так, его магические числа
 				
 				var und_step := DialogueStep.new()
-				und_step.step_type = CHOISE_DIALOGUE
+				und_step.step_type = 4
 				
 				var meta = central_data_graph[nodes][ind]
 				und_step.dialogue_data = meta.instr.body_value
 				und_step.signal_data = ind - START_CHOISE_IND
 				
-				dialogue_set[last_dialogue_set_name].append(und_step)
+				current_dialogue.step_dialogue_ar.append(new_step)
 				new_step.next_step_ar.append(und_step)
 			
 			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
@@ -142,66 +151,22 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
 				real_last_step.next_step_ar.append(new_step)
 			
-			dialogue_set[last_dialogue_set_name].append(new_step)
+			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
-			
-			#if not full_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME].size() == full_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME].size():
-				#return
-			#
-			#var node_data : String
-			#var last_dialogue_step : DialogueStep
-			#var last_dialogue_port_num : int
-			#
-			#var ports = full_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME]
-			#for port : FromToWith in ports:
-				#if port.from_data.instr.title_instr == ui_const_func.DIALOGUE_CHOISE_TITLE:
-					#node_data = port.from_data.instr.body_value
-				#if obj_to_dialogue_step.has(port.to_obj):
-					#last_dialogue_step = obj_to_dialogue_step[port.to_obj]
-					#last_dialogue_port_num = port.to_data.port_num
-				#else:
-					#AddFreePort(port)
-			#
-			#var new_step := DialogueStep.new()
-			#new_step.step_type = 2
-			#new_step.step_data = node_data
-			#new_step.next_step_ar = []
-			#
-			#for ind in range(1,full_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME].size()): ## Пока так, его магические числа
-				#
-				#var und_step := DialogueStep.new()
-				#und_step.step_type = CHOISE_DIALOGUE
-				#
-				#var port = full_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME][ind]
-				#
-				#und_step.step_data = port.from_data.instr.body_value
-				#
-				#dialogue_set[last_dialogue_set_name].append(und_step)
-				#
-				#new_step.next_step_ar.append(und_step)
-				#
-			#
-			#if last_dialogue_step.step_type != 2:
-				#last_dialogue_step.next_step_ar = [new_step]
-			#else:
-				#var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
-				#real_last_step.next_step_ar.append(new_step)
-			#
-			#dialogue_set[last_dialogue_set_name].append(new_step)
-			#
-			#obj_to_dialogue_step[nodes] = new_step
-			
+		
 		_:
-			last_dialogue_set_name = ""
 			var free_port = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port : FromToWith in free_port:
 				AddFreePort(port)
 
-#var free_port = get_free_ports(save_graph[nodes][LEFT_PORTS_DATA_NAME] + save_graph[nodes][RIGHT_PORTS_DATA_NAME])
+func save_last_dialogue() -> void:
+	if current_dialogue:
+		dialogue_set[current_dialogue.dialogue_name] = current_dialogue
 
 func last_bake_call() -> void:
+	save_last_dialogue()
 	
 	for ar in dialogue_set:
-		print(dialogue_set[ar].size())
+		print(dialogue_set[ar].step_dialogue_ar.size())
 	print(dialogue_set)
 	bake_data_dict[DIALOGUE_SET] = dialogue_set

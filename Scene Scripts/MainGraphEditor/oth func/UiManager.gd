@@ -18,6 +18,11 @@ var tasks_bool : Dictionary = {
 "ui_dialogue_node" : "bake_ui_dialogue_node",
 "ui_dialogue_end" : "bake_ui_dialogue_end",
 
+"ui_dialogue_con_2" : "bake_ui_dialogue_con_2",
+"ui_dialogue_con_4" : "bake_ui_dialogue_con_4",
+"ui_dialogue_con_6" : "bake_ui_dialogue_con_6",
+"ui_dialogue_setting" : "bake_ui_dialogue_setting",
+
 "ui_dialogue_choice_2" : "bake_ui_dialogue_choice_2",
 "ui_dialogue_choice_3" : "bake_ui_dialogue_choice_3",
 "ui_dialogue_choice_4" : "bake_ui_dialogue_choice_4",

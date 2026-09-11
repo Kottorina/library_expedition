@@ -3,11 +3,33 @@
 [sub_resource type="GDScript" id="GDScript_yqhqn"]
 script/source = "extends Control
 
+@export var character : Label
+@export var line : Label
+
+@export var choise_container : BoxContainer
+
+@export var skip_button : Button
+
 const OPEN_POSITION := Vector2.ZERO
 const CLOSE_POSITION := Vector2(0,200)
 
+func _ready() -> void:
+	clear_all()
+
+func clear_all() -> void:
+	clear_dialogue()
+	skip_button.hide()
+	hide()
+
+func clear_dialogue() -> void:
+	for i in choise_container.get_children():
+		i.queue_free()
+	character.text = \"\"
+	line.text = \"\"
+
 func open_anim(time_anim : float) -> bool:
 	position = CLOSE_POSITION
+	clear_all()
 	show()
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
@@ -19,12 +41,20 @@ func close_anim(time_anim : float) -> bool:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self,\"position\",CLOSE_POSITION,time_anim)
-	hide()
 	await tween.finished
+	hide()
 	return true
+
+func add_choise(text_ : String) -> Button:
+	var new_button := Button.new()
+	new_button.text = text_
+	
+	choise_container.add_child(new_button)
+	
+	return new_button
 "
 
-[node name="DialogueUi" type="Control" unique_id=1754154450]
+[node name="DialogueUi" type="Control" unique_id=1754154450 node_paths=PackedStringArray("character", "line", "choise_container", "skip_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +63,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = SubResource("GDScript_yqhqn")
+character = NodePath("PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/character")
+line = NodePath("PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/line")
+choise_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/choise_container")
+skip_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=481393611]
 custom_minimum_size = Vector2(500, 150)

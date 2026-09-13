@@ -11,12 +11,18 @@ var data_dialogue : DataDialogue ## Array[DialogueStep]
 const BASE_SEED = 0
 const DIALOGUE_SET : String = "dialogue_set"
 
+const START_DIALOGUE = "start_sdialogue"
+
 signal make_line
 signal make_choise
 
-signal continue_read ## МОЖНО ЛИ ЧИТАТЬ ДАЛЬШЕ, И КАКОЙ ИЗ ВАРИАНТОВ ЧИТАТЬ ДАЛЬШЕ
-signal base_signal ## ДЛЯ ПЕРЕДАЧИ ЗНАЧНИЙ, НУЖНО ДЛЯ АНИМАЦИИ
-signal read_end 
+signal continue_preliminary ## ПРИ ОКОНЧАНИИ ПЕЧАТАНЬЯ РЕПЛИКИ ИЛИ ВЫБОРА
+
+signal continue_read ## ПРИ ПОЛНОМ ПРОЧТЕНИИ СООБЩЕНИЯ И ПРИ ВЫБОРЕ ОДНОГО ИЗ ДИАЛОГОВ В ВЫБОРЕ
+
+signal base_signal ## ДЛЯ ПЕРЕДАЧИ ЗНАЧЕНИЙ, ОТДАЕТ И ПРИНИМАЕТ ЗНАЧЕНИЯ
+
+signal read_end ## ПРИ ЗАВЕРШЕНИИ ЧТЕНИЯ ДИАЛОГА, ИЗ ЗА ОШИБКИ ИЛИ КОНЦА ДИАЛОГА
 
 func start_read(dialogue_graph_data : GraphDataObjects, dialogue_name : String, seed : int = BASE_SEED) -> bool:
 	
@@ -43,7 +49,7 @@ func start_read(dialogue_graph_data : GraphDataObjects, dialogue_name : String, 
 func read_dialogue_step( dialogue_step : DialogueStep) -> void:
 	match dialogue_step.step_type:
 		0:
-			base_signal.emit("start_sdialogue")
+			base_signal.emit(START_DIALOGUE)
 			await continue_read
 			read_dialogue_step(dialogue_step.next_step_ar[0])
 		1:
@@ -59,6 +65,14 @@ func read_dialogue_step( dialogue_step : DialogueStep) -> void:
 			read_end.emit()
 		4:
 			push_warning("You should not see this message --- ReaderDialogueGraphDataObject")
-		
-	
+		5: ## Emit Signal
+			base_signal.emit(dialogue_step.signal_data)
+			read_dialogue_step(dialogue_step.next_step_ar[0])
+		6: ## Await Signal
+			make_line.emit(data_dialogue, dialogue_step)
+			await continue_preliminary
+			while true:
+				if await base_signal == dialogue_step.signal_data:
+					break
+			read_dialogue_step(dialogue_step.next_step_ar[0])
 	

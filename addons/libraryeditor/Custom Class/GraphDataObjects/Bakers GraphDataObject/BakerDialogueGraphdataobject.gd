@@ -69,7 +69,9 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			for data in data_meta_ar:
 				if data.instr.title_instr == ui_const_func.AWAIT_SIGNAL_TITLE:
 					new_step.signal_data = data.instr.body_value
-			
+				elif data.instr.title_instr == ui_const_func.DIALOGUE_CHARACTER_TITLE:
+					new_step.character_data = data.instr.body_value
+
 			var last_dialogue_step : DialogueStep
 			var last_dialogue_port_num : int
 			

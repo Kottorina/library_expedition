@@ -59,18 +59,21 @@ func make_line( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> v
 	
 	await write_step_by_step(ui_scene_node.line,dialogue_step.dialogue_data,data_dialogue.char_line_time)
 	
+	timer.start(data_dialogue.after_time)
+	await timer.timeout
+	
+	reader.continue_preliminary.emit()
+	
 	if data_dialogue.is_skiped == true:
 		ui_scene_node.skip_button.show()
 		await ui_scene_node.skip_button.pressed
 		ui_scene_node.skip_button.hide()
 		
-		ui_scene_node.clear_dialogue()
 		reader.continue_read.emit()
 	else:
 		timer.start(data_dialogue.after_time)
 		await timer.timeout
 		
-		ui_scene_node.clear_dialogue()
 		reader.continue_read.emit()
 
 func write_step_by_step(node : Control, write_text : String, time : float) -> bool:
@@ -99,14 +102,14 @@ func make_choise( data_dialogue : DataDialogue, dialogue_step : DialogueStep) ->
 	timer.start(data_dialogue.after_time)
 	await timer.timeout
 	
-	var buttons : Array[Button]
+	reader.continue_preliminary.emit()
 	
+	var buttons : Array[Button]
 	for step : DialogueStep in dialogue_step.next_step_ar:
 		var button = ui_scene_node.add_choise()
 		buttons.append(button)
 		
 		await write_step_by_step(button,step.dialogue_data,data_dialogue.char_line_time)
-	
 	for i in buttons.size():
 		buttons[i].pressed.connect(_on_button_choise_pressed.bind(i))
 

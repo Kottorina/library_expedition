@@ -162,6 +162,8 @@ func bake_ui_dialogue_await_signal() -> Array:
 	
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_character_instr())
+	
 	var instr_0 = GraphNodeMakeInsts.new()
 	instr_0.body_node = 2
 	instr_0.title_instr = ui_const_func.AWAIT_SIGNAL_TITLE

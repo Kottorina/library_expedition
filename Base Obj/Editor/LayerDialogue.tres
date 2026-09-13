@@ -22,4 +22,6 @@ ui_dialogue_con_2 = true
 ui_dialogue_con_4 = true
 ui_dialogue_con_6 = true
 ui_dialogue_setting = true
+ui_dialogue_emit_signal = true
+ui_dialogue_await_signal = true
 metadata/_custom_type_script = "uid://dyh1823n402rk"

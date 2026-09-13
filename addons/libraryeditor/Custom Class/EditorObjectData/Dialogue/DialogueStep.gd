@@ -1,7 +1,8 @@
 extends Resource
 class_name DialogueStep
 
-@export_enum("start_dialogue","make_dialogue","make_choise","end_dialogue","choise_dialogue"
+@export_enum("start_dialogue","make_dialogue","make_choise","end_dialogue","choise_dialogue",
+"emit_dialogue","await_dialogue"
 ) var step_type : int ## start_dialogue make_dialogue make_choise end_dialogue choise_dialogue
 
 @export var character_data : Variant ## ДЛЯ ПЕРСОНАЖЕЙ И ОБЬЯВЛЕНИЕМ ВЫБОРОВ

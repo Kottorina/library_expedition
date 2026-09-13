@@ -6,9 +6,13 @@ var cur_editor_obj_layer_ar : Array[EditorObjectLayer]
 var cur_save_data_all_library : SaveDataAllLibrary
 
 const START_DIALOGUE := 9
+const DIALOGUE_NODE := 10
+const END_DIALOGUE := 11
 const DIALOGUE_CHOICE := 12
 const DIALOGUE_CONNECTOR := 13
 const DIALOGUE_SETTING := 14
+const DIALOGUE_EMIT_SIGNAL := 15
+const DIALOGUE_AWAIT_SIGNAL := 16
 
 func bake_ui_dialogue_start() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
@@ -23,10 +27,9 @@ func bake_ui_dialogue_start() -> Array:
 	
 	return [ui_const_func.DIALOGUE_UI_NAME, big_instr]
 
-const DIALOGUE_NODE := 10
 func bake_ui_dialogue_node() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
-	big_instr.title_node = ui_const_func.DIALOGUE_NODE_TITLE
+	big_instr.title_node = ui_const_func.DIALOGUE_NODE_BIG_TITLE
 	big_instr.type_node = DIALOGUE_NODE
 	
 	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
@@ -35,7 +38,7 @@ func bake_ui_dialogue_node() -> Array:
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]
 
-const END_DIALOGUE := 11
+
 func bake_ui_dialogue_end() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ui_const_func.DIALOGUE_END_BIG_TITLE
@@ -72,7 +75,7 @@ func get_dialogue_choise( num_choise : int ) -> BigGraphNodeMakeInsts:
 	for i in num_choise:
 		var instr = ui_const_func.get_dialogue_instr()
 		instr.title_instr = ui_const_func.DIALOGUE_CHOISE_TITLE
-		instr = ui_const_func.open_all_ports(instr)
+		instr = ui_const_func.open_all_dialogue_ports(instr)
 		big_instr.instr_ar.append(instr)
 	
 	return big_instr
@@ -135,5 +138,33 @@ func bake_ui_dialogue_setting() -> Array:
 	instr_4.title_instr = ui_const_func.DIALOGUE_CHAR_LINE_TIME_TITLE
 	big_instr.instr_ar.append(instr_4)
 	
+	
+	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]
+
+func bake_ui_dialogue_emit_signal() -> Array:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_EMIT_SIGNAL_BIG_TITLE
+	big_instr.type_node = DIALOGUE_EMIT_SIGNAL
+	
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
+
+	var instr_0 = GraphNodeMakeInsts.new()
+	instr_0.body_node = 2
+	instr_0.title_instr = ui_const_func.EMIT_SIGNAL_TITLE
+	big_instr.instr_ar.append(instr_0)
+	
+	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]
+
+func bake_ui_dialogue_await_signal() -> Array:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_AWAIT_SIGNAL_BIG_TITLE
+	big_instr.type_node = DIALOGUE_AWAIT_SIGNAL
+	
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
+	
+	var instr_0 = GraphNodeMakeInsts.new()
+	instr_0.body_node = 2
+	instr_0.title_instr = ui_const_func.AWAIT_SIGNAL_TITLE
+	big_instr.instr_ar.append(instr_0)
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]

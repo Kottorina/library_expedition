@@ -8,6 +8,8 @@ const DIALOGUE_CHOICE := 12
 const DIALOGUE_CONNECTOR := 13
 const DIALOGUE_SETTING := 14
 
+const DIALOGUE_EMIT_SIGNAL := 15
+const DIALOGUE_AWAIT_SIGNAL := 16
 
 const START_CHOISE_IND := 3
 
@@ -21,6 +23,72 @@ var current_dialogue : DataDialogue
 
 func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 	match nodes.type_node:
+		DIALOGUE_EMIT_SIGNAL:
+			
+			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
+			var new_step := DialogueStep.new()
+			new_step.step_type = 5
+			
+			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
+			for data in data_meta_ar:
+				if data.instr.title_instr == ui_const_func.EMIT_SIGNAL_TITLE:
+					new_step.signal_data = data.instr.body_value
+			
+			var last_dialogue_step : DialogueStep
+			var last_dialogue_port_num : int
+			
+			var ports = full_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME]
+			for port : FromToWith in ports:
+				if obj_to_dialogue_step.has(port.to_obj):
+					last_dialogue_step = obj_to_dialogue_step[port.to_obj]
+					last_dialogue_port_num = port.to_data.port_num
+					continue
+			
+			if last_dialogue_step.step_type != 2: ## ! "make_choise"
+				last_dialogue_step.next_step_ar = [new_step]
+			else:
+				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
+				real_last_step.next_step_ar.append(new_step)
+			
+			current_dialogue.step_dialogue_ar.append(new_step)
+			obj_to_dialogue_step[nodes] = new_step
+			
+		DIALOGUE_AWAIT_SIGNAL:
+			
+			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
+			var new_step := DialogueStep.new()
+			new_step.step_type = 6
+			
+			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
+			for data in data_meta_ar:
+				if data.instr.title_instr == ui_const_func.AWAIT_SIGNAL_TITLE:
+					new_step.signal_data = data.instr.body_value
+			
+			var last_dialogue_step : DialogueStep
+			var last_dialogue_port_num : int
+			
+			var ports = full_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME]
+			for port : FromToWith in ports:
+				if obj_to_dialogue_step.has(port.to_obj):
+					last_dialogue_step = obj_to_dialogue_step[port.to_obj]
+					last_dialogue_port_num = port.to_data.port_num
+					continue
+			
+			if last_dialogue_step.step_type != 2: ## ! "make_choise"
+				last_dialogue_step.next_step_ar = [new_step]
+			else:
+				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
+				real_last_step.next_step_ar.append(new_step)
+			
+			current_dialogue.step_dialogue_ar.append(new_step)
+			obj_to_dialogue_step[nodes] = new_step
+			
 		START_DIALOGUE:
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:

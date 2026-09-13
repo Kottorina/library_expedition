@@ -25,12 +25,15 @@ const BIG_RND_FORK_BIG_TITLE : String = "Rnd Fork"
 const CONNECTORS_PLUGS_BIG_TITLE : String = "Connectors Plugs Node"
 
 const DIALOGUE_START_BIG_TITLE = "Dialogue Start"
-const DIALOGUE_NODE_TITLE = "Dialogue Node"
+const DIALOGUE_NODE_BIG_TITLE = "Dialogue Node"
 const DIALOGUE_END_BIG_TITLE = "Dialogue End"
 
 const DIALOGUE_CHOISE_BIG_TITLE = "Dialogue Choise: "
 const DIALOGUE_CONNETOR_BIG_TITLE = "Dialogue Connector: "
 const DIALOGUE_SETTING_BIG_TITLE = "Dialogue Setting: "
+
+const  DIALOGUE_EMIT_SIGNAL_BIG_TITLE = "Dialogue Emit Signal: "
+const  DIALOGUE_AWAIT_SIGNAL_BIG_TITLE = "Dialogue Await Signal: "
 
 ## ДЛЯ INSTR
 const TOOL_TITLE : String = "Tool:"
@@ -39,6 +42,8 @@ const INSTR_FORK_BASE_TITLE : String = "Base Option: "
 const INSTR_FORK_ALT_CHANCE_TITLE : String = "Alt Chance: "
 const TOOL_CONNECTOR_TITLE : String = "Connector:"
 
+const EMIT_SIGNAL_TITLE : String = "Emit Signal: "
+const AWAIT_SIGNAL_TITLE : String = "Await Signal: "
 
 const DIALOGUE_TITLE : String = "Dialogue: "
 const DIALOGUE_CON_TITLE : String = "Dialogue Con: "
@@ -135,7 +140,7 @@ func get_dialogue_connector_instr() -> GraphNodeMakeInsts:
 	
 	return instr
 
-func open_all_ports(instr : GraphNodeMakeInsts) -> GraphNodeMakeInsts:
+func open_all_dialogue_ports(instr : GraphNodeMakeInsts) -> GraphNodeMakeInsts:
 	
 	instr.is_right = true 
 	instr.right_type = TOOL_DIALOGUR_TYPE_CON

@@ -36,6 +36,9 @@ var tasks_bool : Dictionary = {
 "ui_dialogue_con_6" : ["ui_dialogue_baker", "bake_ui_dialogue_con_6"],
 "ui_dialogue_setting" : ["ui_dialogue_baker", "bake_ui_dialogue_setting"],
 
+"ui_dialogue_emit_signal" : ["ui_dialogue_baker", "bake_ui_dialogue_emit_signal"],
+"ui_dialogue_await_signal" : ["ui_dialogue_baker", "bake_ui_dialogue_await_signal"],
+
 }
 
 var tasks_string : Dictionary = {
@@ -43,6 +46,7 @@ var tasks_string : Dictionary = {
 }
 
 func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],save_data_all_library : SaveDataAllLibrary) -> void:
+	
 	
 	var ui_nodes : Dictionary = {
 	"ui_all_baker" : ui_all_baker,

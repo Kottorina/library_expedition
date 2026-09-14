@@ -162,6 +162,7 @@ script = ExtResource("10_ighae")
 del_button = NodePath("../UpPanel/UpPanel/Graph Node Ui/Node Tool Room List/del_node")
 
 [node name="SettingPanel" type="PanelContainer" parent="Panel" unique_id=116755840]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

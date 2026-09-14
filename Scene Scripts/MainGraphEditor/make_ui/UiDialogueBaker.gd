@@ -13,6 +13,7 @@ const DIALOGUE_CONNECTOR := 13
 const DIALOGUE_SETTING := 14
 const DIALOGUE_EMIT_SIGNAL := 15
 const DIALOGUE_AWAIT_SIGNAL := 16
+const DIALOGUE_NEXT_DIALOGUE := 16
 
 func bake_ui_dialogue_start() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
@@ -168,5 +169,14 @@ func bake_ui_dialogue_await_signal() -> Array:
 	instr_0.body_node = 2
 	instr_0.title_instr = ui_const_func.AWAIT_SIGNAL_TITLE
 	big_instr.instr_ar.append(instr_0)
+	
+	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]
+
+func bake_ui_dialogue_next_dialogue() -> Array:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_NEXT_DIALOGUE_BIG_TITLE
+	big_instr.type_node = DIALOGUE_NEXT_DIALOGUE
+	
+	big_instr.instr_ar.append(ui_const_func.get_dialogue_connector_instr())
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]

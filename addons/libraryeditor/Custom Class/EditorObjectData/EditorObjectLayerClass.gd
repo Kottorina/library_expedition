@@ -39,3 +39,5 @@ class_name EditorObjectLayer
 
 @export var ui_dialogue_emit_signal : bool = false
 @export var ui_dialogue_await_signal : bool = false
+
+@export var ui_dialogue_next_dialogue : bool = false

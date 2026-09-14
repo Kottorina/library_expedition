@@ -35,6 +35,8 @@ const DIALOGUE_SETTING_BIG_TITLE = "Dialogue Setting: "
 const  DIALOGUE_EMIT_SIGNAL_BIG_TITLE = "Dialogue Emit Signal: "
 const  DIALOGUE_AWAIT_SIGNAL_BIG_TITLE = "Dialogue Await Signal: "
 
+const  DIALOGUE_NEXT_DIALOGUE_BIG_TITLE = "Next Dialogue: : "
+
 ## ДЛЯ INSTR
 const TOOL_TITLE : String = "Tool:"
 const ENTER_LOCATION_TITLE : String = "Id Enter:"
@@ -44,6 +46,8 @@ const TOOL_CONNECTOR_TITLE : String = "Connector:"
 
 const EMIT_SIGNAL_TITLE : String = "Emit Signal: "
 const AWAIT_SIGNAL_TITLE : String = "Await Signal: "
+
+const MAKE_DIALOGUE : String = "Make Dialogue"
 
 const DIALOGUE_TITLE : String = "Dialogue: "
 const DIALOGUE_CON_TITLE : String = "Dialogue Con: "

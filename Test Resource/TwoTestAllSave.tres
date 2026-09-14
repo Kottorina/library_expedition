@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://7lh6ce865d5d"]
+[gd_resource type="Resource" script_class="SaveDataAllLibrary" format=3 uid="uid://dog4yfetwb0qu"]
 
 [ext_resource type="Script" uid="uid://bpcjxhhu46lny" path="res://addons/libraryeditor/Custom Class/GraphVisualData/GraphNodeMakeInstsClass.gd" id="1_shi4s"]
 [ext_resource type="Script" uid="uid://dmvxb7eflo0ta" path="res://addons/libraryeditor/Custom Class/EditorObjectData/Dialogue/DialogueStep.gd" id="1_to20a"]
@@ -1862,8 +1862,8 @@ to_obj = SubResource("Resource_gasdg")
 
 [sub_resource type="Resource" id="Resource_pg31v"]
 script = ExtResource("7_16c6w")
-zoom = 0.45320922
-scroll_offset = Vector2(-63.69165, 105.69299)
+zoom = 0.41200837
+scroll_offset = Vector2(-402.5238, -14.148758)
 
 [sub_resource type="Resource" id="Resource_vssk0"]
 script = ExtResource("6_5bkih")

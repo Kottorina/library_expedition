@@ -39,6 +39,8 @@ var tasks_bool : Dictionary = {
 "ui_dialogue_emit_signal" : ["ui_dialogue_baker", "bake_ui_dialogue_emit_signal"],
 "ui_dialogue_await_signal" : ["ui_dialogue_baker", "bake_ui_dialogue_await_signal"],
 
+"ui_dialogue_next_dialogue" : ["ui_dialogue_baker", "bake_ui_dialogue_next_dialogue"],
+
 }
 
 var tasks_string : Dictionary = {

@@ -29,7 +29,6 @@ folder_colors={
 "res://Base Obj/": "purple",
 "res://Draw/": "green",
 "res://Scene Scripts/": "orange",
-"res://Scene Scripts/GenerRuleEditor/": "gray",
 "res://Test Resource/": "purple",
 "res://addons/libraryeditor/Custom Class/": "blue"
 }

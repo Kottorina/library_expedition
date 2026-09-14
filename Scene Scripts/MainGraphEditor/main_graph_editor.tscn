@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://Base Obj/Editor/LayerDialogue.tres" id="5_fshts"]
 [ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://Base Obj/Editor/LayerLocation.tres" id="6_sgnql"]
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="7_4100p"]
-[ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/GenerRuleEditor/graph_node_ui.gd" id="7_fshts"]
+[ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/MainGraphEditor/in ui/GraphNodeUiManager.gd" id="7_fshts"]
 [ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://Base Obj/Editor/LayerDebug.tres" id="7_snist"]
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/make_ui/UiManager.gd" id="9_ojduo"]
 [ext_resource type="Script" uid="uid://dccq0y6xy1ay3" path="res://Scene Scripts/MainGraphEditor/in ui/graph_edit.gd" id="10_ighae"]

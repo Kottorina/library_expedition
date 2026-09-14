@@ -1,9 +1,6 @@
 extends Node
 class_name ReaderDialogueGraphDataObject
 
-signal load_new_part( part : String )
-signal load_complete
-
 var rnd : RandomNumberGenerator
 
 var data_dialogue : DataDialogue ## Array[DialogueStep]
@@ -23,6 +20,11 @@ signal continue_read ## ПРИ ПОЛНОМ ПРОЧТЕНИИ СООБЩЕНИ�
 signal base_signal ## ДЛЯ ПЕРЕДАЧИ ЗНАЧЕНИЙ, ОТДАЕТ И ПРИНИМАЕТ ЗНАЧЕНИЯ
 
 signal read_end ## ПРИ ЗАВЕРШЕНИИ ЧТЕНИЯ ДИАЛОГА, ИЗ ЗА ОШИБКИ ИЛИ КОНЦА ДИАЛОГА
+
+var timer := Timer.new()
+const MAX_TIME_FOR_AWAIT = 10
+func _ready() -> void:
+	add_child(timer)
 
 func start_read(dialogue_graph_data : GraphDataObjects, dialogue_name : String, seed : int = BASE_SEED) -> bool:
 	
@@ -71,8 +73,16 @@ func read_dialogue_step( dialogue_step : DialogueStep) -> void:
 		6: ## Await Signal
 			make_line.emit(data_dialogue, dialogue_step)
 			await continue_preliminary
+			
+			timer.start(MAX_TIME_FOR_AWAIT)
+			var cal = Callable(self,"emit_base_signal_with").bind(dialogue_step.signal_data)
+			timer.timeout.connect(cal)
 			while true:
 				if await base_signal == dialogue_step.signal_data:
 					break
+			timer.timeout.disconnect(cal)
+			
 			read_dialogue_step(dialogue_step.next_step_ar[0])
-	
+
+func emit_base_signal_with(val : Variant) -> void:
+	base_signal.emit(val)

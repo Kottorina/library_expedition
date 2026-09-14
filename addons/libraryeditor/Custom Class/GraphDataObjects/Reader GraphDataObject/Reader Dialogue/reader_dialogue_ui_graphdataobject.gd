@@ -32,7 +32,10 @@ func start_dialogue(id_obj : int, dialogue_name : String) -> bool:
 	
 	var obj = all_data_save.GetObjectFromId(read_data,id_obj)
 	
+	if reader:
+		reader.queue_free()
 	reader = ReaderDialogueGraphDataObject.new()
+	add_child(reader)
 	
 	reader.make_line.connect(make_line)
 	reader.make_choise.connect(make_choise)

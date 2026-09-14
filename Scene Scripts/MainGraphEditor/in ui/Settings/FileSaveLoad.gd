@@ -1,6 +1,7 @@
-extends VBoxContainer
+extends BoxContainer
 
 @export var editor_layer_manager: VBoxContainer 
+@export var audio_loader : HBoxContainer
 
 @export var main_graph_editor: Node
 @export var file_dialog_popup: FileDialog
@@ -11,12 +12,10 @@ var edditor_save_data : EditorSaveData = null
 @export_category("Ui")
 @export var name_ui_label : Label
 
-const NameFile : String = "Name: "
-const PathNameFile : String = "Path To File: "
-
 func _ready() -> void:
 	edditor_save_data = ResourceLoader.load( main_graph_editor.editor_save_data_path,"",ResourceLoader.CACHE_MODE_IGNORE )
 	LoadFilePath(edditor_save_data.current_file_save_path)
+	file_dialog_popup.file_selected.connect(LoadFilePath)
 
 func NewPathPressed() -> void:
 	file_dialog_popup.show()
@@ -41,8 +40,8 @@ func LoadFilePath( path : String = edditor_save_data.current_file_save_path) -> 
 		push_warning("File Is Not SaveDataAllLibrary")
 
 func UpdateUi(path : String) -> void:
-	name_ui_label.text = NameFile + path.get_file()
-	name_ui_label.tooltip_text = PathNameFile + path
+	name_ui_label.text = path.get_file()
+	name_ui_label.tooltip_text = path
 
 ## СОХРАНЯЕТ ФАЙЛ НАСТРОЕК EditorSaveData
 func SaveSettingData() -> void:

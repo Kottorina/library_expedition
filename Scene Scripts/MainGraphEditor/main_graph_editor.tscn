@@ -14,9 +14,8 @@
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/make_ui/UiManager.gd" id="9_ojduo"]
 [ext_resource type="Script" uid="uid://dccq0y6xy1ay3" path="res://Scene Scripts/MainGraphEditor/in ui/graph_edit.gd" id="10_ighae"]
 [ext_resource type="Script" uid="uid://dcggylv8ku0fg" path="res://Scene Scripts/MainGraphEditor/oth func/load_graph.gd" id="10_sgnql"]
-[ext_resource type="Script" uid="uid://djm7wqy66rykl" path="res://Scene Scripts/MainGraphEditor/in ui/setting_button.gd" id="11_4wgic"]
 [ext_resource type="Script" uid="uid://dvhimjq1675qn" path="res://Scene Scripts/MainGraphEditor/oth func/save_graph.gd" id="12_pkdnh"]
-[ext_resource type="Script" uid="uid://bsbd1a15y3gus" path="res://Scene Scripts/MainGraphEditor/AudioStreamLoader.gd" id="14_tqdi5"]
+[ext_resource type="Script" uid="uid://c8qj3li15vno0" path="res://Scene Scripts/MainGraphEditor/setting_panel.gd" id="13_tqdi5"]
 [ext_resource type="Script" uid="uid://cqp7fha5lc3tc" path="res://Scene Scripts/MainGraphEditor/make_ui/UiDialogueBaker.gd" id="16_dltes"]
 [ext_resource type="Script" uid="uid://dw4dpickx4mej" path="res://Scene Scripts/MainGraphEditor/make_ui/UiAllBaker.gd" id="18_4wgic"]
 
@@ -146,12 +145,10 @@ text = "ReName"
 [node name="VSeparator" type="VSeparator" parent="Panel/BaseEditorContainer/UpPanel/UpPanel" unique_id=460227468]
 layout_mode = 2
 
-[node name="SettingButton" type="Button" parent="Panel/BaseEditorContainer/UpPanel/UpPanel" unique_id=452415539 node_paths=PackedStringArray("SettingPanel")]
+[node name="SettingButton" type="Button" parent="Panel/BaseEditorContainer/UpPanel/UpPanel" unique_id=452415539]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Settings"
-script = ExtResource("11_4wgic")
-SettingPanel = NodePath("../../../../SettingPanel")
 
 [node name="MainGraphEdit" type="GraphEdit" parent="Panel/BaseEditorContainer" unique_id=1291819869 node_paths=PackedStringArray("del_button")]
 layout_mode = 2
@@ -161,75 +158,71 @@ show_menu = false
 script = ExtResource("10_ighae")
 del_button = NodePath("../UpPanel/UpPanel/Graph Node Ui/Node Tool Room List/del_node")
 
-[node name="SettingPanel" type="PanelContainer" parent="Panel" unique_id=116755840]
-visible = false
-layout_mode = 2
+[node name="SettingPanel" type="PanelContainer" parent="." unique_id=116755840 node_paths=PackedStringArray("close_open_but_ar")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.5
+offset_top = -46.5
+offset_right = 208.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("8_snist")
+script = ExtResource("13_tqdi5")
+close_open_but_ar = [NodePath("../Panel/BaseEditorContainer/UpPanel/UpPanel/SettingButton"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/close_but")]
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/SettingPanel" unique_id=882596686]
+[node name="MarginContainer" type="MarginContainer" parent="SettingPanel" unique_id=882596686]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/SettingPanel/MarginContainer" unique_id=1216745447]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingPanel/MarginContainer" unique_id=1216745447]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/SettingPanel/MarginContainer/VBoxContainer" unique_id=774727227]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=2119978083]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=774727227]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Setting:"
-horizontal_alignment = 1
 
-[node name="File Save Load" type="HBoxContainer" parent="Panel/SettingPanel/MarginContainer/VBoxContainer" unique_id=287179820 node_paths=PackedStringArray("editor_layer_manager", "audio_loader", "main_graph_editor", "file_dialog_popup", "name_ui_label")]
+[node name="close_but" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=707005503]
+layout_mode = 2
+text = "Close"
+
+[node name="File Save Load" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=287179820 node_paths=PackedStringArray("editor_layer_manager", "main_graph_editor", "file_dialog_popup", "name_ui_label")]
 layout_mode = 2
 script = ExtResource("1_0un4p")
-editor_layer_manager = NodePath("../../../../BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager")
-audio_loader = NodePath("../Audio Save Load")
-main_graph_editor = NodePath("../../../../..")
-file_dialog_popup = NodePath("../../../../../FileDialogOpenFile")
+editor_layer_manager = NodePath("../../../../Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager")
+main_graph_editor = NodePath("../../../..")
+file_dialog_popup = NodePath("../../../../FileDialogOpenFile")
 name_ui_label = NodePath("name_file")
 
-[node name="NameSetting" type="Label" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=453455828]
+[node name="NameSetting" type="Label" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=453455828]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "AllLibrarySaveData:"
 
-[node name="New Path" type="Button" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=989929479]
+[node name="New Path" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=989929479]
 layout_mode = 2
 text = "New Path"
 
-[node name="Load" type="Button" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=1156160416]
+[node name="Load" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=1156160416]
 layout_mode = 2
 text = "Load"
 
-[node name="Save" type="Button" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=644519753]
+[node name="Save" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=644519753]
 layout_mode = 2
 text = "Save"
 
-[node name="name_file" type="Label" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=2075902309]
+[node name="name_file" type="Label" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=2075902309]
 layout_mode = 2
 theme = ExtResource("8_snist")
 text = "frgrgrgrgr"
-horizontal_alignment = 1
-
-[node name="Audio Save Load" type="HBoxContainer" parent="Panel/SettingPanel/MarginContainer/VBoxContainer" unique_id=317881618 node_paths=PackedStringArray("file_dialog_folder_popup")]
-layout_mode = 2
-script = ExtResource("14_tqdi5")
-file_dialog_folder_popup = NodePath("../../../../../FileDialogOpenFolder")
-
-[node name="NameSetting" type="Label" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/Audio Save Load" unique_id=72804739]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "AudioStreamMp3 Load:"
-
-[node name="New Path" type="Button" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/Audio Save Load" unique_id=1534040823]
-layout_mode = 2
-text = "New Path"
-
-[node name="Load" type="Button" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/Audio Save Load" unique_id=1499412076]
-layout_mode = 2
-text = "Load"
-
-[node name="name_file" type="Label" parent="Panel/SettingPanel/MarginContainer/VBoxContainer/Audio Save Load" unique_id=160960513]
-layout_mode = 2
 horizontal_alignment = 1
 
 [node name="FileDialogOpenFile" type="FileDialog" parent="." unique_id=851139765]
@@ -237,15 +230,6 @@ oversampling_override = 1.0
 title = "Open a File"
 position = Vector2i(0, 36)
 file_mode = 0
-display_mode = 1
-access = 2
-use_native_dialog = true
-
-[node name="FileDialogOpenFolder" type="FileDialog" parent="." unique_id=988699556]
-oversampling_override = 1.0
-title = "Open a Directory"
-position = Vector2i(0, 36)
-file_mode = 2
 display_mode = 1
 access = 2
 use_native_dialog = true
@@ -278,10 +262,9 @@ script = ExtResource("16_dltes")
 [connection signal="pressed" from="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager/HBoxContainer/add_new_button" to="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager" method="_on_add_new_button_pressed"]
 [connection signal="pressed" from="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager/HBoxContainer/del_item" to="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager" method="_on_del_item_pressed"]
 [connection signal="pressed" from="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager/HBoxContainer2/rename" to="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager" method="_on_rename_pressed"]
-[connection signal="pressed" from="Panel/BaseEditorContainer/UpPanel/UpPanel/SettingButton" to="Panel/BaseEditorContainer/UpPanel/UpPanel/SettingButton" method="_on_pressed"]
 [connection signal="connection_request" from="Panel/BaseEditorContainer/MainGraphEdit" to="Panel/BaseEditorContainer/MainGraphEdit" method="_on_connection_request"]
 [connection signal="node_deselected" from="Panel/BaseEditorContainer/MainGraphEdit" to="Panel/BaseEditorContainer/MainGraphEdit" method="_on_node_deselected"]
 [connection signal="node_selected" from="Panel/BaseEditorContainer/MainGraphEdit" to="Panel/BaseEditorContainer/MainGraphEdit" method="_on_node_selected"]
-[connection signal="pressed" from="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load/New Path" to="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" method="NewPathPressed"]
-[connection signal="pressed" from="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load/Load" to="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" method="LoadFilePath"]
-[connection signal="pressed" from="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load/Save" to="Panel/SettingPanel/MarginContainer/VBoxContainer/File Save Load" method="SaveEditData"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/File Save Load/New Path" to="SettingPanel/MarginContainer/VBoxContainer/File Save Load" method="NewPathPressed"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/File Save Load/Load" to="SettingPanel/MarginContainer/VBoxContainer/File Save Load" method="LoadFilePath"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/File Save Load/Save" to="SettingPanel/MarginContainer/VBoxContainer/File Save Load" method="SaveEditData"]

@@ -7,20 +7,19 @@ var path_node_const := PathNodeConst.new()
 const ROOMNODENAME = "Room Node: "
 const ROOMS_UI_LOCATIONS : String = "Locations"
 
-func BakeUi(objects_ar : Array) -> ObjectsUiSet:
-	
+func BakeUi(objects_ar : Array) -> Array:
 	
 	var callable = Callable(self, "FromObjectToBigInstr")
 	if not callable.is_valid():
-		return null
+		return []
 	
-	var new_obj_set := ObjectsUiSet.new()
+	var big_instr_ar : Array[BigGraphNodeMakeInsts]
 	
 	for obj in objects_ar:
-		var big_instr : BigGraphNodeMakeInsts = callable.call(obj)
-		new_obj_set.biginstr_ar.append(big_instr)
+		var big_instr : Array[BigGraphNodeMakeInsts] = callable.call(obj)
+		big_instr_ar.append_array(big_instr)
 	
-	return new_obj_set
+	return big_instr_ar
 	
 
 	#

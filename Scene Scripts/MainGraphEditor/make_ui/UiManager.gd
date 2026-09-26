@@ -77,7 +77,6 @@ func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorO
 		if not new_data_task.is_empty():
 			var callable = Callable( ui_nodes[tasks_ar_string[task][0]], tasks_ar_string[task][1])
 			if callable.is_valid():
-				var data_ar : Array[ObjectsUiSet] = callable.call(new_data_task)
-				#for obj_ui_set in data_ar:
-					#for big_instr in obj_ui_set:
-						#graph_node_ui.AddNewUiItem(obj_ui_set.ui_category,big_instr)
+				var data_ar : Array[BigGraphNodeMakeInsts] = callable.call(new_data_task)
+				for big_instr in data_ar:
+					graph_node_ui.AddNewUiItem(big_instr.ui_category,big_instr)

@@ -9,7 +9,7 @@ class_name BigGraphNodeMakeInsts
 
 "start_dialogue","dialogue_node","end_dialogue","dialogue_choise","dialogue_con",
 "dialogue_setting","dialogue_emit_signal","dialogue_await_signal","next_dialogue"
-) var type_node : int ##make_room,enter_location,start_gener,tool_crossroad,con_pl,rnd_fork,rool_rnd_fork_set
+, "audio") var type_node : int ##make_room,enter_location,start_gener,tool_crossroad,con_pl,rnd_fork,rool_rnd_fork_set
 
 @export var room_ : Room
 @export var graph_data_object : GraphDataObjects

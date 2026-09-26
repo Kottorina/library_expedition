@@ -3,6 +3,7 @@ extends Node
 var ui_const_func := UiConstFunc.new()
 
 var cur_editor_obj_layer_ar : Array[EditorObjectLayer]
+var cur_path_obj_layer_ar : Array[PathNode]
 var cur_save_data_all_library : SaveDataAllLibrary
 
 const START_DIALOGUE := 9

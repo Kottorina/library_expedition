@@ -41,3 +41,6 @@ func GetMp3FromDir(dir_path : Variant) -> Array:
 			mp3_ar.append(godo_mp3)
 
 	return mp3_ar
+
+func FromObjectToBigInstr(obj : Variant) -> BigGraphNodeMakeInsts:
+	

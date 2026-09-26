@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://biepbqwl4ovr"]
+
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="1_qvrvw"]
+
+[resource]
+script = ExtResource("1_qvrvw")
+data_key = "Audio"
+ui_start_gener_node = false
+ui_start_gener_empty_node = true
+ui_link_data_ar = Array[String](["Mp3  Dir Loader"])
+metadata/_custom_type_script = "uid://dyh1823n402rk"

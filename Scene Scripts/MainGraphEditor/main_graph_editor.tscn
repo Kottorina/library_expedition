@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://laafe23yiddc" path="res://Scene Scripts/MainGraphEditor/in ui/Settings/FileSaveLoad.gd" id="1_0un4p"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="2_eduwg"]
 [ext_resource type="Resource" uid="uid://cx8l1x0ewjlq2" path="res://Base Obj/EditorLayer/BaseLayer/LayerAnimation.tres" id="3_4100p"]
+[ext_resource type="Resource" uid="uid://biepbqwl4ovr" path="res://Base Obj/EditorLayer/BaseLayer/Audio.tres" id="3_mtn62"]
 [ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://Base Obj/EditorLayer/BaseLayer/LayerBigLocation.tres" id="4_ojduo"]
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://Base Obj/EditorLayer/BaseLayer/LayerDialogue.tres" id="5_fshts"]
 [ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://Base Obj/EditorLayer/BaseLayer/LayerLocation.tres" id="6_sgnql"]
@@ -27,7 +28,7 @@
 [node name="MainGraphEditor" type="Node" unique_id=544549692 node_paths=PackedStringArray("file_save_load")]
 script = ExtResource("1_0gdv0")
 editor_save_data_path = "res://Base Obj/EditorSave.tres"
-editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql"), ExtResource("7_snist")])
+editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("3_mtn62"), ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql"), ExtResource("7_snist")])
 path_obj_layer = Array[ExtResource("8_ndpcr")]([ExtResource("10_iqveq"), ExtResource("9_mtn62")])
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 file_save_load = NodePath("SettingPanel/MarginContainer/VBoxContainer/File Save Load")

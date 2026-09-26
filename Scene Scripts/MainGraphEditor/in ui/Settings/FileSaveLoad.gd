@@ -53,9 +53,11 @@ func LoadAllSaveData( all_save_data : SaveDataAllLibrary) -> void:
 	
 	cur_all_save_data = all_save_data
 	
-	editor_layer_manager.UpdateAllSaveData(all_save_data)
+	## СНАЧАЛА ЗАВИСИМОСТИ БЛЯДИ
 	path_manager.LoadPathDictionary(all_save_data)
-
+	
+	editor_layer_manager.UpdateAllSaveData(all_save_data)
+	
 ## СОХРАНЯЕТ ФАЙЛ ДАННЫХ SaveDataAllLibrary
 func SaveEditData() -> void:
 	print("SaveDataAllLibrary Save")

@@ -7,11 +7,31 @@ var path_node_const := PathNodeConst.new()
 const ROOMNODENAME = "Room Node: "
 const ROOMS_UI_LOCATIONS : String = "Locations"
 
-func bake_ui(graph_data_objects_ar : Array) -> GraphDataObjectsUiSet:
-	## graph_data_objects_ar : Array[GraphDataObjects]
-	var new_graph_data_obj_ui_set := GraphDataObjectsUiSet.new()
-	new_graph_data_obj_ui_set.ui_category = ROOMS_UI_LOCATIONS
+func BakeUi(objects_ar : Array) -> ObjectsUiSet:
 	
+	
+	var callable = Callable(self, "FromObjectToBigInstr")
+	if not callable.is_valid():
+		return null
+	
+	var new_obj_set := ObjectsUiSet.new()
+	
+	for obj in objects_ar:
+		var big_instr : BigGraphNodeMakeInsts = callable.call(obj)
+		new_obj_set.biginstr_ar.append(big_instr)
+	
+	return new_obj_set
+	
+
+	#
+	#if objects_ar is Array[PathLibraryObject]:
+		#
+	#
+	
+	## graph_data_objects_ar : Array[GraphDataObjects]
+	#var new_graph_data_obj_ui_set := GraphDataObjectsUiSet.new()
+	#new_graph_data_obj_ui_set.ui_category = ROOMS_UI_LOCATIONS
+	#
 	#var callable = Callable(self, "from_GraphDataObjects_to_BigGraphNodeMakeInsts")
 	#if not callable.is_valid():
 		#return
@@ -25,8 +45,6 @@ func bake_ui(graph_data_objects_ar : Array) -> GraphDataObjectsUiSet:
 			#big_instr.graph_data_object = current_obj
 			#
 			#new_graph_data_obj_ui_set.biginstr_ar.append(big_instr)
-	
-	return new_graph_data_obj_ui_set
 
 func BakePathData(path_data : Variant) -> BakePathSet:
 	var callable = Callable(self, "FromPathDataToBakePathSet")

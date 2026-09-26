@@ -43,8 +43,8 @@ var tasks_bool : Dictionary = {
 
 }
 
-var tasks_string : Dictionary = {
-"ui_editor_layer_nodes" : "bake_ui_editor_layer_nodes"
+var tasks_ar_string : Dictionary = {
+"ui_link_data_ar" : ["ui_all_baker", "bake_ui_link_data_ar"]
 }
 
 func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],save_data_all_library : SaveDataAllLibrary) -> void:
@@ -56,13 +56,12 @@ func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorO
 
 	for node in ui_nodes.values():
 		#print(ui_nodes)
+		node.cur_path_obj_layer_ar = main_graph_editor.path_obj_layer
 		node.cur_editor_obj_layer_ar = editor_obj_layer_ar
 		node.cur_save_data_all_library = save_data_all_library
 	
 	graph_node_ui.Clear() ## НУЖНО ДЛЯ ОЧИСТКИ И ТД
-	## ХОРОШИЙ ВОПРОС КАК РАБОТАТЬ С room_set
-	#ui_node_baker.room_set = ResourceLoader.load(main_graph_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE)
-	
+
 	var cur_editor_layer = editor_obj_layer_ar[cur_editor_obj_layer_id]
 	
 	for task in tasks_bool.keys():
@@ -73,10 +72,12 @@ func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorO
 				var data_ar : Array = callable.call()
 				graph_node_ui.AddNewUiItem(data_ar[0],data_ar[1])
 	
-	for task in tasks_string.keys():
-		var new_data_task : String = cur_editor_layer.get(task)
+	for task in tasks_ar_string.keys():
+		var new_data_task : Variant = cur_editor_layer.get(task)
 		if not new_data_task.is_empty():
-			var callable = Callable( ui_nodes[tasks_string[task][0]], tasks_string[task][1])
+			var callable = Callable( ui_nodes[tasks_ar_string[task][0]], tasks_ar_string[task][1])
 			if callable.is_valid():
-				var data_ar : Array = callable.call(new_data_task)
-				graph_node_ui.AddNewUiItem(data_ar[0],data_ar[1])
+				var data_ar : Array[ObjectsUiSet] = callable.call(new_data_task)
+				#for obj_ui_set in data_ar:
+					#for big_instr in obj_ui_set:
+						#graph_node_ui.AddNewUiItem(obj_ui_set.ui_category,big_instr)

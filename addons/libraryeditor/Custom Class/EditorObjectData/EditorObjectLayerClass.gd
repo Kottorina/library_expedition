@@ -42,3 +42,6 @@ class_name EditorObjectLayer
 @export var ui_dialogue_await_signal : bool = false
 
 @export var ui_dialogue_next_dialogue : bool = false
+
+@export_group("Unic Ar")
+@export var ui_link_data_ar : Array[String]

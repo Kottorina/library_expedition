@@ -5,33 +5,35 @@ var ui_const_func := UiConstFunc.new()
 ## ПОДГРУЖАЮЮТЬСЯ ИЗ РОДИТЕЛЬСКОГО НОДА
 #var room_set : RoomsSet
 var cur_editor_obj_layer_ar : Array[EditorObjectLayer]
+var cur_path_obj_layer_ar : Array[PathNode]
 var cur_save_data_all_library : SaveDataAllLibrary
 
 ## НУЖНО В ОДНОМ МЕСТЕ
 const DIRECTION_INVERT : Array[int] = [1,0,3,2] 
 
-func bake_ui_editor_layer_nodes(data_str : String) -> Array:
+func bake_ui_link_data_ar(str_ar : Array[String]) -> Array:
 	
-	var cur_editor_layer : EditorObjectLayer
-	for layer : EditorObjectLayer in cur_editor_obj_layer_ar:
-		if layer.data_key == data_str:
-			cur_editor_layer = layer
+	var ui_data_ar : Array[ObjectsUiSet]
+
+	for layer : PathNode in cur_path_obj_layer_ar:
+		for data_str in str_ar:
+			if layer.data_key == data_str:
+				ui_data_ar.append(get_path_layer_data(layer))
 	
-	if cur_editor_layer.baker_object_script_path == null:
-		return []
-	var baker : BakerGraphDataObject = cur_editor_layer.baker_object_script_path.new()
-	if baker == null:
-		return []
-	var graph_obj_ar = cur_save_data_all_library.get_ar_from_key(cur_editor_layer.data_key)
-	var graph_ui_ui_set : GraphDataObjectsUiSet = baker.bake_ui(graph_obj_ar)
-	if graph_ui_ui_set == null:
-		return []
+	return ui_data_ar
+
+func get_path_layer_data(layer : PathNode) -> ObjectsUiSet:
 	
-	for big_instr in graph_ui_ui_set.biginstr_ar:
-		return [graph_ui_ui_set.ui_category, big_instr]
+	var baker_class = layer.baker_object_script_path
+	var ready_baker : BakerMain = baker_class.new()
 	
-	return []
+	if ready_baker == null:
+		return null
 	
+	var save_data = cur_save_data_all_library.GetArFromKey(ready_baker.GetUiCategory())
+	
+	return ready_baker.BakeUi(save_data)
+
 #func bake_ui_rooms_nodes() -> Array:
 	#for room_ind in room_set.rooms_ar.size():
 		#

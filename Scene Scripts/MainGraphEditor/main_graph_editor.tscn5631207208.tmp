@@ -10,17 +10,13 @@
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="7_4100p"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/MainGraphEditor/in ui/GraphNodeUiManager.gd" id="7_fshts"]
 [ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://Base Obj/EditorLayer/BaseLayer/LayerDebug.tres" id="7_snist"]
-[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/libraryeditor/Custom Class/PathNode/PathNode.gd" id="8_ndpcr"]
 [ext_resource type="Theme" uid="uid://b7sb3ymqgwqa3" path="res://Base Obj/BaseEditorTheme.tres" id="8_snist"]
-[ext_resource type="Resource" uid="uid://cghpm4f17od5" path="res://Base Obj/EditorLayer/Import/RoomSet Load.tres" id="9_mtn62"]
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/make_ui/UiManager.gd" id="9_ojduo"]
 [ext_resource type="Script" uid="uid://dccq0y6xy1ay3" path="res://Scene Scripts/MainGraphEditor/in ui/graph_edit.gd" id="10_ighae"]
-[ext_resource type="Resource" uid="uid://dmqrqouudsxje" path="res://Base Obj/EditorLayer/Import/Mp3Loader.tres" id="10_iqveq"]
 [ext_resource type="Script" uid="uid://dcggylv8ku0fg" path="res://Scene Scripts/MainGraphEditor/oth func/load_graph.gd" id="10_sgnql"]
 [ext_resource type="Script" uid="uid://dvhimjq1675qn" path="res://Scene Scripts/MainGraphEditor/oth func/save_graph.gd" id="12_pkdnh"]
 [ext_resource type="Script" uid="uid://c8qj3li15vno0" path="res://Scene Scripts/MainGraphEditor/setting_panel.gd" id="13_tqdi5"]
 [ext_resource type="Script" uid="uid://b8ttd15d68gc0" path="res://Scene Scripts/MainGraphEditor/in ui/Settings/PathManageer.gd" id="14_tqdi5"]
-[ext_resource type="PackedScene" uid="uid://6devv7ol036q" path="res://Scene Scripts/MainGraphEditor/in ui/Settings/PathUi/PathUi.tscn" id="15_t6737"]
 [ext_resource type="Script" uid="uid://cqp7fha5lc3tc" path="res://Scene Scripts/MainGraphEditor/make_ui/UiDialogueBaker.gd" id="16_dltes"]
 [ext_resource type="Script" uid="uid://dw4dpickx4mej" path="res://Scene Scripts/MainGraphEditor/make_ui/UiAllBaker.gd" id="18_4wgic"]
 
@@ -28,7 +24,6 @@
 script = ExtResource("1_0gdv0")
 editor_save_data_path = "res://Base Obj/EditorSave.tres"
 editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql"), ExtResource("7_snist")])
-path_obj_layer = Array[ExtResource("8_ndpcr")]([ExtResource("10_iqveq"), ExtResource("9_mtn62")])
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 file_save_load = NodePath("SettingPanel/MarginContainer/VBoxContainer/File Save Load")
 
@@ -204,11 +199,10 @@ text = "Close"
 [node name="HSeparator" type="HSeparator" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=887337029]
 layout_mode = 2
 
-[node name="File Save Load" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=287179820 node_paths=PackedStringArray("editor_layer_manager", "path_manager", "main_graph_editor", "file_dialog_popup", "name_ui_label")]
+[node name="File Save Load" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=287179820 node_paths=PackedStringArray("editor_layer_manager", "main_graph_editor", "file_dialog_popup", "name_ui_label")]
 layout_mode = 2
 script = ExtResource("1_0un4p")
 editor_layer_manager = NodePath("../../../../Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager")
-path_manager = NodePath("../Path Manager")
 main_graph_editor = NodePath("../../../..")
 file_dialog_popup = NodePath("../../../../FileDialogOpenFile")
 name_ui_label = NodePath("name_file")
@@ -239,16 +233,9 @@ text = "Save"
 [node name="HSeparator2" type="HSeparator" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=713787412]
 layout_mode = 2
 
-[node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865 node_paths=PackedStringArray("gener_rule_editor", "type_data", "add_data_path_but", "save_but", "path_cont", "file_save_load")]
+[node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865]
 layout_mode = 2
 script = ExtResource("14_tqdi5")
-gener_rule_editor = NodePath("../../../..")
-type_data = NodePath("Up Menu/Type Data")
-add_data_path_but = NodePath("Up Menu/Add Data Path")
-save_but = NodePath("Up Menu/Save")
-path_cont = NodePath("Path Cont")
-file_save_load = NodePath("../File Save Load")
-path_scene = ExtResource("15_t6737")
 
 [node name="Up Menu" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager" unique_id=378005286]
 layout_mode = 2
@@ -262,15 +249,7 @@ layout_mode = 2
 
 [node name="Add Data Path" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager/Up Menu" unique_id=2039648673]
 layout_mode = 2
-size_flags_horizontal = 2
 text = "Add Data Path"
-
-[node name="Save" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager/Up Menu" unique_id=1058745559]
-layout_mode = 2
-text = "Save"
-
-[node name="Path Cont" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager" unique_id=1028129294]
-layout_mode = 2
 
 [node name="FileDialogOpenFile" type="FileDialog" parent="." unique_id=851139765]
 oversampling_override = 1.0

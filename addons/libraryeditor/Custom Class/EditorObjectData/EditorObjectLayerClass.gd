@@ -5,9 +5,10 @@ class_name EditorObjectLayer
 
 @export var baker_object_script_path : Script ## Для Запекания
 
-@export_group("Ui")
 ## ФЛАГИ ДЛЯ UI, ПРИ ЗАГРУЗКЕ
+@export_group("Ui")
 
+@export_subgroup("Base Tool")
 @export var ui_start_gener_node : bool = true
 @export var ui_start_gener_empty_node : bool = false
 @export var ui_all_rnd_fork : bool = false
@@ -23,7 +24,7 @@ class_name EditorObjectLayer
 @export var ui_crossroad_4 : bool = false
 @export var ui_crossroad_6 : bool = false
 
-@export_group("Dialogue")
+@export_subgroup("Dialogue")
 @export var ui_dialogue_start : bool = false
 @export var ui_dialogue_node : bool = false
 @export var ui_dialogue_end : bool = false

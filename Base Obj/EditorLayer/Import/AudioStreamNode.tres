@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://bio5sxwyo6dis"]
-
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="1_jxhe2"]
-
-[resource]
-script = ExtResource("1_jxhe2")
-metadata/_custom_type_script = "uid://dyh1823n402rk"

@@ -10,12 +10,9 @@
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="7_4100p"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/MainGraphEditor/in ui/GraphNodeUiManager.gd" id="7_fshts"]
 [ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://Base Obj/EditorLayer/BaseLayer/LayerDebug.tres" id="7_snist"]
-[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/libraryeditor/Custom Class/PathNode/PathNode.gd" id="8_ndpcr"]
 [ext_resource type="Theme" uid="uid://b7sb3ymqgwqa3" path="res://Base Obj/BaseEditorTheme.tres" id="8_snist"]
-[ext_resource type="Resource" uid="uid://cghpm4f17od5" path="res://Base Obj/EditorLayer/Import/RoomSet Load.tres" id="9_mtn62"]
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/make_ui/UiManager.gd" id="9_ojduo"]
 [ext_resource type="Script" uid="uid://dccq0y6xy1ay3" path="res://Scene Scripts/MainGraphEditor/in ui/graph_edit.gd" id="10_ighae"]
-[ext_resource type="Resource" uid="uid://dmqrqouudsxje" path="res://Base Obj/EditorLayer/Import/Mp3Loader.tres" id="10_iqveq"]
 [ext_resource type="Script" uid="uid://dcggylv8ku0fg" path="res://Scene Scripts/MainGraphEditor/oth func/load_graph.gd" id="10_sgnql"]
 [ext_resource type="Script" uid="uid://dvhimjq1675qn" path="res://Scene Scripts/MainGraphEditor/oth func/save_graph.gd" id="12_pkdnh"]
 [ext_resource type="Script" uid="uid://c8qj3li15vno0" path="res://Scene Scripts/MainGraphEditor/setting_panel.gd" id="13_tqdi5"]
@@ -24,11 +21,21 @@
 [ext_resource type="Script" uid="uid://cqp7fha5lc3tc" path="res://Scene Scripts/MainGraphEditor/make_ui/UiDialogueBaker.gd" id="16_dltes"]
 [ext_resource type="Script" uid="uid://dw4dpickx4mej" path="res://Scene Scripts/MainGraphEditor/make_ui/UiAllBaker.gd" id="18_4wgic"]
 
+[sub_resource type="Resource" id="Resource_t6737"]
+script = ExtResource("2_eduwg")
+data_key = "Mp3  Load Dir:"
+metadata/_custom_type_script = "uid://dyh1823n402rk"
+
+[sub_resource type="Resource" id="Resource_1g7w6"]
+script = ExtResource("2_eduwg")
+data_key = "RoomSet Load"
+metadata/_custom_type_script = "uid://dyh1823n402rk"
+
 [node name="MainGraphEditor" type="Node" unique_id=544549692 node_paths=PackedStringArray("file_save_load")]
 script = ExtResource("1_0gdv0")
 editor_save_data_path = "res://Base Obj/EditorSave.tres"
 editor_obj_layers = Array[ExtResource("2_eduwg")]([ExtResource("5_fshts"), ExtResource("3_4100p"), ExtResource("4_ojduo"), ExtResource("6_sgnql"), ExtResource("7_snist")])
-path_obj_layer = Array[ExtResource("8_ndpcr")]([ExtResource("10_iqveq"), ExtResource("9_mtn62")])
+path_obj_layer = Array[ExtResource("2_eduwg")]([SubResource("Resource_t6737"), SubResource("Resource_1g7w6")])
 room_set_path = "res://Test Resource/TestRoomSet.tres"
 file_save_load = NodePath("SettingPanel/MarginContainer/VBoxContainer/File Save Load")
 

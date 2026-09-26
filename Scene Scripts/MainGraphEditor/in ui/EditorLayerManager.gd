@@ -58,7 +58,7 @@ func _on_add_new_button_pressed() -> void: ## Добовляет новый ре
 	
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var new_obj = save_data_all_library.AddNewObjInArray(cur_editor_obj_layers.data_key)
+	var new_obj = save_data_all_library.AddNewObjInArray(cur_editor_obj_layers.data_key,GraphDataObjects.new())
 	UpdateIdList()
 	LoadGraphObj(new_obj)
  

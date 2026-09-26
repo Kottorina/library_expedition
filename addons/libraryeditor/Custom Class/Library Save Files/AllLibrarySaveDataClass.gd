@@ -47,7 +47,7 @@ func DelItemFromId(data_key : String,id : int) -> void:
 			cur_ar.erase(loc)
 			return
 
-func AddNewObjInArray(data_key : String) -> Resource:
+func AddNewObjInArray(data_key : String, object : Variant) -> Resource:
 	
 	var cur_ar = GetArFromKey(data_key)
 	
@@ -57,9 +57,10 @@ func AddNewObjInArray(data_key : String) -> Resource:
 			new_id = id
 			break
 	
-	var object := GraphDataObjects.new()
 	object.id_ = new_id ## ПРОСТО ПОВЕРЬ, У НЕГО ЕСТЬ id_, ЕСЛИ НЕТ ТО Я НА КОЛЕНЯХ ИЗВЕНЯТЬСЯ БУДУ
 	
 	cur_ar.append(object)
-
 	return object
+
+func ClearCategory(data_key : String) -> void:
+	all_data.erase(data_key)

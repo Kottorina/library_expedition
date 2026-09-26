@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PathNode" format=3 uid="uid://cghpm4f17od5"]
+
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/libraryeditor/Custom Class/PathNode/PathNode.gd" id="1_xx5xf"]
+
+[resource]
+script = ExtResource("1_xx5xf")
+data_key = "RoomSet Load"
+path_data = null
+metadata/_custom_type_script = "uid://6qsr68btodnl"

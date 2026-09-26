@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://6devv7ol036q"]
+
+[ext_resource type="Script" uid="uid://6fgm6udx7etw" path="res://Scene Scripts/MainGraphEditor/in ui/Settings/PathUi/PathUi.gd" id="1_w8rha"]
+
+[node name="PathUi" type="VBoxContainer" unique_id=1845015588 node_paths=PackedStringArray("data_key_lab", "path_lab", "new_path_but", "load_but", "del_but")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w8rha")
+data_key_lab = NodePath("HBoxContainer/Data Key")
+path_lab = NodePath("Path")
+new_path_but = NodePath("HBoxContainer/New Path")
+load_but = NodePath("HBoxContainer/Load")
+del_but = NodePath("HBoxContainer/Del Path")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1908352179]
+layout_mode = 2
+
+[node name="Data Key" type="Label" parent="HBoxContainer" unique_id=1139337540]
+layout_mode = 2
+text = "(Is Empty)"
+
+[node name="New Path" type="Button" parent="HBoxContainer" unique_id=2060746575]
+layout_mode = 2
+text = "New Path"
+
+[node name="Load" type="Button" parent="HBoxContainer" unique_id=1337549853]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Load
+"
+
+[node name="Del Path" type="Button" parent="HBoxContainer" unique_id=744224538]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Del Path"
+
+[node name="Path" type="Label" parent="." unique_id=244981685]
+layout_mode = 2
+text = "(Is Empty)"

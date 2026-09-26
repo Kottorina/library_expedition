@@ -49,14 +49,13 @@ var tasks_string : Dictionary = {
 
 func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],save_data_all_library : SaveDataAllLibrary) -> void:
 	
-	
 	var ui_nodes : Dictionary = {
 	"ui_all_baker" : ui_all_baker,
 	"ui_dialogue_baker" : ui_dialogue_baker
 	}
 
 	for node in ui_nodes.values():
-		print(ui_nodes)
+		#print(ui_nodes)
 		node.cur_editor_obj_layer_ar = editor_obj_layer_ar
 		node.cur_save_data_all_library = save_data_all_library
 	

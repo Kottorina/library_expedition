@@ -10,7 +10,7 @@ extends VBoxContainer
 
 @export var file_save_load : Control ## ДЛЯ СОХРАНЕНИЯ ПУТЕЙ
 
-const PathData : String = "PathData"
+const PathObjData : String = "PathData" 
 
 const FileDialogueUseNative = true
 const FIleDialogueAcess = FileDialog.ACCESS_FILESYSTEM
@@ -38,17 +38,17 @@ func SaveData() -> void:
 	if all_save_data == null:
 		return
 	
-	all_save_data.ClearCategory(PathData)
+	all_save_data.ClearCategory(PathObjData)
 	
 	for child in path_cont.get_children():
 		print(child.cur_path_node)
-		all_save_data.AddNewObjInArray(PathData,child.cur_path_node)
+		all_save_data.AddNewObjInArray(PathObjData,child.cur_path_node)
 	
 	file_save_load.SaveEditData()
 
 func LoadPathDictionary( all_save_data : SaveDataAllLibrary) -> void:
 	
-	var path_node_ar = all_save_data.GetArFromKey(PathData)
+	var path_node_ar = all_save_data.GetArFromKey(PathObjData)
 	for path_node : PathNode in path_node_ar:
 		# if path is ПРОВЕРКА НА ПУТЬ
 		MakePathUi(path_node)
@@ -88,5 +88,29 @@ func GetResultFromFileDialogueFunc( result : Variant ) -> void:
 
 func LoadPath(path_node : PathNode):
 	
-	return ""
+	print("fef")
 	
+	if path_node.path_data == null:
+		push_warning("path_data Is Null!!! in PathManageer")
+		return
+	
+	var bake_path_set : BakePathSet
+	
+	var baker_class = path_node.baker_object_script_path
+	if baker_class != null:
+		var ready_baker : BakerMain = baker_class.new()
+		bake_path_set = ready_baker.bake_path_data(path_node.path_data)
+		if bake_path_set == null:
+			push_warning("bake_path_set Id Null!")
+			return
+	else:
+		push_warning("Baker for "+ path_node.data_key+" not find!")
+		return
+	
+	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
+	if all_save_data == null:
+		return
+	
+	all_save_data.DelItemFromId(bake_path_set.ui_category,path_node.id_)
+	
+	all_save_data.AddNewObjInArray(bake_path_set.ui_category,bake_path_set.data_obj,path_node.id_)

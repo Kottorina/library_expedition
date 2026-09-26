@@ -17,13 +17,15 @@ func GetArFromKey(data_key : String ) -> Array:
 		return all_data[data_key]
 
 const MinId : int = 0
-const MaxId : int = 100
+const MaxId : int = 10000
+
+const ObjectIdNotFind : int = -1
 
 func GetObjectFromId(data_key : String, id : int) -> Variant:
 	
 	var cur_ar = GetArFromKey(data_key)
 	
-	var find_loc_ar : Array[Resource] = []
+	var find_loc_ar : Array[Variant] = []
 	for loc in cur_ar:
 		if loc != null:
 			if loc.id_ == id:
@@ -33,9 +35,9 @@ func GetObjectFromId(data_key : String, id : int) -> Variant:
 		return find_loc_ar[0]
 	elif find_loc_ar.size() > 1 :
 		push_warning("In SaveDataAllLibrary more Id them one")
-		return null
-	
-	return null
+		return -1
+	#push_warning("Id Not Find")
+	return ObjectIdNotFind
 
 func DelItemFromId(data_key : String,id : int) -> void:
 	
@@ -47,19 +49,33 @@ func DelItemFromId(data_key : String,id : int) -> void:
 			cur_ar.erase(loc)
 			return
 
-func AddNewObjInArray(data_key : String, object : Variant) -> Resource:
+func AddNewObjInArray(data_key : String, object : Variant, object_id : int = -1) -> Variant:
 	
 	var cur_ar = GetArFromKey(data_key)
 	
+	if object_id != -1:
+		var result = GetObjectFromId(data_key , object_id)
+		if result is int:
+			if result == ObjectIdNotFind:
+				
+				object.id_ = object_id
+				cur_ar.append(object)
+				
+				return object
+		return false
+
+	
 	var new_id : int
 	for id in range(MinId,MaxId):
-		if GetObjectFromId(data_key , id) == null:
-			new_id = id
-			break
+		var result = GetObjectFromId(data_key , id)
+		if result is int:
+			if result == ObjectIdNotFind:
+				new_id = id
+				break
 	
 	object.id_ = new_id ## ПРОСТО ПОВЕРЬ, У НЕГО ЕСТЬ id_, ЕСЛИ НЕТ ТО Я НА КОЛЕНЯХ ИЗВЕНЯТЬСЯ БУДУ
-	
 	cur_ar.append(object)
+
 	return object
 
 func ClearCategory(data_key : String) -> void:

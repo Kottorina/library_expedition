@@ -1,8 +1,7 @@
-extends Resource
+extends LibraryObject
 class_name GraphDataObjects
 
 @export var name_ : String
-@export var id_ : int
 
 @export var start_bake_node : BigGraphNodeMakeInsts 
 ## ДЛЯ ОБРАБОТКИ ГРАФА И ДЛЯ НОРМАЛЬНОГО СОХРАНЕНИЯ А ТАКЖЕ ДЛЯ УДОБНОЙ ЗАГРУЗКИ

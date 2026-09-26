@@ -11,7 +11,13 @@ func _ready() -> void:
 	new_path_but.pressed.connect(NewPath)
 	load_but.pressed.connect(LoadPath)
 	
-	del_but.pressed.connect(queue_free)
+	del_but.pressed.connect(DelCurrentScene)
+
+func DelCurrentScene() -> void:
+	
+	if path_manager != null:
+		path_manager.DelPath(cur_path_node)
+	queue_free()
 
 @export var cur_path_node : PathNode 
 @export var path_manager : Node ## РОДИТЕЛЬСКИЙ НОД ДЛЯ ЗАГРУЗКИ И ТД

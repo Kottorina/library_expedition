@@ -25,7 +25,7 @@ func GetObjectFromId(data_key : String, id : int) -> Variant:
 	
 	var cur_ar = GetArFromKey(data_key)
 	
-	var find_loc_ar : Array[Variant] = []
+	var find_loc_ar : Array[LibraryObject] = []
 	for loc in cur_ar:
 		if loc != null:
 			if loc.id_ == id:
@@ -43,7 +43,6 @@ func DelItemFromId(data_key : String,id : int) -> void:
 	
 	var cur_ar = GetArFromKey(data_key)
 	
-	var find_loc_ar : Array[Resource] = []
 	for loc in cur_ar:
 		if loc.id_ == id:
 			cur_ar.erase(loc)

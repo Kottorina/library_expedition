@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+var path_node_const := PathNodeConst.new()
+
 @export var gener_rule_editor : Node
 @export var type_data : OptionButton
 
@@ -10,15 +12,12 @@ extends VBoxContainer
 
 @export var file_save_load : Control ## ДЛЯ СОХРАНЕНИЯ ПУТЕЙ
 
-const PathObjData : String = "PathData" 
-
 const FileDialogueUseNative = true
 const FIleDialogueAcess = FileDialog.ACCESS_FILESYSTEM
 
 func _ready() -> void:
 	UpdateBaseUi()
 	add_data_path_but.pressed.connect(AddDataPathButPressed)
-	save_but.pressed.connect(SaveData)
 ## Обновляет path_obj_layers и делает ui в type_item
 var path_obj_layers : Array[PathNode]
 func UpdateBaseUi() -> void:  
@@ -30,34 +29,42 @@ func UpdateBaseUi() -> void:
 		ind += 1
 
 func AddDataPathButPressed() -> void:
-	MakePathUi(path_obj_layers[type_data.selected])
-
-func SaveData() -> void:
+	
+	var path_node = path_obj_layers[type_data.selected].duplicate(true)
 	
 	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
 	if all_save_data == null:
 		return
 	
-	all_save_data.ClearCategory(PathObjData)
-	
+	all_save_data.AddNewObjInArray(path_node_const.PathObjData,path_node)
+	MakePathUi(path_node)
+
+func DelAllPathUi() -> void:
 	for child in path_cont.get_children():
-		print(child.cur_path_node)
-		all_save_data.AddNewObjInArray(PathObjData,child.cur_path_node)
-	
-	file_save_load.SaveEditData()
+		child.queue_free()
+func DelAllPathData() -> void:
+	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
+	if all_save_data == null:
+		return
+	for category in path_node_const.AllNameArray:
+		all_save_data.ClearCategory(category)
+
 
 func LoadPathDictionary( all_save_data : SaveDataAllLibrary) -> void:
 	
-	var path_node_ar = all_save_data.GetArFromKey(PathObjData)
+	DelAllPathUi()
+	DelAllPathData()
+	
+	var path_node_ar = all_save_data.GetArFromKey(path_node_const.PathObjData)
 	for path_node : PathNode in path_node_ar:
-		# if path is ПРОВЕРКА НА ПУТЬ
+
 		MakePathUi(path_node)
-		# А ТАКЖЕ ЗАГРУЗКА И ЗАПЕКАНИЕ
+		LoadPath(path_node)
 
 @export var path_scene : PackedScene
 func MakePathUi( path_node : PathNode) -> void:
 	var path_ui_scene = path_scene.instantiate()
-	path_ui_scene.MakeUi(path_node.duplicate(true), self)
+	path_ui_scene.MakeUi(path_node, self)
 	path_cont.add_child(path_ui_scene)
 
 func NewPath(file_mode : FileDialog.FileMode) -> Variant:
@@ -88,8 +95,6 @@ func GetResultFromFileDialogueFunc( result : Variant ) -> void:
 
 func LoadPath(path_node : PathNode):
 	
-	print("fef")
-	
 	if path_node.path_data == null:
 		push_warning("path_data Is Null!!! in PathManageer")
 		return
@@ -99,7 +104,7 @@ func LoadPath(path_node : PathNode):
 	var baker_class = path_node.baker_object_script_path
 	if baker_class != null:
 		var ready_baker : BakerMain = baker_class.new()
-		bake_path_set = ready_baker.bake_path_data(path_node.path_data)
+		bake_path_set = ready_baker.BakePathData(path_node.path_data)
 		if bake_path_set == null:
 			push_warning("bake_path_set Id Null!")
 			return
@@ -113,4 +118,23 @@ func LoadPath(path_node : PathNode):
 	
 	all_save_data.DelItemFromId(bake_path_set.ui_category,path_node.id_)
 	
-	all_save_data.AddNewObjInArray(bake_path_set.ui_category,bake_path_set.data_obj,path_node.id_)
+	all_save_data.AddNewObjInArray(bake_path_set.ui_category,bake_path_set.path_library_object,path_node.id_)
+
+func DelPath(path_node : PathNode) -> void:
+	
+	var ui_category : String
+	
+	var baker_class = path_node.baker_object_script_path
+	if baker_class != null:
+		var ready_baker : BakerMain = baker_class.new()
+		ui_category = ready_baker.GetUiCategory()
+	else:
+		push_warning("Baker for "+ path_node.data_key+" not find!")
+		return
+		
+	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
+	if all_save_data == null:
+		return
+	
+	all_save_data.DelItemFromId(ui_category,path_node.id_)
+	all_save_data.DelItemFromId(path_node_const.PathObjData,path_node.id_)

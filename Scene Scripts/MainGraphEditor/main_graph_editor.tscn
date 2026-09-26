@@ -239,13 +239,12 @@ text = "Save"
 [node name="HSeparator2" type="HSeparator" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=713787412]
 layout_mode = 2
 
-[node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865 node_paths=PackedStringArray("gener_rule_editor", "type_data", "add_data_path_but", "save_but", "path_cont", "file_save_load")]
+[node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865 node_paths=PackedStringArray("gener_rule_editor", "type_data", "add_data_path_but", "path_cont", "file_save_load")]
 layout_mode = 2
 script = ExtResource("14_tqdi5")
 gener_rule_editor = NodePath("../../../..")
 type_data = NodePath("Up Menu/Type Data")
 add_data_path_but = NodePath("Up Menu/Add Data Path")
-save_but = NodePath("Up Menu/Save")
 path_cont = NodePath("Path Cont")
 file_save_load = NodePath("../File Save Load")
 path_scene = ExtResource("15_t6737")
@@ -264,10 +263,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Add Data Path"
-
-[node name="Save" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager/Up Menu" unique_id=1058745559]
-layout_mode = 2
-text = "Save"
 
 [node name="Path Cont" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager" unique_id=1028129294]
 layout_mode = 2

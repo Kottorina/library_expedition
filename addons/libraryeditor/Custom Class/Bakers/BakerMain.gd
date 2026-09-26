@@ -28,9 +28,16 @@ func bake_ui(graph_data_objects_ar : Array) -> GraphDataObjectsUiSet:
 	
 	return new_graph_data_obj_ui_set
 
-func bake_path_data(path_data : Variant) -> BakePathSet:
+func BakePathData(path_data : Variant) -> BakePathSet:
 	var callable = Callable(self, "FromPathDataToBakePathSet")
 	if not callable.is_valid():
 		return null
 	
 	return callable.call(path_data)
+
+func GetUiCategory() -> String:
+	var callable = Callable(self, "GetUiCategory")
+	if not callable.is_valid():
+		return ""
+	
+	return callable.call()

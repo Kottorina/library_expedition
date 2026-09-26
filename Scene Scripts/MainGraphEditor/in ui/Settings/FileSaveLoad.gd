@@ -50,10 +50,11 @@ func SaveSettingData() -> void:
 ## ЗАГРУЖАЕТ ДАННЫЕ ВО ВНУТРЕННИЕ РЕДАКТОРЫ
 func LoadAllSaveData( all_save_data : SaveDataAllLibrary) -> void:
 	print("SaveDataAllLibrary Load")
-	editor_layer_manager.UpdateAllSaveData(all_save_data)
-	path_manager.LoadPathDictionary(all_save_data)
 	
 	cur_all_save_data = all_save_data
+	
+	editor_layer_manager.UpdateAllSaveData(all_save_data)
+	path_manager.LoadPathDictionary(all_save_data)
 
 ## СОХРАНЯЕТ ФАЙЛ ДАННЫХ SaveDataAllLibrary
 func SaveEditData() -> void:

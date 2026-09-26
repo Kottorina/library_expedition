@@ -68,3 +68,10 @@ func IsPortFree(from_to_with : FromToWith) -> bool:
 		return false
 	return true
 	
+
+func GetDataFromCentralData(node : BigGraphNodeMakeInsts,data_key : String) -> Variant:
+	var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[node]
+	for data in data_meta_ar:
+		if data.instr.title_instr == data_key:
+			return data.instr.body_value
+	return null

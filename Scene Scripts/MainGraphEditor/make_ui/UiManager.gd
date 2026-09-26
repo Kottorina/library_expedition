@@ -6,18 +6,19 @@ extends Node
 
 @export var ui_all_baker : Node
 @export var ui_dialogue_baker : Node
+@export var ui_audio_baker : Node
+
+#"ui_all_rnd_fork" : ["ui_all_baker", "bake_ui_all_rnd_fork"],
+#"ui_connectors_plugs" : ["ui_all_baker", "bake_ui_connectors_plugs"],
+#"ui_enter_node" : ["ui_all_baker", "bake_ui_enter_node"],
+#"ui_rooms_nodes" : ["ui_all_baker", "bake_ui_rooms_nodes"],
+#"ui_ready_location_nodes" : ["ui_all_baker", "bake_ui_ready_location_nodes"],
 
 ## ДЛЯ ИТЕРАЦИИ ПО UI В EDITOR LAYER
 var tasks_bool : Dictionary = {
-	
+
 "ui_start_gener_node" : ["ui_all_baker", "bake_ui_start_gener_node"],
 "ui_start_gener_empty_node": ["ui_all_baker", "bake_ui_start_gener_empty_node"],
-"ui_all_rnd_fork" : ["ui_all_baker", "bake_ui_all_rnd_fork"],
-"ui_custom_big_instr" : ["ui_all_baker", "bake_custom_big_instr"],
-"ui_connectors_plugs" : ["ui_all_baker", "bake_ui_connectors_plugs"],
-"ui_enter_node" : ["ui_all_baker", "bake_ui_enter_node"],
-"ui_rooms_nodes" : ["ui_all_baker", "bake_ui_rooms_nodes"],
-"ui_ready_location_nodes" : ["ui_all_baker", "bake_ui_ready_location_nodes"],
 
 "ui_crossroad_2" : ["ui_all_baker", "bake_ui_crossroad_2"],
 "ui_crossroad_4" : ["ui_all_baker", "bake_ui_crossroad_4"],
@@ -26,21 +27,24 @@ var tasks_bool : Dictionary = {
 "ui_dialogue_start" : ["ui_dialogue_baker", "bake_ui_dialogue_start"],
 "ui_dialogue_node" : ["ui_dialogue_baker", "bake_ui_dialogue_node"],
 "ui_dialogue_end" : ["ui_dialogue_baker", "bake_ui_dialogue_end"],
-
 "ui_dialogue_choice_2" : ["ui_dialogue_baker", "bake_ui_dialogue_choice_2"],
 "ui_dialogue_choice_3" : ["ui_dialogue_baker", "bake_ui_dialogue_choice_3"],
 "ui_dialogue_choice_4" : ["ui_dialogue_baker", "bake_ui_dialogue_choice_4"],
-
 "ui_dialogue_con_2" : ["ui_dialogue_baker", "bake_ui_dialogue_con_2"],
 "ui_dialogue_con_4" : ["ui_dialogue_baker", "bake_ui_dialogue_con_4"],
 "ui_dialogue_con_6" : ["ui_dialogue_baker", "bake_ui_dialogue_con_6"],
 "ui_dialogue_setting" : ["ui_dialogue_baker", "bake_ui_dialogue_setting"],
-
 "ui_dialogue_emit_signal" : ["ui_dialogue_baker", "bake_ui_dialogue_emit_signal"],
 "ui_dialogue_await_signal" : ["ui_dialogue_baker", "bake_ui_dialogue_await_signal"],
-
 "ui_dialogue_next_dialogue" : ["ui_dialogue_baker", "bake_ui_dialogue_next_dialogue"],
 
+"ui_audio_start" : ["ui_audio_baker","bake_ui_audio_start"],
+"ui_audio_timer" : ["ui_audio_baker", "bake_ui_audio_timer"],
+"ui_audio_end" : ["ui_audio_baker", "bake_ui_audio_end"],
+
+"ui_audio_crossroad_2" : ["ui_audio_baker", "bake_ui_audio_crossroad_2"],
+"ui_audio_crossroad_4" : ["ui_audio_baker", "bake_ui_audio_crossroad_4"],
+"ui_audio_crossroad_6" : ["ui_audio_baker", "bake_ui_audio_crossroad_6"],
 }
 
 var tasks_ar_string : Dictionary = {
@@ -51,7 +55,8 @@ func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorO
 	
 	var ui_nodes : Dictionary = {
 	"ui_all_baker" : ui_all_baker,
-	"ui_dialogue_baker" : ui_dialogue_baker
+	"ui_dialogue_baker" : ui_dialogue_baker,
+	"ui_audio_baker" : ui_audio_baker
 	}
 
 	for node in ui_nodes.values():

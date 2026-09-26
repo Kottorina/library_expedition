@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://6devv7ol036q" path="res://Scene Scripts/MainGraphEditor/in ui/Settings/PathUi/PathUi.tscn" id="15_t6737"]
 [ext_resource type="Script" uid="uid://cqp7fha5lc3tc" path="res://Scene Scripts/MainGraphEditor/make_ui/UiDialogueBaker.gd" id="16_dltes"]
 [ext_resource type="Script" uid="uid://dw4dpickx4mej" path="res://Scene Scripts/MainGraphEditor/make_ui/UiAllBaker.gd" id="18_4wgic"]
+[ext_resource type="Script" uid="uid://dvtq0kywvx3he" path="res://Scene Scripts/MainGraphEditor/make_ui/UiAudioBaker.gd" id="25_iqveq"]
 
 [node name="MainGraphEditor" type="Node" unique_id=544549692 node_paths=PackedStringArray("file_save_load")]
 script = ExtResource("1_0gdv0")
@@ -286,18 +287,22 @@ main_graph_editor = NodePath("..")
 script = ExtResource("12_pkdnh")
 graph_edit = NodePath("../Panel/BaseEditorContainer/MainGraphEdit")
 
-[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("graph_node_ui", "main_graph_editor", "ui_all_baker", "ui_dialogue_baker")]
+[node name="Ui Manager" type="Node" parent="." unique_id=1353397566 node_paths=PackedStringArray("graph_node_ui", "main_graph_editor", "ui_all_baker", "ui_dialogue_baker", "ui_audio_baker")]
 script = ExtResource("9_ojduo")
 graph_node_ui = NodePath("../Panel/BaseEditorContainer/UpPanel/UpPanel/Graph Node Ui")
 main_graph_editor = NodePath("..")
 ui_all_baker = NodePath("Ui All Baker")
 ui_dialogue_baker = NodePath("Ui Dialogue Baker")
+ui_audio_baker = NodePath("Ui Audio Baker")
 
 [node name="Ui All Baker" type="Node" parent="Ui Manager" unique_id=1562043268]
 script = ExtResource("18_4wgic")
 
 [node name="Ui Dialogue Baker" type="Node" parent="Ui Manager" unique_id=317710435]
 script = ExtResource("16_dltes")
+
+[node name="Ui Audio Baker" type="Node" parent="Ui Manager" unique_id=1842905439]
+script = ExtResource("25_iqveq")
 
 [connection signal="item_selected" from="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager/HBoxContainer/Type Item" to="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager" method="_on_type_item_item_selected"]
 [connection signal="pressed" from="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager/HBoxContainer/load_button" to="Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager" method="_on_load_button_pressed"]

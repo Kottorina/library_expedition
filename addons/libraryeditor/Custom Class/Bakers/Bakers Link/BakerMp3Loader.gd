@@ -50,25 +50,18 @@ func FromObjectToBigInstr(obj : Variant) -> Array[BigGraphNodeMakeInsts]:
 	var big_instr_ar : Array[BigGraphNodeMakeInsts]
 	
 	for mp3 : AudioStreamMP3 in obj.data:
-		
-		print(mp3.resource_name)
-		
+		#print(mp3.resource_name)
 		var big_instr = BigGraphNodeMakeInsts.new()
 		big_instr.title_node = (ui_const_func.AUDIO_STREAM_MP3_BIG_TITLE + mp3.resource_name)
-		big_instr.type_node = 17
+		big_instr.type_node = NODE_TYPE.MAKE_AUDIO
 		
 		big_instr.ui_category = GetUiCategory()
-		
-		var tool_instr = GraphNodeMakeInsts.new()
-		tool_instr.title_instr = ui_const_func.AUDIO_TITLE
-		
-		tool_instr.is_right = true
-		tool_instr.right_type = ui_const_func.TOOL_AUDIO_TYPE_CON
-		tool_instr.right_color = ui_const_func.TOOL_AUDIO_COLOR_CON
-		tool_instr.is_left = true
-		tool_instr.left_type = ui_const_func.TOOL_AUDIO_TYPE_CON
-		tool_instr.left_color = ui_const_func.TOOL_AUDIO_COLOR_CON
-		big_instr.instr_ar.append(tool_instr)
+	
+		var instr = ui_const_func.GetCloseAudioData()
+		instr.body_value = mp3
+		big_instr.instr_ar.append(instr)
+	
+		big_instr.instr_ar.append(ui_const_func.GetOpenAudioConnector())
 		
 		big_instr_ar.append(big_instr)
 	

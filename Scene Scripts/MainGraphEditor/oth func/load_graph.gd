@@ -5,6 +5,8 @@ extends Node
 
 var graph_constants := GraphNodeConstants.new()
 
+const BODY_NODE = GraphNodeMakeInsts.BodyNode
+
 func LoadUiSet( scene_graph_ui : SceneGraphUi ) -> void:
 	if scene_graph_ui != null:
 		graph_edit.zoom = scene_graph_ui.zoom
@@ -41,14 +43,14 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		var child_node : Node = null ## ДОЧЕРНИЙ НОД С МЕТАДАННЫМИ
 		
 		match inst.body_node:
-			0: ## Label
+			BODY_NODE.Label_: 
 				child_node = Label.new()
 				child_node.horizontal_alignment = graph_constants.LABEL_HORIZONTAL_ALIGNMENT
 				
 				child_node.text = inst.title_instr
 				new_node.add_child(child_node)
 			
-			1: ## SpinBox
+			BODY_NODE.SpinBox_:
 				active_node = SpinBox.new()
 				active_node.step = graph_constants.SPINBOX_BASE_STEP
 				child_node = HBoxContainer.new()
@@ -63,7 +65,7 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 				else:
 					active_node.value = 0
 			
-			2: ## TextEdit
+			BODY_NODE.TextEdit_:
 				active_node = TextEdit.new()
 				
 				active_node.scroll_fit_content_height = graph_constants.TEXT_FIT_CONTENT_HEIGHT
@@ -82,7 +84,7 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 				else:
 					active_node.text = ""
 			
-			3: ## CheckBox
+			BODY_NODE.CheckBox_:
 				active_node = CheckBox.new()
 
 				child_node = HBoxContainer.new()

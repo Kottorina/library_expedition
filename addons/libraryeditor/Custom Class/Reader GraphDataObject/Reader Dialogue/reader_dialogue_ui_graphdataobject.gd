@@ -6,7 +6,7 @@ class_name ReaderDialogueUiGraphDataObject
 
 var dialogue_is_work : bool = false
 
-const UI_SCENE = preload("res://addons/libraryeditor/Custom Class/GraphDataObjects/Reader GraphDataObject/Reader Dialogue/dialogue_ui.tscn")
+const UI_SCENE = preload("uid://dr8ljoyoema8a")
 var ui_scene_node : Control
 
 @export var time_anim : float = 2

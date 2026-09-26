@@ -2,11 +2,12 @@ extends Node
 
 var ui_const_func := UiConstFunc.new()
 
-## ПОДГРУЖАЮЮТЬСЯ ИЗ РОДИТЕЛЬСКОГО НОДА
-#var room_set : RoomsSet
 var cur_editor_obj_layer_ar : Array[EditorObjectLayer]
 var cur_path_obj_layer_ar : Array[PathNode]
 var cur_save_data_all_library : SaveDataAllLibrary
+
+const NODE_TYPE = BigGraphNodeMakeInsts.NodeType
+const BODY_NODE = GraphNodeMakeInsts.BodyNode
 
 func bake_ui_link_data_ar(str_ar : Array[String]) -> Array:
 	
@@ -72,23 +73,23 @@ func get_path_layer_data(layer : PathNode) -> Array[BigGraphNodeMakeInsts]:
 	#
 	#return [ui_const_func.TOOL_UI_NAME, big_instr]
 #
-#func bake_ui_start_gener_node() -> Array: ##Стартовая хуйня, без нее генерация по пизде идет
-	#var big_instr = BigGraphNodeMakeInsts.new()
-	#big_instr.title_node = ui_const_func.START_GENER_LOCATION_BIG_TITLE
-	#big_instr.type_node = 2
-	#
-	#big_instr.instr_ar.append(ui_const_func.get_tool_instr())
-	#
-	#big_instr.instr_ar.append(ui_const_func.get_tool_enter_instr())
-	#
-	#return [ui_const_func.TOOL_UI_NAME, big_instr]
+func bake_ui_start_gener_node() -> Array: ##Стартовая хуйня, без нее генерация по пизде идет
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.START_GENER_LOCATION_BIG_TITLE
+	big_instr.type_node = NODE_TYPE.START_GENER
+	
+	big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
+	
+	big_instr.instr_ar.append(ui_const_func.GetOpenEnterInstr())
+	
+	return [ui_const_func.TOOL_UI_NAME, big_instr]
 
 func bake_ui_start_gener_empty_node() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
 	big_instr.title_node = ui_const_func.START_GENER_LOCATION_BIG_TITLE
-	big_instr.type_node = 2
+	big_instr.type_node = NODE_TYPE.START_GENER
 	
-	big_instr.instr_ar.append(ui_const_func.get_tool_instr())
+	big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
 	
 	return [ui_const_func.TOOL_UI_NAME, big_instr]
 
@@ -144,7 +145,7 @@ func get_crossroad( num_choise : int ) -> BigGraphNodeMakeInsts:
 	big_instr.type_node = 0
 	
 	for i in num_choise:
-		big_instr.instr_ar.append(ui_const_func.get_tool_instr())
+		big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
 	
 	return big_instr
 

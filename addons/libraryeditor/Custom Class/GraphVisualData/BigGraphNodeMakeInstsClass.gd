@@ -4,12 +4,15 @@ class_name BigGraphNodeMakeInsts
 @export var title_node : String = ""
 @export var coord_ := Vector2(0,0)
 
-@export_enum("make_room", "enter_location","start_gener","tool_crossroad","con_pl","rnd_fork",
-"rool_rnd_fork_set","rool_rnd_deco_tile","make_location",
+enum NodeType {MAKE_ROOM, ENTER_LOCATION,
+START_GENER,TOOL_CROSSROAD,
+CON_PL,RND_FORK,ROOL_RND_FORK_SET,ROOL_RND_DECO_TILE,MAKE_LOCATION,
+START_DIALOGUE,DIALOGUE_NODE,END_DIALOGUE,DIALOGUE_CHOISE,DIALOGUE_CON,
+DIALOGUE_SETTING,DIALOGUE_EMIT_SIGNAL,DIALOGUE_AWAIT_SIGNAL,NEXT_DIALOGUE
 
-"start_dialogue","dialogue_node","end_dialogue","dialogue_choise","dialogue_con",
-"dialogue_setting","dialogue_emit_signal","dialogue_await_signal","next_dialogue"
-, "audio") var type_node : int ##make_room,enter_location,start_gener,tool_crossroad,con_pl,rnd_fork,rool_rnd_fork_set
+,MAKE_AUDIO,START_AUDIO,AUDIO_TIMER,AUDIO_END,AUDIO_CROSSROAD}
+
+@export var type_node : NodeType 
 
 @export var room_ : Room
 @export var graph_data_object : GraphDataObjects

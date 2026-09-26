@@ -2,17 +2,17 @@ extends Resource
 class_name UiConst
 
 ## Типы коннекторов
-const TOOLTYPE : int = 5 ##Для передачи технических значений
-const TOOLCOLOR :=  Color.WHITE
+const TOOL_TYPE : int = 5 ##Для передачи технических значений
+const TOOL_COLOR :=  Color.WHITE
 
-const TOOLENTERTYPE : int = 17
-const TOOLENTERCOLOR : Color = Color.PURPLE
+const TOOL_ENTER_TYPE : int = 17
+const TOOL_ENTER_COLOR : Color = Color.PURPLE
 
 const TOOL_DIALOGUR_TYPE_CON : int = 18
 const TOOL_DIALOGUE_COLOR_CON : Color = Color.RED
 
 const TOOL_AUDIO_TYPE_CON : int = 19
-const TOOL_AUDIO_COLOR_CON : Color = Color.NAVY_BLUE
+const TOOL_AUDIO_COLOR_CON : Color = Color.AQUA
 
 ## КАТЕГОРИЯ ГРУППЫ
 const TOOL_FORK_UI_NAME : String = "Tool Fork"
@@ -20,12 +20,15 @@ const TOOL_UI_NAME : String = "Tool"
 const ROOMS_UI_NAME : String = "Rooms"
 const DIALOGUE_UI_NAME : String = "Dialogue"
 
+const AUDIO_UI_NAME : String = "Audio"
+
 ## ДЛЯ BIG_INSTR
 const ROOM_BIG_TITLE = "Room Node: "
 const ENTER_LOCATION_BIG_TITLE : String = "Enter Location Node"
 const START_GENER_LOCATION_BIG_TITLE : String = "Start Gener Node"
 const BIG_RND_FORK_BIG_TITLE : String = "Rnd Fork"
 const CONNECTORS_PLUGS_BIG_TITLE : String = "Connectors Plugs Node"
+
 ##//
 const DIALOGUE_START_BIG_TITLE = "Dialogue Start"
 const DIALOGUE_NODE_BIG_TITLE = "Dialogue Node"
@@ -37,7 +40,11 @@ const DIALOGUE_EMIT_SIGNAL_BIG_TITLE = "Dialogue Emit Signal: "
 const DIALOGUE_AWAIT_SIGNAL_BIG_TITLE = "Dialogue Await Signal: "
 const DIALOGUE_NEXT_DIALOGUE_BIG_TITLE = "Next Dialogue: : "
 ##//
+const AUDIO_START_BIG_TITLE = "Audio Start"
 const AUDIO_STREAM_MP3_BIG_TITLE = "Audio Stream Mp3: "
+const AUDIO_TIMER_BIG_TITLE : String = "Timer"
+const AUDIO_END_BIG_TITLE : String = "Audio End"
+const AUDIO_CROSSROAD_BIG_TITLE : String = "Audio Crossroad"
 
 ## ДЛЯ INSTR
 const TOOL_TITLE : String = "Tool:"
@@ -66,25 +73,28 @@ const DIALOGUE_CHAR_LINE_TIME_TITLE : String = "Char Line Time: "
 ##//
 #const 
 const AUDIO_TITLE : String = "Audio: "
+const AUDIO_DATA_TITLE : String = "Audio Data: "
+const AUDIO_CON_TITLE : String = "Audio Connector: "
+const AUDIO_TIMER_TITLE : String = "Audio Timer: "
 
-## ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
-const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]
-
-const DIRECTION : Array[String] = ["up","down","left","right"] 
-var TOOL_CONNECTOR_DIRECTION_AR : Array[Array] = [[true,false],[false,true],[true,false],[false,true]]
-
-const SIZE : Array[String] = ["tiny","small","medium","large"]
-
-const CONNECTORTYPEDICT : Dictionary = {
-0 : [5,6,7,8],
-1 : [9,10,11,12],
-2 : [13,14,15,16]
-}
-var CONNECTORCOLORDICT : Dictionary = {
-0 : [Color.LIGHT_BLUE,Color.BLUE,Color.DARK_BLUE,Color.SLATE_BLUE],
-1 : [Color.LIGHT_YELLOW,Color.YELLOW,Color.DARK_KHAKI,Color.DARK_GOLDENROD],
-2 : [Color.LIGHT_CORAL,Color.RED,Color.DARK_RED,Color.DARK_MAGENTA],
-3 : [Color.LIGHT_GREEN,Color.GREEN,Color.DARK_GREEN,Color.DARK_SLATE_GRAY]
-}
-
-const DIRECTION_INVERT : Array[int] = [1,0,3,2] 
+### ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
+#const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]
+#
+#const DIRECTION : Array[String] = ["up","down","left","right"] 
+#var TOOL_CONNECTOR_DIRECTION_AR : Array[Array] = [[true,false],[false,true],[true,false],[false,true]]
+#
+#const SIZE : Array[String] = ["tiny","small","medium","large"]
+#
+#const CONNECTORTYPEDICT : Dictionary = {
+#0 : [5,6,7,8],
+#1 : [9,10,11,12],
+#2 : [13,14,15,16]
+#}
+#var CONNECTORCOLORDICT : Dictionary = {
+#0 : [Color.LIGHT_BLUE,Color.BLUE,Color.DARK_BLUE,Color.SLATE_BLUE],
+#1 : [Color.LIGHT_YELLOW,Color.YELLOW,Color.DARK_KHAKI,Color.DARK_GOLDENROD],
+#2 : [Color.LIGHT_CORAL,Color.RED,Color.DARK_RED,Color.DARK_MAGENTA],
+#3 : [Color.LIGHT_GREEN,Color.GREEN,Color.DARK_GREEN,Color.DARK_SLATE_GRAY]
+#}
+#
+#const DIRECTION_INVERT : Array[int] = [1,0,3,2] 

@@ -43,5 +43,14 @@ class_name EditorObjectLayer
 
 @export var ui_dialogue_next_dialogue : bool = false
 
+@export_subgroup("Audio")
+@export var ui_audio_start : bool = false
+@export var ui_audio_timer : bool = false
+@export var ui_audio_end : bool = false
+
+@export var ui_audio_crossroad_2 : bool = false
+@export var ui_audio_crossroad_4 : bool = false
+@export var ui_audio_crossroad_6 : bool = false
+
 @export_group("Unic Ar")
 @export var ui_link_data_ar : Array[String]

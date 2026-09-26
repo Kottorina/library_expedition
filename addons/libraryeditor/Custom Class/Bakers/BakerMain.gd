@@ -4,6 +4,8 @@ class_name BakerMain
 var ui_const_func := UiConstFunc.new()
 var path_node_const := PathNodeConst.new()
 
+const NODE_TYPE = BigGraphNodeMakeInsts.NodeType
+
 const ROOMNODENAME = "Room Node: "
 const ROOMS_UI_LOCATIONS : String = "Locations"
 

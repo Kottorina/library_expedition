@@ -1,16 +1,6 @@
 extends BakerGraphDataObject
 class_name BakerDialogueGraphDataObject
 
-const START_DIALOGUE := 9
-const DIALOGUE_NODE := 10
-const END_DIALOGUE := 11
-const DIALOGUE_CHOICE := 12
-const DIALOGUE_CONNECTOR := 13
-const DIALOGUE_SETTING := 14
-
-const DIALOGUE_EMIT_SIGNAL := 15
-const DIALOGUE_AWAIT_SIGNAL := 16
-
 const START_CHOISE_IND := 3
 
 const DIALOGUE_SET : String = "dialogue_set"
@@ -23,7 +13,7 @@ var current_dialogue : DataDialogue
 
 func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 	match nodes.type_node:
-		DIALOGUE_EMIT_SIGNAL:
+		NODE_TYPE.DIALOGUE_EMIT_SIGNAL:
 			
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
@@ -56,7 +46,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 			
-		DIALOGUE_AWAIT_SIGNAL:
+		NODE_TYPE.DIALOGUE_AWAIT_SIGNAL:
 			
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
@@ -91,7 +81,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 			
-		START_DIALOGUE:
+		NODE_TYPE.START_DIALOGUE:
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
 				AddFreePort(port)
@@ -112,7 +102,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 			
-		DIALOGUE_NODE:
+		NODE_TYPE.DIALOGUE_NODE:
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
 				AddFreePort(port)
@@ -146,7 +136,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 		
-		END_DIALOGUE:
+		NODE_TYPE.END_DIALOGUE:
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
 				AddFreePort(port)
@@ -178,7 +168,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 			
-		DIALOGUE_CHOICE:
+		NODE_TYPE.DIALOGUE_CHOISE:
 			var free_ports = get_free_ports(save_graph[nodes][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[nodes][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
 				AddFreePort(port)
@@ -223,7 +213,7 @@ func bake_node(nodes : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.step_dialogue_ar.append(new_step)
 			obj_to_dialogue_step[nodes] = new_step
 		
-		DIALOGUE_SETTING:
+		NODE_TYPE.DIALOGUE_SETTING:
 			
 			var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[nodes]
 			for data in data_meta_ar:
@@ -251,8 +241,5 @@ func save_last_dialogue() -> void:
 
 func last_bake_call() -> void:
 	save_last_dialogue()
-	
-	for ar in dialogue_set:
-		print(dialogue_set[ar].step_dialogue_ar.size())
-	print(dialogue_set)
+
 	bake_data_dict[DIALOGUE_SET] = dialogue_set

@@ -2,7 +2,7 @@ extends Resource
 class_name ReaderMain
 
 var data_key : String
-var base_signal : Signal
+@export var base_signal : Signal
 
 func GetCurrentDataKey() -> String:
 	var get_data_key = Callable(self, "GetDataKey")
@@ -50,6 +50,8 @@ func AwaintBaseSignal(type : SignalConst.SignalType,body_volue : Variant = -1) -
 	while true:
 		var cont : SignalDataContainer = await base_signal
 		if cont.signal_type == type:
-			if body_volue == -1 or cont.body_value == body_volue:
-				return body_volue
+			if body_volue == -1:
+				return cont.body_value
+			if cont.body_value == body_volue:
+				return cont.body_value
 	return false

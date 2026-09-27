@@ -28,20 +28,22 @@ func clear_dialogue() -> void:
 	character.text = \"\"
 	line.text = \"\"
 
-func open_anim(time_anim : float) -> bool:
+const TimeAnim : float = 1
+
+func open_anim() -> bool:
 	position = CLOSE_POSITION
 	clear_all()
 	show()
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(self,\"position\",OPEN_POSITION,time_anim)
+	tween.tween_property(self,\"position\",OPEN_POSITION,TimeAnim)
 	await tween.finished
 	return true
-func close_anim(time_anim : float) -> bool:
+func close_anim() -> bool:
 	position = OPEN_POSITION
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self,\"position\",CLOSE_POSITION,time_anim)
+	tween.tween_property(self,\"position\",CLOSE_POSITION,TimeAnim)
 	await tween.finished
 	hide()
 	return true

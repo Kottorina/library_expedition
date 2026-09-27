@@ -4,4 +4,4 @@ class_name SignalConst
 enum SignalType {
 BaseEmit,
 
-DialogueOpenAnim,DialogueCloseAnim,DialogueMakeLine,DialogueMakeChoise,DialogueContinue}
+DialogueOpenAnim,DialogueCloseAnim,DialogueMakeLine,DialogueMakeChoise,DialogueContinue,DialogueContinuePreliminary}

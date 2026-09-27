@@ -7,15 +7,18 @@ enum ReaderType {DialogueReader,AudioReader}
 
 @export var AllSaveData : SaveDataAllLibrary
 @export_group("Reader Ui")
-@export var reader_dialogue_ui : ReaderMain
+@export var reader_dialogue_ui : Control
 @export var audio_reader : Node
+
+func _ready() -> void:
+	reader_dialogue_ui.base_signal = BaseSignal
+
+var reader = ReaderDialogueData.new()
 
 func StartRead(type : ReaderType,name_res : String) -> void:
 	
 	match type:
 		ReaderType.DialogueReader:
-			
-			var reader = ReaderDialogueData.new()
 			reader.base_signal = BaseSignal
 			
 			var all_bake_data : Array[DataContainer]

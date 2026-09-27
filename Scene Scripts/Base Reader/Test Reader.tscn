@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="2_iai6t"]
 [ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/libraryeditor/Custom Class/Readers/Manager Reader/ReaderManager.gd" id="2_u3i11"]
-[ext_resource type="Resource" uid="uid://4lc6rmqpvghv" path="res://Test Resource/TwoTestAllSave.tres" id="3_mbcb0"]
 
 [sub_resource type="GDScript" id="GDScript_tv1na"]
 script/source = "extends Button
@@ -12,6 +11,11 @@ script/source = "extends Button
 @export var name_ : String = \"Dial_1\"
 
 @onready var reader_manager: ReaderManager = $\"../ReaderManager\"
+
+@export var path : String
+
+func _ready() -> void:
+	reader_manager.AllSaveData = ResourceLoader.load( path,\"\",ResourceLoader.CACHE_MODE_IGNORE )
 
 func _on_pressed() -> void:
 	reader_manager.StartRead(ReaderManager.ReaderType.DialogueReader,name_)
@@ -24,12 +28,11 @@ offset_right = 76.0
 offset_bottom = 31.0
 text = "read dial"
 script = SubResource("GDScript_tv1na")
-name_ = null
+path = "C:\\dew\\game_project\\DATA_TEST\\TwoTestAllSave.tres"
 
-[node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("audio_reader")]
+[node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("reader_dialogue_ui")]
 script = ExtResource("2_u3i11")
-AllSaveData = ExtResource("3_mbcb0")
-audio_reader = NodePath("../ReaderDialogueUi")
+reader_dialogue_ui = NodePath("../ReaderDialogueUi")
 metadata/_custom_type_script = "uid://cy6qxu1tjgon7"
 
 [node name="ReaderDialogueUi" type="Control" parent="." unique_id=2140536558]

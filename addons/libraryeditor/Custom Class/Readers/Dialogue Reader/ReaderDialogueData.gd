@@ -32,6 +32,7 @@ func ReadDialogueStep( step : DataStep) -> void:
 		DialogueStep.Step_Type.MAKE_CHOISE:
 			EmitBaseSignal(SignalConst.SignalType.DialogueMakeChoise,current_data_container,step)
 			var value  = await AwaintBaseSignal(SignalConst.SignalType.DialogueContinue)
+			print(value)
 			ReadDialogueStep(step.next_step_ar[value].next_step_ar[0])
 		DialogueStep.Step_Type.END_DIALOGUE:
 			EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
@@ -42,6 +43,9 @@ func ReadDialogueStep( step : DataStep) -> void:
 			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
 			ReadDialogueStep(step.next_step_ar[0])
 		DialogueStep.Step_Type.AWAIT_DIALOGUE:
+			EmitBaseSignal(SignalConst.SignalType.DialogueMakeLine,current_data_container,step)
+			await AwaintBaseSignal(SignalConst.SignalType.DialogueContinuePreliminary)
+			
 			AwaintBaseSignal(SignalConst.SignalType.BaseEmit,step.signal_data)
 			ReadDialogueStep(step.next_step_ar[0])
 		DialogueStep.Step_Type.NEXT_DIALOGUE:

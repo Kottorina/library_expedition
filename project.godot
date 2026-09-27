@@ -28,6 +28,7 @@ enabled=PackedStringArray("res://addons/libraryeditor/plugin.cfg")
 folder_colors={
 "res://Base Obj/": "purple",
 "res://Draw/": "green",
+"res://Old/": "gray",
 "res://Scene Scripts/": "orange",
 "res://Test Resource/": "purple",
 "res://addons/libraryeditor/Custom Class/": "blue"

@@ -5,79 +5,46 @@ const DATA_KEY = "Dialogue"
 func GetDataKey() -> String:
 	return DATA_KEY
 
-var rnd : RandomNumberGenerator
-
-var data_dialogue : DataDialogue ## Array[DialogueStep]
-
-const BASE_SEED = 0
-const DIALOGUE_SET : String = "dialogue_set"
-
-const START_DIALOGUE = "start_sdialogue"
-
-signal make_line
-signal make_choise
-
-signal continue_preliminary ## ПРИ ОКОНЧАНИИ ПЕЧАТАНЬЯ РЕПЛИКИ ИЛИ ВЫБОРА
-
-signal continue_read ## ПРИ ПОЛНОМ ПРОЧТЕНИИ СООБЩЕНИЯ И ПРИ ВЫБОРЕ ОДНОГО ИЗ ДИАЛОГОВ В ВЫБОРЕ
-
-signal base_signal ## ДЛЯ ПЕРЕДАЧИ ЗНАЧЕНИЙ, ОТДАЕТ И ПРИНИМАЕТ ЗНАЧЕНИЯ
-
-signal read_end ## ПРИ ЗАВЕРШЕНИИ ЧТЕНИЯ ДИАЛОГА, ИЗ ЗА ОШИБКИ ИЛИ КОНЦА ДИАЛОГА
-
-func start_read(dialogue_graph_data : GraphDataObjects, dialogue_name : String, seed : int = BASE_SEED) -> bool:
+var current_data_container : DataContainer
+func ReadDataContainer(data_container : DataContainer) -> void:
+	if not data_container is DataDialogue:
+		push_warning("data_container is not DataDialogue")
+		return
+	if data_container.step_ar.size() <= 0:
+		push_warning("Data_container Step Array Size <= 0")
+		return
 	
-	var bake_data
+	current_data_container = data_container
 	
-	if seed == BASE_SEED: ## ЕСЛИ НЕ НУЖЕН rnd
-		bake_data = dialogue_graph_data.bake_data
-	else:
-		var baker := BakerDialogueGraphDataObject.new()
-		bake_data = baker.bake_data(dialogue_graph_data)
+	ReadDialogueStep(current_data_container.step_ar[0])
+
+func ReadDialogueStep( step : DataStep) -> void:
 	
-	if ! bake_data.has(DIALOGUE_SET):
-		push_warning("DIALOGUE_SET does not exist")
-		read_end.emit()
-		return false
-	if ! bake_data[DIALOGUE_SET].has(dialogue_name):
-		push_warning("dialogue_name does not exist")
-		read_end.emit()
-		return false
-	data_dialogue = bake_data[DIALOGUE_SET][dialogue_name] as DataDialogue
-	read_dialogue_step(data_dialogue.step_dialogue_ar[0])
-	return true
-
-func read_dialogue_step( dialogue_step : DialogueStep) -> void:
-	match dialogue_step.step_type:
-		0:
-			base_signal.emit(START_DIALOGUE)
-			await continue_read
-			read_dialogue_step(dialogue_step.next_step_ar[0])
-		1:
-			make_line.emit(data_dialogue, dialogue_step)
-			await continue_read
-			read_dialogue_step(dialogue_step.next_step_ar[0])
-		2:
-			make_choise.emit(data_dialogue, dialogue_step)
-			var value  = await continue_read
-			read_dialogue_step(dialogue_step.next_step_ar[value].next_step_ar[0])
-		3:
-			base_signal.emit(dialogue_step.signal_data)
-			read_end.emit()
-		4:
-			push_warning("You should not see this message --- ReaderDialogueGraphDataObject")
-		5: ## Emit Signal
-			base_signal.emit(dialogue_step.signal_data)
-			read_dialogue_step(dialogue_step.next_step_ar[0])
-		6: ## Await Signal
-			make_line.emit(data_dialogue, dialogue_step)
-			await continue_preliminary
-
-			while true:
-				if await base_signal == dialogue_step.signal_data:
-					break
-			
-			read_dialogue_step(dialogue_step.next_step_ar[0])
-
-#func emit_base_signal_with(val : Variant) -> void:
-	#base_signal.emit(val)
+	match step.step_type:
+		DialogueStep.Step_Type.START_DIALOGUE:
+			EmitBaseSignal(SignalConst.SignalType.DialogueOpenAnim)
+			await AwaintBaseSignal(SignalConst.SignalType.DialogueContinue)
+			ReadDialogueStep(step.next_step_ar[0])
+		DialogueStep.Step_Type.MAKE_LINE:
+			EmitBaseSignal(SignalConst.SignalType.DialogueMakeLine,current_data_container,step)
+			await AwaintBaseSignal(SignalConst.SignalType.DialogueContinue)
+			ReadDialogueStep(step.next_step_ar[0])
+		DialogueStep.Step_Type.MAKE_CHOISE:
+			EmitBaseSignal(SignalConst.SignalType.DialogueMakeChoise,current_data_container,step)
+			var value  = await AwaintBaseSignal(SignalConst.SignalType.DialogueContinue)
+			ReadDialogueStep(step.next_step_ar[value].next_step_ar[0])
+		DialogueStep.Step_Type.END_DIALOGUE:
+			EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
+			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
+		DialogueStep.Step_Type.CHOISE_DIALOGUE:
+			push_warning("You should not see this message --- DialogueStep.Step_Type.CHOISE_DIALOGUE : ReaderDialogueGraphDataObject")
+		DialogueStep.Step_Type.EMIT_DIALOGUE:
+			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
+			ReadDialogueStep(step.next_step_ar[0])
+		DialogueStep.Step_Type.AWAIT_DIALOGUE:
+			AwaintBaseSignal(SignalConst.SignalType.BaseEmit,step.signal_data)
+			ReadDialogueStep(step.next_step_ar[0])
+		DialogueStep.Step_Type.NEXT_DIALOGUE:
+			if ReadNextDataName(step.signal_data) == false:
+				EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
+				EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)

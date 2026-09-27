@@ -120,12 +120,8 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			obj_to_dialogue_step[node] = new_step
 		
 		NODE_TYPE.END_DIALOGUE:
-			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
-			for port in free_ports:
-				AddFreePort(port)
-			
 			var new_step := DialogueStep.new()
-			new_step.step_type = 3
+			new_step.step_type = DataStep.Step_Type.END_DIALOGUE
 			
 			new_step.signal_data = GetDataFromCentralData(node,ui_const_func.TOOL_TITLE)
 			
@@ -199,6 +195,31 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			current_dialogue.char_character_time = GetDataFromCentralData(node,ui_const_func.DIALOGUE_CHAR_CHARACTER_TIME_TITLE)
 			current_dialogue.char_line_time = GetDataFromCentralData(node,ui_const_func.DIALOGUE_CHAR_LINE_TIME_TITLE)
 		
+		NODE_TYPE.NEXT_DIALOGUE:
+			var new_step := DialogueStep.new()
+			new_step.step_type = DataStep.Step_Type.NEXT_DIALOGUE
+			
+			new_step.signal_data = GetDataFromCentralData(node,ui_const_func.TOOL_TITLE)
+			
+			var last_dialogue_step : DialogueStep
+			var last_dialogue_port_num : int
+			
+			var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
+			for port : FromToWith in ports:
+				if obj_to_dialogue_step.has(port.to_obj):
+					last_dialogue_step = obj_to_dialogue_step[port.to_obj]
+					last_dialogue_port_num = port.to_data.port_num
+					break
+			
+			if last_dialogue_step.step_type != 2: ## ! "make_choise"
+				last_dialogue_step.next_step_ar = [new_step]
+			else:
+				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
+				real_last_step.next_step_ar.append(new_step)
+			
+			current_dialogue.step_ar.append(new_step)
+			obj_to_dialogue_step[node] = new_step
+			
 		_:
 			var free_port = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port : FromToWith in free_port:
@@ -207,7 +228,7 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 func save_last_data() -> void:
 	if current_dialogue:
 		data_container.append(current_dialogue)
-
+	
 func GetFullBakeData() -> Array:
 	save_last_data()
 	return data_container

@@ -167,6 +167,10 @@ func bake_ui_dialogue_next_dialogue() -> Array:
 	big_instr.title_node = ui_const_func.DIALOGUE_NEXT_DIALOGUE_BIG_TITLE
 	big_instr.type_node = NODE_TYPE.NEXT_DIALOGUE
 	
+	var tool_instr = ui_const_func.GetOpenToolInstr()
+	tool_instr.body_node = BODY_NODE.TextEdit_
+	big_instr.instr_ar.append(tool_instr)
+	
 	big_instr.instr_ar.append(ui_const_func.GetOpenDialogueConnectorInstr())
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]

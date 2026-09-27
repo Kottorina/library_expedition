@@ -1,7 +1,7 @@
 extends Node
 class_name ReaderManager 
 
-signal central_signal
+signal BaseSignal(value : SignalDataContainer)
 
 enum ReaderType {DialogueReader,AudioReader}
 
@@ -16,6 +16,7 @@ func StartRead(type : ReaderType,name_res : String) -> void:
 		ReaderType.DialogueReader:
 			
 			var reader = ReaderDialogueData.new()
+			reader.base_signal = BaseSignal
 			
 			var all_bake_data : Array[DataContainer]
 			
@@ -25,7 +26,7 @@ func StartRead(type : ReaderType,name_res : String) -> void:
 					for bake_container in obj.bake_data_ar:
 						all_bake_data.append(bake_container)
 			
-			print(all_bake_data)
-			#reader_dialogue_ui.start_dialogue(id_,name_)
+			reader.ReadDataArray(all_bake_data,name_res)
+			
 		1:
 			print("!")

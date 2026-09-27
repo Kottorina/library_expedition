@@ -38,7 +38,7 @@ const DIALOGUE_CONNETOR_BIG_TITLE = "Dialogue Connector: "
 const DIALOGUE_SETTING_BIG_TITLE = "Dialogue Setting: "
 const DIALOGUE_EMIT_SIGNAL_BIG_TITLE = "Dialogue Emit Signal: "
 const DIALOGUE_AWAIT_SIGNAL_BIG_TITLE = "Dialogue Await Signal: "
-const DIALOGUE_NEXT_DIALOGUE_BIG_TITLE = "Next Dialogue: : "
+const DIALOGUE_NEXT_DIALOGUE_BIG_TITLE = "Next Dialogue: "
 ##//
 const AUDIO_START_BIG_TITLE = "Audio Start"
 const AUDIO_STREAM_MP3_BIG_TITLE = "Audio Stream Mp3: "

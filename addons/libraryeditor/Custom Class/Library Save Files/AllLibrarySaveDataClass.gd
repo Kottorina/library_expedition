@@ -8,13 +8,13 @@ class_name SaveDataAllLibrary
 
 # @export var room_set : RoomsSet ПОДУМАЙ КАК И ЗАЧЕМ
 
-func GetArFromKey(data_key : String ) -> Array:
+func GetArFromKey(data_key : String ) -> Array[LibraryObject]:
 	
 	if all_data.has(data_key):
-		return all_data[data_key]
+		return all_data[data_key] as Array[LibraryObject]
 	else:
 		all_data[data_key] = []
-		return all_data[data_key]
+		return all_data[data_key] as Array[LibraryObject]
 
 const MinId : int = 0
 const MaxId : int = 10000

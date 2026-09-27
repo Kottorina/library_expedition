@@ -1,5 +1,9 @@
-extends Node
-class_name ReaderDialogueGraphDataObject
+extends ReaderMain
+class_name ReaderDialogueData
+
+const DATA_KEY = "Dialogue"
+func GetDataKey() -> String:
+	return DATA_KEY
 
 var rnd : RandomNumberGenerator
 

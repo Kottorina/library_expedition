@@ -31,7 +31,9 @@ folder_colors={
 "res://Old/": "gray",
 "res://Scene Scripts/": "orange",
 "res://Test Resource/": "purple",
-"res://addons/libraryeditor/Custom Class/": "blue"
+"res://addons/libraryeditor/Custom Class/": "blue",
+"res://addons/libraryeditor/Custom Class/Bakers/": "yellow",
+"res://addons/libraryeditor/Custom Class/Readers/": "yellow"
 }
 
 [physics]

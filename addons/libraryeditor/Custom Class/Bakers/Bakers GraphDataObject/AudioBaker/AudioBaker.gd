@@ -1,12 +1,11 @@
 extends BakerGraphDataObject
 class_name BakerAudioGraphDataObject
 
-var audio_set : Dictionary
-var current_audio : DataAudio
+
+var data_container : Array[DataContainer]
+var current_audio : DataContainer
 
 var obj_to_step : Dictionary
-
-const AUDIO_SET : String = "AudioDataSet"
 
 func bake_node(node : BigGraphNodeMakeInsts) -> void:
 	match node.type_node:
@@ -15,12 +14,12 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			for port in free_ports:
 				AddFreePort(port)
 			
-			save_last_dialogue()
-			current_audio = DataAudio.new()
+			save_last_data()
+			current_audio = DataContainer.new()
 			current_audio.audio_name = GetDataFromCentralData(node,ui_const_func.TOOL_TITLE)
 			
-			var step = AudioStep.new()
-			step.step_type = AudioStep.Step_Type.StartAudio
+			var step = DataStep.new()
+			step.step_type = DataStep.Step_Type.StartAudio
 			
 			current_audio.step_audio_ar.append(step)
 			obj_to_step[node] = step
@@ -30,14 +29,14 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			for port in free_ports:
 				AddFreePort(port)
 			
-			var step = AudioStep.new()
-			step.step_type = AudioStep.Step_Type.Timer_
+			var step = DataStep.new()
+			step.step_type = DataStep.Step_Type.Timer_
 			step.step_data = GetDataFromCentralData(node,ui_const_func.AUDIO_TIMER_TITLE)
 			
 			current_audio.step_audio_ar.append(step)
 			obj_to_step[node] = step
 			
-			var last_step : AudioStep
+			var last_step : DataStep
 			var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
 			for port : FromToWith in ports:
 				if obj_to_step.has(port.to_obj):
@@ -49,14 +48,14 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			for port in free_ports:
 				AddFreePort(port)
 			
-			var step = AudioStep.new()
-			step.step_type = AudioStep.Step_Type.EndAudio
+			var step = DataStep.new()
+			step.step_type = DataStep.Step_Type.EndAudio
 			step.step_data = GetDataFromCentralData(node,ui_const_func.AUDIO_TIMER_TITLE)
 			
 			current_audio.step_audio_ar.append(step)
 			obj_to_step[node] = step
 			
-			var last_step : AudioStep
+			var last_step : DataStep
 			var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
 			for port : FromToWith in ports:
 				if obj_to_step.has(port.to_obj):
@@ -68,7 +67,7 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			for port in free_ports:
 				AddFreePort(port)
 			
-			var last_step : AudioStep
+			var last_step : DataStep
 			var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
 			for port : FromToWith in ports:
 				if obj_to_step.has(port.to_obj):
@@ -80,12 +79,12 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			for port in free_ports:
 				AddFreePort(port)
 			
-			var step = AudioStep.new()
-			step.step_type = AudioStep.Step_Type.MakeAudioOnce
+			var step = DataStep.new()
+			step.step_type = DataStep.Step_Type.MakeAudioOnce
 			step.step_data = GetDataFromCentralData(node,ui_const_func.AUDIO_DATA_TITLE)
 			current_audio.step_audio_ar.append(step)
 			
-			var last_step : AudioStep
+			var last_step : DataStep
 			var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
 			for port : FromToWith in ports:
 				if obj_to_step.has(port.to_obj):
@@ -97,11 +96,12 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			for port : FromToWith in free_port:
 				AddFreePort(port)
 
-func save_last_dialogue() -> void:
-	if current_audio:
-		audio_set[current_audio.audio_name] = current_audio
 
-func last_bake_call() -> void:
-	save_last_dialogue()
-	print(audio_set["BestSong"].step_audio_ar)
-	bake_data_dict[AUDIO_SET] = audio_set
+
+func save_last_data() -> void:
+	if current_audio:
+		data_container.append(current_audio)
+
+func GetFullBakeData() -> Array:
+	save_last_data()
+	return data_container

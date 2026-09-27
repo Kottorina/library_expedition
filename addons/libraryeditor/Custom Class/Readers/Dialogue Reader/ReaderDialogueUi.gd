@@ -1,6 +1,5 @@
 extends Control
-class_name ReaderDialogueUiGraphDataObject
-
+class_name ReaderDialogueUi
 @export var all_data_save : SaveDataAllLibrary
 @export var read_data : String = "Dialogue"
 
@@ -22,7 +21,7 @@ func _ready() -> void:
 	
 signal dialogue_end 
 
-var reader : ReaderDialogueGraphDataObject
+var reader : ReaderDialogueData
 
 func start_dialogue(id_obj : int, dialogue_name : String) -> bool:
 	
@@ -34,8 +33,7 @@ func start_dialogue(id_obj : int, dialogue_name : String) -> bool:
 	
 	if reader:
 		reader.queue_free()
-	reader = ReaderDialogueGraphDataObject.new()
-	add_child(reader)
+	reader = ReaderDialogueData.new()
 	
 	reader.make_line.connect(make_line)
 	reader.make_choise.connect(make_choise)

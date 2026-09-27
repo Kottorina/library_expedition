@@ -10,7 +10,7 @@ class_name GraphDataObjects
 ## ГРАФ СОДЕРЖАЩИЙ ВСЕ СОЕДИНЕНИЯ
 @export var full_graph : Dictionary 
 
-@export var bake_data : Dictionary ## СОДЕРЖИТ ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ, УНИВЕРСАЛЬНЫЙ ВИД
+@export var bake_data_ar : Array[DataContainer] ## СОДЕРЖИТ ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ, УНИВЕРСАЛЬНЫЙ ВИД
 
 @export var ui : SceneGraphUi
 

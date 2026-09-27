@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
-[ext_resource type="TileSet" uid="uid://dmnm62bk1ft6m" path="res://Test Resource/TestTile_set.tres" id="2_mcqch"]
+[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="2_iai6t"]
 [ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/libraryeditor/Custom Class/Readers/Manager Reader/ReaderManager.gd" id="2_u3i11"]
-[ext_resource type="Resource" uid="uid://dmic4s7ocoyqj" path="res://Test Resource/OneTestAllSave.tres" id="3_mbcb0"]
-[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/Readers/Dialogue Reader/reader_dialogue_ui_graphdataobject.gd" id="4_u3i11"]
+[ext_resource type="Resource" uid="uid://b7m66b82f28pw" path="res://Test Resource/TwoTestAllSave.tres" id="3_mbcb0"]
 
 [sub_resource type="GDScript" id="GDScript_tv1na"]
 script/source = "extends Button
@@ -11,52 +10,36 @@ script/source = "extends Button
 @export var node : Node
 
 @export var name_ : String = \"Dial_1\"
-@export var id_ : int = 0
 
 @onready var reader_manager: ReaderManager = $\"../ReaderManager\"
 
 func _on_pressed() -> void:
-	reader_manager.StartRead(ReaderManager.ReaderType.DialogueReader,id_,name_)
+	reader_manager.StartRead(ReaderManager.ReaderType.DialogueReader,name_)
 "
 
 [node name="Node" type="Node" unique_id=304995115]
 
-[node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("dealogue_reader")]
+[node name="Button" type="Button" parent="." unique_id=471411679]
+offset_right = 76.0
+offset_bottom = 31.0
+text = "read dial"
+script = SubResource("GDScript_tv1na")
+name_ = null
+
+[node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("audio_reader")]
 script = ExtResource("2_u3i11")
 AllSaveData = ExtResource("3_mbcb0")
-dealogue_reader = NodePath("ReaderDialogueUiGraphDataObject")
+audio_reader = NodePath("../ReaderDialogueUi")
 metadata/_custom_type_script = "uid://cy6qxu1tjgon7"
 
-[node name="ReaderDialogueUiGraphDataObject" type="Control" parent="ReaderManager" unique_id=1846829880]
+[node name="ReaderDialogueUi" type="Control" parent="." unique_id=2140536558]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("4_u3i11")
-all_data_save = ExtResource("3_mbcb0")
-time_anim = 0.5
+script = ExtResource("2_iai6t")
 metadata/_custom_type_script = "uid://b6e1urt4k82au"
-
-[node name="TestReadyLocationReader" type="Node2D" parent="." unique_id=377190287]
-visible = false
-position = Vector2(-1, 0)
-
-[node name="Draw" type="TileMapLayer" parent="TestReadyLocationReader" unique_id=1446083494]
-texture_filter = 1
-tile_set = ExtResource("2_mcqch")
-
-[node name="Draw2" type="TileMapLayer" parent="TestReadyLocationReader" unique_id=1013441557]
-texture_filter = 1
-tile_set = ExtResource("2_mcqch")
-
-[node name="Button" type="Button" parent="." unique_id=471411679 node_paths=PackedStringArray("node")]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "read dial"
-script = SubResource("GDScript_tv1na")
-node = NodePath("../ReaderManager/ReaderDialogueUiGraphDataObject")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -3,7 +3,6 @@ class_name BakerGraphDataObject
 
 var graph_const := GraphNodeConstants.new()
 
-var bake_data_dict : Dictionary ## ВСЕ ЗАПЕЧЕННЫЕ ДАННЫЕ
 var free_nodes : Array[BigGraphNodeMakeInsts] ## ЕЩЕ НЕ ОБРАБОТАННЫЕ НОДЫ
 
 var central_data_graph : Dictionary
@@ -42,11 +41,9 @@ func bake_data(graph_data_objects : GraphDataObjects, c_seed : int = 0) -> Graph
 		callable.call(free_nodes[last_ind])
 		free_nodes.remove_at(last_ind)
 	
-	graph_data_objects.bake_data = bake_data_dict
-	
-	var last_callable = Callable(self, "last_bake_call")
+	var get_full_bake_data = Callable(self, "GetFullBakeData")
 	if callable.is_valid():
-		last_callable.call()
+		graph_data_objects.bake_data_ar = get_full_bake_data.call()
 	
 	return graph_data_objects
 

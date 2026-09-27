@@ -1,9 +1,5 @@
-extends Resource
+extends DataContainer
 class_name DataDialogue
-
-@export var step_dialogue_ar : Array[DialogueStep] ## НАБОР ИНСТРУКЦИЙ ДЛЯ ВОСПРОИЗВЕДЕНИЯ
-
-@export var dialogue_name : String
 
 @export_group("skip")
 @export var is_skiped : bool ## МОЖНО ЛИ ПРОПУСКАТЬ ДИАЛОГИ

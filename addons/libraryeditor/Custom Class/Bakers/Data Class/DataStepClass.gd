@@ -5,7 +5,7 @@ enum Step_Type {
 START_DIALOGUE,MAKE_LINE,MAKE_CHOISE,END_DIALOGUE,CHOISE_DIALOGUE,
 EMIT_DIALOGUE,AWAIT_DIALOGUE,NEXT_DIALOGUE,
 
-StartAudio,MakeAudioOnce,MakeAudioLoop,Timer_,EndAudio}
+StartAudio,PlayAudio,Timer_,EndAudio}
 
 @export var step_type : Step_Type 
 
@@ -13,4 +13,4 @@ StartAudio,MakeAudioOnce,MakeAudioLoop,Timer_,EndAudio}
 
 @export var signal_data : Variant
 
-@export var next_step_ar : Array[DialogueStep]
+@export var next_step_ar : Array[DataStep]

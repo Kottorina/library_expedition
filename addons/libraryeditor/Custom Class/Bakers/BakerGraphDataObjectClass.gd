@@ -64,7 +64,21 @@ func IsPortFree(from_to_with : FromToWith) -> bool:
 	if from_to_with.to_obj is String:
 		return false
 	return true
+
+func GetLastStep(obj_to_step : Dictionary, node : BigGraphNodeMakeInsts, title_instr : String = "") -> DataStep:
+	var last_step : DataStep = null
+	var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
+	for port : FromToWith in ports:
+		if obj_to_step.has(port.to_obj):
+			if title_instr == "":
+				last_step = obj_to_step[port.to_obj]
+				break
+			else:
+				if port.to_data.instr.title_instr == title_instr:
+					last_step = obj_to_step[port.to_obj]
+					break
 	
+	return last_step
 
 func GetDataFromCentralData(node : BigGraphNodeMakeInsts,data_key : String) -> Variant:
 	var data_meta_ar : Array[GraphNodeMetadata] = central_data_graph[node]

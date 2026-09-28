@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
+[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="2_iai6t"]
 [ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/libraryeditor/Custom Class/Readers/Manager Reader/ReaderManager.gd" id="2_u3i11"]
-[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/libraryeditor/Custom Class/Readers/Audio Reader/ReaderAudioUi.gd" id="3_mbcb0"]
-[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="3_u3i11"]
 
 [sub_resource type="GDScript" id="GDScript_tv1na"]
 script/source = "extends Button
@@ -32,19 +31,19 @@ type = 1
 name_ = "BestMusic"
 path = "C:\\dew\\game_project\\DATA_TEST\\TwoTestAllSave.tres"
 
-[node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("all_reader_ui_ar")]
+[node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("reader_dialogue_ui")]
 script = ExtResource("2_u3i11")
-all_reader_ui_ar = [NodePath("ReaderAudioUi"), NodePath("ReaderDialogueUi")]
+reader_dialogue_ui = NodePath("../ReaderDialogueUi")
 metadata/_custom_type_script = "uid://cy6qxu1tjgon7"
 
-[node name="ReaderAudioUi" type="Node" parent="ReaderManager" unique_id=1550608385]
-script = ExtResource("3_mbcb0")
-metadata/_custom_type_script = "uid://dw7cfhrkj4p2n"
-
-[node name="ReaderDialogueUi" type="Node" parent="ReaderManager" unique_id=2135117404]
-script = ExtResource("3_u3i11")
+[node name="ReaderDialogueUi" type="Control" parent="." unique_id=2140536558]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_iai6t")
 metadata/_custom_type_script = "uid://b6e1urt4k82au"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ReaderManager" unique_id=585644832]
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

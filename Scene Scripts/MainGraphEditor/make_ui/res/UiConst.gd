@@ -73,6 +73,7 @@ const DIALOGUE_CHAR_LINE_TIME_TITLE : String = "Char Line Time: "
 ##//
 #const 
 const AUDIO_TITLE : String = "Audio: "
+const AUDIO_AWAIT_TIMEOUT : String = "Audio Await Timeout: "
 const AUDIO_DATA_TITLE : String = "Audio Data: "
 const AUDIO_CON_TITLE : String = "Audio Connector: "
 const AUDIO_TIMER_TITLE : String = "Audio Timer: "

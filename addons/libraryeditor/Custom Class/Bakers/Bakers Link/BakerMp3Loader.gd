@@ -63,6 +63,10 @@ func FromObjectToBigInstr(obj : Variant) -> Array[BigGraphNodeMakeInsts]:
 	
 		big_instr.instr_ar.append(ui_const_func.GetOpenAudioConnector())
 		
+		var instr_0 = ui_const_func.GetOpenAudioConnector()
+		instr_0.title_instr = ui_const_func.AUDIO_AWAIT_TIMEOUT
+		big_instr.instr_ar.append(instr_0)
+		
 		big_instr_ar.append(big_instr)
 	
 	return big_instr_ar

@@ -2,7 +2,7 @@
 extends Resource
 
 ## УНИВЕРСАЛЬНАЯ ЗАМЕНА ReadyLocationSet BigReadyLocationSet
-class_name SaveDataAllLibrary
+class_name LeFileSystem
 
 @export var all_data : Dictionary ##  Хранит все данные { data_key : Array[GraphDataObjects] }
 

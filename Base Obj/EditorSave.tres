@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EditorSaveData" format=3]
 
-[ext_resource type="Script" path="res://addons/libraryeditor/Custom Class/Library Save Files/editor_save_data_class.gd" id="1_ajksn"]
+[ext_resource type="Script" path="res://addons/LeEditor/Custom Class/Library Save Files/editor_save_data_class.gd" id="1_ajksn"]
 
 [resource]
 script = ExtResource("1_ajksn")
-current_file_save_path = "C:/dew/game_project/DATA_TEST/TwoTestAllSave.tres"
+current_file_save_path = "C:/dew/game_project/_Godo (Git, Not Update)/library_expedition/Test Resource/test_files_fro_waf_waf.tres"
 metadata/_custom_type_script = "uid://d4nkvqoglldsg"

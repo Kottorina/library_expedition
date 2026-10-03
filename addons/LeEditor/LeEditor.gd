@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const PLUGIN_CFG := "res://addons/libraryeditor/plugin.cfg"
+const PLUGIN_CFG := "res://addons/LeEditor/plugin.cfg"
 
 func _enable_plugin() -> void:
 	# Add autoloads here.

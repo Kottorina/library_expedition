@@ -51,7 +51,7 @@ var tasks_ar_string : Dictionary = {
 "ui_link_data_ar" : ["ui_all_baker", "bake_ui_link_data_ar"]
 }
 
-func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],save_data_all_library : SaveDataAllLibrary) -> void:
+func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorObjectLayer],le_file_system : LeFileSystem) -> void:
 	
 	var ui_nodes : Dictionary = {
 	"ui_all_baker" : ui_all_baker,
@@ -63,7 +63,7 @@ func UpdateUi(cur_editor_obj_layer_id : int ,editor_obj_layer_ar : Array[EditorO
 		#print(ui_nodes)
 		node.cur_path_obj_layer_ar = main_graph_editor.path_obj_layer
 		node.cur_editor_obj_layer_ar = editor_obj_layer_ar
-		node.cur_save_data_all_library = save_data_all_library
+		node.le_file_system = le_file_system
 	
 	graph_node_ui.Clear() ## НУЖНО ДЛЯ ОЧИСТКИ И ТД
 

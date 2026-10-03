@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
-[ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/libraryeditor/Custom Class/Readers/Manager Reader/ReaderManager.gd" id="2_u3i11"]
-[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/libraryeditor/Custom Class/Readers/Audio Reader/ReaderAudioUi.gd" id="3_mbcb0"]
-[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/libraryeditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="3_u3i11"]
+[ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/LeEditor/Custom Class/Readers/Manager Reader/ReaderManager.gd" id="2_u3i11"]
+[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/LeEditor/Custom Class/Readers/Audio Reader/ReaderAudioUi.gd" id="3_mbcb0"]
+[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/LeEditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="3_u3i11"]
 
 [sub_resource type="GDScript" id="GDScript_tv1na"]
 script/source = "extends Button

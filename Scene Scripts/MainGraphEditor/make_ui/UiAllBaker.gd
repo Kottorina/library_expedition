@@ -4,7 +4,7 @@ var ui_const_func := UiConstFunc.new()
 
 var cur_editor_obj_layer_ar : Array[EditorObjectLayer]
 var cur_path_obj_layer_ar : Array[PathNode]
-var cur_save_data_all_library : SaveDataAllLibrary
+var le_file_system : LeFileSystem
 
 const NODE_TYPE = BigGraphNodeMakeInsts.NodeType
 const BODY_NODE = GraphNodeMakeInsts.BodyNode
@@ -28,7 +28,7 @@ func get_path_layer_data(layer : PathNode) -> Array[BigGraphNodeMakeInsts]:
 	if ready_baker == null:
 		return []
 	
-	var save_data = cur_save_data_all_library.GetArFromKey(ready_baker.GetUiCategory())
+	var save_data = le_file_system.GetArFromKey(ready_baker.GetUiCategory())
 	
 	return ready_baker.BakeUi(save_data)
 

@@ -32,30 +32,30 @@ func AddDataPathButPressed() -> void:
 	
 	var path_node = path_obj_layers[type_data.selected].duplicate(true)
 	
-	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
-	if all_save_data == null:
+	var le_file_system : LeFileSystem = file_save_load.GetActualEditSave()
+	if le_file_system == null:
 		return
 	
-	all_save_data.AddNewObjInArray(path_node_const.PathObjData,path_node)
+	le_file_system.AddNewObjInArray(path_node_const.PathObjData,path_node)
 	MakePathUi(path_node)
 
 func DelAllPathUi() -> void:
 	for child in path_cont.get_children():
 		child.queue_free()
 func DelAllPathData() -> void:
-	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
-	if all_save_data == null:
+	var le_file_system : LeFileSystem = file_save_load.GetActualEditSave()
+	if le_file_system == null:
 		return
 	for category in path_node_const.AllNameArray:
-		all_save_data.ClearCategory(category)
+		le_file_system.ClearCategory(category)
 
 
-func LoadPathDictionary( all_save_data : SaveDataAllLibrary) -> void:
+func LoadPathDictionary( le_file_system : LeFileSystem) -> void:
 	
 	DelAllPathUi()
 	DelAllPathData()
 	
-	var path_node_ar = all_save_data.GetArFromKey(path_node_const.PathObjData)
+	var path_node_ar = le_file_system.GetArFromKey(path_node_const.PathObjData)
 	for path_node : PathNode in path_node_ar:
 
 		MakePathUi(path_node)
@@ -112,13 +112,13 @@ func LoadPath(path_node : PathNode):
 		push_warning("Baker for "+ path_node.data_key+" not find!")
 		return
 	
-	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
-	if all_save_data == null:
+	var le_file_system : LeFileSystem = file_save_load.GetActualEditSave()
+	if le_file_system == null:
 		return
 	
-	all_save_data.DelItemFromId(bake_path_set.ui_category,path_node.id_)
+	le_file_system.DelItemFromId(bake_path_set.ui_category,path_node.id_)
 	
-	all_save_data.AddNewObjInArray(bake_path_set.ui_category,bake_path_set.path_library_object,path_node.id_)
+	le_file_system.AddNewObjInArray(bake_path_set.ui_category,bake_path_set.path_library_object,path_node.id_)
 
 func DelPath(path_node : PathNode) -> void:
 	
@@ -132,9 +132,9 @@ func DelPath(path_node : PathNode) -> void:
 		push_warning("Baker for "+ path_node.data_key+" not find!")
 		return
 		
-	var all_save_data : SaveDataAllLibrary = file_save_load.GetActualEditSave()
-	if all_save_data == null:
+	var le_file_system : LeFileSystem = file_save_load.GetActualEditSave()
+	if le_file_system == null:
 		return
 	
-	all_save_data.DelItemFromId(ui_category,path_node.id_)
-	all_save_data.DelItemFromId(path_node_const.PathObjData,path_node.id_)
+	le_file_system.DelItemFromId(ui_category,path_node.id_)
+	le_file_system.DelItemFromId(path_node_const.PathObjData,path_node.id_)

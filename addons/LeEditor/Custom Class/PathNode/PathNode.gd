@@ -1,4 +1,4 @@
-extends LibraryObject
+extends LeFile
 class_name PathNode
 
 @export var data_key : String

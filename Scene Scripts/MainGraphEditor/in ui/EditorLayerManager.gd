@@ -14,7 +14,7 @@ extends Control
 @export var item_name : TextEdit
 
 
-var save_data_all_library : SaveDataAllLibrary = null ## СЕЙВ ДАТА, АККУРАТНЕЕ БЛЯДИ
+var le_file_system : LeFileSystem = null ## СЕЙВ ДАТА, АККУРАТНЕЕ БЛЯДИ
 
 var editor_obj_layers : Array[EditorObjectLayer]
 
@@ -29,21 +29,21 @@ func UpdateBaseUi() -> void:
 		type_item.add_item(obj.data_key,ind)
 		ind += 1
 
-func UpdateAllSaveData(new_save_data : SaveDataAllLibrary) -> void: ## Обновляет save_data_all_library
-	save_data_all_library = new_save_data
+func UpdateAllSaveData(new_le_file_system : LeFileSystem) -> void: ## Обновляет save_data_all_library
+	le_file_system = new_le_file_system
 	
-	ui_manager.UpdateUi(type_item.selected,editor_obj_layers, save_data_all_library)
+	ui_manager.UpdateUi(type_item.selected,editor_obj_layers, le_file_system)
 	UpdateIdList()
 
 func UpdateIdList() -> void: ## Обновляет список достпных id
-	if save_data_all_library == null:
+	if le_file_system == null:
 		return
 	
 	id_item.clear()
 	
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var object_ar : Array = save_data_all_library.GetArFromKey(cur_editor_obj_layers.data_key)
+	var object_ar : Array = le_file_system.GetArFromKey(cur_editor_obj_layers.data_key)
 	if object_ar == null:
 		return
 	
@@ -58,14 +58,14 @@ func _on_add_new_button_pressed() -> void: ## Добовляет новый ре
 	
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var new_obj = save_data_all_library.AddNewObjInArray(cur_editor_obj_layers.data_key,GraphDataObjects.new())
+	var new_obj = le_file_system.AddNewObjInArray(cur_editor_obj_layers.data_key,GraphDataObjects.new())
 	UpdateIdList()
 	LoadGraphObj(new_obj)
  
 @warning_ignore("unused_parameter")
 func _on_type_item_item_selected(index: int) -> void: ## ПРИ выборе ТЕКУЩЕГО Глобального типа редактора, для смены ui везде
 	
-	ui_manager.UpdateUi(type_item.selected,editor_obj_layers, save_data_all_library)
+	ui_manager.UpdateUi(type_item.selected,editor_obj_layers, le_file_system)
 	UpdateIdList()
 
 func LoadGraphObj(object : Resource) -> void: ## для загрузки ReadyLocation BigReadyLocation
@@ -83,7 +83,7 @@ func _on_load_button_pressed() -> void: ## Загружает ресурс по 
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var cur_oject = save_data_all_library.GetObjectFromId(cur_editor_obj_layers.data_key,cur_id)
+	var cur_oject = le_file_system.GetObjectFromId(cur_editor_obj_layers.data_key,cur_id)
 	if cur_oject != null:
 		LoadGraphObj(cur_oject)
 
@@ -97,7 +97,7 @@ func SaveGraph() -> void:
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var cur_oject = save_data_all_library.GetObjectFromId(cur_editor_obj_layers.data_key,cur_id)
+	var cur_oject = le_file_system.GetObjectFromId(cur_editor_obj_layers.data_key,cur_id)
 	if cur_oject != null:
 		save_node.SaveBakeGraph(cur_editor_obj_layers, cur_oject)
 	
@@ -106,7 +106,7 @@ func _on_del_item_pressed() -> void:
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	save_data_all_library.DelItemFromId(cur_editor_obj_layers.data_key,cur_id)
+	le_file_system.DelItemFromId(cur_editor_obj_layers.data_key,cur_id)
 	UpdateIdList()
 
 func _on_rename_pressed() -> void:
@@ -114,7 +114,7 @@ func _on_rename_pressed() -> void:
 	var cur_id = id_item.get_selected_id()
 	var cur_editor_obj_layers : EditorObjectLayer = editor_obj_layers[type_item.selected]
 	
-	var cur_oject = save_data_all_library.GetObjectFromId(cur_editor_obj_layers.data_key,cur_id)
+	var cur_oject = le_file_system.GetObjectFromId(cur_editor_obj_layers.data_key,cur_id)
 	cur_oject.name_ = item_name.text
 	
 	SaveGraph()

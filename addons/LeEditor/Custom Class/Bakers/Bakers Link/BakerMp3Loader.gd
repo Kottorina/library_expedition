@@ -42,13 +42,14 @@ func GetMp3FromDir(dir_path : Variant) -> Array:
 
 	return mp3_ar
 
-func FromObjectToBigInstr(obj : Variant) -> Array[BigGraphNodeMakeInsts]:
+func FromObjectToBigInstr(obj : LeFile) -> Array[BigGraphNodeMakeInsts]:
 	
 	if obj is not PathLibraryObject:
 		return []
 	
 	var big_instr_ar : Array[BigGraphNodeMakeInsts]
 	
+	var ind : int = 0
 	for mp3 : AudioStreamMP3 in obj.data:
 		#print(mp3.resource_name)
 		var big_instr = BigGraphNodeMakeInsts.new()
@@ -58,7 +59,11 @@ func FromObjectToBigInstr(obj : Variant) -> Array[BigGraphNodeMakeInsts]:
 		big_instr.ui_category = GetUiCategory()
 	
 		var instr = ui_const_func.GetCloseAudioData()
-		instr.body_value = mp3
+		var path_to_data := PathToData.new()
+		path_to_data.category = GetUiCategory()
+		path_to_data.id = obj.id_
+		path_to_data.id_in_ar = ind
+		instr.body_value = path_to_data
 		big_instr.instr_ar.append(instr)
 	
 		big_instr.instr_ar.append(ui_const_func.GetOpenAudioConnector())
@@ -68,5 +73,7 @@ func FromObjectToBigInstr(obj : Variant) -> Array[BigGraphNodeMakeInsts]:
 		big_instr.instr_ar.append(instr_0)
 		
 		big_instr_ar.append(big_instr)
+		
+		ind+= 1
 	
 	return big_instr_ar

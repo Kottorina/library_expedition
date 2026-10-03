@@ -1,4 +1,4 @@
-extends LibraryObject
+extends LeFile
 class_name GraphDataObjects
 
 @export var name_ : String

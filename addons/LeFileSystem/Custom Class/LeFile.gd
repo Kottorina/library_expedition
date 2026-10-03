@@ -1,4 +1,4 @@
 extends Resource
-class_name LibraryObject
+class_name LeFile
 
 @export var id_ : int

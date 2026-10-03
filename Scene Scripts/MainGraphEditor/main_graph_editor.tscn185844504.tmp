@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://Scene Scripts/MainGraphEditor/oth func/MainGraphEditor.gd" id="1_0gdv0"]
 [ext_resource type="Script" uid="uid://laafe23yiddc" path="res://Scene Scripts/MainGraphEditor/in ui/Settings/FileSaveLoad.gd" id="1_0un4p"]
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="2_eduwg"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/libraryeditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="2_eduwg"]
 [ext_resource type="Resource" uid="uid://cx8l1x0ewjlq2" path="res://Base Obj/EditorLayer/BaseLayer/LayerAnimation.tres" id="3_4100p"]
 [ext_resource type="Resource" uid="uid://biepbqwl4ovr" path="res://Base Obj/EditorLayer/BaseLayer/Audio.tres" id="3_mtn62"]
 [ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://Base Obj/EditorLayer/BaseLayer/LayerBigLocation.tres" id="4_ojduo"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cafpvhnljtusj" path="res://Scene Scripts/MainGraphEditor/in ui/EditorLayerManager.gd" id="7_4100p"]
 [ext_resource type="Script" uid="uid://bw0tkb4jo2ym4" path="res://Scene Scripts/MainGraphEditor/in ui/GraphNodeUiManager.gd" id="7_fshts"]
 [ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://Base Obj/EditorLayer/BaseLayer/LayerDebug.tres" id="7_snist"]
-[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/PathNode/PathNode.gd" id="8_ndpcr"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/libraryeditor/Custom Class/PathNode/PathNode.gd" id="8_ndpcr"]
 [ext_resource type="Theme" uid="uid://b7sb3ymqgwqa3" path="res://Base Obj/BaseEditorTheme.tres" id="8_snist"]
 [ext_resource type="Resource" uid="uid://cghpm4f17od5" path="res://Base Obj/EditorLayer/Link Import/RoomSet Load.tres" id="9_mtn62"]
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://Scene Scripts/MainGraphEditor/make_ui/UiManager.gd" id="9_ojduo"]
@@ -173,10 +173,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -190.5
-offset_top = -65.5
-offset_right = 190.5
-offset_bottom = 65.5
+offset_left = -208.5
+offset_top = -46.5
+offset_right = 208.5
+offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -218,7 +218,7 @@ name_ui_label = NodePath("name_file")
 [node name="NameSetting" type="Label" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=453455828]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "LeFileSystem:"
+text = "AllLibrarySaveData:"
 
 [node name="name_file" type="Label" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=2075902309]
 layout_mode = 2
@@ -244,12 +244,12 @@ layout_mode = 2
 [node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865 node_paths=PackedStringArray("gener_rule_editor", "type_data", "add_data_path_but", "path_cont", "file_save_load")]
 layout_mode = 2
 script = ExtResource("14_tqdi5")
+path_scene = ExtResource("15_t6737")
 gener_rule_editor = NodePath("../../../..")
 type_data = NodePath("Up Menu/Type Data")
 add_data_path_but = NodePath("Up Menu/Add Data Path")
 path_cont = NodePath("Path Cont")
 file_save_load = NodePath("../File Save Load")
-path_scene = ExtResource("15_t6737")
 
 [node name="Up Menu" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager" unique_id=378005286]
 layout_mode = 2

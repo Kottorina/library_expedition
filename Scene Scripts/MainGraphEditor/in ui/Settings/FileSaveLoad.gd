@@ -8,7 +8,7 @@ extends BoxContainer
 
 
 var edditor_save_data : EditorSaveData = null
-var cur_all_save_data : SaveDataAllLibrary = null
+var cur_le_file_system : LeFileSystem = null
 
 @export_category("Ui")
 @export var name_ui_label : Label
@@ -28,7 +28,7 @@ func LoadFilePath( path : String = edditor_save_data.current_file_save_path) -> 
 	if FileAccess.file_exists(path):
 		load_node = ResourceLoader.load( path,"",ResourceLoader.CACHE_MODE_IGNORE )
 	
-	if load_node is SaveDataAllLibrary:
+	if load_node is LeFileSystem:
 		
 		UpdateUi(path)
 		LoadAllSaveData(load_node)
@@ -48,25 +48,25 @@ func SaveSettingData() -> void:
 	ResourceSaver.save(edditor_save_data, main_graph_editor.editor_save_data_path) 
 
 ## ЗАГРУЖАЕТ ДАННЫЕ ВО ВНУТРЕННИЕ РЕДАКТОРЫ
-func LoadAllSaveData( all_save_data : SaveDataAllLibrary) -> void:
+func LoadAllSaveData( all_save_data : LeFileSystem) -> void:
 	print("SaveDataAllLibrary Load")
 	
-	cur_all_save_data = all_save_data
+	cur_le_file_system = all_save_data
 	
 	## СНАЧАЛА ЗАВИСИМОСТИ БЛЯДИ
 	path_manager.LoadPathDictionary(all_save_data)
 	
 	editor_layer_manager.UpdateAllSaveData(all_save_data)
 	
-## СОХРАНЯЕТ ФАЙЛ ДАННЫХ SaveDataAllLibrary
+## СОХРАНЯЕТ ФАЙЛ ДАННЫХ LeFileSystem
 func SaveEditData() -> void:
-	print("SaveDataAllLibrary Save")
-	if editor_layer_manager.save_data_all_library != null:
-		## СОХРАНЯЕТ САМИ ДАНННЫЕ SaveDataAllLibrary
-		ResourceSaver.save(editor_layer_manager.save_data_all_library,edditor_save_data.current_file_save_path)
+	print("LeFileSystem Save")
+	if cur_le_file_system != null:
+		## СОХРАНЯЕТ САМИ ДАНННЫЕ LeFileSystem
+		ResourceSaver.save(cur_le_file_system,edditor_save_data.current_file_save_path)
 
 func GetActualEditSave() -> Variant:
-	if cur_all_save_data is SaveDataAllLibrary:
-		return cur_all_save_data
+	if cur_le_file_system is LeFileSystem:
+		return cur_le_file_system
 	
 	return null

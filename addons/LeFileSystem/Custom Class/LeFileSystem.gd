@@ -8,13 +8,13 @@ class_name LeFileSystem
 
 # @export var room_set : RoomsSet ПОДУМАЙ КАК И ЗАЧЕМ
 
-func GetArFromKey(data_key : String ) -> Array[LibraryObject]:
+func GetArFromKey(data_key : String ) -> Array[LeFile]:
 	
 	if all_data.has(data_key):
-		return all_data[data_key] as Array[LibraryObject]
+		return all_data[data_key] as Array[LeFile]
 	else:
 		all_data[data_key] = []
-		return all_data[data_key] as Array[LibraryObject]
+		return all_data[data_key] as Array[LeFile]
 
 const MinId : int = 0
 const MaxId : int = 10000
@@ -25,7 +25,7 @@ func GetObjectFromId(data_key : String, id : int) -> Variant:
 	
 	var cur_ar = GetArFromKey(data_key)
 	
-	var find_loc_ar : Array[LibraryObject] = []
+	var find_loc_ar : Array[LeFile] = []
 	for loc in cur_ar:
 		if loc != null:
 			if loc.id_ == id:

@@ -53,4 +53,4 @@ class_name EditorObjectLayer
 @export var ui_audio_crossroad_6 : bool = false
 
 @export_group("Unic Ar")
-@export var ui_link_data_ar : Array[String]
+@export var ui_link_data_ar : Array[PathNode]

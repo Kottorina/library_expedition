@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://biepbqwl4ovr"]
+
+[ext_resource type="Script" uid="uid://cbeo2ng164x0v" path="res://addons/LeEditor/Custom Class/Bakers/Bakers GraphDataObject/AudioBaker.gd" id="1_pd2kt"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="1_qvrvw"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/PathNode/PathNode.gd" id="3_xtgtp"]
+[ext_resource type="Resource" uid="uid://dmqrqouudsxje" path="res://addons/LeEditor/Base Obj/EditorLayer/Link Import/Mp3Loader.tres" id="4_odp06"]
+
+[resource]
+script = ExtResource("1_qvrvw")
+data_key = "Audio"
+baker_object_script_path = ExtResource("1_pd2kt")
+ui_start_gener_node = false
+ui_start_gener_empty_node = true
+ui_crossroad_2 = true
+ui_crossroad_4 = true
+ui_crossroad_6 = true
+ui_audio_start = true
+ui_audio_timer = true
+ui_audio_end = true
+ui_audio_crossroad_2 = true
+ui_audio_crossroad_4 = true
+ui_audio_crossroad_6 = true
+ui_link_data_ar = Array[ExtResource("3_xtgtp")]([ExtResource("4_odp06")])
+metadata/_custom_type_script = "uid://dyh1823n402rk"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://cfo5ogurufiu0"]
+
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="1_wwsob"]
+
+[resource]
+script = ExtResource("1_wwsob")
+data_key = "Location"
+ui_all_rnd_fork = true
+ui_connectors_plugs = true
+ui_enter_node = true
+ui_rooms_nodes = true
+metadata/_custom_type_script = "uid://dyh1823n402rk"

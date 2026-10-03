@@ -1,20 +1,17 @@
 extends BakerMain
 
-func FromPathDataToBakePathSet(path_data : Variant) -> BakePathSet:
+func FromPathDataToBakePathSet(path_data : Variant, category : String) -> BakePathSet:
 	var bake_path_set = BakePathSet.new()
 	
-	bake_path_set.ui_category = GetUiCategory()
+	bake_path_set.ui_category = category
 	
-	var data_cont = PathLibraryObject.new()
+	var data_cont = LeFile.new()
 	
 	data_cont.data = GetMp3FromDir(path_data)
 	
 	bake_path_set.path_library_object = data_cont
 	
 	return bake_path_set
-
-func GetUiCategory() -> String:
-	return path_node_const.MusicDataName
 
 func GetMp3FromDir(dir_path : Variant) -> Array:
 	
@@ -42,9 +39,9 @@ func GetMp3FromDir(dir_path : Variant) -> Array:
 
 	return mp3_ar
 
-func FromObjectToBigInstr(obj : LeFile) -> Array[BigGraphNodeMakeInsts]:
+func FromObjectToBigInstr(obj : LeFile, category : String) -> Array[BigGraphNodeMakeInsts]:
 	
-	if obj is not PathLibraryObject:
+	if obj is not LeFile:
 		return []
 	
 	var big_instr_ar : Array[BigGraphNodeMakeInsts]
@@ -56,11 +53,11 @@ func FromObjectToBigInstr(obj : LeFile) -> Array[BigGraphNodeMakeInsts]:
 		big_instr.title_node = (ui_const_func.AUDIO_STREAM_MP3_BIG_TITLE + mp3.resource_name)
 		big_instr.type_node = NODE_TYPE.MAKE_AUDIO
 		
-		big_instr.ui_category = GetUiCategory()
+		big_instr.ui_category = category
 	
 		var instr = ui_const_func.GetCloseAudioData()
 		var path_to_data := PathToData.new()
-		path_to_data.category = GetUiCategory()
+		path_to_data.category = category
 		path_to_data.id = obj.id_
 		path_to_data.id_in_ar = ind
 		instr.body_value = path_to_data

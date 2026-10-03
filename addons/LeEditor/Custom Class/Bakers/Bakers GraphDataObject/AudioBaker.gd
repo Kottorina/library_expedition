@@ -76,7 +76,9 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			
 			var step = DataStep.new()
 			step.step_type = DataStep.Step_Type.PlayAudio
-			step.step_data = GetDataFromCentralData(node,ui_const_func.AUDIO_DATA_TITLE)
+			step.step_data = GetDataFromCentralData(
+				node,ui_const_func.AUDIO_DATA_TITLE
+				)
 			current_audio.step_ar.append(step)
 			
 			var last_step : DataStep = GetLastStep(obj_to_step,node)

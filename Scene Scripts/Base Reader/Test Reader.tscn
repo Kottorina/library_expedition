@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
-[ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/LeEditor/Custom Class/Readers/Manager Reader/ReaderManager.gd" id="2_u3i11"]
-[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/LeEditor/Custom Class/Readers/Audio Reader/ReaderAudioUi.gd" id="3_mbcb0"]
-[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/LeEditor/Custom Class/Readers/Dialogue Reader/ReaderDialogueUi.gd" id="3_u3i11"]
+[ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderManager.gd" id="2_u3i11"]
+[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderAudioUi.gd" id="3_mbcb0"]
+[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/Dialogue/ReaderDialogueUi.gd" id="3_u3i11"]
 
 [sub_resource type="GDScript" id="GDScript_tv1na"]
 script/source = "extends Button
@@ -15,7 +15,7 @@ script/source = "extends Button
 @export var path : String
 
 func _ready() -> void:
-	reader_manager.AllSaveData = ResourceLoader.load( path,\"\",ResourceLoader.CACHE_MODE_IGNORE )
+	reader_manager.le_file_system = ResourceLoader.load( path,\"\",ResourceLoader.CACHE_MODE_IGNORE )
 
 func _on_pressed() -> void:
 	reader_manager.StartRead(type,name_)
@@ -30,7 +30,7 @@ text = "read dial"
 script = SubResource("GDScript_tv1na")
 type = 1
 name_ = "BestMusic"
-path = "C:\\dew\\game_project\\DATA_TEST\\TwoTestAllSave.tres"
+path = "C:/dew/game_project/_Godo (Git, Not Update)/library_expedition/Test Resource/test_files_fro_waf_waf.tres"
 
 [node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("all_reader_ui_ar")]
 script = ExtResource("2_u3i11")
@@ -45,6 +45,6 @@ metadata/_custom_type_script = "uid://dw7cfhrkj4p2n"
 script = ExtResource("3_u3i11")
 metadata/_custom_type_script = "uid://b6e1urt4k82au"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ReaderManager" unique_id=585644832]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ReaderManager" unique_id=1407628285]
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

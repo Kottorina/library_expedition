@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
 [ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderManager.gd" id="1_q3dqc"]
-[ext_resource type="Resource" uid="uid://cfyklqehoyh3m" path="res://Test Resource/Test123.tres" id="2_ce0j0"]
+[ext_resource type="Resource" uid="uid://c1mfojqry4d8p" path="res://Test Resource/Test123.tres" id="2_ce0j0"]
 [ext_resource type="Resource" uid="uid://dcnf0705ot5aj" path="res://Test Resource/ImportDataTest123.tres" id="3_ce0j0"]
 [ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderAudioUi.gd" id="3_lebfi"]
 [ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/Dialogue/ReaderDialogueUi.gd" id="4_eeehn"]

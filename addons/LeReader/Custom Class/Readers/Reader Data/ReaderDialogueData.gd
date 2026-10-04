@@ -37,12 +37,12 @@ func ReadDialogueStep( step : DataStep) -> void:
 		DialogueStep.Step_Type.END_DIALOGUE:
 			EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
 			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
-			EndRead.emit()
+			#EndRead.emit()
 		DialogueStep.Step_Type.CHOISE_DIALOGUE:
 			push_warning("You should not see this message --- DialogueStep.Step_Type.CHOISE_DIALOGUE : ReaderDialogueGraphDataObject")
 			EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
 			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
-			EndRead.emit()
+			#EndRead.emit()
 		DialogueStep.Step_Type.EMIT_DIALOGUE:
 			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
 			ReadDialogueStep(step.next_step_ar[0])
@@ -54,11 +54,11 @@ func ReadDialogueStep( step : DataStep) -> void:
 			ReadDialogueStep(step.next_step_ar[0])
 		DialogueStep.Step_Type.NEXT_DIALOGUE:
 			flag_is_first_read = false
-			if ReadNextDataName(step.signal_data) == false:
+			if ReadDataName(step.signal_data) == false:
 				EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
 				EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
-				EndRead.emit()
+				#EndRead.emit()
 		_:
 			EmitBaseSignal(SignalConst.SignalType.DialogueCloseAnim)
 			EmitBaseSignal(SignalConst.SignalType.BaseEmit,-1,step.signal_data)
-			EndRead.emit()
+			#EndRead.emit()

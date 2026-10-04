@@ -10,27 +10,34 @@ enum ReaderType {DialogueReader,AudioReader}
 @export_group("Reader Ui")
 @export var all_reader_ui_ar : Array[ReaderUi]
 
+var all_reader_data : Dictionary 
+
 func _ready() -> void:
+	
+	all_reader_data = {
+		ReaderType.DialogueReader : ReaderDialogueData.new(),
+		ReaderType.AudioReader : ReaderAudioData.new()
+		}
+	
 	BaseSignal.connect(BaseSignalUpdate)
 	for reader in all_reader_ui_ar:
 		reader.base_signal = BaseSignal
 		reader.start()
+	for reader_data : ReaderMain in all_reader_data.values():
+		reader_data.base_signal = BaseSignal
+		reader_data.current_data_ar = GetAlldatacontainerFromDataKey(
+			reader_data.GetCurrentDataKey()
+			)
 
 func StartRead(type : ReaderType,name_res : String) -> void:
 	
 	var reader : ReaderMain
 	
-	match type:
-		ReaderType.DialogueReader:
-			reader = ReaderDialogueData.new()
-		ReaderType.AudioReader:
-			reader = ReaderAudioData.new()
+	reader = all_reader_data[type]
 		
 	reader.base_signal = BaseSignal
 	print(reader.GetCurrentDataKey())
-	await reader.ReadDataArray(GetAlldatacontainerFromDataKey(
-		reader.GetCurrentDataKey()),name_res
-		)
+	await reader.ReadDataName(name_res)
 
 func GetAlldatacontainerFromDataKey(data_key : String) -> Array[DataContainer]:
 	
@@ -66,6 +73,12 @@ func BaseSignalUpdate(signal_cont : SignalDataContainer) -> void:
 				-1,
 				data_ar.data[signal_cont.body_res.id_in_ar]
 				)
+		SignalConst.SignalType.StartDialogue:
+			var reader : ReaderMain = all_reader_data[ReaderType.DialogueReader]
+			reader.ReadDataName(signal_cont.body_res)
+		SignalConst.SignalType.StartAudio:
+			var reader : ReaderMain = all_reader_data[ReaderType.AudioReader]
+			reader.ReadDataName(signal_cont.body_res)
 
 func EmitBaseSignal(type_ : SignalConst.SignalType, body_res_ : Variant = -1, body_volue_ : Variant = -1):
 	var cont := SignalDataContainer.new()

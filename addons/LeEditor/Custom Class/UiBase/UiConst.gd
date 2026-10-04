@@ -28,7 +28,7 @@ const ENTER_LOCATION_BIG_TITLE : String = "Enter Location Node"
 const START_GENER_BIG_TITLE : String = "Start Gener Node"
 const BIG_RND_FORK_BIG_TITLE : String = "Rnd Fork"
 const CONNECTORS_PLUGS_BIG_TITLE : String = "Connectors Plugs Node"
-
+const AUDIO_TO_TOOL_BIG_TITLE : String = "Audio To Tool"
 
 ##//
 const DIALOGUE_START_BIG_TITLE = "Dialogue Start"
@@ -78,6 +78,7 @@ const AUDIO_DATA_TITLE : String = "Audio Data: "
 const AUDIO_CON_TITLE : String = "Audio Connector: "
 const AUDIO_TIMER_TITLE : String = "Audio Timer: "
 const AUDIO_LOOP_SETTING_TITlE : String = "Audio Loop:"
+
 
 ### ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
 #const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]

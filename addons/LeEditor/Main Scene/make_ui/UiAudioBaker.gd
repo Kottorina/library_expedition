@@ -74,7 +74,7 @@ func get_crossroad( num_choise : int ) -> BigGraphNodeMakeInsts:
 
 func bake_ui_audio_setting_loop() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
-	big_instr.title_node = ui_const_func.AUDIO_LOOP_SETTING_BIG_INSTR
+	big_instr.title_node = UiConst.AUDIO_LOOP_SETTING_BIG_INSTR
 	big_instr.type_node = NODE_TYPE.AUDIO_SETTING_LOOP
 	
 	big_instr.instr_ar.append(ui_const_func.GetOpenAudioConnector())
@@ -85,4 +85,13 @@ func bake_ui_audio_setting_loop() -> Array:
 	big_instr.instr_ar.append(tool_instr)
 	
 	return [ui_const_func.AUDIO_UI_NAME, big_instr]
+
+func bake_ui_audio_to_tool() -> Array:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = UiConst.AUDIO_TO_TOOL_BIG_TITLE
+	big_instr.type_node = NODE_TYPE.AUDIO_TO_TOOL
 	
+	big_instr.instr_ar.append(ui_const_func.GetOpenAudioConnector())
+	big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
+	
+	return [ui_const_func.AUDIO_UI_NAME, big_instr]

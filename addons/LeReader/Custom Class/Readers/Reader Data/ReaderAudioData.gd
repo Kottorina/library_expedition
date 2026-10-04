@@ -40,8 +40,12 @@ func ReadStep( step : DataStep, value : int = -1) -> void:
 		DataStep.Step_Type.SetLoopAudio:
 			EmitBaseSignal(SignalConst.SignalType.AudioSetLoop,value,step.step_data)
 			ReadAllStep(step.next_step_ar,value)
+		DataStep.Step_Type.START_DIALOGUE:
+			EmitBaseSignal(SignalConst.SignalType.StartDialogue,step.step_data)
+			ReadAllStep(step.next_step_ar,value)
 		_:
-			EndRead.emit()
+			pass
+			#EndRead.emit()
 
 func ReadAllStep(step_ar : Array[DataStep], value : int = -1) -> void:
 	for step in step_ar:

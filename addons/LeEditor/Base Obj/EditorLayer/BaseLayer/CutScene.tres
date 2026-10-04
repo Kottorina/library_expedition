@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://dh7jjax4ldsmf"]
+
+[ext_resource type="Script" uid="uid://cw6o7onp6aa1c" path="res://addons/LeEditor/Custom Class/Bakers/Bakers GraphDataObject/DialogueBaker.gd" id="1_aof64"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="2_3fbw4"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/Path/PathNode.gd" id="3_d07w3"]
+
+[resource]
+script = ExtResource("2_3fbw4")
+data_key = "Dialogue"
+baker_object_script_path = ExtResource("1_aof64")
+ui_start_gener_node = false
+ui_start_gener_empty_node = true
+ui_crossroad_2 = true
+ui_crossroad_4 = true
+ui_crossroad_6 = true
+ui_dialogue_start = true
+ui_dialogue_node = true
+ui_dialogue_end = true
+ui_dialogue_choice_2 = true
+ui_dialogue_choice_3 = true
+ui_dialogue_choice_4 = true
+ui_dialogue_con_2 = true
+ui_dialogue_con_4 = true
+ui_dialogue_con_6 = true
+ui_dialogue_setting = true
+ui_dialogue_emit_signal = true
+ui_dialogue_await_signal = true
+ui_dialogue_next_dialogue = true
+metadata/_custom_type_script = "uid://dyh1823n402rk"

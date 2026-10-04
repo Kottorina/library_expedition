@@ -8,11 +8,12 @@ GetDataFromPathToData,TakeDataFromPathToPath,
 
 TimerMake,TimerTimeout,
 
+StartDialogue,
 DialogueOpenAnim,DialogueCloseAnim,DialogueMakeLine,DialogueMakeChoise,
 DialogueContinue,DialogueContinuePreliminary,
 
-AudioReturnSoundId,
-AudioPlaySound,
+StartAudio,
+AudioReturnSoundId,AudioPlaySound,
 AudioMakeEndAudioStream,AudioFinishEndAudioStream,
 
 AudioSetLoop,

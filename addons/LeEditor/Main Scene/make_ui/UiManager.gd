@@ -36,7 +36,8 @@ var tasks_bool : Dictionary = {
 "ui_audio_crossroad_2" : ["ui_audio_baker", "bake_ui_audio_crossroad_2"],
 "ui_audio_crossroad_4" : ["ui_audio_baker", "bake_ui_audio_crossroad_4"],
 "ui_audio_crossroad_6" : ["ui_audio_baker", "bake_ui_audio_crossroad_6"],
-"ui_audio_setting_loop" : ["ui_audio_baker", "bake_ui_audio_setting_loop"]
+"ui_audio_setting_loop" : ["ui_audio_baker", "bake_ui_audio_setting_loop"],
+"ui_audio_to_tool" : ["ui_audio_baker", "bake_ui_audio_to_tool"],
 }
 
 var tasks_ar_string : Dictionary = {

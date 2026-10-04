@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://cv7jwmmq5cb4p"]
 
 [ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://addons/LeEditor/Main Scene/oth func/MainGraphEditor.gd" id="1_3a0yj"]
-[ext_resource type="Resource" uid="uid://du3n8tbv54e8u" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
+[ext_resource type="Resource" uid="uid://vn41onbcror7" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="3_bsmtf"]
 [ext_resource type="Resource" uid="uid://biepbqwl4ovr" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Audio.tres" id="4_rwm26"]
-[ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/LayerDialogue.tres" id="5_j6fub"]
-[ext_resource type="Resource" uid="uid://cx8l1x0ewjlq2" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/LayerAnimation.tres" id="6_qtdnd"]
+[ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Dialogue.tres" id="5_j6fub"]
 [ext_resource type="Resource" uid="uid://bbdqop16cfr2o" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/LayerBigLocation.tres" id="7_etkux"]
 [ext_resource type="Resource" uid="uid://cfo5ogurufiu0" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/LayerLocation.tres" id="8_yn57c"]
-[ext_resource type="Resource" uid="uid://cxj5wpqmklt8n" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/LayerDebug.tres" id="9_7rtdf"]
 [ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/Path/PathNode.gd" id="10_1hmlp"]
 [ext_resource type="Resource" uid="uid://dmqrqouudsxje" path="res://addons/LeEditor/Base Obj/EditorLayer/Link Import/Mp3Loader.tres" id="11_usmmy"]
 [ext_resource type="Resource" uid="uid://cghpm4f17od5" path="res://addons/LeEditor/Base Obj/EditorLayer/Link Import/RoomSet Load.tres" id="12_tgx6c"]
@@ -28,6 +26,21 @@
 [ext_resource type="Script" uid="uid://cqp7fha5lc3tc" path="res://addons/LeEditor/Main Scene/make_ui/UiDialogueBaker.gd" id="25_rx2ly"]
 [ext_resource type="Script" uid="uid://dvtq0kywvx3he" path="res://addons/LeEditor/Main Scene/make_ui/UiAudioBaker.gd" id="26_wjfvn"]
 
+[sub_resource type="Resource" id="Resource_tg4er"]
+script = ExtResource("3_bsmtf")
+data_key = "Animation"
+metadata/_custom_type_script = "uid://dyh1823n402rk"
+
+[sub_resource type="Resource" id="Resource_3a0yj"]
+script = ExtResource("3_bsmtf")
+data_key = "Debug"
+ui_all_rnd_fork = true
+ui_connectors_plugs = true
+ui_enter_node = true
+ui_rooms_nodes = true
+ui_editor_layer_nodes = "Location"
+metadata/_custom_type_script = "uid://dyh1823n402rk"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dltes"]
 bg_color = Color(0.19434926, 0.19434929, 0.19434917, 1)
 
@@ -41,7 +54,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_dltes")
 [node name="MainGraphEditor" type="Node" unique_id=544549692 node_paths=PackedStringArray("file_save_load", "path_manager")]
 script = ExtResource("1_3a0yj")
 editor_save_data = ExtResource("2_bkkyg")
-editor_obj_layers = Array[ExtResource("3_bsmtf")]([ExtResource("4_rwm26"), ExtResource("5_j6fub"), ExtResource("6_qtdnd"), ExtResource("7_etkux"), ExtResource("8_yn57c"), ExtResource("9_7rtdf")])
+editor_obj_layers = Array[ExtResource("3_bsmtf")]([ExtResource("4_rwm26"), ExtResource("5_j6fub"), SubResource("Resource_tg4er"), ExtResource("7_etkux"), ExtResource("8_yn57c"), SubResource("Resource_3a0yj")])
 path_obj_layer = Array[ExtResource("10_1hmlp")]([ExtResource("11_usmmy"), ExtResource("12_tgx6c"), ExtResource("13_ifrcp")])
 file_save_load = NodePath("SettingPanel/MarginContainer/VBoxContainer/File Save Load")
 path_manager = NodePath("SettingPanel/MarginContainer/VBoxContainer/Path Manager")

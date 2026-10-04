@@ -31,7 +31,6 @@ func StartNewSound(audio_stream : AudioStreamMP3) -> int:
 	return id
 
 func SetLoop(audio_stream_id : int, loop_setting : bool) -> void:
-	print(loop_setting)
 	if id_to_obj.has(audio_stream_id):
 		if id_to_obj[audio_stream_id].stream is AudioStreamMP3:
 			id_to_obj[audio_stream_id].stream.loop = loop_setting

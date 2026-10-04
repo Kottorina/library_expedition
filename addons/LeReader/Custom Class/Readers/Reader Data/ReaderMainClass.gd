@@ -1,8 +1,6 @@
 extends Resource
 class_name ReaderMain
 
-signal EndRead
-
 var flag_is_first_read : bool = true
 var data_key : String
 @export var base_signal : Signal
@@ -14,30 +12,7 @@ func GetCurrentDataKey() -> String:
 	return ""
 
 var current_data_ar : Array[DataContainer]
-func ReadDataArray(data_ar : Array[DataContainer],data_name_ : String):
-	
-	current_data_ar = data_ar
-	
-	var current_data_cont : DataContainer
-	for data_cont in data_ar:
-		if data_cont.data_name == data_name_:
-			current_data_cont = data_cont
-	if current_data_cont == null:
-		push_warning("data_name_ does not exist")
-		return
-	
-	var read_data = Callable(self, "ReadDataContainer")
-	if read_data.is_valid():
-		print("Read Start")
-		await read_data.call(current_data_cont)
-		await EndRead
-		flag_is_first_read = false
-		return 
-	else:
-		push_warning("ReadDataContainer (Func) does not exist")
-		return
-
-func ReadNextDataName(data_name_ : String) -> bool:
+func ReadDataName(data_name_ : String) -> bool:
 	for data_cont in current_data_ar:
 		if data_cont.data_name == data_name_:
 			var read_data = Callable(self, "ReadDataContainer")

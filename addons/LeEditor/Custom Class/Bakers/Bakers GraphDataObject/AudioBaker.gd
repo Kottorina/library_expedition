@@ -9,6 +9,29 @@ var obj_to_step : Dictionary
 
 func bake_node(node : BigGraphNodeMakeInsts) -> void:
 	match node.type_node:
+		NODE_TYPE.AUDIO_TO_TOOL:
+			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
+			var last_step : DataStep = GetLastStep(obj_to_step,node)
+			obj_to_step[node] = last_step
+			
+		NODE_TYPE.START_DIALOGUE:
+			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
+			var step = DataStep.new()
+			step.step_type = DataStep.Step_Type.START_DIALOGUE
+			step.step_data = GetDataFromCentralData(node,UiConst.TOOL_TITLE)
+			
+			current_audio.step_ar.append(step)
+			
+			var last_step : DataStep = GetLastStep(obj_to_step,node)
+			last_step.next_step_ar.append(step)
+			obj_to_step[node] = step
+			
 		NODE_TYPE.AUDIO_SETTING_LOOP:
 			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
 			for port in free_ports:
@@ -16,7 +39,7 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			
 			var step = DataStep.new()
 			step.step_type = DataStep.Step_Type.SetLoopAudio
-			step.step_data = GetDataFromCentralData(node,ui_const_func.AUDIO_LOOP_SETTING_TITlE)
+			step.step_data = GetDataFromCentralData(node,UiConst.AUDIO_LOOP_SETTING_TITlE)
 			
 			current_audio.step_ar.append(step)
 			
@@ -31,7 +54,7 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			
 			save_last_data()
 			current_audio = DataContainer.new()
-			current_audio.data_name = GetDataFromCentralData(node,ui_const_func.TOOL_TITLE)
+			current_audio.data_name = GetDataFromCentralData(node,UiConst.TOOL_TITLE)
 			
 			var step = DataStep.new()
 			step.step_type = DataStep.Step_Type.StartAudio
@@ -46,13 +69,13 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			
 			var timeout_time : float = 0
 			
-			var await_timeout = GetLastStep(obj_to_step,node,ui_const_func.AUDIO_AWAIT_TIMEOUT)
+			var await_timeout = GetLastStep(obj_to_step,node,UiConst.AUDIO_AWAIT_TIMEOUT)
 			if await_timeout != null:
 				timeout_time = await_timeout.step_data.get_length() ## ПОТОМУ ЧТО ТАМ AudioStreamMp3
 			
 			var step = DataStep.new()
 			step.step_type = DataStep.Step_Type.Timer_
-			step.step_data = timeout_time + GetDataFromCentralData(node,ui_const_func.AUDIO_TIMER_TITLE)
+			step.step_data = timeout_time + GetDataFromCentralData(node,UiConst.AUDIO_TIMER_TITLE)
 			
 			current_audio.step_ar.append(step)
 			
@@ -67,7 +90,7 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			
 			var step = DataStep.new()
 			step.step_type = DataStep.Step_Type.EndAudio
-			step.step_data = GetDataFromCentralData(node,ui_const_func.AUDIO_TIMER_TITLE)
+			step.step_data = GetDataFromCentralData(node,UiConst.AUDIO_TIMER_TITLE)
 			
 			current_audio.step_ar.append(step)
 			obj_to_step[node] = step
@@ -92,7 +115,7 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			var step = DataStep.new()
 			step.step_type = DataStep.Step_Type.PlayAudio
 			step.step_data = GetDataFromCentralData(
-				node,ui_const_func.AUDIO_DATA_TITLE
+				node,UiConst.AUDIO_DATA_TITLE
 				)
 			current_audio.step_ar.append(step)
 			

@@ -47,7 +47,7 @@ func find_start_gener_node() -> Node:
 	for child in graph_edit.get_children():
 		if child is GraphNode:
 			var meta_node : BigGraphNodeMakeInsts = child.get_meta(graph_const.BIG_INSTR_NODE_DATA_NAME)
-			if meta_node.type_node == 2:
+			if meta_node.type_node == BigGraphNodeMakeInsts.NodeType.START_GENER:
 				start_ar.append(child) 
 	
 	if start_ar.size() == 1:

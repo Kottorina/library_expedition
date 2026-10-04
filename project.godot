@@ -25,23 +25,24 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LeEditor/plugin.cfg", "res://addons/LeFileSystem/plugin.cfg")
+enabled=PackedStringArray("res://addons/LeEditor/plugin.cfg", "res://addons/LeFileSystem/plugin.cfg", "res://addons/LeReader/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
-"res://Draw/": "green",
 "res://Old/": "gray",
-"res://Scene Scripts/": "orange",
+"res://Old/Draw/": "green",
 "res://Test Resource/": "purple",
 "res://addons/LeEditor/Base Obj/": "purple",
 "res://addons/LeEditor/Custom Class/": "blue",
 "res://addons/LeEditor/Custom Class/Bakers/": "yellow",
+"res://addons/LeEditor/Custom Class/Editor Setting Class/": "yellow",
+"res://addons/LeEditor/Custom Class/Path/": "yellow",
 "res://addons/LeEditor/Main Scene/": "orange",
 "res://addons/LeFileSystem/Custom Class/": "blue",
-"res://addons/LeFileSystem/Import File/": "gray",
 "res://addons/LeReader/Custom Class/": "blue",
-"res://addons/LeReader/Custom Class/Readers/": "yellow"
+"res://addons/LeReader/Custom Class/Readers/": "yellow",
+"res://addons/LeReader/Debug  Reader/": "orange"
 }
 
 [physics]

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EditorObjectLayer" format=3 uid="uid://biepbqwl4ovr"]
 
 [ext_resource type="Script" uid="uid://cbeo2ng164x0v" path="res://addons/LeEditor/Custom Class/Bakers/Bakers GraphDataObject/AudioBaker.gd" id="1_pd2kt"]
-[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/EditorObjectData/EditorObjectLayerClass.gd" id="1_qvrvw"]
-[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/PathNode/PathNode.gd" id="3_xtgtp"]
+[ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="1_qvrvw"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/Path/PathNode.gd" id="3_xtgtp"]
 [ext_resource type="Resource" uid="uid://dmqrqouudsxje" path="res://addons/LeEditor/Base Obj/EditorLayer/Link Import/Mp3Loader.tres" id="4_odp06"]
 
 [resource]

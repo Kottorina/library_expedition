@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PathNode" format=3 uid="uid://bfldbbuk4wkcb"]
 
-[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/PathNode/PathNode.gd" id="1_eyka1"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/Path/PathNode.gd" id="1_eyka1"]
 [ext_resource type="Script" uid="uid://dhwmfdmw7n2dj" path="res://addons/LeEditor/Custom Class/Bakers/Bakers Link/BakePngJpegToArt.gd" id="1_gthj0"]
 
 [resource]

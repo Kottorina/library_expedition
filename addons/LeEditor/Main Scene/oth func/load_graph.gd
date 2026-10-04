@@ -14,15 +14,15 @@ func LoadUiSet( scene_graph_ui : SceneGraphUi ) -> void:
 
 func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 	
-	var room_set : RoomsSet = ResourceLoader.load(
-		main_graph_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE
-		)
-	for new_room : Room in room_set.rooms_ar:
-		if new_room != null and big_instr.room_ != null:
-			if big_instr.room_.id_ == new_room.id_:
-				
-				big_instr.room_.update_room_from_new_room(new_room) 
-				big_instr.room_.deco_istr_dict = room_set.deco_istr_dict
+	#var room_set : RoomsSet = ResourceLoader.load(
+		#main_graph_editor.room_set_path,"",ResourceLoader.CACHE_MODE_IGNORE
+		#)
+	#for new_room : Room in room_set.rooms_ar:
+		#if new_room != null and big_instr.room_ != null:
+			#if big_instr.room_.id_ == new_room.id_:
+				#
+				#big_instr.room_.update_room_from_new_room(new_room) 
+				#big_instr.room_.deco_istr_dict = room_set.deco_istr_dict
 	
 	var new_node = GraphNode.new()
 	new_node.title = big_instr.title_node

@@ -5,7 +5,8 @@ signal BaseSignal(value : SignalDataContainer)
 
 enum ReaderType {DialogueReader,AudioReader}
 
-@export var le_file_system : LeFileSystem
+@export var base_files : LeFileSystem
+@export var import_data : LeFileSystem
 @export_group("Reader Ui")
 @export var all_reader_ui_ar : Array[ReaderUi]
 
@@ -34,7 +35,7 @@ func StartRead(type : ReaderType,name_res : String) -> void:
 func GetAlldatacontainerFromDataKey(data_key : String) -> Array[DataContainer]:
 	
 	var all_bake_data : Array[DataContainer]
-	var all_library_obj_ar = le_file_system.GetArFromKey(data_key)
+	var all_library_obj_ar = base_files.GetArFromKey(data_key)
 	for obj in all_library_obj_ar:
 		if obj is GraphDataObjects:
 			for bake_container in obj.bake_data_ar:
@@ -52,9 +53,10 @@ func BaseSignalUpdate(signal_cont : SignalDataContainer) -> void:
 				await timer.timeout
 			EmitBaseSignal(SignalConst.SignalType.TimerTimeout,-1,signal_cont.body_res)
 			timer.queue_free()
+		
 		SignalConst.SignalType.GetDataFromPathToData:
 			
-			var data_ar = le_file_system.GetObjectFromId(
+			var data_ar = import_data.GetObjectFromId(
 				signal_cont.body_res.category,
 				signal_cont.body_res.id
 				)

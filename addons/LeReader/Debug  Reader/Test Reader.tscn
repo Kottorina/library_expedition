@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c22nf50opgd0"]
 
-[ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderManager.gd" id="2_u3i11"]
-[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderAudioUi.gd" id="3_mbcb0"]
-[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/Dialogue/ReaderDialogueUi.gd" id="3_u3i11"]
+[ext_resource type="Script" uid="uid://cy6qxu1tjgon7" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderManager.gd" id="1_q3dqc"]
+[ext_resource type="Resource" uid="uid://1i0l7o1mmjqk" path="res://Test Resource/Test123.tres" id="2_ce0j0"]
+[ext_resource type="Resource" uid="uid://dlm4d42rexdm" path="res://Test Resource/ImportDataTest123.tres" id="3_ce0j0"]
+[ext_resource type="Script" uid="uid://dw7cfhrkj4p2n" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/ReaderAudioUi.gd" id="3_lebfi"]
+[ext_resource type="Script" uid="uid://b6e1urt4k82au" path="res://addons/LeReader/Custom Class/Readers/Reader Nodes/Dialogue/ReaderDialogueUi.gd" id="4_eeehn"]
 
 [sub_resource type="GDScript" id="GDScript_tv1na"]
 script/source = "extends Button
@@ -13,9 +15,6 @@ script/source = "extends Button
 @onready var reader_manager: ReaderManager = $\"../ReaderManager\"
 
 @export var path : String
-
-func _ready() -> void:
-	reader_manager.le_file_system = ResourceLoader.load( path,\"\",ResourceLoader.CACHE_MODE_IGNORE )
 
 func _on_pressed() -> void:
 	reader_manager.StartRead(type,name_)
@@ -33,16 +32,18 @@ name_ = "BestMusic"
 path = "C:/dew/game_project/_Godo (Git, Not Update)/library_expedition/Test Resource/test_files_fro_waf_waf.tres"
 
 [node name="ReaderManager" type="Node" parent="." unique_id=1084929094 node_paths=PackedStringArray("all_reader_ui_ar")]
-script = ExtResource("2_u3i11")
+script = ExtResource("1_q3dqc")
+base_files = ExtResource("2_ce0j0")
+import_data = ExtResource("3_ce0j0")
 all_reader_ui_ar = [NodePath("ReaderAudioUi"), NodePath("ReaderDialogueUi")]
 metadata/_custom_type_script = "uid://cy6qxu1tjgon7"
 
 [node name="ReaderAudioUi" type="Node" parent="ReaderManager" unique_id=1550608385]
-script = ExtResource("3_mbcb0")
+script = ExtResource("3_lebfi")
 metadata/_custom_type_script = "uid://dw7cfhrkj4p2n"
 
 [node name="ReaderDialogueUi" type="Node" parent="ReaderManager" unique_id=2135117404]
-script = ExtResource("3_u3i11")
+script = ExtResource("4_eeehn")
 metadata/_custom_type_script = "uid://b6e1urt4k82au"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ReaderManager" unique_id=1407628285]

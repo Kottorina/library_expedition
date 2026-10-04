@@ -23,9 +23,14 @@ func BakeUi(objects_ar : Array, category : String) -> Array:
 	
 	return big_instr_ar
 	
-func BakePathData(path_data : Variant, category : String) -> BakePathSet:
-	var callable = Callable(self, "FromPathDataToBakePathSet")
+func BakePathDataPreview(path_data : Variant) -> LeFile:
+	var callable = Callable(self, "FromPathDataToPreview")
 	if not callable.is_valid():
 		return null
-	
-	return callable.call(path_data, category)
+	return callable.call(path_data)
+
+func BakePathDataImport(path_data : Variant) -> LeFile:
+	var callable = Callable(self, "FromPathDataToImport")
+	if not callable.is_valid():
+		return null
+	return callable.call(path_data)

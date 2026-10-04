@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cv7jwmmq5cb4p"]
 
 [ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://addons/LeEditor/Main Scene/oth func/MainGraphEditor.gd" id="1_3a0yj"]
-[ext_resource type="Resource" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
+[ext_resource type="Resource" uid="uid://b3ls02tg1iakc" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="3_bsmtf"]
 [ext_resource type="Resource" uid="uid://biepbqwl4ovr" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Audio.tres" id="4_rwm26"]
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/LayerDialogue.tres" id="5_j6fub"]
@@ -20,7 +20,6 @@
 [ext_resource type="Script" uid="uid://laafe23yiddc" path="res://addons/LeEditor/Main Scene/in ui/Settings/FileSaveLoad.gd" id="18_s2ucn"]
 [ext_resource type="Script" uid="uid://b8ttd15d68gc0" path="res://addons/LeEditor/Main Scene/in ui/Settings/PathManageer.gd" id="19_yymhp"]
 [ext_resource type="PackedScene" uid="uid://6devv7ol036q" path="res://addons/LeEditor/Main Scene/in ui/Settings/PathUi/PathUi.tscn" id="20_7fdek"]
-[ext_resource type="Script" uid="uid://cjex7dj8gckg2" path="res://addons/LeEditor/Main Scene/path_baker.gd" id="21_bkkyg"]
 [ext_resource type="Script" uid="uid://dcggylv8ku0fg" path="res://addons/LeEditor/Main Scene/oth func/load_graph.gd" id="21_pg2pv"]
 [ext_resource type="Script" uid="uid://dvhimjq1675qn" path="res://addons/LeEditor/Main Scene/oth func/save_graph.gd" id="22_ngq87"]
 [ext_resource type="Script" uid="uid://b84tq8nurqye0" path="res://addons/LeEditor/Main Scene/make_ui/UiManager.gd" id="23_k8b8k"]
@@ -180,7 +179,6 @@ script = ExtResource("16_50t5p")
 del_button = NodePath("../UpPanel/UpPanel/Graph Node Ui/Node Tool Room List/del_node")
 
 [node name="SettingPanel" type="PanelContainer" parent="." unique_id=116755840 node_paths=PackedStringArray("close_open_but_ar")]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -219,14 +217,13 @@ text = "Close"
 [node name="HSeparator" type="HSeparator" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=887337029]
 layout_mode = 2
 
-[node name="File Save Load" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=287179820 node_paths=PackedStringArray("editor_layer_manager", "path_manager", "new_path_but", "name_ui_label", "setting_panel")]
+[node name="File Save Load" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=287179820 node_paths=PackedStringArray("editor_layer_manager", "path_manager", "new_path_but", "name_ui_label")]
 layout_mode = 2
 script = ExtResource("18_s2ucn")
 editor_layer_manager = NodePath("../../../../Panel/BaseEditorContainer/UpPanel/UpPanel/Editor Layer Manager")
 path_manager = NodePath("../Path Manager")
 new_path_but = NodePath("New Path")
 name_ui_label = NodePath("name_file")
-setting_panel = NodePath("../../..")
 
 [node name="NameSetting" type="Label" parent="SettingPanel/MarginContainer/VBoxContainer/File Save Load" unique_id=453455828]
 layout_mode = 2
@@ -254,12 +251,11 @@ text = "Save"
 [node name="HSeparator2" type="HSeparator" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=713787412]
 layout_mode = 2
 
-[node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865 node_paths=PackedStringArray("file_save_load", "path_baker", "bake_but", "gener_rule_editor", "type_data", "add_data_path_but", "path_cont")]
+[node name="Path Manager" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer" unique_id=1339428865 node_paths=PackedStringArray("file_save_load", "bake_but", "gener_rule_editor", "type_data", "add_data_path_but", "path_cont")]
 layout_mode = 2
 script = ExtResource("19_yymhp")
 path_scene = ExtResource("20_7fdek")
 file_save_load = NodePath("../File Save Load")
-path_baker = NodePath("PathBaker")
 bake_but = NodePath("Up Menu/bake")
 gener_rule_editor = NodePath("../../../..")
 type_data = NodePath("Up Menu/Type Data")
@@ -287,9 +283,6 @@ text = "Bake"
 
 [node name="Path Cont" type="VBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager" unique_id=1028129294]
 layout_mode = 2
-
-[node name="PathBaker" type="Node" parent="SettingPanel/MarginContainer/VBoxContainer/Path Manager" unique_id=1552033074]
-script = ExtResource("21_bkkyg")
 
 [node name="Load Graph" type="Node" parent="." unique_id=227454827 node_paths=PackedStringArray("graph_edit", "main_graph_editor")]
 script = ExtResource("21_pg2pv")

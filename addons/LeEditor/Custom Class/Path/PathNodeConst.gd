@@ -8,3 +8,5 @@ const  AllNameArray : Array = [MusicDataName]
 
 ##ДЛЯ UI ЗАПИСЕЙ НОДОВ
 const PathObjData : String = "PathData" 
+
+const ImportLeFileSystemName :  String = "ImportData"

@@ -1,12 +1,8 @@
 @tool
 extends Resource
-
-## УНИВЕРСАЛЬНАЯ ЗАМЕНА ReadyLocationSet BigReadyLocationSet
-class_name LeFileSystem
+class_name LeFileSystem ## УНИВЕРСАЛЬНАЯ ЗАМЕНА ReadyLocationSet BigReadyLocationSet
 
 @export var all_data : Dictionary ##  Хранит все данные { data_key : Array[GraphDataObjects] }
-
-# @export var room_set : RoomsSet ПОДУМАЙ КАК И ЗАЧЕМ
 
 func GetArFromKey(data_key : String ) -> Array[LeFile]:
 	

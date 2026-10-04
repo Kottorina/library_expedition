@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PathNode" format=3 uid="uid://dmqrqouudsxje"]
 
 [ext_resource type="Script" uid="uid://d0mt65jltfof6" path="res://addons/LeEditor/Custom Class/Bakers/Bakers Link/BakerMp3Loader.gd" id="1_d1koi"]
-[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/PathNode/PathNode.gd" id="1_fhd5r"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/Path/PathNode.gd" id="1_fhd5r"]
 
 [resource]
 script = ExtResource("1_fhd5r")

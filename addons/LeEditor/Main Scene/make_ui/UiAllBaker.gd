@@ -17,16 +17,14 @@ func bake_ui_link_data_ar(link_ar : Array[PathNode]) -> Array:
 	return ui_data_ar
 
 func get_path_layer_data(layer : PathNode) -> Array[BigGraphNodeMakeInsts]:
-	
 	var baker_class = layer.baker_object_script_path
 	var ready_baker : BakerMain = baker_class.new()
-	
 	if ready_baker == null:
 		return []
-	
 	var save_data = le_file_system.GetArFromKey(layer.data_key)
-	
 	return ready_baker.BakeUi(save_data, layer.data_key)
+
+
 
 #func bake_ui_rooms_nodes() -> Array:
 	#for room_ind in room_set.rooms_ar.size():
@@ -71,23 +69,23 @@ func get_path_layer_data(layer : PathNode) -> Array[BigGraphNodeMakeInsts]:
 #
 func bake_ui_start_gener_node() -> Array: ##Стартовая хуйня, без нее генерация по пизде идет
 	var big_instr = BigGraphNodeMakeInsts.new()
-	big_instr.title_node = ui_const_func.START_GENER_LOCATION_BIG_TITLE
+	big_instr.title_node = UiConst.START_GENER_BIG_TITLE
 	big_instr.type_node = NODE_TYPE.START_GENER
 	
 	big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
 	
 	big_instr.instr_ar.append(ui_const_func.GetOpenEnterInstr())
 	
-	return [ui_const_func.TOOL_UI_NAME, big_instr]
+	return [UiConst.TOOL_UI_NAME, big_instr]
 
 func bake_ui_start_gener_empty_node() -> Array:
 	var big_instr = BigGraphNodeMakeInsts.new()
-	big_instr.title_node = ui_const_func.START_GENER_LOCATION_BIG_TITLE
+	big_instr.title_node = UiConst.START_GENER_BIG_TITLE
 	big_instr.type_node = NODE_TYPE.START_GENER
 	
 	big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
 	
-	return [ui_const_func.TOOL_UI_NAME, big_instr]
+	return [UiConst.TOOL_UI_NAME, big_instr]
 
 #func bake_ui_all_rnd_fork() -> void: ## Случайные Перекрестки, Очень Круто
 	#for type_ in ui_const_func.BASE_COLOR_TYPE.size():
@@ -127,17 +125,17 @@ func bake_ui_start_gener_empty_node() -> Array:
 	
 func bake_ui_crossroad_2() -> Array:
 	var big_instr = get_crossroad(2)
-	return [ui_const_func.TOOL_UI_NAME, big_instr]
+	return [UiConst.TOOL_UI_NAME, big_instr]
 func bake_ui_crossroad_4() -> Array:
 	var big_instr = get_crossroad(4)
-	return [ui_const_func.TOOL_UI_NAME, big_instr]
+	return [UiConst.TOOL_UI_NAME, big_instr]
 func bake_ui_crossroad_6() -> Array:
 	var big_instr = get_crossroad(6)
-	return [ui_const_func.TOOL_UI_NAME, big_instr]
+	return [UiConst.TOOL_UI_NAME, big_instr]
 	
 func get_crossroad( num_choise : int ) -> BigGraphNodeMakeInsts:
 	var big_instr = BigGraphNodeMakeInsts.new()
-	big_instr.title_node = " ".join([ui_const_func.TOOL_TITLE,str(num_choise)])  
+	big_instr.title_node = " ".join([UiConst.TOOL_TITLE,str(num_choise)])  
 	big_instr.type_node = 0
 	
 	for i in num_choise:

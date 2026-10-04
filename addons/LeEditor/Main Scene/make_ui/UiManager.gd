@@ -6,12 +6,6 @@ extends Node
 @export var ui_dialogue_baker : Node
 @export var ui_audio_baker : Node
 
-#"ui_all_rnd_fork" : ["ui_all_baker", "bake_ui_all_rnd_fork"],
-#"ui_connectors_plugs" : ["ui_all_baker", "bake_ui_connectors_plugs"],
-#"ui_enter_node" : ["ui_all_baker", "bake_ui_enter_node"],
-#"ui_rooms_nodes" : ["ui_all_baker", "bake_ui_rooms_nodes"],
-#"ui_ready_location_nodes" : ["ui_all_baker", "bake_ui_ready_location_nodes"],
-
 ## ДЛЯ ИТЕРАЦИИ ПО UI В EDITOR LAYER
 var tasks_bool : Dictionary = {
 
@@ -39,10 +33,10 @@ var tasks_bool : Dictionary = {
 "ui_audio_start" : ["ui_audio_baker","bake_ui_audio_start"],
 "ui_audio_timer" : ["ui_audio_baker", "bake_ui_audio_timer"],
 "ui_audio_end" : ["ui_audio_baker", "bake_ui_audio_end"],
-
 "ui_audio_crossroad_2" : ["ui_audio_baker", "bake_ui_audio_crossroad_2"],
 "ui_audio_crossroad_4" : ["ui_audio_baker", "bake_ui_audio_crossroad_4"],
 "ui_audio_crossroad_6" : ["ui_audio_baker", "bake_ui_audio_crossroad_6"],
+"ui_audio_setting_loop" : ["ui_audio_baker", "bake_ui_audio_setting_loop"]
 }
 
 var tasks_ar_string : Dictionary = {

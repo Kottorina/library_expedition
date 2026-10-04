@@ -37,6 +37,9 @@ func ReadStep( step : DataStep, value : int = -1) -> void:
 			EmitBaseSignal(SignalConst.SignalType.AudioPlaySound,mp_3)
 			value = await AwaintBaseSignal(SignalConst.SignalType.AudioReturnSoundId) 
 			ReadAllStep(step.next_step_ar,value)
+		DataStep.Step_Type.SetLoopAudio:
+			EmitBaseSignal(SignalConst.SignalType.AudioSetLoop,value,step.step_data)
+			ReadAllStep(step.next_step_ar,value)
 		_:
 			EndRead.emit()
 

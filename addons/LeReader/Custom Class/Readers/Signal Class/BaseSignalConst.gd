@@ -13,7 +13,8 @@ DialogueContinue,DialogueContinuePreliminary,
 
 AudioReturnSoundId,
 AudioPlaySound,
-AudioMakeEndAudioStream,
-AudioFinishEndAudioStream,
+AudioMakeEndAudioStream,AudioFinishEndAudioStream,
+
+AudioSetLoop,
 
 }

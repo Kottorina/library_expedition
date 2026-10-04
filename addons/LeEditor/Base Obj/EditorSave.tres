@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="EditorSaveData" format=3]
+[gd_resource type="Resource" script_class="EditorSaveData" format=3 uid="uid://fs2400ysm1ur"]
 
-[ext_resource type="Script" path="res://addons/LeEditor/Custom Class/Library Save Files/editor_save_data_class.gd" id="1_ajksn"]
+[ext_resource type="Script" uid="uid://d4nkvqoglldsg" path="res://addons/LeEditor/Custom Class/Library Save Files/editor_save_data_class.gd" id="1_ajksn"]
 
 [resource]
 script = ExtResource("1_ajksn")
-setting_panel_visible = true
 current_file_save_path = "C:/dew/game_project/_Godo (Git, Not Update)/library_expedition/Test Resource/Test123.tres"
 metadata/_custom_type_script = "uid://d4nkvqoglldsg"

@@ -25,9 +25,10 @@ const AUDIO_UI_NAME : String = "Audio"
 ## ДЛЯ BIG_INSTR
 const ROOM_BIG_TITLE = "Room Node: "
 const ENTER_LOCATION_BIG_TITLE : String = "Enter Location Node"
-const START_GENER_LOCATION_BIG_TITLE : String = "Start Gener Node"
+const START_GENER_BIG_TITLE : String = "Start Gener Node"
 const BIG_RND_FORK_BIG_TITLE : String = "Rnd Fork"
 const CONNECTORS_PLUGS_BIG_TITLE : String = "Connectors Plugs Node"
+
 
 ##//
 const DIALOGUE_START_BIG_TITLE = "Dialogue Start"
@@ -45,38 +46,38 @@ const AUDIO_STREAM_MP3_BIG_TITLE = "Audio Stream Mp3: "
 const AUDIO_TIMER_BIG_TITLE : String = "Timer"
 const AUDIO_END_BIG_TITLE : String = "Audio End"
 const AUDIO_CROSSROAD_BIG_TITLE : String = "Audio Crossroad"
-
+const AUDIO_LOOP_SETTING_BIG_INSTR : String = "Audio Loop Setting"
 ## ДЛЯ INSTR
-const TOOL_TITLE : String = "Tool:"
-const ENTER_LOCATION_TITLE : String = "Id Enter:"
-const INSTR_FORK_BASE_TITLE : String = "Base Option: "
-const INSTR_FORK_ALT_CHANCE_TITLE : String = "Alt Chance: "
-const TOOL_CONNECTOR_TITLE : String = "Connector:"
 
 const EMIT_SIGNAL_TITLE : String = "Emit Signal: "
 const AWAIT_SIGNAL_TITLE : String = "Await Signal: "
 
+
+const ENTER_LOCATION_TITLE : String = "Id Enter:"
+const INSTR_FORK_BASE_TITLE : String = "Base Option: "
+const INSTR_FORK_ALT_CHANCE_TITLE : String = "Alt Chance: "
+const TOOL_CONNECTOR_TITLE : String = "Connector:"
+##// TOOl
+const TOOL_TITLE : String = "Tool:"
+##// DIALOGUE
 const MAKE_DIALOGUE : String = "Make Dialogue"
-## //
 const DIALOGUE_TITLE : String = "Dialogue: "
 const DIALOGUE_CON_TITLE : String = "Dialogue Con: "
 const DIALOGUE_CHARACTER_TITLE : String = "Dialogue Character: "
-
 const DIALOGUE_CHOISE_TITLE : String = "Dialogue Choise: "
-
 const DIALOGUE_IS_SKIPED_TITLE : String = "Is skiped: "
 const DIALOGUE_BEFOR_TIME_TITLE : String = "Befor Time: "
 const DIALOGUE_AFTER_TIME_TITLE : String = "After Time: "
 const DIALOGUE_BETWEEN_CHARACTER_TIME_TITLE : String = "Between Character Line Time: "
 const DIALOGUE_CHAR_CHARACTER_TIME_TITLE : String = "Char Character Time: "
 const DIALOGUE_CHAR_LINE_TIME_TITLE : String = "Char Line Time: "
-##//
-#const 
+##// AUDIO
 const AUDIO_TITLE : String = "Audio: "
 const AUDIO_AWAIT_TIMEOUT : String = "Audio Await Timeout: "
 const AUDIO_DATA_TITLE : String = "Audio Data: "
 const AUDIO_CON_TITLE : String = "Audio Connector: "
 const AUDIO_TIMER_TITLE : String = "Audio Timer: "
+const AUDIO_LOOP_SETTING_TITlE : String = "Audio Loop:"
 
 ### ОСТАЛЬНЫЕ КОНСТАНТЫ: WHITE GRAY BLACK
 #const BASE_COLOR_TYPE : Array[String] = ["black","gray","white"]

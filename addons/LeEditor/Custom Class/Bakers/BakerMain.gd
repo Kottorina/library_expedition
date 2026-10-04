@@ -24,12 +24,18 @@ func BakeUi(objects_ar : Array, category : String) -> Array:
 	return big_instr_ar
 	
 func BakePathDataPreview(path_data : Variant) -> LeFile:
+	if typeof(path_data) != TYPE_STRING:
+		push_warning("path_data Is Not String")
+		return null
 	var callable = Callable(self, "FromPathDataToPreview")
 	if not callable.is_valid():
 		return null
 	return callable.call(path_data)
 
 func BakePathDataImport(path_data : Variant) -> LeFile:
+	if typeof(path_data) != TYPE_STRING:
+		push_warning("path_data Is Not String")
+		return null
 	var callable = Callable(self, "FromPathDataToImport")
 	if not callable.is_valid():
 		return null

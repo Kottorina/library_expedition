@@ -5,7 +5,7 @@ enum Step_Type {
 START_DIALOGUE,MAKE_LINE,MAKE_CHOISE,END_DIALOGUE,CHOISE_DIALOGUE,
 EMIT_DIALOGUE,AWAIT_DIALOGUE,NEXT_DIALOGUE,
 
-StartAudio,PlayAudio,Timer_,EndAudio}
+StartAudio,PlayAudio,Timer_,EndAudio,SetLoopAudio}
 
 @export var step_type : Step_Type 
 

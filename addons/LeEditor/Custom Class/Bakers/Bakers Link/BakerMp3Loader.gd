@@ -1,9 +1,6 @@
 extends BakerMain
 
 func FromPathDataToPreview(path_data : Variant) -> LeFile:
-	if typeof(path_data) != TYPE_STRING:
-		push_warning("dir_path Is Not String")
-		return 
 	var dir = DirAccess.open(path_data)
 	if !dir:
 		return 
@@ -21,9 +18,6 @@ func FromPathDataToPreview(path_data : Variant) -> LeFile:
 	return data_cont
 
 func FromPathDataToImport(path_data : Variant) -> LeFile:
-	if typeof(path_data) != TYPE_STRING:
-		push_warning("dir_path Is Not String")
-		return 
 	var dir = DirAccess.open(path_data)
 	if !dir:
 		return 

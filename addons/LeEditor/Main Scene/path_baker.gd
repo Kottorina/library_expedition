@@ -28,7 +28,4 @@ func BakePath(path_ar : Array[PathNode], path_to_base_file_system : String) -> v
 	
 	var path_save : String = path_to_base_file_system.get_base_dir()+"/"+import_files.resource_name
 	var error := ResourceSaver.save(import_files, path_save)
-
-	print("Save path: ", path_save)
-	print("Save error: ", error)
-	print("File exists: ", FileAccess.file_exists(path_save))
+	print("Bake Data Save")

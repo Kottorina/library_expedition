@@ -23,7 +23,9 @@ func _ready() -> void:
 	for reader in all_reader_ui_ar:
 		reader.base_signal = BaseSignal
 		reader.start()
+	var unic_id_obj := UnicId.new()
 	for reader_data : ReaderMain in all_reader_data.values():
+		reader_data.unic_id_obj = unic_id_obj
 		reader_data.base_signal = BaseSignal
 		reader_data.current_data_ar = GetAlldatacontainerFromDataKey(
 			reader_data.GetCurrentDataKey()
@@ -50,39 +52,41 @@ func GetAlldatacontainerFromDataKey(data_key : String) -> Array[DataContainer]:
 	return all_bake_data
 
 func BaseSignalUpdate(signal_cont : SignalDataContainer) -> void:
+	print("New Signal: ",SignalConst.SignalType.keys()[signal_cont.signal_type],", From Id: ",signal_cont.id)
 	await get_tree().process_frame
 	match signal_cont.signal_type:
 		SignalConst.SignalType.TimerMake:
 			var timer := Timer.new()
 			add_child(timer)
-			if signal_cont.body_value > 0:
-				timer.start(signal_cont.body_value)
+			if signal_cont.first_data > 0:
+				timer.start(signal_cont.first_data)
 				await timer.timeout
-			EmitBaseSignal(SignalConst.SignalType.TimerTimeout,-1,signal_cont.body_res)
+			EmitBaseSignal(SignalConst.SignalType.TimerTimeout,signal_cont.id)
 			timer.queue_free()
 		
 		SignalConst.SignalType.GetDataFromPathToData:
 			
 			var data_ar = import_data.GetObjectFromId(
-				signal_cont.body_res.category,
-				signal_cont.body_res.id
+				signal_cont.first_data.category,
+				signal_cont.first_data.id
 				)
 			
 			EmitBaseSignal(
 				SignalConst.SignalType.TakeDataFromPathToPath,
-				-1,
-				data_ar.data[signal_cont.body_res.id_in_ar]
+				signal_cont.id,
+				data_ar.data[signal_cont.first_data.id_in_ar]
 				)
 		SignalConst.SignalType.StartDialogue:
 			var reader : ReaderMain = all_reader_data[ReaderType.DialogueReader]
-			reader.ReadDataName(signal_cont.body_res)
+			reader.ReadDataName(signal_cont.first_data)
 		SignalConst.SignalType.StartAudio:
 			var reader : ReaderMain = all_reader_data[ReaderType.AudioReader]
-			reader.ReadDataName(signal_cont.body_res)
+			reader.ReadDataName(signal_cont.first_data)
 
-func EmitBaseSignal(type_ : SignalConst.SignalType, body_res_ : Variant = -1, body_volue_ : Variant = -1):
+func EmitBaseSignal(type : SignalConst.SignalType, unic_id : int, first_data : Variant = -1, second_data : Variant = -1):
 	var cont := SignalDataContainer.new()
-	cont.signal_type = type_
-	cont.body_res = body_res_
-	cont.body_value = body_volue_
+	cont.signal_type = type
+	cont.first_data = first_data
+	cont.second_data = second_data
+	cont.id = unic_id
 	BaseSignal.emit(cont)

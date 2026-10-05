@@ -3,5 +3,7 @@ class_name SignalDataContainer
 
 @export var signal_type : SignalConst.SignalType
 
-@export var body_res : Variant
-@export var body_value : Variant
+@export var first_data : Variant
+@export var second_data : Variant
+
+@export var id : int 

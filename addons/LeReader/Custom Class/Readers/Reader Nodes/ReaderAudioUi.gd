@@ -8,13 +8,13 @@ func BaseSignalUpdate(signal_cont : SignalDataContainer) -> void:
 	await get_tree().process_frame
 	match signal_cont.signal_type:
 		SignalConst.SignalType.AudioPlaySound:
-			var id = StartNewSound(signal_cont.body_res)
-			EmitBaseSignal(SignalConst.SignalType.AudioReturnSoundId,-1,id)
+			var id_audio_stream_node = StartNewSound(signal_cont.first_data)
+			EmitBaseSignal(SignalConst.SignalType.AudioReturnSoundId,signal_cont.id,id_audio_stream_node)
 		SignalConst.SignalType.AudioMakeEndAudioStream:
-			await EndAudioStream(signal_cont.body_res,signal_cont.body_value)
-			EmitBaseSignal(SignalConst.SignalType.AudioFinishEndAudioStream,-1,signal_cont.body_res)
+			await EndAudioStream(signal_cont.first_data,signal_cont.second_data)
+			EmitBaseSignal(SignalConst.SignalType.AudioFinishEndAudioStream,signal_cont.id)
 		SignalConst.SignalType.AudioSetLoop:
-			SetLoop(signal_cont.body_res, signal_cont.body_value)
+			SetLoop(signal_cont.first_data, signal_cont.second_data)
 
 var id : int = 0
 var id_to_obj : Dictionary
@@ -49,5 +49,5 @@ func EndAudioStream(audio_stream_id : int, end_time : float) -> bool:
 		await tween.finished
 		id_to_obj[audio_stream_id].queue_free()
 		id_to_obj.erase(audio_stream_id)
-	print("AudioStreamPlayer Delete")
+		print("AudioStreamPlayer Delete")
 	return true

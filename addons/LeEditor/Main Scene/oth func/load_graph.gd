@@ -3,8 +3,6 @@ extends Node
 @export var graph_edit: GraphEdit 
 @export var main_graph_editor : Node
 
-var graph_constants := GraphNodeConstants.new()
-
 const BODY_NODE = GraphNodeMakeInsts.BodyNode
 
 func LoadUiSet( scene_graph_ui : SceneGraphUi ) -> void:
@@ -45,14 +43,14 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 		match inst.body_node:
 			BODY_NODE.Label_: 
 				child_node = Label.new()
-				child_node.horizontal_alignment = graph_constants.LABEL_HORIZONTAL_ALIGNMENT
+				child_node.horizontal_alignment = GraphNodeConstants.LABEL_HORIZONTAL_ALIGNMENT
 				
 				child_node.text = inst.title_instr
 				new_node.add_child(child_node)
 			
 			BODY_NODE.SpinBox_:
 				active_node = SpinBox.new()
-				active_node.step = graph_constants.SPINBOX_BASE_STEP
+				active_node.step = GraphNodeConstants.SPINBOX_BASE_STEP
 				child_node = HBoxContainer.new()
 				
 				new_node.add_child(child_node)
@@ -68,9 +66,9 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 			BODY_NODE.TextEdit_:
 				active_node = TextEdit.new()
 				
-				active_node.scroll_fit_content_height = graph_constants.TEXT_FIT_CONTENT_HEIGHT
-				active_node.scroll_fit_content_width = graph_constants.TEXT_FIT_CONTENT_WIDTH
-				active_node.custom_minimum_size.x = graph_constants.TEXT_MINIMUM_SIZE_X
+				active_node.scroll_fit_content_height = GraphNodeConstants.TEXT_FIT_CONTENT_HEIGHT
+				active_node.scroll_fit_content_width = GraphNodeConstants.TEXT_FIT_CONTENT_WIDTH
+				active_node.custom_minimum_size.x = GraphNodeConstants.TEXT_MINIMUM_SIZE_X
 				
 				child_node = HBoxContainer.new()
 				
@@ -115,15 +113,15 @@ func MakeNodeFromBigInstr(big_instr : BigGraphNodeMakeInsts) -> GraphNode:
 			
 			right_port_mum += 1
 		
-		child_node.set_meta(graph_constants.ACTIVE_NODE_DATA_NAME,active_node)
+		child_node.set_meta(GraphNodeConstants.ACTIVE_NODE_DATA_NAME,active_node)
 		
 		ind += 1
 	
-	new_node.set_meta(graph_constants.BIG_INSTR_NODE_DATA_NAME,big_instr)
+	new_node.set_meta(GraphNodeConstants.BIG_INSTR_NODE_DATA_NAME,big_instr)
 	
-	new_node.set_meta(graph_constants.CENTRAL_DATA_NAME,central_data_ar)
-	new_node.set_meta(graph_constants.LEFT_PORTS_DATA_NAME,left_ports_data_ar)
-	new_node.set_meta(graph_constants.RIGHT_PORTS_DATA_NAME,right_ports_data_ar)
+	new_node.set_meta(GraphNodeConstants.CENTRAL_DATA_NAME,central_data_ar)
+	new_node.set_meta(GraphNodeConstants.LEFT_PORTS_DATA_NAME,left_ports_data_ar)
+	new_node.set_meta(GraphNodeConstants.RIGHT_PORTS_DATA_NAME,right_ports_data_ar)
 	
 	graph_edit.add_child(new_node)
 	return new_node
@@ -145,7 +143,7 @@ func LoadSaveGraph(save_graph : Dictionary) -> void:
 		
 	for big_instr in save_graph.keys():
 		## ЗАГРУЗКА СОЕДИНЕНИЙ
-		for left_port : FromToWith in save_graph[big_instr][graph_constants.LEFT_PORTS_DATA_NAME]:
+		for left_port : FromToWith in save_graph[big_instr][GraphNodeConstants.LEFT_PORTS_DATA_NAME]:
 			
 			if left_port.to_obj is String:
 				continue
@@ -155,7 +153,7 @@ func LoadSaveGraph(save_graph : Dictionary) -> void:
 				big_instr_to_node[big_instr].name,left_port.from_data.port_num
 				)
 			
-		for right_port : FromToWith in save_graph[big_instr][graph_constants.RIGHT_PORTS_DATA_NAME]:
+		for right_port : FromToWith in save_graph[big_instr][GraphNodeConstants.RIGHT_PORTS_DATA_NAME]:
 			
 			if right_port.to_obj is String:
 				continue

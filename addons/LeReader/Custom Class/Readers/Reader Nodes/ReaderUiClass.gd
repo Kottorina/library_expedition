@@ -3,23 +3,13 @@ class_name ReaderUi
 
 @export var base_signal : Signal
 
-func EmitBaseSignal(type_ : SignalConst.SignalType, body_res_ : Variant = -1, body_volue_ : Variant = -1):
+func EmitBaseSignal(type : SignalConst.SignalType, unic_id : int, first_data : Variant = -1, second_data : Variant = -1):
 	var cont := SignalDataContainer.new()
-	cont.signal_type = type_
-	cont.body_res = body_res_
-	cont.body_value = body_volue_
+	cont.signal_type = type
+	cont.first_data = first_data
+	cont.second_data = second_data
+	cont.id = unic_id
 	base_signal.emit(cont)
-## ДОБАВИТЬ МАКСИМАЛЬНОЕ ВРЕМЯ ПРИ НИОБХОДИМОСТИ
-func AwaintBaseSignal(type : SignalConst.SignalType,body_volue : Variant = -1) -> Variant:
-	while true:
-		var cont : SignalDataContainer = await base_signal
-		if cont.signal_type == type:
-			if body_volue is int:
-				if body_volue == -1:
-					return cont.body_value
-			if cont.body_value == body_volue:
-				return cont.body_value
-	return false
 
 var timer := Timer.new()
 func start() -> void:

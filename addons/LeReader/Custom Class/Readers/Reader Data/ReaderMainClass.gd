@@ -20,20 +20,21 @@ func ReadDataName(data_name_ : String) -> bool:
 			return true
 	return false
 
-func EmitBaseSignal(type_ : SignalConst.SignalType, body_res_ : Variant = -1, body_volue_ : Variant = -1):
+var unic_id_obj : UnicId
+func EmitBaseSignal(type : SignalConst.SignalType, first_data : Variant = null, second_data : Variant = null) -> int:
 	var cont := SignalDataContainer.new()
-	cont.signal_type = type_
-	cont.body_res = body_res_
-	cont.body_value = body_volue_
+	cont.signal_type = type
+	cont.first_data = first_data
+	cont.second_data = second_data
+	var unic_id = unic_id_obj.GetUnicId()
+	cont.id = unic_id
 	base_signal.emit(cont)
+	return unic_id
 ## ДОБАВИТЬ МАКСИМАЛЬНОЕ ВРЕМЯ ПРИ НИОБХОДИМОСТИ
-func AwaintBaseSignal(type : SignalConst.SignalType,body_volue : Variant = -1) -> Variant:
+func AwaintBaseSignal(type : SignalConst.SignalType,unic_id : int) -> Variant:
 	while true:
 		var cont : SignalDataContainer = await base_signal
 		if cont.signal_type == type:
-			if body_volue is int:
-				if body_volue == -1:
-					return cont.body_value
-			if cont.body_value == body_volue:
-				return cont.body_value
-	return false
+			if cont.id == unic_id:
+				return cont.first_data
+	return null

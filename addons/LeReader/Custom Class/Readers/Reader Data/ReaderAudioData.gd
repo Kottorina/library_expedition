@@ -23,19 +23,18 @@ func ReadStep( step : DataStep, value : int = -1) -> void:
 		DataStep.Step_Type.StartAudio:
 			ReadAllStep(step.next_step_ar,value)
 		DataStep.Step_Type.Timer_:
-			var unic_code = Time.get_unix_time_from_system() + step.step_data
-			EmitBaseSignal(SignalConst.SignalType.TimerMake,unic_code,step.step_data)
-			await AwaintBaseSignal(SignalConst.SignalType.TimerTimeout,unic_code) 
+			var unic_id = EmitBaseSignal(SignalConst.SignalType.TimerMake,step.step_data)
+			await AwaintBaseSignal(SignalConst.SignalType.TimerTimeout,unic_id) 
 			ReadAllStep(step.next_step_ar,value)
 		DataStep.Step_Type.EndAudio:
-			EmitBaseSignal(SignalConst.SignalType.AudioMakeEndAudioStream,value,step.step_data)
-			await AwaintBaseSignal(SignalConst.SignalType.AudioFinishEndAudioStream,value) 
+			var unic_id = EmitBaseSignal(SignalConst.SignalType.AudioMakeEndAudioStream,value,step.step_data)
+			await AwaintBaseSignal(SignalConst.SignalType.AudioFinishEndAudioStream,unic_id) 
 			ReadAllStep(step.next_step_ar,value)
 		DataStep.Step_Type.PlayAudio:
-			EmitBaseSignal(SignalConst.SignalType.GetDataFromPathToData,step.step_data)
-			var mp_3 = await AwaintBaseSignal(SignalConst.SignalType.TakeDataFromPathToPath)
-			EmitBaseSignal(SignalConst.SignalType.AudioPlaySound,mp_3)
-			value = await AwaintBaseSignal(SignalConst.SignalType.AudioReturnSoundId) 
+			var unic_id_0 = EmitBaseSignal(SignalConst.SignalType.GetDataFromPathToData,step.step_data)
+			var mp_3 = await AwaintBaseSignal(SignalConst.SignalType.TakeDataFromPathToPath,unic_id_0)
+			var unic_id_1 = EmitBaseSignal(SignalConst.SignalType.AudioPlaySound,mp_3)
+			value = await AwaintBaseSignal(SignalConst.SignalType.AudioReturnSoundId, unic_id_1) 
 			ReadAllStep(step.next_step_ar,value)
 		DataStep.Step_Type.SetLoopAudio:
 			EmitBaseSignal(SignalConst.SignalType.AudioSetLoop,value,step.step_data)

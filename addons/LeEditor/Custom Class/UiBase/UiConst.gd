@@ -28,7 +28,6 @@ const ENTER_LOCATION_BIG_TITLE : String = "Enter Location Node"
 const START_GENER_BIG_TITLE : String = "Start Gener Node"
 const BIG_RND_FORK_BIG_TITLE : String = "Rnd Fork"
 const CONNECTORS_PLUGS_BIG_TITLE : String = "Connectors Plugs Node"
-const AUDIO_TO_TOOL_BIG_TITLE : String = "Audio To Tool"
 
 ##//
 const DIALOGUE_START_BIG_TITLE = "Dialogue Start"
@@ -40,6 +39,7 @@ const DIALOGUE_SETTING_BIG_TITLE = "Dialogue Setting: "
 const DIALOGUE_EMIT_SIGNAL_BIG_TITLE = "Dialogue Emit Signal: "
 const DIALOGUE_AWAIT_SIGNAL_BIG_TITLE = "Dialogue Await Signal: "
 const DIALOGUE_NEXT_DIALOGUE_BIG_TITLE = "Next Dialogue: "
+const DIALOGUE_TO_TOOL_BIG_TITLE = "Dialogue To Tool"
 ##//
 const AUDIO_START_BIG_TITLE = "Audio Start"
 const AUDIO_STREAM_MP3_BIG_TITLE = "Audio Stream Mp3: "
@@ -47,6 +47,7 @@ const AUDIO_TIMER_BIG_TITLE : String = "Timer"
 const AUDIO_END_BIG_TITLE : String = "Audio End"
 const AUDIO_CROSSROAD_BIG_TITLE : String = "Audio Crossroad"
 const AUDIO_LOOP_SETTING_BIG_INSTR : String = "Audio Loop Setting"
+const AUDIO_TO_TOOL_BIG_TITLE : String = "Audio To Tool"
 ## ДЛЯ INSTR
 
 const EMIT_SIGNAL_TITLE : String = "Emit Signal: "

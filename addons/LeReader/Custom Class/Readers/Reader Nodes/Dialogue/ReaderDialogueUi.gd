@@ -13,18 +13,18 @@ func BaseSignalUpdate(signal_cont : SignalDataContainer) -> void:
 		SignalConst.SignalType.DialogueOpenAnim:
 			
 			await ui_scene_node.open_anim()
-			EmitBaseSignal(SignalConst.SignalType.DialogueContinue)
+			EmitBaseSignal(SignalConst.SignalType.DialogueContinue,signal_cont.id)
 			
 		SignalConst.SignalType.DialogueCloseAnim:
 			
 			await ui_scene_node.close_anim()
 		
 		SignalConst.SignalType.DialogueMakeLine:
-			MakeLine(signal_cont.body_res,signal_cont.body_value)
+			MakeLine(signal_cont.first_data,signal_cont.second_data,signal_cont.id)
 		SignalConst.SignalType.DialogueMakeChoise:
-			make_choise(signal_cont.body_res,signal_cont.body_value)
+			make_choise(signal_cont.first_data,signal_cont.second_data,signal_cont.id)
 
-func MakeLine( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> void:
+func MakeLine( data_dialogue : DataDialogue, dialogue_step : DialogueStep, signal_id : int) -> void:
 	
 	ui_scene_node.clear_dialogue()
 	
@@ -41,19 +41,19 @@ func MakeLine( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> vo
 	timer.start(data_dialogue.after_time)
 	await timer.timeout
 	
-	EmitBaseSignal(SignalConst.SignalType.DialogueContinuePreliminary)
+	EmitBaseSignal(SignalConst.SignalType.DialogueContinuePreliminary,signal_id)
 	
 	if data_dialogue.is_skiped == true:
 		ui_scene_node.skip_button.show()
 		await ui_scene_node.skip_button.pressed
 		ui_scene_node.skip_button.hide()
 		
-		EmitBaseSignal(SignalConst.SignalType.DialogueContinue)
+		EmitBaseSignal(SignalConst.SignalType.DialogueContinue,signal_id)
 	else:
 		timer.start(data_dialogue.after_time)
 		await timer.timeout
 		
-		EmitBaseSignal(SignalConst.SignalType.DialogueContinue)
+		EmitBaseSignal(SignalConst.SignalType.DialogueContinue,signal_id)
 
 signal write_step_by_step_complete 
 func write_step_by_step(node : Control, write_text : String, time : float) -> bool:
@@ -66,7 +66,7 @@ func write_step_by_step(node : Control, write_text : String, time : float) -> bo
 	write_step_by_step_complete.emit()
 	return true
 
-func make_choise( data_dialogue : DataDialogue, dialogue_step : DialogueStep) -> void:
+func make_choise( data_dialogue : DataDialogue, dialogue_step : DialogueStep,signal_id : int) -> void:
 	flag_make_choise_complete = false
 	
 	ui_scene_node.clear_dialogue()
@@ -84,7 +84,7 @@ func make_choise( data_dialogue : DataDialogue, dialogue_step : DialogueStep) ->
 	timer.start(data_dialogue.after_time)
 	await timer.timeout
 
-	EmitBaseSignal(SignalConst.SignalType.DialogueContinuePreliminary)
+	EmitBaseSignal(SignalConst.SignalType.DialogueContinuePreliminary,signal_id)
 	
 	var ind : int = 0
 	for step : DialogueStep in dialogue_step.next_step_ar:

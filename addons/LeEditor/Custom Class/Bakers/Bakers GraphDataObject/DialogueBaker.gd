@@ -11,6 +11,41 @@ var current_dialogue : DataDialogue
 
 func bake_node(node : BigGraphNodeMakeInsts) -> void:
 	match node.type_node:
+		NODE_TYPE.START_AUDIO:
+			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
+			var new_step := DialogueStep.new()
+			new_step.step_type = DialogueStep.Step_Type.StartAudio
+			new_step.step_data = GetDataFromCentralData(node,ui_const_func.TOOL_TITLE)
+			
+			var last_dialogue_step : DialogueStep
+			var last_dialogue_port_num : int
+			
+			var ports = full_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + full_graph[node][graph_const.RIGHT_PORTS_DATA_NAME]
+			for port : FromToWith in ports:
+				if obj_to_dialogue_step.has(port.to_obj):
+					last_dialogue_step = obj_to_dialogue_step[port.to_obj]
+					last_dialogue_port_num = port.to_data.port_num
+					break
+			
+			if last_dialogue_step.step_type != 2: ## ! "make_choise"
+				last_dialogue_step.next_step_ar = [new_step]
+			else:
+				var real_last_step = last_dialogue_step.next_step_ar[last_dialogue_port_num-1] 
+				real_last_step.next_step_ar.append(new_step)
+			
+			current_dialogue.step_ar.append(new_step)
+			obj_to_dialogue_step[node] = new_step
+			
+		NODE_TYPE.DILOGUE_TO_TOOl:
+			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
+			var last_step : DataStep = GetLastStep(obj_to_dialogue_step,node)
+			obj_to_dialogue_step[node] = last_step
 		NODE_TYPE.DIALOGUE_EMIT_SIGNAL:
 			
 			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
@@ -120,6 +155,10 @@ func bake_node(node : BigGraphNodeMakeInsts) -> void:
 			obj_to_dialogue_step[node] = new_step
 		
 		NODE_TYPE.END_DIALOGUE:
+			var free_ports = get_free_ports(save_graph[node][graph_const.LEFT_PORTS_DATA_NAME] + save_graph[node][graph_const.RIGHT_PORTS_DATA_NAME])
+			for port in free_ports:
+				AddFreePort(port)
+			
 			var new_step := DialogueStep.new()
 			new_step.step_type = DataStep.Step_Type.END_DIALOGUE
 			

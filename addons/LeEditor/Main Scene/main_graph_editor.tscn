@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cv7jwmmq5cb4p"]
 
 [ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://addons/LeEditor/Main Scene/oth func/MainGraphEditor.gd" id="1_3a0yj"]
-[ext_resource type="Resource" uid="uid://vn41onbcror7" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
+[ext_resource type="Resource" uid="uid://u3txaf8ayuij" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="3_bsmtf"]
 [ext_resource type="Resource" uid="uid://biepbqwl4ovr" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Audio.tres" id="4_rwm26"]
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Dialogue.tres" id="5_j6fub"]
@@ -100,6 +100,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Add Node:"
 
+[node name="CopyNode" type="Button" parent="Panel/BaseEditorContainer/UpPanel/UpPanel/Graph Node Ui/Node Tool Room List" unique_id=1996692259]
+layout_mode = 2
+tooltip_text = "По Техническим Причинам Не Копирует Данные Только После Загрузки Сцены"
+text = "Copy Select Node"
+
 [node name="del_node" type="Button" parent="Panel/BaseEditorContainer/UpPanel/UpPanel/Graph Node Ui/Node Tool Room List" unique_id=601181002]
 layout_mode = 2
 text = "Del Select Node"
@@ -184,13 +189,15 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Settings"
 
-[node name="MainGraphEdit" type="GraphEdit" parent="Panel/BaseEditorContainer" unique_id=1291819869 node_paths=PackedStringArray("del_button")]
+[node name="MainGraphEdit" type="GraphEdit" parent="Panel/BaseEditorContainer" unique_id=1291819869 node_paths=PackedStringArray("del_but", "copy_but", "load_graph")]
 layout_mode = 2
 size_flags_vertical = 3
 minimap_enabled = false
 show_menu = false
 script = ExtResource("16_50t5p")
-del_button = NodePath("../UpPanel/UpPanel/Graph Node Ui/Node Tool Room List/del_node")
+del_but = NodePath("../UpPanel/UpPanel/Graph Node Ui/Node Tool Room List/del_node")
+copy_but = NodePath("../UpPanel/UpPanel/Graph Node Ui/Node Tool Room List/CopyNode")
+load_graph = NodePath("../../../Load Graph")
 
 [node name="SettingPanel" type="PanelContainer" parent="." unique_id=116755840 node_paths=PackedStringArray("close_open_but_ar")]
 visible = false

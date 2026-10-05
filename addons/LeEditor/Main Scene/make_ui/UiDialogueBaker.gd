@@ -172,3 +172,13 @@ func bake_ui_dialogue_next_dialogue() -> Array:
 	big_instr.instr_ar.append(ui_const_func.GetOpenDialogueConnectorInstr())
 	
 	return[ui_const_func.DIALOGUE_UI_NAME, big_instr]
+
+func bake_ui_dialogue_to_tool() -> Array:
+	var big_instr = BigGraphNodeMakeInsts.new()
+	big_instr.title_node = ui_const_func.DIALOGUE_TO_TOOL_BIG_TITLE
+	big_instr.type_node = NODE_TYPE.DILOGUE_TO_TOOl
+	
+	big_instr.instr_ar.append(ui_const_func.GetOpenDialogueConnectorInstr())
+	big_instr.instr_ar.append(ui_const_func.GetOpenToolInstr())
+	
+	return [UiConst.DIALOGUE_UI_NAME, big_instr]

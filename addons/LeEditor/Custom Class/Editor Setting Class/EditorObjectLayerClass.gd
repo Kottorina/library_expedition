@@ -43,6 +43,8 @@ class_name EditorObjectLayer
 
 @export var ui_dialogue_next_dialogue : bool = false
 
+@export var ui_dialogue_to_tool : bool = false
+
 @export_subgroup("Audio")
 @export var ui_audio_start : bool = false
 @export var ui_audio_timer : bool = false

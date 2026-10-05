@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw6o7onp6aa1c" path="res://addons/LeEditor/Custom Class/Bakers/Bakers GraphDataObject/DialogueBaker.gd" id="1_h78o0"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="1_l5ft7"]
+[ext_resource type="Script" uid="uid://6qsr68btodnl" path="res://addons/LeEditor/Custom Class/Path/PathNode.gd" id="3_wsw82"]
 
 [resource]
 script = ExtResource("1_l5ft7")
@@ -25,4 +26,6 @@ ui_dialogue_setting = true
 ui_dialogue_emit_signal = true
 ui_dialogue_await_signal = true
 ui_dialogue_next_dialogue = true
+ui_dialogue_to_tool = true
+ui_audio_start = true
 metadata/_custom_type_script = "uid://dyh1823n402rk"

@@ -1,18 +1,5 @@
 extends BakerMain
 
-#func FromPathDataToBakePathSet(path_data : Variant, category : String) -> BakePathSet:
-	#var bake_path_set = BakePathSet.new()
-	#
-	#bake_path_set.ui_category = category
-	#
-	#var data_cont = LeFile.new()
-	#
-	#data_cont.data = GetArtFromDir(path_data)
-	#
-	#bake_path_set.path_library_object = data_cont
-	#
-	#return bake_path_set
-	#
 func GetArtFromDir(dir_path : Variant) -> Array:
 	
 	if typeof(dir_path) != TYPE_STRING:

@@ -6,7 +6,7 @@ func GetDataKey() -> String:
 	return DATA_KEY
 
 var current_data_container : DataContainer
-func ReadDataContainer(data_container : DataContainer) -> void:
+func ReadDataContainer(data_container : DataContainer, unic_code : int = UnicId.NullValue) -> void:
 	if not data_container is DataContainer:
 		push_warning("data_container is not DataContainer")
 		return
@@ -16,9 +16,9 @@ func ReadDataContainer(data_container : DataContainer) -> void:
 	
 	current_data_container = data_container
 	
-	ReadStep(current_data_container.step_ar[0])
+	ReadStep(current_data_container.step_ar[0], -1, unic_code)
 
-func ReadStep( step : DataStep, value : int = -1) -> void:
+func ReadStep( step : DataStep, value : int = -1, unic_return_code : int = UnicId.NullValue) -> void:
 	match step.step_type:
 		DataStep.Step_Type.StartAudio:
 			ReadAllStep(step.next_step_ar,value)

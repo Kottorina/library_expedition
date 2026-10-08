@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cv7jwmmq5cb4p"]
 
 [ext_resource type="Script" uid="uid://ct3vea5bq5x5v" path="res://addons/LeEditor/Main Scene/oth func/MainGraphEditor.gd" id="1_3a0yj"]
-[ext_resource type="Resource" uid="uid://u3txaf8ayuij" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
+[ext_resource type="Resource" uid="uid://c8luoosv3b73l" path="res://addons/LeEditor/Base Obj/EditorSave.tres" id="2_bkkyg"]
 [ext_resource type="Script" uid="uid://dyh1823n402rk" path="res://addons/LeEditor/Custom Class/Editor Setting Class/EditorObjectLayerClass.gd" id="3_bsmtf"]
 [ext_resource type="Resource" uid="uid://biepbqwl4ovr" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Audio.tres" id="4_rwm26"]
 [ext_resource type="Resource" uid="uid://da7mknb2vjo1m" path="res://addons/LeEditor/Base Obj/EditorLayer/BaseLayer/Dialogue.tres" id="5_j6fub"]
